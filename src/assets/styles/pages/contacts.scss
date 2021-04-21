@@ -1,0 +1,11 @@
+body[id*='contact'] {
+  .contact-block {
+    @include shift-padding(1);
+  }
+  @include to(575px){
+    .contact-block {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

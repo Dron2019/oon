@@ -1,0 +1,197 @@
+body[id*='developer']{
+  .swiper-slide{
+    max-height: 55px;
+    object-fit: contain;
+  }
+
+  .swiper-container {
+    overflow: hidden;
+  }
+  .swiper-wrapper {
+    align-items: center;
+  }
+  .developer-grid-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  .icon-title-decor {
+    margin-bottom: 0;
+  }
+  .page__content {
+    .link:before{
+      display: none;
+    }
+
+  }
+}
+
+
+
+
+
+.developer-grid-container {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 45px 40fr 60fr;
+  grid-template-rows: 0.75fr 1fr 1fr;
+  grid-template-areas:
+    "decor title title"
+    "decor text text-with-logo"
+    "decor link slider";
+  gap: 0px 0px;
+  background-color: #fff;
+  --inner-left-padding:36px;
+  --inner-right-padding:30px;
+  --inner-vert-padding:17px;
+  .title { 
+    grid-area: title;
+    margin-bottom: 0; 
+  }
+  .decor { 
+    grid-area: decor; 
+    background-image: url(../images/developer/grid-container-decor.svg);
+    background-repeat: repeat-y;
+    background-size: auto 100%;
+    background-size: 45.5px auto;
+    border: none !important;
+  
+  }
+  .slider { 
+    grid-area: slider;
+    overflow: hidden;
+    flex-wrap: wrap;
+    &>*{
+      width: calc(100% - 90px);
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      padding-left: 20px;
+      padding-right: 20px;
+      
+    }
+    .arrows-container {
+      position: absolute;
+      top: 50%;
+      left: -45px;
+      width: calc(100% + 90px);
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+    }
+    .swiper-container-initialized {
+      overflow: hidden;
+    }
+  }
+  
+  .link { grid-area: link; }
+  .text-with-logo { 
+    grid-area: text-with-logo;
+    flex-wrap: nowrap;
+    .saga-logo {
+      margin-right: 50px;
+    }
+    .perf-logo {
+      margin-right: 30px;
+    }
+  
+  }
+  .text { grid-area: text; }
+  &>*:not(.decor) {
+    border: 0.5px solid #DBDBDB;
+    padding-left: var(--inner-left-padding);
+    padding-top: var(--inner-vert-padding);
+    padding-bottom: var(--inner-vert-padding);
+    padding-right: var(--inner-right-padding);
+    display: flex;
+    align-items: center;
+  }
+  @include from(576px){
+    .title{
+      border-bottom:none;
+      border-left: none;
+    }
+    .text {
+      border-left: none;
+    }
+    .link {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    .slider {
+      border-top: none;
+    }
+    .text {
+      border-right: none;
+
+    }
+  }
+  @include from(1680px){
+      max-width: 1360px;
+      grid-template-rows: 0.75fr 2fr 2fr;
+  }
+  @include to(950px){
+    border-bottom: 1px solid #DBDBDB ;
+  }
+  @include to(575px){
+    grid-template-columns: 30px calc(33.333% - 10px) calc(33.333% - 10px) calc(33.333% - 10px);
+    grid-template-rows: repeat(4,auto);
+    grid-template-areas:  "decor title title title"
+                          "decor text-with-logo text-with-logo text-with-logo"
+                          "decor text text text"
+                          "decor slider slider slider"
+                          "decor link link link";
+    --inner-left-padding:15px;
+    --inner-right-padding:15px;
+    --inner-vert-padding:15px;
+    .decor {
+      // display: none;
+      background-size: 100% auto;
+      margin-right: -1px;
+      border-bottom: 1px solid #DBDBDB !important;
+    }
+    &>*{
+      margin-bottom: -1px !important;
+      
+    }
+    .text-with-logo {
+      flex-direction: column;
+      .saga-logo {
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+      }
+      .perf-logo {
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.saga-logo {
+  --self-width:86px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+  width: var(--self-width);
+  height: var(--self-width);
+  border-radius: 50%;
+}
+.perf-logo {
+  --self-width:136px;
+  width: var(--self-width);
+  height: calc(var(--self-width) / 134 * 60);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.plain-arrow {
+  width: 45px;
+  height: 15px;
+  margin-left: 8px;
+  cursor: pointer;
+  &.prev {
+    transform: rotate(180deg);
+  }
+}

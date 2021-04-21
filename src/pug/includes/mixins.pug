@@ -1,0 +1,72 @@
+
+mixin svg(icon)
+    svg(class="icon--"+ icon + "" )&attributes(attributes)
+      use(xlink:href="#icon-"+ icon + "")
+
+mixin img(src)
+  img(src='./assets/images/'+src+'' title="foto" alt="foto")&attributes(attributes)
+
+mixin btn(text)
+  button(type="button")&attributes(attributes).resset.main-button
+    .main-button-wrap
+      .main-button-arrow.df.aic
+        span.main-button__line
+        +svg('button-arrow').main-button__ico
+      .main-button__circle
+    span(data-btn-submit-text).main-button__text= text
+    
+mixin a(text, hrefVal)
+  a(href= hrefVal)&attributes(attributes).tdn.main-button
+    .main-button-wrap
+      .main-button-arrow.df.aic
+        span.main-button__line
+        +svg('button-arrow').main-button__ico
+      .main-button__circle
+    span(data-btn-submit-text).main-button__text= text
+
+mixin SelectBox(name, id, options)
+  .u-select-box
+    .u-select-box__current(tabindex="1")
+      each option, index in options
+        .u-select-box__value
+          if(index == 0)
+            input.u-select-box__input(class='js_'+1+'checkbox js_select_checkbox' type="radio" id=id+index value=option.value name=id checked)
+          else
+            input.u-select-box__input(class='js_'+id+'checkbox js_select_checkbox' type="radio" id=id+index value=option.value name=id)
+          p.u-select-box__input-text #{option.name}
+        +svg('select-arr').u-select-box__icon
+    ul.u-select-box__list
+      each option, index in options
+        li
+          label.u-select-box__option(for=id+index aria-hidden) #{option.name}
+
+mixin RangeSlider(options)
+  each option, index in options
+    li.range-item.filter__item.js-range-item
+      h4.range-item__label.filter__label #{option.label}
+      input.js-range-init(id=option.id type="hidden" data-from=option.from data-min=option.min data-to=option.to data-max=option.max)
+      .u-range-item-nav
+        input(id=option.id+"_min" class="js_"+option.id+"_min js-current-min" name=option.id+"_min" maxlength=option.max type="number" min=option.min value=option.min max=option.max)
+        input(id=option.id+"_max" class="js_"+option.id+"_max js-current-max" name=option.id+"_max" maxlength=option.max type="number" min=option.min value=option.max max=option.max)
+
+
+        
+mixin infoItem(text, ico, color)
+  li(class='info-list-item ' + color)&attributes(attributes)
+    span.info-list-item__ico
+      +svg(ico)
+    span.info-list-item__text !{text}
+
+mixin seoBlock(title,text)
+  .seo-text(data-seo-text)
+    .seo-text__decor
+    .seo-text__text-wrap
+      .seo-text__title #{title}
+      .seo-text__text #{text}
+      +btn('Читати далі')(data-seo-read-more data-text-when-opened="Згорнути" data-text-when-closed="Читати далі")
+
+mixin iconTitleDecor(figureColor,title)
+  .icon-title-decor&attributes(attributes)
+      +svg('figure-'+figureColor)
+      .subtitle.bold.black #{title}
+      .decor

@@ -1,0 +1,268 @@
+@import './assets/smart-grid';  // mixins smartgrid.js
+@import './assets/vars';  // переменные
+// libraries
+@import './libs';
+
+// assets
+@import './assets/mixins';  // миксины
+@import './assets/fonts';  // шрифты
+@import './assets/base';  // общие стили
+@import './assets/animation';  // анимации
+@import './assets/class'; // main style
+@import './assets/interface'; // main style
+
+
+// sass dima
+@import './header';
+@import './footer';
+@import './footer-dron';
+@import './404';
+@import './loader';
+
+
+
+
+
+
+@import '../../pug/components/form/form';
+@import '../../pug/components/toster/toster';
+@import '../../pug/components/popup/popup';
+@import '../../pug/components/map/map';
+@import '../../pug/components/seo-block/seo-block';
+
+.df{
+  display: flex;
+}
+.jcc{
+  justify-content: center;
+}
+.aifs {
+  align-items: flex-start;
+}
+.aic{
+  align-items: center;
+}
+.jcsb{
+  justify-content: space-between;
+}
+.fww{
+  flex-wrap: wrap;
+}
+.fdc{
+  flex-direction: column;
+}
+.w50p{
+  width: 50%;
+}
+.w100p{
+  width: 100%;
+}
+
+.tdn{
+  text-decoration: none;
+}
+
+.button-circle--white{
+  path, circle{
+    stroke: white;
+  }
+}
+.button-circle--black{
+  path, circle{
+    stroke: black;
+  }
+}
+
+.title-wrap{
+  display: flex;
+  justify-content: center;
+}
+
+.info-list-item--white{
+  .info-list-item__ico{
+    svg {
+      fill: white;
+    }
+  }
+  .info-list-item__text{
+    color: $color-gray;
+    b{
+      color: $color-white;
+    }
+  }
+}
+.info-list-item--black{
+  .info-list-item__ico {
+    color: $color-technology;
+    b{
+      color: $color-technology;
+    }
+
+  }
+  .info-list-item__text {
+  }
+}
+.info-list-item{
+  display: flex;
+  max-width: min(vw(340), 340px);
+  margin: 0 min(vw(60), 60px);
+  align-items: center;
+  min-height: 110px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  &__ico{
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    svg{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__text{
+    padding-left: 40px;
+    font-size: 12px;
+    
+
+  }
+  
+}
+.resset{
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.main-button.main-button--size-m {
+  width: 248px;
+
+  height: 50px;
+}
+.main-button{
+  display: flex;
+  align-items: center;
+  &:hover{
+    @include from(1025px){
+
+      .main-button__line {
+        width: 50px;
+        transition: width 0.3s ease-out 0s;
+      }
+      .main-button__text{
+        transition: transform 0.3s ease-out 0s;
+        transform: translate(10px);
+
+      }
+      .main-button__circle {
+        top: 50%;
+        right: 10px;
+        transform: translate(10px, -50%) scale(0.9);
+
+        transition: all 0.3s ease-out;
+      }
+    }
+  }
+  .main-button-arrow{
+    z-index: 2;
+    transform: translateX(-20px);
+    @include to(576px){
+      transform: translateX(-10px);
+
+    }
+  }
+  .main-button-wrap{
+    position: relative;
+    padding-left: 20px;
+    width: 80px;
+
+    height: 50px;
+    min-width: 80px;
+
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    @include to(576px){
+      min-height: 36px;
+
+    }
+  }
+
+  &__line{
+    transform-origin: right;
+    width: 35px;
+    height: 1px;
+    display: flex;
+    background-color: #000;
+    transition: width 0.7s cubic-bezier(0, 0, 0, 2.01) 0s;
+
+  }
+  &__circle{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%) scale(1);
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    display: flex;
+    border-radius: 50%;
+    background: #FDC60C;
+    
+    transition: all 0.7s cubic-bezier(0, 0, 0, 2.01);
+    @include to(576px){
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+
+    }
+
+  }
+  &__ico{
+    margin-left: -2px;
+    width: 100%;
+    max-width: 10px;
+    height: 100%;
+    max-height: 15px;
+  }
+  &__text{
+    font-size: vw(16);
+    line-height: 100%;
+    margin: 0px 0 0 vw(20);
+    font-weight: 400;
+    color: #000000;
+    transition: transform 0.6s cubic-bezier(0, 0, 0, 2.01) 0s;
+    @include to(1440px){
+      font-size: 12px;
+      margin: 0px 0 0 10px;
+
+    }
+  }
+}
+
+@import './standart-elements';
+@import './form'; // main style
+@import './hover-links.scss'; // main style
+@import './assets/templates'; // main style
+@import './pages/home.scss';
+@import './pages/location.scss';
+@import './pages/ctc.scss';
+@import './pages/sfera.scss';
+@import './pages/gallery.scss';
+@import './pages/about.scss';
+@import './pages/developer.scss';
+@import './pages/build-progress.scss';
+@import './pages/leisure-page.scss';
+@import './pages/documents.scss';
+@import './pages/news.scss';
+@import './pages/single-news.scss';
+@import './pages/web-camera.scss';
+@import './pages/aeroview.scss';
+@import './pages/values.scss';
+@import './menu-dron';
+@import './pages/contacts.scss';
+@import './pages/home-dron.scss';
+@import './header-dron';
+@import './pages/living-page';

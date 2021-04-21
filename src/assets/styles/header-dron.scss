@@ -1,0 +1,150 @@
+.header {
+  border: none;
+  min-width: 320px;
+  padding-left: var(--page-side-fields);
+  padding-right: var(--page-side-fields);
+  background-color: rgba(255,255,255,0.95);
+  z-index: 50;
+  transition: .5s ease-in-out;
+  @include from(951px){
+    &:not(.not-on-top){
+      --header-h: 80px;
+    }
+  }
+  @include from(1240px){
+    &:not(.not-on-top){
+      --header-h: 80px;
+    }
+  }
+  @include from(1680px){
+    &:not(.not-on-top){
+      --header-h: 120px;
+    }
+  }
+
+  .header__call-svg{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+    @include from(1680px){
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .header-menu__text {
+    min-width: 7.5ch;
+    text-align: right;
+  }
+  @include to(768px){
+    .header__call-svg {
+      display: none;
+    }
+  }
+  @include to(575px){
+    .header__call-svg {
+      display: none;
+    }
+  }
+}
+@include from(951px){
+  .header__call-form-mobile {
+    display: none;
+  }
+}
+@include from(1680px){
+  .header__call, .header__lang, .header__call-form {
+    margin: 0 20px;
+  }
+  .main-button__text {
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  .call-link__text {
+    margin-left: 20px;
+    margin-right: 0;
+  }
+  .lang__item a, .social__item a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: var(--color-technology);
+    &:before {
+      
+      background-color: var(--color-technology);
+    }
+  }
+  .header .header__call-svg svg {
+    width: 16px;
+    height: 16px;
+  }
+  .header-menu__text {
+    font-size: 14px;
+  }
+  .header__social li {
+      margin: 0 20px;
+  }
+}
+@include to(950px){
+  .header__lang {
+    display: none;
+  }
+  .main-button.header__call-form {
+    display: none;
+  }
+  .header__call {
+    margin-left: 10px;
+    margin-right: 10px;
+    svg {
+      display: none;
+    }
+  }
+}
+@include from-to(576px, 950px){
+  .header__call-form-mobile {
+    width: 50px;
+    height: 50px;
+  }
+}
+@include to(575px){
+  :root {
+    --header-h:50px;
+  }
+  .header {
+    padding: 0 14px;
+  }
+  .header__logo {
+      width: 92px;
+      height: 40px;
+  }
+  .header__social,
+  .header__lang {
+    display: none;
+  }
+  
+  .header-menu {
+
+  }
+  .header-menu__text {
+    display: none;
+  }
+  .header-menu__burg {
+    width: 35px;
+    height: 35px;
+  }
+  .call-link__text {
+    margin-left: 0px;
+    margin-right: 0;
+  }
+  
+  button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+}

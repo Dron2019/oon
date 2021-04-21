@@ -1,0 +1,216 @@
+.map {
+  position: relative;
+  --markers-side-padding:30px;
+  --self-side-padding:60px;
+  --self-vertical-padding:45px;
+  padding: var(--self-vertical-padding) var(--self-side-padding);
+  display: flex;
+  align-items: flex-end;
+  width: calc(100% + (var(--self-side-padding) * 2));
+  margin-left: calc(var(--self-side-padding) * -1);
+  min-height: calc(100vh - var(--header-h));
+  
+  #map{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='133' height='50' viewBox='0 0 133 50' fill='none'%3E%3Cpath d='M0.0229492 4.89717L0.0229492 27.389L22.3578 27.389L22.3578 4.89717L0.0229492 4.89717Z' fill='%2302996D'/%3E%3Cpath d='M22.3676 27.4099H0.0327148V49.9017H22.3676V27.4099Z' fill='%23FDC60C'/%3E%3Cpath d='M22.335 27.4099V49.8689H44.6698L22.335 27.4099Z' fill='black'/%3E%3Cpath d='M37.2465 27.4099C43.4142 27.4099 48.414 22.3749 48.414 16.164C48.414 9.95305 43.4142 4.91809 37.2465 4.91809C31.0789 4.91809 26.0791 9.95305 26.0791 16.164C26.0791 22.3749 31.0789 27.4099 37.2465 27.4099Z' fill='%23EA4041'/%3E%3Cpath d='M22.3349 27.4103C22.3349 14.984 12.3395 4.91846 0 4.91846V27.4103H22.3349Z' fill='%230065FB'/%3E%3Cpath d='M85.5954 3.80328C86.6383 3.80328 87.4838 2.95189 87.4838 1.90164C87.4838 0.851394 86.6383 0 85.5954 0C84.5525 0 83.707 0.851394 83.707 1.90164C83.707 2.95189 84.5525 3.80328 85.5954 3.80328Z' fill='black'/%3E%3Cpath d='M89.9255 3.80328C90.9684 3.80328 91.8139 2.95189 91.8139 1.90164C91.8139 0.851394 90.9684 0 89.9255 0C88.8826 0 88.0371 0.851394 88.0371 1.90164C88.0371 2.95189 88.8826 3.80328 89.9255 3.80328Z' fill='black'/%3E%3Cpath d='M59.5814 4.91803H63.2279V11.4098H63.2605L67.2977 4.91803H71.1395L66.386 12.1311L71.4326 19.377H67.1349L63.2279 13.1475H63.1953V19.377H59.5488V4.91803H59.5814Z' fill='black'/%3E%3Cpath d='M79.8651 14.0984V19.3443H76.2186V14.0984L71.9209 4.91803H75.893L78.0093 10.7213L80.1581 4.91803H84.0976L79.8651 14.0984Z' fill='black'/%3E%3Cpath d='M85.9536 4.91803H89.6001V19.3443H85.9536V4.91803Z' fill='black'/%3E%3Cpath d='M100.051 19.3443H96.2743L91.4883 4.91803H95.2325L98.1301 15.0492H98.1627L101.06 4.91803H104.837L100.051 19.3443Z' fill='black'/%3E%3Cpath d='M68.8605 32.8525C67.6232 33.9344 66.2884 34.0984 64.6605 34.0984H63.0651V38.6229H59.5488V24.1967H64.2372C65.7023 24.1967 67.4605 24.2623 68.6651 25.2459C69.8046 26.1967 70.3581 27.5738 70.3581 29.082C70.3907 30.3934 69.8698 31.9344 68.8605 32.8525ZM64.4651 27.4098H63.0977V30.8525H64.5953C65.8 30.8525 66.8744 30.5902 66.8744 29.1147C66.8744 27.6066 65.6698 27.4098 64.4651 27.4098Z' fill='black'/%3E%3Cpath d='M78.921 38.6229L75.6001 33.9672H75.5675V38.6229H72.0513V24.1967H76.5768C78.0745 24.1967 79.7675 24.2295 81.0048 25.2459C82.1768 26.1967 82.7629 27.6721 82.7629 29.1803C82.7629 31.4098 81.4606 33.3443 79.2141 33.7377L83.121 38.6557H78.921V38.6229ZM76.9024 27.4098H75.5675V31.4426H76.8699C78.2373 31.4426 79.2792 30.8524 79.2792 29.377C79.2466 27.9344 78.1396 27.4098 76.9024 27.4098Z' fill='black'/%3E%3Cpath d='M91.6186 38.8853C87.5814 38.8853 84.0977 35.7377 84.0977 31.5738C84.0977 30.4918 84.2604 29.4754 84.6511 28.4918C84.8791 27.9344 85.2046 27.3443 85.5953 26.8853C87.0604 24.9181 89.2093 23.9344 91.6511 23.9344C95.8512 23.9344 99.2372 27.1803 99.2372 31.4426C99.2046 35.6722 95.8186 38.8853 91.6186 38.8853ZM91.6511 27.1476C89.307 27.1476 87.7442 29.1148 87.7442 31.3771C87.7442 33.6722 89.307 35.6722 91.6837 35.6722C93.9953 35.6722 95.5256 33.6394 95.5256 31.4426C95.5581 29.1803 93.9953 27.1476 91.6511 27.1476Z' fill='black'/%3E%3Cpath d='M100.604 38.6229V24.1967H108.581V27.4426H104.121V29.6721H108.451V32.918H104.121V35.4098H108.581V38.6557H100.604V38.6229Z' fill='black'/%3E%3Cpath d='M118.609 38.6229L114.702 32.3934H114.67V38.6229H110.991V24.1967H114.637V30.6885H114.67L118.707 24.1967H122.549L117.795 31.4098L122.842 38.6557H118.609V38.6229Z' fill='black'/%3E%3Cpath d='M130.168 27.4098V38.623H126.521V27.4098H123.688V24.1639H133V27.4098H130.168Z' fill='black'/%3E%3Cpath d='M60.4932 49.1148C59.8746 48.5246 59.5815 47.8033 59.5815 46.8853C59.5815 45.9672 59.8746 45.2459 60.4932 44.6557C61.1118 44.0656 61.8606 43.8033 62.7722 43.8033C63.3583 43.8033 63.8792 43.9344 64.335 44.1639V45.3771C63.8792 45.082 63.3583 44.918 62.8048 44.918C62.2513 44.918 61.7955 45.1148 61.4048 45.4754C61.0467 45.8361 60.8513 46.2951 60.8513 46.8525C60.8513 47.4098 61.0467 47.8689 61.4374 48.2623C61.8281 48.623 62.2839 48.7869 62.8699 48.7869C63.5211 48.7869 64.042 48.623 64.4653 48.2623V49.4754C63.9769 49.7705 63.4234 49.9016 62.8048 49.9016C61.8281 50 61.0792 49.7049 60.4932 49.1148Z' fill='black'/%3E%3Cpath d='M66.7769 43.9672H65.5723V49.8689H66.7769V43.9672Z' fill='black'/%3E%3Cpath d='M67.8188 43.9672H72.7351V45.0492H70.8793V49.8689H69.6747V45.0492H67.8188V43.9672Z' fill='black'/%3E%3Cpath d='M75.405 49.8689V47.2131L73.126 43.9672H74.5585L75.9911 46.0656L77.4888 43.9672H78.8562L76.6097 47.1803V49.8689H75.405Z' fill='black'/%3E%3Cpath d='M81.5908 49.3443V48.0656C81.8187 48.2623 82.1443 48.459 82.5676 48.6229C82.9908 48.7869 83.3815 48.8525 83.7722 48.8525C84.4234 48.8525 84.9118 48.6229 84.9118 48.1639C84.9118 47.9672 84.8141 47.7705 84.6187 47.6721C84.5211 47.6066 84.4559 47.5738 84.2931 47.5082L84.0978 47.4426L83.642 47.3115L83.2187 47.1803C83.1211 47.1475 82.9908 47.1147 82.828 47.0492C82.6652 46.9836 82.535 46.918 82.4373 46.8852C82.2745 46.7869 81.9815 46.5574 81.8838 46.3606C81.7862 46.1639 81.6885 45.8688 81.6885 45.541C81.6885 45.0164 81.8838 44.5902 82.2745 44.2951C82.6652 44 83.2187 43.8361 83.9025 43.8361C84.5862 43.8361 85.2373 44 85.8234 44.3279V45.5082C85.2373 45.1475 84.5862 44.9508 83.9025 44.9508C83.2513 44.9508 82.8931 45.1475 82.8931 45.541C82.8931 45.7377 83.0234 45.8688 83.2187 45.9344C83.3164 46 83.5443 46.0656 83.7071 46.0984C83.8699 46.1311 84.1629 46.2295 84.3583 46.2951C84.9118 46.459 85.2373 46.6229 85.628 46.918C86.0187 47.2131 86.2141 47.6066 86.2141 48.1639C86.2141 48.7213 85.9862 49.1803 85.5629 49.5082C85.1071 49.8361 84.5536 50 83.9025 50C82.9257 50 82.2094 49.7705 81.5908 49.3443Z' fill='black'/%3E%3Cpath d='M87.2236 49.8689V43.9672H89.7957C90.4143 43.9672 90.9353 44.1312 91.2934 44.459C91.6515 44.7869 91.8469 45.2131 91.8469 45.7377C91.8469 46.2623 91.6515 46.6885 91.2934 47.0164C90.9353 47.3443 90.4143 47.5082 89.7957 47.5082H88.4283V49.8361H87.2236V49.8689ZM88.4608 46.4918H89.7306C90.3167 46.4918 90.6422 46.2295 90.6422 45.7705C90.6422 45.3115 90.2841 45.0492 89.7306 45.0492H88.4608V46.4918Z' fill='black'/%3E%3Cpath d='M91.749 49.8689L94.256 43.9344H95.4281L97.9351 49.8689H96.6653L96.0793 48.4918H93.6048L93.0188 49.8689H91.749ZM93.963 47.5082H95.6886L94.842 45.4426L93.963 47.5082Z' fill='black'/%3E%3Cpath d='M99.1069 49.1148C98.4883 48.5246 98.1953 47.8033 98.1953 46.8853C98.1953 45.9672 98.4883 45.2459 99.1069 44.6557C99.7255 44.0656 100.474 43.8033 101.386 43.8033C101.972 43.8033 102.493 43.9344 102.949 44.1639V45.3771C102.493 45.082 101.972 44.918 101.419 44.918C100.865 44.918 100.409 45.1148 100.019 45.4754C99.6604 45.8361 99.4651 46.2951 99.4651 46.8525C99.4651 47.4098 99.6604 47.8689 100.051 48.2623C100.442 48.623 100.898 48.7869 101.484 48.7869C102.135 48.7869 102.656 48.623 103.079 48.2623V49.4754C102.591 49.7705 102.037 49.9016 101.419 49.9016C100.442 50 99.693 49.7049 99.1069 49.1148Z' fill='black'/%3E%3Cpath d='M104.154 49.8689V43.9672H108.484V45.0492H105.358V46.1967H107.865V47.2459H105.358V48.7869H108.582V49.8689H104.154Z' fill='black'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  &__legend{
+    width: Max(20%, 275px);
+    position: relative;
+    z-index: 1;
+  }
+  &__legend-markers-wrap {
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  &__title{
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 100%;
+    color: #000000;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: var(--self-vertical-padding);
+    transform: translateX(-50%);
+    z-index: 1;
+    @include to(575px){
+      font-size: 24px;
+    }
+  }
+  &__legend-title{
+    position: relative;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background: #FDC60C;
+    cursor: pointer;
+    padding-left: var(--markers-side-padding);
+  }
+  &__legend-marker{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: var(--markers-side-padding);
+    background: #fff; 
+    display: flex;
+    align-items: center;
+    color: #646464;
+    cursor: pointer;
+    transition: transform .5s ease-in;
+  }
+  &__legend-marker:nth-last-child(n+2){
+    border-left: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+  }
+  &__legend-marker:last-child(n+2){
+    border-left: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+  }
+  &__legend-marker-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 25px;
+  }
+  // &__legend-marker [fill]{
+  //   transition: .5s ease-in;
+  // }
+  // &__legend-marker [stroke]{
+  //   transition: .5s ease-in;
+  // }
+  &__legend-marker>*{
+      transition: transform .3s ease-in;
+  }
+  &__legend-marker.active {
+      background: #0065FB;
+      color: #fff;
+  }
+  &__legend-marker.active>*{
+    transform: translateX(20px);
+  }
+  &__legend-marker.active [fill]{
+    fill:#fff;
+  }
+  &__legend-marker.active [stroke]{
+    stroke:#fff;
+  }
+  &__legend-marker.active:nth-last-child(n+2){
+    border-left: 1px solid #0065FB;
+    border-right: 1px solid #0065FB;
+    border-bottom: 1px solid #0065FB;
+  }
+  &__legend-marker[data-type="main"]{
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-technology);
+  }
+  
+  @include from(769px){
+    &__legend-marker:hover {
+      background: #0065FB;
+      color: #fff;
+      border-left: 1px solid #0065FB;
+      border-right: 1px solid #0065FB;
+      border-bottom: 1px solid #0065FB;
+    }
+    &__legend-marker:hover>*{
+      transform: translateX(20px);
+    }
+    &__legend-marker:hover [fill]{
+      fill:#fff;
+    }
+    &__legend-marker:hover [stroke]{
+      stroke:#fff;
+    }
+  }
+  @include from(1680px){
+    --self-vertical-padding: 75px;
+    &__title {
+      font-size: 64px;
+    }
+  }
+  @include from-to(576px,950px){
+    &__legend {
+      position: absolute;
+      top: auto;
+      bottom: var(--self-vertical-padding);
+      // transform: translateY(-50%);
+      left: 20px;
+    }
+    &__legend-marker:nth-last-child(n+1){
+    border-left: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+  }
+  }
+  @include to(950px){
+    padding: 0 var(--self-vertical-padding) var(--self-side-padding) 0;
+    --self-side-padding: 20px;
+    min-height: calc(100vh - var(--header-h));
+  }
+
+  @include to(575px){
+    // min-width: 100vw;
+    --self-side-padding:14px;
+    --markers-side-padding:20px;
+    min-height: calc(100vh - var(--header-h));
+    &__legend {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 230px;
+    }
+    &__legend-marker {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    &__legend-markers-wrap{
+      transform: scaleY(0);
+      height: 0;
+    }
+    &__legend.opened &__legend-markers-wrap {
+      transform: scaleY(1);
+      height: auto;
+    }
+    &__legend &__legend-title:after {
+        content: "";
+        margin-left: auto;
+        display: inline-block;
+
+        width: 13px;
+        height: 8px;
+        background-image: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.8 1.18921L6.39999 6.00012L0.99999 1.18921' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0.5turn);
+    }
+    &__legend.opened &__legend-title:after {
+        content: "";
+        display: inline-block;
+        width: 13px;
+        height: 8px;
+        background-image: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.8 1.18921L6.39999 6.00012L0.99999 1.18921' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+        margin-left: auto;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &__legend-title {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+}

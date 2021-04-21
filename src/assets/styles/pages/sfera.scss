@@ -1,0 +1,197 @@
+
+.sfera-part {
+  margin-top: 70px;
+  @include to(575px){
+    margin-top: 35px;
+    .icon-title-decor {
+      margin-bottom: 10px;
+      .subtitle{
+        padding-right: 10px;
+      }
+      .decor {
+        display: none;
+      }
+    }
+    &:nth-last-child(-n+4) {
+      border: 1px solid #dbdbdb;
+      padding: 14px;
+    }
+    
+  }
+}
+.sfera-grid-block{
+  display: grid;
+  position: relative;
+  grid-template-columns: 65% 35%;
+  --decor-size:150px;
+  &>* {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: calc(100% / 2 / 8);
+    padding-right: calc(100% / 2 / 8);
+  }
+  &__left {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-end: 3;
+    grid-row-start: 1;
+    border:1px solid #DBDBDB;
+    // background: url(../images/ctc/grid-left-decor.svg) left bottom no-repeat,url(../images/ctc/grid-right-decor.svg) right bottom no-repeat;
+    background-size: var(--decor-size) var(--decor-size) var(--decor-size) var(--decor-size); 
+    background-position: -1px calc(100% + 1px), calc(100% + 1px) calc(100% + 1px);
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &.yellow-bg &__left {
+    background-color: var(--color-architecture);
+    
+    // background-image: url(../images/sfera/white-pattern.svg);
+  }
+  &__left-fixed-proportions {
+    position: relative;
+    padding-bottom: calc(100% / 632 * 350);
+    width: 100%;
+    margin: auto;
+  }
+  &__left-fixed-proportions * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  &__right,
+  &__right2{
+    border-top: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+    grid-column-start: 2;
+    grid-column-end: 2;
+  }
+  &__right2 {
+    border-bottom: 1px solid #DBDBDB;
+    display: grid;
+    grid-template-columns: auto 50%;
+    grid-template-rows: repeat(2,auto);
+    column-gap: min(50px, 10%);
+    row-gap: 15px;
+  }
+  &__right2 .text.light-gray {
+    grid-area: 2/1/2/3;
+  }
+  &__right2 img {
+    grid-area: 1/1/2/1;
+    max-width: 130px;
+    margin: 0 auto;
+  }
+  &__bg{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .subtitle.black {
+    margin-bottom: 40px;
+  }
+  .main-button {
+    margin-top: 20px;
+  }
+  iframe {
+    width: 100%;
+    height:100%;
+  }
+  @include to(1024px){
+    grid-template-columns: 55% 45%;
+    &__right2 {
+      column-gap: 20px;
+    }
+  }
+  @include to(768px){
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    &>* {
+      padding-left: 15px;
+      padding-right: 15px;
+      
+    }
+    &__left {
+      position: relative;
+          padding-bottom: calc(var(--decor-size) + 15px);
+    }
+    &>*:nth-child(n+2){
+      border-top: none;
+      border-bottom: 1px solid #DBDBDB;
+      border-left: 1px solid #DBDBDB;
+      border-right: 1px solid #DBDBDB;
+    }
+    &__right2 {
+      column-gap: 15px;
+      row-gap: 15px;
+      display: flex;
+      flex-direction: column;
+      grid-template-rows: repeat(3,auto);
+      &>*:nth-child(n+2) {
+        margin-top: 20px;
+      }
+      img{
+        grid-area: 1/1/1/3;
+        height: 100%;
+        max-height: 320px;
+      }
+    }
+    &__right2>*:not(img){
+      grid-area: auto/1/auto/3;
+    }
+    
+    iframe {
+      height: calc((100vw - (var(--page-side-fields) * 4)) / 16 * 9);
+    }
+    .sfera-logo {
+      max-height: 250px;
+    }
+  }
+  @include to(575px){
+    &>* {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+    &__bg {
+      display: none;
+    }
+    &__left {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+}
+
+.sfera-logo {
+  // width:100px;
+  // height: 140px;
+  // width: 100px;
+  // height: 140px;
+  // float: left;
+  // margin: 0 55px 0px 0;
+  // height: 100%;
+  object-position: top;
+  object-fit: contain;
+  @include to(575px) {
+    max-width: 200px;
+    margin: auto;
+  }
+}
+
+
+
+.icon-title-decor .decor {
+  animation: bgPosX 100s infinite;
+}
+@keyframes bgPosX {
+  from {background-position-x:0}
+  to {background-position-x:-1000px}
+}

@@ -1,0 +1,111 @@
+#location {
+  .map__title{
+    display: none;
+  }
+  .page__content>*:nth-last-child(n+2):not(.breadcrumbs) {
+    margin-bottom: 50px;
+  }
+  @include to(575px){
+    .page__content>*:nth-last-child(n+2):not(.breadcrumbs) {
+      margin-bottom: 35px;
+    }
+  }
+  @include from(1680px){
+    .subtitle {
+      font-size: 32px;
+    }
+  }
+}
+.double-side-block {
+  --self-vert-padding:40px;
+  --self-side-padding:80px;
+  background: var(--color-white);
+  border: 1px solid #DBDBDB;
+  display: flex;
+  flex-wrap: wrap;
+  &>*{
+      width: 50%;
+      padding: var(--self-vert-padding) var(--self-side-padding);
+  }
+  &>img {
+    object-fit: cover;
+    padding: 0;
+  }
+  &>*:first-child{
+    border-right: 1px solid #DBDBDB;
+  }
+  .icon--logo{
+    width:46px;
+    height: 44px;
+  }
+  &__subtitle{
+    margin-bottom: 30px;
+  }
+  @include from(1680px){
+    &>img {
+      max-height: 82vh;
+    }
+    & img {
+      width: 65%;
+    }
+    &__right {
+      width: 35%;
+      font-size: 18px;
+    }
+    &__subtitle{
+      font-size: 32px;
+    }
+    .icon--logo {
+      width: 62px;
+      height: 60px;
+    }
+  }
+  @include to(950px){
+      --self-vert-padding:30px;
+      --self-side-padding:60px;
+  }
+  @include to(768px){
+      --self-vert-padding:30px;
+      --self-side-padding:30px;
+      &>img {
+          max-height: 75vw;
+      }
+      &__right {
+        display: flex;
+        align-items: center;flex-direction: column;
+        justify-content: center;
+      }
+  }
+  @include to(575px){
+      --self-vert-padding:20px;
+      --self-side-padding:20px;
+      &>*{
+          width: 100%;
+      }
+      .icon--logo {
+        width: 33px;
+        height: 36px;
+      }
+  }
+}
+
+.adress-link  {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  &__text {
+    margin-left: 20px;
+  }
+  @include from(1680px){
+    font-size: 24px;
+    line-height: 1.25em;
+  }
+  @include from(769px){
+    &__text {
+      transition: .25s ease-in-out;
+    }
+    &:hover {
+      color: var(--color-design);
+    }
+  }
+}

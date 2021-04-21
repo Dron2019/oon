@@ -1,0 +1,38 @@
+.form-label{
+  font-size: max(vh(32), 32px);
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 vw(20) auto;
+  white-space: nowrap;
+  @media (-webkit-min-device-pixel-ratio: 2) and (min-width:1440px) {
+    font-size: max(vh(32, 0.85), 32px);
+    font-weight: 300;
+  }
+  @media (-webkit-min-device-pixel-ratio: 2) and (max-width:1440px) {
+    font-size: max(vh(32), 32px);
+    font-weight: 400;
+
+  }
+  @include to(1440px){
+    margin: 0 0 20px auto;
+    font-size: 18px;
+  }
+  @include to(576px){
+    font-size: 16px;
+  }
+}
+.contact-block__r form{
+  margin-left: auto;
+}
+
+.home-contact--width{
+  max-width: vw(470);
+  @include to(1440px){
+    max-width: 400px;
+  }
+  @include to(576px){
+    max-width: none;
+  }
+
+}

@@ -1,0 +1,188 @@
+body[id*='values']{
+
+}
+body[id*='values']{
+
+}
+
+.values-slider {
+  --js-transition:1.5s;
+  --slides-count:4;
+  display: flex;
+  // position: absolute;
+  left: 0;
+  margin-left: calc(var(--page-side-fields) * -1);  
+  // Высота тайтла страницы и хлебных крошек
+      margin-top: calc((var(--header-h) + 60px + 130px) * -1);
+  top: var(--header-h);
+  width: 100vw;
+  height: calc(100vh - var(--header-h));
+  height: 100vh;
+  .slide.active {
+    width: calc(100% - (60px * (var(--slides-count) - 1)));
+    pointer-events: none;
+    cursor: initial;
+  }
+  .slide:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .slide.active:after {
+    opacity: 0;
+  }
+  .slide {
+    width: 60px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    
+  }
+  .info-list-item  {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+    max-width: 350px;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .slide__content {
+    opacity: 0;
+    transition: .5s ease-in-out;
+    padding-left: 150px;
+    pointer-events: none;
+    min-width: 50vw;
+    
+  }
+  .slide.active .slide__content {
+    opacity: 1;
+  }
+  img{
+    position: absolute;
+    right: 0;
+    min-width: 100vw;
+    top: 0;
+    min-height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    object-position: left;
+  }
+  &__number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    z-index: 1;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 42px;
+    color: #fff;
+    transition: var(--js-transition);
+    transition-delay: 0;
+  }
+  .active &__number {
+    font-size: 96px;
+    line-height: 80px;
+    font-weight: normal;
+  }
+  .active.slide:after {
+        background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        opacity: 1;
+        z-index: -1;
+    }
+  @include from-to(769px,1679px ){
+    margin-top: calc((var(--header-h) + 60px + 85px) * -1);
+  }
+  @include from(769px){
+    .slide:hover:after {
+      background-color:rgba(255, 255, 255, 0.5);
+    }
+  }
+  @include from(1680px){
+    .slide {
+      width: 88px;
+    }
+    .subtitle-small {
+      font-size: 36px;
+    }
+    &__number {
+      font-size: 64px;
+      line-height: 42px;
+    }
+    .active &__number {
+      font-size: 144px;
+      line-height: 100px;
+    }
+  }
+  @include to(768px){
+    flex-wrap: wrap;
+    margin-top: 0;
+    height: auto;
+    .slide {
+      width: 100%;
+      height: 60px;
+      align-items: flex-start;
+    }
+    .slide img {
+      min-width: auto;
+      min-height: 75vh;
+      object-position: 40%;
+    }
+    .slide.active {
+      height: 75vh;
+      width: 100%;
+    }
+    .slide__content {
+      padding-left: 14px;
+    }
+    
+    
+    .info-list-item {
+      padding: 10px 0;
+    }
+    .slide__content {
+      padding-top: 30px;
+      padding-bottom: 40px;
+      padding-right: 20%;
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .subtitle-small{
+      margin-bottom: 20px;
+    }
+  }
+  @include to(575px){
+    .slide {
+      height: 35px;
+    }
+    &__number {
+      font-size: 24px;
+      line-height: 100%;
+      z-index: 1;
+    }
+    .active &__number {
+      font-size: 48px;
+      line-height: 100%;
+    }
+    .title {
+      margin-bottom: 20px;
+    }
+    .subtitle-small {
+      line-height: 1em;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+body[id*="living"]{
+
+  .page__content {
+    padding-top: 0;
+  }
+  .home-section-live {
+    margin-left: calc(var(--page-side-fields) * -1);
+    margin-right: calc(var(--page-side-fields) * -1);
+    padding-top: calc(var(--header-h) + 65px);
+    margin-top: calc(var(--header-h) * -1);
+    margin-bottom: 0;
+  }
+  .breadcrumbs {
+    margin-bottom: calc((var(--header-h) + 50px) * -1);
+    margin-top: calc(var(--header-h) + 40px);
+  }
+  .breadcrumbs-item__link {
+    color: #fff;
+  }
+  .breadcrumbs-item__current--color {
+    color: var(--color-architecture);
+  }
+  .info-list-item {
+    max-width: none;
+    margin: 0;
+    // width: calc(50% - );
+  }
+}

@@ -1,0 +1,137 @@
+.row {
+	@include row-flex();
+}
+.page__inner {
+	display: flex;
+	flex-direction: column;
+	z-index: 2;
+	.page__content {
+  padding-top: var(--header-h);
+		flex-grow: 1;
+	}
+	.page__footer-wrapper {
+		flex-shrink: 0;
+	}
+}
+.section-pading--top {
+	padding-top: 60px;
+}
+.btn--res{
+  border: none;
+  background-color: transparent;
+}
+
+.brd{
+  border: 1px solid red;
+}
+
+.circle-ico{
+  padding: 8px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  @include to(1440px){
+    width: 30px;
+    height: 30px;
+
+  }
+  svg{
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 1;
+  }
+
+}
+.circle-ico--gray-border{
+  border: 1px solid #BDBDBD;
+}
+
+.button-circle{
+  display: flex;
+  align-items: center;
+  &__ico{
+    width: 70px;
+    height: 50px;
+  }
+  &__text{
+    margin: 0 10px;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #000000;
+  }
+}
+
+.call-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  &__ico{
+
+  }
+  &__text{
+    margin: 0 vw(40);
+    font-weight: 500;
+    font-size: vw(16);
+    line-height: 1em;
+    text-align: center;
+    color: #000000;
+    @include to(1440px){
+      font-size: 12px;
+      margin: 0 20px;
+
+    }
+  }
+}
+
+.underline{
+  position: relative;
+  display: flex;
+  color: #000;
+  &::after{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    content: "";
+  }
+}
+
+.title--white{
+  color: white
+}
+.title--black{
+  color: white
+}
+.title{
+  margin-bottom: max(vh(50), 50px);;
+  font-weight: 300;
+  font-size: max(vh(64), 64px);
+  line-height: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  @media (-webkit-min-device-pixel-ratio: 2) and (min-width:1440px){
+    margin-bottom: max(vh(50, 1.6), 50px);;
+
+  }
+  @include to(1440px){
+    margin-bottom: 50px;
+    font-size: 36px;
+  }
+  @include to(1024px){
+    margin-bottom: 60px;
+  }
+  @include to(576px){
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+
+}

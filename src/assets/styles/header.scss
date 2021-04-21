@@ -1,0 +1,100 @@
+@import '../../pug/components/lang/lang';
+
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 50px;
+  width: 100%;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  z-index: 5;
+  background-color: #fff;
+  &__logo{
+    margin-right: auto;
+    width: 186px;
+    height: 70px;
+    @include to(1440px){
+      width: 130px;
+      height: 50px;
+
+    }
+  }
+  &__social{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    li{
+      margin: 0 vw(20);
+      @include to(1440px){
+        margin: 0 10px;
+      }
+      
+    }
+  }
+  &__call{
+    svg{
+
+      width: 24px;
+      height: 24px;
+      @include to(1440px){
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  &__call,
+  &__lang,
+  &__call-form {
+     margin: 0 vw(40);
+     @include to(1440px){
+       margin: 0 20px;
+     }
+  }
+  &__menu{
+    display: flex;
+    align-items: center;
+  }
+}
+
+.header-menu{
+  &__text{
+    margin-right: 20px;
+    font-size: vw(14);
+    line-height: 10px;
+    text-transform: uppercase;
+    color: #000000;
+    @include to(1440px){
+      font-size: 10px;
+    }
+  }
+  &__burg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background: #EA4041;
+    border-radius: 25px;
+    .line{
+      margin: 2px 0;
+      width: 15px;
+      height: 2px;
+      background-color: #fff;
+    }
+    .line__3.line{
+      width: 12px;
+      margin-left: -3px;
+      transition: .3s ease-in-out;
+      transform-origin: left;
+    }
+  }
+}
+@include from(769px){
+  body:not(.modal-active) &:hover .line__3.line{
+    transform: scaleX(1.28)  !important;
+  }
+}

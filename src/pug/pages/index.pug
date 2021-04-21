@@ -1,0 +1,17 @@
+extends ../layout/main
+block variable
+
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/adminPanel.bundle.js')
+block content
+  #root
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

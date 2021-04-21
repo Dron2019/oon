@@ -1,0 +1,159 @@
+.news-link {
+  display: grid;
+  --decor-size:45px;
+  grid-template-columns: var(--decor-size) 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  gap: 0px 0px;
+  background-color:#fff;
+  border: 1px solid #DBDBDB;
+  text-decoration: none;
+  color: black;
+  grid-template-areas:
+    "decor title title"
+    "decor preview image"
+    "decor link image";
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  margin-bottom: 40px;
+  &.reverse {
+    grid-template-columns:  1fr 1fr var(--decor-size);
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+      "title title decor"
+      "image preview decor"
+      "image link decor";
+  }
+  &__image { 
+    grid-area: image; 
+    overflow: hidden;
+  }
+  &__title { 
+    grid-area: title; 
+    padding: 30px 30px;
+    align-self: center;
+    border-bottom: 1px solid #DBDBDB;
+  }
+  &__decor { 
+    grid-area: decor; 
+    background-image: url(../images/news/article-bg.svg);
+    background-size: var(--decor-size);
+    background-position-x: -1px;
+    background-position-y: -1px;
+    
+    background-repeat: repeat-y;
+  }
+  &.reverse &__decor {
+    background-position-x: 1px;
+    background-position-y: -1px;
+  }
+  &__preview { 
+    grid-area: preview; 
+    padding: 0 30px;
+    align-self: center;
+    border-bottom: 1px solid #DBDBDB;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+  &__link { 
+    grid-area: link; 
+    padding: 0 30px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding-left: 60px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+  &__date {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.7em;
+    /* or 20px */
+
+    text-align: right;
+
+    color: #DBDBDB;
+  }
+  &__fixed-proportions {
+    position: relative;
+    padding-top: 67%;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    transition: 2s ease-in-out;
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  @include from(769px){
+    &:hover &__image &__fixed-proportions {
+      transition: 1s ease-in-out;
+        transform: scale(1.2);
+      }
+    
+  }
+  @include from(1680px){
+    max-width: 1200px;
+      --decor-size:65px;
+  }
+  @include to(768px){
+    grid-template-rows: auto 25vh  auto 80px;
+    grid-template-areas:
+    "decor title title"
+    "decor image image"
+    "decor preview preview"
+    "decor link link"
+    ;
+    &.reverse {
+      grid-template-rows: auto 25vh  auto 80px;
+      grid-template-areas:
+    "title title decor"
+    "image image decor"
+    "preview preview decor"
+    "link link decor"
+    ;
+    }
+    &__preview,
+    &__link{
+      padding-left: 20px;
+      padding-right: 20px;
+      
+    }
+    &__title{
+      padding: 20px;
+    }
+  }
+  @include to(575px){
+    margin-bottom: 20px;
+    --decor-size:35px;
+    &__preview,
+    &__link{
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    &__title{
+      padding: 10px;
+    }
+    .icon-title-decor .subtitle{
+      padding-left: 10px;
+    }
+    &__link {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}

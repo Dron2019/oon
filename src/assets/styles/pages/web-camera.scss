@@ -1,0 +1,111 @@
+.webcam-block {
+  display: flex;
+  flex-wrap: wrap;
+  transition: background-color .5s ease-in-out;
+  min-height: calc(100vh - var(--header-h) - 190px);
+  margin-bottom: 70px;
+  --frame-decor:45px;
+  &__frame-wrap {
+    background: #fff;
+    width: calc(100% - 155px);
+    padding: 30px 80px;
+    transition: background-color .5s ease-in-out;
+
+  }
+  iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+  &__frame{
+    padding-left: var(--frame-decor);
+    padding-right: var(--frame-decor);
+    background:
+    url(../images/logo.svg) center no-repeat,
+    url(../images/web-camera/frame-bg-left.svg) left top repeat-y,
+    url(../images/web-camera/frame-bg-right.svg) right top  repeat-y;
+    background-size: 300px 150px, var(--frame-decor) auto, var(--frame-decor) auto;
+        height: 100%;
+    // background-color: red;
+  }
+  &__tabs {
+    width: 155px;
+    overflow: hidden;
+  }
+  &__tab {
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 100%;
+    text-transform: uppercase;
+    transition: letter-spacing .3s ease-in-out;
+  }
+  &__tab:nth-child(1){
+    background-color: #fff;
+  }
+  &__tab:nth-child(2){
+    background-color: var(--color-design);
+    color: #fff;
+  }
+  &__tab:nth-child(3){
+    background-color: var(--color-living);
+    color: #fff;
+    
+  }
+  &__tab:nth-child(4){
+    background-color: var(--color-art);
+    color: #fff;
+  }
+  @include from(1680px){
+    max-width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include to(1024px){
+    &__frame-wrap {
+      padding: 30px;
+    }
+  }
+  @include to(768px){
+    min-height: auto;
+    --frame-decor:35px;
+    &__frame-wrap {
+      width: 100%;
+      order: 2;
+      height: calc(100vw * 0.75);
+      padding: 20px;
+    }
+    &__tabs {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__tabs>* {
+      width: 25%;
+      margin-bottom: 0;
+    }
+    &__frame {
+     
+      background-size: 200px 100px, var(--frame-decor) auto, var(--frame-decor) auto;
+    }
+  }
+  @include to(575px){
+    margin-left: -14px;
+    margin-right: -14px;
+    margin-bottom: 30px;
+    --frame-decor:30px;
+    &__frame-wrap {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+  }
+  @include from(769px){
+    &__tab:hover {
+      letter-spacing:0.1em;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.page__footer-wrapper{
+
+}
+.footer{
+  width: 100%;
+  padding: 50px 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F9F9F9;
+  @include to(575px){
+    background-color:#fff;
+  }
+}
+
+.footer-dev{
+  display: flex;
+}
+
+.footer-copy{
+  font-size: 10px;
+  line-height: 10px;
+  /* identical to box height */
+
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.footer-dev__text{
+  margin-right: 5px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.footer-dev__link{
+    font-size: 12px;
+    line-height: 12px;
+    color: #000000;
+    text-decoration: none;
+}
+  .footer-dev{
+    display: flex;
+    align-items: center;
+  }

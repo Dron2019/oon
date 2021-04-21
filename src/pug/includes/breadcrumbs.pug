@@ -1,0 +1,7 @@
+.breadcrumbs
+	ul.breadcrumbs-list
+		if breadcrumbsSubitem
+			each v in breadcrumbsSubitem
+				li.breadcrumbs-item
+					a(href= v.link).breadcrumbs-item__link.underline_2= v.label
+		li.breadcrumbs-item__current--color.breadcrumbs-item= title_page
