@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link
 } from "react-router-dom";
 
@@ -22,11 +23,9 @@ function Users() {
 }
 
 
-
-
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined)
-    console.log(isLogined,'!!!!!');
+
     const menus = [
       ['Послуги психолога','/psycho'],
       ['Створити запитання','/createQuestion'],
@@ -36,7 +35,8 @@ export default function Cabinet(props){
       ['Послуги консультанта з пошуку роботи',''],
     ]
     return (
-      <Router>
+      <>
+        
         <div className="menu">
           <div className="link" onClick={()=>{store.dispatch({type:'LOGOUT'})}}>
             Вийти: {isLogined.toString()}
@@ -58,7 +58,7 @@ export default function Cabinet(props){
             </Route>
           </Switch>
         </div>
-      </Router>
+      </>
     )
   }
   
