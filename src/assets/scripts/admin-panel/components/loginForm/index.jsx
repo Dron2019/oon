@@ -9,9 +9,8 @@ export default function(props){
     const isSome = useSelector(state=>state.isSome)
     console.log(isSome, 'ISSOME');
     function loginSubmit(values, actions) {
-        console.log(JSON.stringify(values, null, 2));
         // actions.setSubmitting(false);
-        dataStore.dispatch({type:'LOGIN'})
+        dataStore.dispatch({type:'LOGIN', login: values.login})
         setResponse('SEND');
         setTimeout(() => setResponse(''), 2000);
     }

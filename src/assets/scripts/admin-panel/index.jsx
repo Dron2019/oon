@@ -14,15 +14,11 @@ import {
   Link
 } from "react-router-dom";
 
-console.log(store.getState().isLogined);
-
-
 
 function App(props){
-  const isLogined = useSelector(state=>state.isLogined);
-  console.log(isLogined);
+  const isLogined = useSelector(state=>state);
   return (
-    isLogined ? 
+    isLogined.isLogined ? 
     <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
     <LoginForm/>
 

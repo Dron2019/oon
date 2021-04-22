@@ -25,7 +25,8 @@ function Users() {
 
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined)
-
+    const userName = useSelector(state=>state.isSome) || '';
+    console.log(store.getState(), 'STATE');
     const menus = [
       ['Послуги психолога','/psycho'],
       ['Створити запитання','/createQuestion'],
@@ -39,10 +40,10 @@ export default function Cabinet(props){
         
         <div className="menu">
           <div className="link" onClick={()=>{store.dispatch({type:'LOGOUT'})}}>
-            Вийти: {isLogined.toString()}
+            Вийти: {userName.toString()}
           </div>
           <ul>
-            {menus.map((el, index)=><Link to={el[1]}>{el[0]}</Link>)}
+            {menus.map((el, index)=><li><Link className="title" to={el[1]}>{el[0]}</Link></li>)}
           </ul>
         </div>
         <div className="content">
