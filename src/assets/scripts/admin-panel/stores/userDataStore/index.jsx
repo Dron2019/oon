@@ -29,7 +29,7 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
     case 'INIT':
       return Object.assign(getLoginStatusOfUser());
     default:
-      return Object.assign({ ...state }, { isLogined: state.isLogined });
+      return Object.assign({ ...state }, { isLogined: state.isLogined }, getLoginStatusOfUser());
   }
 }
 const store = createStore(loginStatusReducer);

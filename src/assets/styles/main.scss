@@ -244,25 +244,5 @@
 
 @import './standart-elements';
 @import './form'; // main style
-@import './hover-links.scss'; // main style
-@import './assets/templates'; // main style
-@import './pages/home.scss';
-@import './pages/location.scss';
-@import './pages/ctc.scss';
-@import './pages/sfera.scss';
-@import './pages/gallery.scss';
-@import './pages/about.scss';
-@import './pages/developer.scss';
-@import './pages/build-progress.scss';
-@import './pages/leisure-page.scss';
-@import './pages/documents.scss';
-@import './pages/news.scss';
-@import './pages/single-news.scss';
-@import './pages/web-camera.scss';
-@import './pages/aeroview.scss';
-@import './pages/values.scss';
-@import './menu-dron';
-@import './pages/contacts.scss';
-@import './pages/home-dron.scss';
-@import './header-dron';
-@import './pages/living-page';
+@import './pages/home'; // main style
+@import '../scripts/admin-panel/components/loginForm/index';

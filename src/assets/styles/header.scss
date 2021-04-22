@@ -1,100 +1,107 @@
 @import '../../pug/components/lang/lang';
 
-
-.header{
+.aside {
+  --side-padding:30px;
+  width: var(--aside-w);
+  padding: var(--side-padding);
+  background: var(--color-white);
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 50px;
-  width: 100%;
-  height: var(--header-h);
+  height: 100vh;
   display: flex;
-  align-items: center;
-  z-index: 5;
-  background-color: #fff;
-  &__logo{
-    margin-right: auto;
-    width: 186px;
-    height: 70px;
-    @include to(1440px){
-      width: 130px;
-      height: 50px;
+  flex-direction: column;
+  &__logo {
+    width: 100px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  &__title{
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-size: 18px;
+  line-height: 100%;
+    
+  }
+  &__subtitle{
+    color: var(--color-black);
+    font-weight: 800;
+    margin-bottom: 20px;
+    
+  }
+  &__link {
+    font-size: 12px;
+    line-height: 1em;
+    cursor: pointer;
+    font-weight: 400;
+  }
+  &__link-dropdown {
+    position: relative;
+  }
 
-    }
+  &__link-dropdown-content {
+    position: absolute;
+    left: calc(100% - 1px);
+    top: 0;
+    background: var(--color-white);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease-in-out;
+    padding:30px;
+    margin-top: -30px;
+    width: 225px;
   }
-  &__social{
-    margin: 0 10px;
-    display: flex;
-    align-items: center;
-    li{
-      margin: 0 vw(20);
-      @include to(1440px){
-        margin: 0 10px;
-      }
-      
-    }
+  &__link-dropdown-content>* {
+    color: var(--color-violet);
   }
-  &__call{
-    svg{
-
-      width: 24px;
-      height: 24px;
-      @include to(1440px){
-        width: 12px;
-        height: 12px;
-      }
-    }
+  &__link-dropdown-content li~li{
+    margin-top: 20px;
   }
-  &__call,
-  &__lang,
-  &__call-form {
-     margin: 0 vw(40);
-     @include to(1440px){
-       margin: 0 20px;
-     }
-  }
-  &__menu{
-    display: flex;
-    align-items: center;
-  }
-}
-
-.header-menu{
-  &__text{
-    margin-right: 20px;
-    font-size: vw(14);
-    line-height: 10px;
-    text-transform: uppercase;
-    color: #000000;
-    @include to(1440px){
-      font-size: 10px;
-    }
-  }
-  &__burg{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50px;
-    height: 50px;
-    background: #EA4041;
-    border-radius: 25px;
-    .line{
-      margin: 2px 0;
-      width: 15px;
-      height: 2px;
-      background-color: #fff;
-    }
-    .line__3.line{
-      width: 12px;
-      margin-left: -3px;
+  &__dropdown-birdy {
+    transform: rotate(90deg);
+    transition: .3s ease-in-out;
+    path {
+      fill: var(--color-violet);
       transition: .3s ease-in-out;
-      transform-origin: left;
     }
   }
-}
-@include from(769px){
-  body:not(.modal-active) &:hover .line__3.line{
-    transform: scaleX(1.28)  !important;
+  &__link-dropdown:hover &__link-dropdown-content {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &__link-dropdown:hover  &__dropdown-birdy{
+    transform: none;
+  }
+  &__link-dropdown:hover  &__dropdown-birdy {
+      
+    path {
+      fill: var(--color-orange);
+    }
+  }
+  &__link-dropdown-title{
+    display: flex;
+    align-items: center;
+    svg {
+      margin-left: 10px;
+    }
+  }
+  &__link~&__link {
+    margin-top: 20px;
+  }
+  hr {
+    border: 1px solid rgba(62, 12, 41, 0.1);
+    margin: 30px 0;
+  }
+  
+  .button-std {
+    margin-top: auto;
+  }
+  @include from(951px){
+    &__link:hover {
+      color: var(--color-orange);
+    }
+    &__link-dropdown-content>*:hover {
+      color: var(--color-orange);
+    }
   }
 }

@@ -1,0 +1,36 @@
+-
+    var points = [
+        ['Про кар’єрний хаб',['Опис проекту','Історії успіху','Контакти',]],
+        ['Навчання',['Курси','Вебінари','Лекції','Майстер-класи',]],
+        ['Психологічна підтримка'],['Кар\'єрні поради'],
+        ['Анонси подій'],
+        ['Додаткові ресурси',],['Можливостi від бізнесу ',],
+    ];
+aside.aside
+    a(href="index.html")
+        +img('logo.svg').aside__logo
+    .aside__title.uppercased.text-violet Кар’єрний хаб
+    hr 
+    .aside__subtitle.uppercased Меню
+    each val in points
+        if val[1] == unefined
+            div.text-violet.aside__link  #{val[0]}
+        else 
+            div.text-violet.aside__link.aside__link-dropdown  
+                .aside__link-dropdown-title #{val[0]}
+                    <svg class="aside__dropdown-birdy" width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2L0 4L-1.74846e-07 0L4 2Z" fill="#FF7F41"/>
+                    </svg>
+                ul.aside__link-dropdown-content
+                    each subLink in val[1]
+                        li #{subLink}
+
+    hr
+    a(href="cabinet.html").button-std.button-std--violet 
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="15" cy="15" r="15" fill="#FF7F41"/>
+            <path d="M20.3333 11.401C20.3333 9.96853 19.7714 8.59478 18.7712 7.5819C17.771 6.56903 16.4145 6 15 6C13.5855 6 12.229 6.56903 11.2288 7.5819C10.2286 8.59478 9.66667 9.96853 9.66667 11.401C9.66667 17.7021 7 19.5024 7 19.5024H23C23 19.5024 20.3333 17.7021 20.3333 11.401Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.5377 23.103C16.3814 23.3758 16.1571 23.6023 15.8872 23.7597C15.6174 23.9171 15.3114 24 14.9999 24C14.6885 24 14.3825 23.9171 14.1126 23.7597C13.8427 23.6023 13.6184 23.3758 13.4622 23.103" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <text data-new-messages x="15" y="16" text-anchor="middle">1</text>
+            </svg>
+        span Мій кабінет

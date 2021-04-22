@@ -7,9 +7,20 @@ block meta
 block head
     link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
-  script(defer src='./assets/scripts/adminPanel.bundle.js')
 block content
-  #root
+  .ms 
+    .ms__title.uppercased.text-violet Зробіть крок до фінансової незалежності <span class="text-orange">з кар’єрним хабом</span>
+    a(href="cabinet.html").button-std.button-std--orange Отримати консультацію
+    +img('home/ms-bg.svg')
+  .screen2
+    img(src="./assets/images/home/screen2-decor.svg").screen2__decor
+    .screen2__text 
+      .title.text-violet Про Розірви коло Кар’єрний хаб
+      p Якщо жінка економічно незалежна, їй набагато легше розірвати коло домашнього чи гендерно зумовленого насильства. UNFPA, Фонд ООН у галузі народонаселення в Україні, започатковує проєкт Кар’єрний хаб —  Women Career Hub — Кар’єрний хаб. Це онлайн-платформа, яка покликана розвивати професійний потенціал та фінансову спроможність жінок, постраждалих від насильства, та жінок, які перебувають у групі ризику потрапляння у випадки насильства. 
+      .button-std.button-std--orange Дивитися розділ
+    .screen2__img 
+      include ../../assets/images/home/screen2-img.svg
+
 block footer
   include ../includes/footer.pug
 

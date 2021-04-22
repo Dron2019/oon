@@ -18,15 +18,15 @@ export default function(props){
     console.log(isLogined, 'USER SELECT');
     // console.log(dataStore.getState());
     return (
-        <div>
+        <div className="login-form">
+            <div className="title text-violet">Мій кабінет</div>
             <Redirect to="/login" />
             <Formik
                 initialValues={{ login:'', password: '' }}
                 onSubmit={loginSubmit}>
-                <Form>
-                    <div className="page-title">Вхід до особистого кабінету</div>
-                    <div></div>
-                    <Field name="login" placeholder="Логін:" onInput={(evt)=>{dataStore.dispatch({type:'ENTERNAME', value:evt.target.value })}}/>
+                <Form className="form-std">
+                    <div className="form-std__subtitle text-violet">Вхід до особистого кабінету</div>
+                    <Field className="input-std" name="login" placeholder="Логін:" onInput={(evt)=>{dataStore.dispatch({type:'ENTERNAME', value:evt.target.value })}}/>
                     <ErrorMessage component="div" name="login" />
                     <Field name="password" type="password">
                     {({
@@ -35,7 +35,7 @@ export default function(props){
                         meta,
                     }) => (
                         <div>
-                        <input type="password" placeholder="Пароль:" {...field} />
+                        <input className="input-std" type="password" placeholder="Пароль:" {...field} />
                         {meta.touched && meta.error && (
                             <div className="error">{meta.error}</div>
                         )}
@@ -43,7 +43,7 @@ export default function(props){
                     )}
                     </Field>
                     <div className="subtitle">{responseFromLogin}</div>
-                    <button type="submit">Submit</button>
+                    <button className="button-std button-std--violet" type="submit">Увійти до кабінету</button>
                 </Form>
             </Formik>
         </div>
