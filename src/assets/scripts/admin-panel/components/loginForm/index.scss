@@ -3,9 +3,14 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
     margin: auto;
+    max-width: 475px;
     .title{
         width: 100%;
         text-align: center;
+    }
+    .white-bg-element {
+        margin-top: 20px;
     }
 }

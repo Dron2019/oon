@@ -4,6 +4,9 @@ import { Field, Form, Formik, FormikProps,ErrorMessage } from 'formik';
 import dataStore from '../../stores/userDataStore/index.jsx'
 import { useSelector } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {
+    Link
+  } from "react-router-dom";
 export default function(props){ 
     const [responseFromLogin, setResponse] = useState('');
     const isSome = useSelector(state=>state.isSome)
@@ -46,6 +49,10 @@ export default function(props){
                     <button className="button-std button-std--violet" type="submit">Увійти до кабінету</button>
                 </Form>
             </Formik>
+            <div className="white-bg-element">
+                <Link to="/forgot-password" className="button-std button-std--violet"> Забули пароль?</Link>
+                <button className="button-std button-std--violet"> Зареєструватися</button>
+            </div>
         </div>
     );
 }

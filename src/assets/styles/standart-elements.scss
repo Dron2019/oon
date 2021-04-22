@@ -8,7 +8,7 @@ body {
 
 .page__inner {
   margin-left: auto;
-  width: calc(100vw - var(--aside-w));
+  width: calc(100vw - var(--aside-w) - 10px);
 
 }
 .page__content {
@@ -26,6 +26,9 @@ body {
         margin-top: 20px;
       }
     }
+}
+#root {
+  min-height: 100vh;
 }
 .title {
   font-size: 36px;
@@ -111,6 +114,7 @@ body {
   padding-right: 30px;
   border: 1px solid #E5E0E3;
   background: var(--color-white); 
+  font-size: 14px;
 }
 
 .form-std {
@@ -159,5 +163,19 @@ body {
   .button-std {
     margin-top: 20px;
     margin-left: auto;
+  }
+}
+
+.white-bg-element {
+  background: var(--color-white);
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  .button-std~.button-std {
+    margin-left: 20px;
   }
 }

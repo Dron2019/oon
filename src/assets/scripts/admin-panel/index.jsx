@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import LoginForm from "./components/loginForm/index.jsx";
 import store from './stores/userDataStore/index.jsx';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Cabinet from './components/cabinet/Cabinet.jsx';
+import ForgotPassword from './components/forms/forgotPassword/index.jsx';
 import {
   HashRouter,
   BrowserRouter as Router,
@@ -18,9 +18,21 @@ import {
 function App(props){
   const isLogined = useSelector(state=>state);
   return (
-    isLogined.isLogined ? 
-    <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
-    <LoginForm/>
+    <Switch>
+      <Route exact path="/login">
+        {isLogined.isLogined ? 
+        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        <LoginForm/>}
+      </Route>
+      <Route exact path="/">
+        {isLogined.isLogined ? 
+        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        <LoginForm/>}
+      </Route>
+      <Route path="/forgot-password">
+          <ForgotPassword/>
+      </Route>
+    </Switch>
 
   )
 }

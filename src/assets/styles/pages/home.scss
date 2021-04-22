@@ -5,6 +5,7 @@
   align-content: flex-start;
   min-height: 100vh;
   padding-top: 50px;
+  background: var(--color-white);
   &>img {
     margin-top: auto;
     width: 100%;
@@ -26,6 +27,7 @@
   line-height: 1.6em;
   position: relative;
   width: 100%;
+  background: var(--color-white);
   &__img {
     @include shift(0);
     @include size(5);
@@ -39,8 +41,8 @@
   &__text {
     @include shift(0);
     @include size(7);
-    @include shift-padding-left(1);
-    @include shift-padding-right(1);
+    @include shift-padding-left(1.2);
+    @include shift-padding-right(1.2);
   }
   .title {
     margin-bottom: 20px;
@@ -52,5 +54,144 @@
     bottom: 0;
     width: 200px;
     height: 200px;
+  }
+  .button-std {
+    width: 165px;
+  }
+}
+
+.screen3 {
+  min-height: 100vh;
+  @include row-flex();
+  flex-direction: row-reverse;
+  align-items: center;
+  line-height: 1.6em;
+  position: relative;
+  width: 100%;
+  background: var(--color-gray);
+  &__img {
+    @include shift(0);
+    @include size(5);
+    padding-left: 34px;
+    svg {
+      width: 100%;
+    }
+  }
+  p~p {
+    margin-top: 1.25em;
+  }
+  .button-std {
+    margin-top: 40px;
+  }
+  &__text {
+    @include shift(0);
+    @include size(7);
+    @include shift-padding-left(1.2);
+    @include shift-padding-right(1);
+  }
+  .title {
+    margin-bottom: 20px;
+    line-height: 1.2em;
+  }
+  &__decor {
+    position: absolute;
+    left: -10px;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+    transform: rotate(90deg);
+  }
+  .button-std {
+    width: 165px;
+  }
+}
+.screen4 {
+  min-height: 100vh;
+  @include row-flex();
+
+  align-items: center;
+  line-height: 1.6em;
+  position: relative;
+  width: 100%;
+  background: var(--color-white);
+  &__img {
+    @include shift(0);
+    @include size(5);
+    padding-right: 34px;
+    svg {
+      width: 100%;
+    }
+  }
+  p~p {
+    margin-top: 1.25em;
+  }
+  .button-std {
+    margin-top: 40px;
+  }
+  &__text {
+    @include shift(0);
+    @include size(7);
+    @include shift-padding-left(1.2);
+    @include shift-padding-right(1.2);
+  }
+  .title {
+    margin-bottom: 20px;
+    line-height: 1.2em;
+  }
+  &__decor {
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+  }
+  .button-std {
+    width: 165px;
+  }
+}
+
+.screen5 {
+  min-height: 100vh;
+  @include row-flex();
+  flex-direction: row-reverse;
+  align-items: center;
+  line-height: 1.6em;
+  position: relative;
+  width: 100%;
+  background: var(--color-gray);
+  &__img {
+    @include shift(0);
+    @include size(5);
+    padding-left: 34px;
+    svg {
+      width: 100%;
+    }
+  }
+  p~p {
+    margin-top: 1.25em;
+  }
+  .button-std {
+    margin-top: 40px;
+  }
+  &__text {
+    @include shift(0);
+    @include size(7);
+    @include shift-padding-left(1.2);
+    @include shift-padding-right(1);
+  }
+  .title {
+    margin-bottom: 20px;
+    line-height: 1.2em;
+  }
+  &__decor {
+    position: absolute;
+    left: -10px;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+    transform: rotate(90deg);
+  }
+  .button-std {
+    width: 165px;
   }
 }
