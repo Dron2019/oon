@@ -1,6 +1,4 @@
-
-import { createStore } from 'redux';
-
+import { createStore, combineReducers } from 'redux';
 
 function getLoginStatusOfUser() {
   const loginFromStorage = localStorage.getItem('login-status');
@@ -32,5 +30,13 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
       return Object.assign({ ...state }, { isLogined: state.isLogined }, getLoginStatusOfUser());
   }
 }
+function newMessagesReducer(state=0, action) {
+  switch (action.type){
+    case 'NEW_MESSAGE':
+      return state = state+1 
+  }
+  return state;
+}
+// const rootReducer = combineReducers(newMessagesReducer, loginStatusReducer: loginStatusReducer})
 const store = createStore(loginStatusReducer);
 export default store;
