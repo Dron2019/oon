@@ -4,6 +4,7 @@ import { Field, Form, Formik, FormikProps,ErrorMessage } from 'formik';
 import dataStore from '../../stores/userDataStore/index.jsx'
 import { useSelector } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {login} from '../../stores/userDataStore/actions.jsx';
 import {
     Link
   } from "react-router-dom";
@@ -13,12 +14,12 @@ export default function(props){
     console.log(isSome, 'ISSOME');
     function loginSubmit(values, actions) {
         // actions.setSubmitting(false);
-        dataStore.dispatch({type:'LOGIN', login: values.login})
+        // dataStore.dispatch({type:'LOGIN', login: values.login})
+        dataStore.dispatch(login({login: values.login}))
         setResponse('SEND');
         setTimeout(() => setResponse(''), 2000);
     }
     const isLogined = useSelector(state=>state.isLogined);
-    console.log(isLogined, 'USER SELECT');
     // console.log(dataStore.getState());
     return (
         <div className="login-form">

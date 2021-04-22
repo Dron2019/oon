@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import store from '../../stores/userDataStore/index.jsx';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import {
   Redirect,
   Link
 } from "react-router-dom";
+import {logout} from '../../stores/userDataStore/actions.jsx';
 
 function Home() {
   return <h2>Home</h2>;
@@ -23,40 +24,54 @@ function Users() {
 }
 
 
+
+
 export default function Cabinet(props){
-    const isLogined = useSelector(state=>state.isLogined)
+    const isLogined = useSelector(state=>state.isLogined);
     const userName = useSelector(state=>state.isSome) || '';
-    console.log(store.getState(), 'STATE');
+    const [activeLink, setActiveLink] = useState('');
+    const parentUrlPart = '/cabinet';
+    function renderCabinetNestedRoutes(el){
+      return (
+        <Route path={parentUrlPart+el.route}>
+          {el.component}
+        </Route>
+      )
+    }
+    function renderCabinetLinks(el,index){
+      const isActive = (activeLink === el[0]) ? 'active' : ''; 
+      return <li><Link onClick={()=>setActiveLink(el[0])} className={isActive + ' menu__link'} to={el[1]}>{el[0]}</Link></li>
+    }
+    const nestedElements = [
+      {route:'/psycho',component: About()},
+      {route:'/createHistory',component: Home()},
+      {route:'/createQuestion',component: Users()},
+    ];
     const menus = [
-      ['Послуги психолога','/psycho'],
-      ['Створити запитання','/createQuestion'],
-      ['Історія запитань','/questionHistory'],
-      ['Запит на онлайн консультацію','/consult-request'],
-      ['Прийняті запити на консультацію',''],
-      ['Послуги консультанта з пошуку роботи',''],
+      ['Послуги психолога','/cabinet/psycho'],
+      ['Створити запитання','/cabinet/createQuestion'],
+      ['Історія запитань','/cabinet/questionHistory'],
+      ['Запит на онлайн консультацію','/cabinet/consult-request'],
+      ['Прийняті запити на консультацію','/cabinet'],
+      ['Послуги консультанта з пошуку роботи','/cabinet'],
     ]
     return (
       <>
-        
         <div className="menu">
-          <div className="link" onClick={()=>{store.dispatch({type:'LOGOUT'})}}>
+          <div className="menu__subtitle">
+            Мій кабінет
+          </div>
+          <div className="button-std button-std--violet" 
+            onClick={()=>{store.dispatch(logout())}}>
             Вийти: {userName.toString()}
           </div>
           <ul>
-            {menus.map((el, index)=><li><Link className="title" to={el[1]}>{el[0]}</Link></li>)}
+            {menus.map(renderCabinetLinks)}
           </ul>
         </div>
         <div className="content">
           <Switch>
-            <Route path="/psycho">
-              <About />
-            </Route>
-            <Route path="/createQuestion">
-              <Users />
-            </Route>
-            <Route path="/questionHistory">
-              <Home />
-            </Route>
+            {nestedElements.map(renderCabinetNestedRoutes)}
           </Switch>
         </div>
       </>

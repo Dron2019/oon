@@ -11,6 +11,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link
 } from "react-router-dom";
 
@@ -19,12 +20,17 @@ function App(props){
   const isLogined = useSelector(state=>state);
   return (
     <Switch>
-      <Route exact path="/login">
+      <Route exact path="/">
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}
       </Route>
-      <Route exact path="/">
+      <Route path="/login">
+        {isLogined.isLogined ? 
+        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        <LoginForm/>}
+      </Route>
+      <Route  path="/cabinet">
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}

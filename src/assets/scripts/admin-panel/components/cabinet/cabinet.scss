@@ -1,0 +1,25 @@
+.menu {
+    background: var(--color-violet);
+    max-width: 200px;
+    border-radius: 10px;
+    padding: 30px 15px;
+    &__subtitle {
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 100%;
+        /* identical to box height, or 18px */
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+    }
+    &__link {
+        font-size: 12px;
+        line-height: 120%;
+        color: var(--color-white);
+        text-decoration: none;
+    }
+    &__link.active {
+        font-weight: 600;
+        background: var(--color-orange);
+    }
+}
