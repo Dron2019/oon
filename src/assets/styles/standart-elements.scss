@@ -78,6 +78,11 @@ body {
   padding: 20px;
   outline: none;
   position: relative;
+  &.small {
+    height: 36px;
+    font-size: 12px;
+    padding: 13px 25px;
+  }
   &>svg {
     position: absolute;
     left: 50%;
@@ -319,21 +324,27 @@ body {
     list-style: circle;
     list-style-type: disc;
     list-style-position: inside;
-    text-indent: -18px;
+    text-indent: -24px;
     padding-left: 24px;
   }
   li:first-line{
-    padding-left: 15px;
+    // padding-left: 15px;
   }
   li::marker{
-    margin-right: 10px;
+    // margin-right: 10px;
   }
   li~li {
     margin-top: 30px;
   }
 }
+.fw-400{
+  font-weight: 400;
+}
 .fw-600{
   font-weight: 600;
+}
+.fw-800{
+  font-weight: 800;
 }
 
 .bg-gray {
@@ -344,4 +355,7 @@ body {
 }
 .bg-violet {
   background: var(--color-violet);
+}
+.bg-orange {
+  background: var(--color-orange);
 }

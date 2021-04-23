@@ -64,3 +64,49 @@
         @include shift(0);
     }
 }
+
+
+.about-ordered-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
+    .subtitle {
+        width: 28px;
+    }
+    .text-black {
+        width: calc(100% - 28px);
+    }
+}
+.about-ordered-list~.about-ordered-list {
+    margin-top: 20px;
+}
+
+.about-prelast-block {
+    .about-block__left {
+        @include size(6);
+    }
+    .about-block__left svg {
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .about-block__right {
+        @include size(5);
+        @include shift-left(1);
+        @include shift-padding-right(0.6);
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.about-last-block {
+    @include shift-padding(1.2);
+    &>*:first-child {
+        margin-bottom: 29px;
+    }
+    .button-std:not(:last-of-type){
+        margin-right: 20px;
+    }
+}
