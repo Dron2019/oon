@@ -367,3 +367,9 @@ textarea,
 .bg-orange {
   background: var(--color-orange);
 }
+
+.input-group {
+  &.unfilled input {
+    border-color: red;
+  }
+}

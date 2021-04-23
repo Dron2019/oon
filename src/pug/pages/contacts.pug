@@ -35,9 +35,10 @@ block content
       form.form-std
         label.form-std__subtitle.text-violet Зворотній зв'язок
         .input-group
-          input.input-std(name='name' placeholder='І`мя:' value='')
+          input.input-std(name='name' data-required='true' type="text"  placeholder='І`мя:' value='')
+          .invalid-message
         .input-group
-          input.input-std(name='email' placeholder='E-mail:' value='')
+          input.input-std(name='email' data-required='true' placeholder='E-mail:' type="text" value='')
         .input-group
           textarea.input-std(name='message' placeholder='Повідомлення:' value='')
         button(class="button-std button-std--violet submit-js" type="submit") Відправити
