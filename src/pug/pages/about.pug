@@ -2,12 +2,12 @@
 extends ../layout/main
 block variable
   -
-    var title_page = 'about'
+    var title_page = 'Про кар’єрний хаб'
     var id_page = 'id-page-about'
     var class_page = 'class-page-about'
     var breadcrumbsSubitem = [
       {
-        label: 'About',
+        label: 'Головна',
         link: pagesLink[0].about
       }
     ]
@@ -18,21 +18,47 @@ block meta
 block head
     link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
-  script(defer src='./assets/scripts/vendors.bundle.js')
-  script(defer src='./assets/scripts/index.bundle.js')
   script(defer src='./assets/scripts/index.js')
-  script(defer src='./assets/scripts/about.js')
 block content
   .page-part.violet
-    //- .fixed-proportion-wrap
-    //-   .fixed-proportion
-    //-     .decor-white-circle
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
     .page-part__text
       .page-title.text-white Про кар’єрний хаб
       include ../includes/breadcrumbs.pug
       p.text-white Домашнє та гендерно зумовлене насильство - проблема, з якою стикається надто багато людей в нашій країні. Фонд ООН у галузі народонаселення разом із партнерами створив кампанію “Розірви коло”, яка вже багато років допомагає усім, хто постраждав від насильства, отримати інформацію та розірвати це коло. 
+      .button-std.button-std--violet Дізнатися більше
     .page-part__img 
       include ../../assets/images/about/screen1-img.svg
+  .about-small-block.bg-white
+    +img('orange-decor-quarter.svg').quarter-circle-decor.right
+    .about-small-block__left
+      p.subtitle.text-violet Дуже часто, саме економічна залежність стає причиною того, що жінки терплять насильство, адже не мають можливості забезпечувати себе і дітей. Розірви коло. Кар’єрний хаб дає таку можливість. 
+    .about-small-block__right
+      p <span class="fw-600">Платформа реалізується Фондом ООН у галузі народонаселення в Україні (UNFPA Ukraine) за підтримки уряду Великої Британії.</span> Кар’єрний хаб пропонує жінкам, постраждалим від домашнього / гендерно зумовленого насильства, послуги для покращення професійних навичок та успішного працевлаштування.
+      p <span class="fw-600">Фахівці і фахівчині дотримуються індивідуального підходу до оцінки потреб і можливостей кожної жінки</span> та допомагають побудувати персональну стратегію для досягнення вашої мети.
+  .about-block.bg-gray.about-block-with-list
+    +img('orange-decor-quarter.svg').quarter-circle-decor.left
+    - 
+      var list = [
+        '<span class="fw-600">записатися на безкоштовну консультацію до кар’єрного радника</span> <span>чи радниці щодо індивідуальної підтримки в пошуку роботи</span>',
+        '<span class="fw-600"> за направленням кар’єрного радника отримати індивідуальну консультацію</span> <span>психолога чи психологині щодо підтримки під час працевлаштування та адаптації на новому робочому місці</span>',
+        '<span class="fw-600">брати участь в ініціативах,</span> <span>стійких і потрібних у рамках пандемії COVID-19, що можуть приносити дохід</span>',
+        '<span class="fw-600">подавати заявки на безкоштовні курси, тренінги, вебінари</span> <span>з метою розвитку професійних та комунікаційних навичок</span>',
+      ]
+    .title.text-orange.uppercased <span>Зокрема, через платформу</span><span class="text-violet"> жінки можуть:</span>
+    .white-bg-element
+      ul.list-std
+        each val in list
+          li !{val}
+  .about-small-block.bg-violet
+    +img('orange-decor-quarter.svg').quarter-circle-decor.right
+    .about-small-block__left
+      p.subtitle.text-white Крім цього, Кар’єрний хаб також забезпечує розвиток компетенцій соціальних працівників/-ць та співробітників/-ць спеціалізованих сервісів протидії домашньому та гендерно зумовленому насильству. 
+    .about-small-block__right.text-white
+      p <span class="fw-600">Фахівці можуть знайти рекомендації щодо надання кваліфікованої допомоги постраждалим від насильства</span> в процесі працевлаштування та кар’єрного розвитку. Отримати корисну інформацію від фахівців Кар’єрного хабу можна у розділі «Поради».
+      p <span class="fw-600">Найкращий підхід — комплексний. Тому зареєстрована користувачка Кар’єрного хабу отримає не лише консультацію кар’єрного радника чи радниці,</span> а й можливість онлайн-зустрічі із психологом / психологинею, куди її може направити кар’єрний радник / радниця. За потреби, жінка також матиме направленняскерування на професійні курси й тренінги від Хабу. 
 
 block footer
   include ../includes/footer.pug

@@ -27,7 +27,9 @@ lazyImages.forEach((imageArgs) => {
   observer.observe(target);
 });
 
-window.addEventListener('storage', () => {
+
+
+function renderNewMessagesInAsideButton(){
   const menuCabinetLink = document.querySelector('[data-new-messages]');
   const messageInformerElement = menuCabinetLink.closest('svg');
   const messageInStorage = window.localStorage.getItem('newMessages');
@@ -37,6 +39,6 @@ window.addEventListener('storage', () => {
   }else {
     messageInformerElement.style.opacity = 0;
   }
-  // When local storage changes, dump the list to
-  // the console.
-});
+}
+window.addEventListener('load', renderNewMessagesInAsideButton);
+window.addEventListener('storage', renderNewMessagesInAsideButton);
