@@ -108,7 +108,7 @@ body {
 
 }
 
-
+textarea,
 .input-std {
   width: 355px;
   height: 50px;
@@ -165,9 +165,16 @@ body {
   input {
     margin-bottom: 10px;
   }
+  button.button-std,
   .button-std {
     margin-top: 20px;
     margin-left: auto;
+  }
+  textarea {
+    resize: none;
+    height: 150px;
+    padding-top: 16px;
+    // margin-bottom: 20px;
   }
 }
 

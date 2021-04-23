@@ -1,0 +1,48 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'contacts'
+    var id_page = 'id-page-contacts'
+    var class_page = 'class-page-contacts'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/forms-handler.js')
+block content
+  .page-part.gray
+    //- .fixed-proportion-wrap
+    //-   .fixed-proportion
+    //-     .decor-white-circle
+    .page-part__img 
+      include ../../assets/images/contacts/screen1-img.svg
+    .page-part__text.bg-gray
+      include ../includes/breadcrumbs.pug
+      .page-title.text-white Історії успіху
+      form.form-std
+        label.form-std__subtitle.text-violet Зворотній зв'язок
+        .input-group
+          input.input-std(name='name' placeholder='І`мя:' value='')
+        .input-group
+          input.input-std(name='email' placeholder='E-mail:' value='')
+        .input-group
+          textarea.input-std(name='message' placeholder='Повідомлення:' value='')
+        button(class="button-std button-std--violet submit-js" type="submit") Відправити
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

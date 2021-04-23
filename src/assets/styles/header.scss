@@ -58,6 +58,10 @@
   &__link-dropdown-content li~li{
     margin-top: 20px;
   }
+  &__link-dropdown-content a {
+    color: inherit;
+    text-decoration: none;
+  }
   &__dropdown-birdy {
     transform: rotate(90deg);
     transition: .3s ease-in-out;

@@ -1,7 +1,16 @@
 -
     var points = [
-        ['Про кар’єрний хаб',['Опис проекту','Історії успіху','Контакти',]],
-        ['Навчання',['Курси','Вебінари','Лекції','Майстер-класи',]],
+        ['Про кар’єрний хаб',[
+            ['Опис проекту','about.html'],
+            ['Історії успіху','succes-story.html'],
+            ['Контакти','contacts.html'],
+        ]],
+        ['Навчання',[
+            ['Курси','about.html'],
+            ['Вебінари','about.html'],
+            ['Лекції','about.html'],
+            ['Майстер-класи','about.html'],
+        ]],
         ['Психологічна підтримка'],['Кар\'єрні поради'],
         ['Анонси подій'],
         ['Додаткові ресурси',],['Можливостi від бізнесу ',],
@@ -23,7 +32,8 @@ aside.aside
                     </svg>
                 ul.aside__link-dropdown-content
                     each subLink in val[1]
-                        li #{subLink}
+                        li 
+                            a(href=subLink[1]) #{subLink[0]}
 
     hr
     a(href="cabinet.html").button-std.button-std--violet 
