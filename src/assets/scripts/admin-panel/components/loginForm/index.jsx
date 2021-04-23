@@ -12,6 +12,7 @@ export default function(props){
     const [responseFromLogin, setResponse] = useState('');
     const isSome = useSelector(state=>state.isSome)
     console.log(isSome, 'ISSOME');
+    console.log(window);
     function loginSubmit(values, actions) {
         // actions.setSubmitting(false);
         // dataStore.dispatch({type:'LOGIN', login: values.login})

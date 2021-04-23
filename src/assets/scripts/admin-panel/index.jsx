@@ -12,12 +12,14 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
+  Link,
+  hashHistory
 } from "react-router-dom";
 
 
 function App(props){
   const isLogined = useSelector(state=>state);
+  console.log(props);
   return (
     <Switch>
       <Route exact path="/">
@@ -43,7 +45,7 @@ function App(props){
   )
 }
 ReactDOM.render(
-  <HashRouter  basename="/">
+  <HashRouter  history={hashHistory} basename="/">
       <Provider store={store}>
         <App/>
       </Provider>

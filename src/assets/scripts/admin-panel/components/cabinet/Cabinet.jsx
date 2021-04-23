@@ -31,16 +31,16 @@ export default function Cabinet(props){
     const userName = useSelector(state=>state.isSome) || '';
     const [activeLink, setActiveLink] = useState('');
     const parentUrlPart = '/cabinet';
-    function renderCabinetNestedRoutes(el){
+    function renderCabinetNestedRoutes(el,index){
       return (
-        <Route path={parentUrlPart+el.route}>
+        <Route key={index} path={parentUrlPart+el.route}>
           {el.component}
         </Route>
       )
     }
     function renderCabinetLinks(el,index){
       const isActive = (activeLink === el[0]) ? 'active' : ''; 
-      return <li><Link onClick={()=>setActiveLink(el[0])} className={isActive + ' menu__link'} to={el[1]}>{el[0]}</Link></li>
+      return <li key={index}><Link onClick={()=>setActiveLink(el[0])}  className={isActive + ' menu__link'} to={el[1]}>{el[0]}</Link></li>
     }
     const nestedElements = [
       {route:'/psycho',component: About()},

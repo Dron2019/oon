@@ -1,0 +1,57 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'Історії успіху'
+    var id_page = 'id-page-succes-story'
+    var class_page = 'class-page-succes-story'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/succes-story.js')
+block content
+  .page-part.violet
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
+    .page-part__text
+      include ../includes/breadcrumbs.pug
+      .page-title.text-white Історії успіху
+      p.text-white Кар’єрні радники та радниці щодня проводять консультації із жінками, постраждалими від домашнього чи гендерно зумовленого насильства. Ми вже маємо чимало історій жінок, які здобули нові професійні навички (або вдосконалили наявні), влаштувалися та успішно адаптувалися на новому робочому місці. Ділимося історіями успіху з вами, щоб довести — майбутнє досяжне!
+      .button-std.button-std--violet Дізнатися більше
+    .page-part__img 
+      include ../../assets/images/succes-story/screen1-img.svg
+  .page-part
+    .white-bg-element.succes-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.right
+    .white-bg-element.succes-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.left
+    .white-bg-element.succes-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      p Історія жінки, яку на четвертому місяці вагітності облили сірчаною кислотою на замовлення колишнього чоловіка, а на восьмому – жорстоко побили. Проте вона готова рухатися далі – до нового життя
+      p Хлопчик, який вижив, – це не з казок про Гаррі Поттера, а нашої реальності. Реальності, що може бути жахливішою за будь-яку страшну казку. Зараз цей хлопчик, якому лише декілька місяців, бавиться на руках у своєї мами Вікторії*. Ми спілкуємося з нею в притулку, створеному за підтримки UNFPA, Фонду ООН у галузі народонаселення. Наша зустріч – це справжнє диво. Адже батько малюка намагався зробити все, щоб немовля взагалі не з’явилося на світ, а його мати – померла в муках.
+      +svg('quarter-orange-circle').quarter-circle-decor.right
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug
