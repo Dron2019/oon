@@ -1,0 +1,41 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'about'
+    var id_page = 'id-page-about'
+    var class_page = 'class-page-about'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/about.js')
+block content
+  .page-part.violet
+    //- .fixed-proportion-wrap
+    //-   .fixed-proportion
+    //-     .decor-white-circle
+    .page-part__text
+      .page-title.text-white Про кар’єрний хаб
+      include ../includes/breadcrumbs.pug
+      p.text-white Домашнє та гендерно зумовлене насильство - проблема, з якою стикається надто багато людей в нашій країні. Фонд ООН у галузі народонаселення разом із партнерами створив кампанію “Розірви коло”, яка вже багато років допомагає усім, хто постраждав від насильства, отримати інформацію та розірвати це коло. 
+    .page-part__img 
+      include ../../assets/images/about/screen1-img.svg
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug
