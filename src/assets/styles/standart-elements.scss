@@ -148,6 +148,12 @@ textarea,
   //   border-radius: 10px;
   //   z-index: -1;
   // }
+  select {
+    padding: 15px 25px;
+    border-radius: 10px;
+    border-color: #e5e0e3;
+    color: rgb(144, 143, 126);
+  }
   &::before {
     content: '';
     position: absolute;

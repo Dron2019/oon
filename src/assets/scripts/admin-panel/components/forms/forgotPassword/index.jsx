@@ -93,7 +93,7 @@ export default function(props) {
             </Formik>
             <div className="white-bg-element">
                 <Link to="/login" className="button-std button-std--violet"> Ви згадали свій пароль?</Link>
-                <button className="button-std button-std--violet"> Зареєструватися</button>
+                <Link to="/register" className="button-std button-std--violet"> Зареєструватися</Link>
             </div>
         </>
     )
