@@ -6,6 +6,7 @@ import store from './stores/userDataStore/index.jsx';
 import { useSelector } from 'react-redux';
 import Cabinet from './components/cabinet/Cabinet.jsx';
 import ForgotPassword from './components/forms/forgotPassword/index.jsx';
+import Register from './components/register/Register.jsx'
 import {
   HashRouter,
   BrowserRouter as Router,
@@ -26,6 +27,9 @@ function App(props){
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}
+      </Route>
+      <Route path="/register">
+        <Register></Register>
       </Route>
       <Route path="/login">
         {isLogined.isLogined ? 

@@ -131,12 +131,13 @@ function sendMessageStatus(form, status) {
     let element = document.createElement('span');
     element.style.cssText = `
     
-            color:#fff; position:absolute; 
+            color:var(--color-violet); position:absolute; 
             padding:10px 20px; 
-            background:var(--blue);
+            background:var(--color-gray);
             left:50%;
             top:50%;
             font-size:24px; 
+            text-align:center;
             transform:translateX(-50%) translateY(-50%) `;
     element.innerHTML = status;
     element.classList.add('send-message');

@@ -24,14 +24,15 @@ block scripts
   script(defer src='./assets/scripts/forms-handler.js')
 block content
   .page-part.gray
-    //- .fixed-proportion-wrap
-    //-   .fixed-proportion
-    //-     .decor-white-circle
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
+    .text-bg-absolute 
     .page-part__img 
+      include ../includes/breadcrumbs.pug
+      .page-title.text-violet Контакти
       include ../../assets/images/contacts/screen1-img.svg
     .page-part__text.bg-gray
-      include ../includes/breadcrumbs.pug
-      .page-title.text-white Історії успіху
       form.form-std
         label.form-std__subtitle.text-violet Зворотній зв'язок
         .input-group

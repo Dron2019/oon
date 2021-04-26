@@ -109,4 +109,12 @@
       color: var(--color-orange);
     }
   }
+  @include from(1680px){
+    &__link {
+      font-size: 18px;
+    }
+    &__subtitle {
+      font-size: 24px;
+    }
+  }
 }

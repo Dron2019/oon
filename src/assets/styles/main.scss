@@ -249,3 +249,9 @@
 @import './pages/contacts'; // main style
 @import '../scripts/admin-panel/components/loginForm/index';
 @import '../scripts/admin-panel/components/cabinet/cabinet';
+
+
+
+/*react-plugins style */
+@import '../../../node_modules/react-tabs/style/react-tabs.css';
+@import '../../assets/scripts/admin-panel/components/register/tabs-style';
