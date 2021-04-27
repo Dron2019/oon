@@ -34,7 +34,7 @@ export default function Cabinet(props){
     const history = useHistory();
     const [activeLink, setActiveLink] = useState('');
     const parentUrlPart = '/cabinet';
-    history.location.pathname!==parentUrlPart  ? history.push(parentUrlPart) : null;
+    // history.location.pathname!==parentUrlPart  ? history.push(parentUrlPart) : null;
     if (!test) history.push('/');
     function renderCabinetNestedRoutes(el,index){
       return (
