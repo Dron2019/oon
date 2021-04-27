@@ -16,32 +16,35 @@ import {
   Link,
   hashHistory
 } from "react-router-dom";
+import routes from './routes/routes.jsx';
 
 
 function App(props){
   const isLogined = useSelector(state=>state);
-  console.log(props);
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path={routes.home}>
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}
+        {/* <LoginForm/> */}
       </Route>
-      <Route path="/register">
+      <Route path={routes.register}>
         <Register></Register>
       </Route>
-      <Route path="/login">
+      <Route path={routes.login}>
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}
+        {/* <LoginForm/> */}
       </Route>
-      <Route  path="/cabinet">
+      <Route  path={routes.cabinet}>
         {isLogined.isLogined ? 
         <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
         <LoginForm/>}
+        {/* <Cabinet isLogined={store.getState().isLogined.toString()}/> */}
       </Route>
-      <Route path="/forgot-password">
+      <Route path={routes.forgotPassword}>
           <ForgotPassword/>
       </Route>
     </Switch>

@@ -7,7 +7,8 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 import {logout} from '../../stores/userDataStore/actions.jsx';
 
@@ -29,8 +30,13 @@ function Users() {
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined);
     const userName = useSelector(state=>state.isSome) || '';
+    const test = true;
+    const history = useHistory();
+    console.log(useHistory);
     const [activeLink, setActiveLink] = useState('');
     const parentUrlPart = '/cabinet';
+
+    if (!test) history.push('/');
     function renderCabinetNestedRoutes(el,index){
       return (
         <Route key={index} path={parentUrlPart+el.route}>

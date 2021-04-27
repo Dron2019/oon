@@ -1,7 +1,9 @@
 import React from 'react';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
+import routes from '../../../routes/routes.jsx';
 export default function(){
+    console.log(routes);
     const SignupSchema = Yup.object().shape({
         surname: Yup.string()
             .min(2, 'Too Short!')
@@ -63,6 +65,7 @@ export default function(){
             <Form  className="form-std" >
             {inputs.map((input,index)=>(
                 <Field 
+                    className="dd"
                     key={index}
                     name={input[1]}>
                 {({

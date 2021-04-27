@@ -45,12 +45,15 @@
   .error {
     color: var(--color-violet);
     position: absolute;
-    right: 100%;
+    left: 100%;
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
     padding-right: 15px;
     font-weight: 800;
+    background: var(--color-gray);
+    padding: 10px 15px;
+    border-radius: 10px;
   }
   &.required:after {
     position: absolute;

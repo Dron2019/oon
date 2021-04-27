@@ -1,54 +1,37 @@
-
-// <Route exact path="/">
-// {isLogined.isLogined ? 
-// <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
-// <LoginForm/>}
-// </Route>
-// <Route path="/register">
-// <Register></Register>
-// </Route>
-// <Route path="/login">
-// {isLogined.isLogined ? 
-// <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
-// <LoginForm/>}
-// </Route>
-// <Route  path="/cabinet">
-// {isLogined.isLogined ? 
-// <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
-// <LoginForm/>}
-// </Route>
-// <Route path="/forgot-password">
-//     <ForgotPassword/>
-// </Route>
-// ['Послуги психолога','/cabinet/psycho'],
-//       ['Створити запитання','/cabinet/createQuestion'],
-//       ['Історія запитань','/cabinet/questionHistory'],
-//       ['Запит на онлайн консультацію','/cabinet/consult-request'],
-//       ['Прийняті запити на консультацію','/cabinet'],
-//       ['Послуги консультанта з пошуку роботи','/cabinet'],
 const routes = [
     {
         name:'home',
-        path:'/'
+        path:'/',
+        title:'',
     },
     {
         name:'cabinet',
-        path:'/cabinet'
+        path:'/cabinet',
+        title:'',
     }, 
     {
         name:'forgotPassword',
         path:'/forgot-password',
+        title:'Забули пароль?',
     },
     {
         name:'register',
         path:'/register',
+        title:'Зареєструватися',
     },
     {
         name:'login',
         path:'/login',
+        title:'Вхід',
     },
-    
 ];
+const cabinetRoutes = [
+    { name: 'createQuestion', path:'/cabinet/createQuestion', title:'Вхід',},
+    { name: 'questionHistory', path:'/cabinet/questionHistory', title:'Вхід',},
+    { name: 'onlineConsultRequest', path:'/cabinet/consult-request', title:'Вхід',},
+    { name: 'appliedConsultRequest', path:'/cabinet', title:'Вхід',},
+    { name: 'jobSearchConsult', path:'/cabinet', title:'Вхід',},
+]
 const routesMap = {};
 const routesMapSidebar = [];
 
