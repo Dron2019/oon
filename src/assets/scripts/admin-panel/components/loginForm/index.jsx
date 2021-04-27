@@ -11,16 +11,15 @@ import {
 import routes from '../../routes/routes.jsx';
 export default function(props){ 
     const [responseFromLogin, setResponse] = useState('');
-    const isSome = useSelector(state=>state.isSome);
+    const isSome = useSelector(state=>state.name);
     const history = useHistory();
     
     function loginSubmit(values, actions) {
         setTimeout(() => setResponse(''), 2000);
         // history.push(routes.cabinet);
-        dataStore.dispatch(login())
+        dataStore.dispatch(login({login:'cs'}))
     }
-    const isLogined = useSelector(state=>state.isLogined);
-    // console.log(dataStore.getState());
+    const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
     return (
         <div className="login-form">
             <div className="title text-violet">Мій кабінет</div>

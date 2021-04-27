@@ -20,12 +20,13 @@ import routes from './routes/routes.jsx';
 
 
 function App(props){
-  const isLogined = useSelector(state=>state);
+  const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
+  console.log(store.getState());
   return (
     <Switch>
       <Route exact path={routes.home}>
-        {isLogined.isLogined ? 
-        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        {isLogined ? 
+        <Cabinet isLogined={isLogined}/> : 
         <LoginForm/>}
         {/* <LoginForm/> */}
       </Route>
@@ -33,14 +34,14 @@ function App(props){
         <Register></Register>
       </Route>
       <Route path={routes.login}>
-        {isLogined.isLogined ? 
-        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        {isLogined ? 
+        <Cabinet isLogined={isLogined}/> : 
         <LoginForm/>}
         {/* <LoginForm/> */}
       </Route>
       <Route  path={routes.cabinet}>
-        {isLogined.isLogined ? 
-        <Cabinet isLogined={store.getState().isLogined.toString()}/> : 
+        {isLogined ? 
+        <Cabinet isLogined={isLogined}/> : 
         <LoginForm/>}
         {/* <Cabinet isLogined={store.getState().isLogined.toString()}/> */}
       </Route>

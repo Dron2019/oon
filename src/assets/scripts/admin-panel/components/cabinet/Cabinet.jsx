@@ -29,13 +29,12 @@ function Users() {
 
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined);
-    const userName = useSelector(state=>state.isSome) || '';
+    const userName = useSelector(state=>state.loginStatusReducer.name) || '';
     const test = true;
     const history = useHistory();
-    console.log(useHistory);
     const [activeLink, setActiveLink] = useState('');
     const parentUrlPart = '/cabinet';
-
+    history.location.pathname!==parentUrlPart  ? history.push(parentUrlPart) : null;
     if (!test) history.push('/');
     function renderCabinetNestedRoutes(el,index){
       return (
@@ -68,7 +67,7 @@ export default function Cabinet(props){
             Мій кабінет
           </div>
           <div className="button-std button-std--violet" 
-            onClick={()=>{store.dispatch(logout())}}>
+            onClick={(evt)=>{store.dispatch(logout(evt.target.innerText))}}>
             Вийти: {userName.toString()}
           </div>
           <ul>
