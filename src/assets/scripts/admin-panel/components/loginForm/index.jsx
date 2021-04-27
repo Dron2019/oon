@@ -39,7 +39,7 @@ export default function(props){
                         form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                         meta,
                     }) => (
-                        <div>
+                        <div className="input-group">
                         <input className="input-std" type="password" placeholder="Пароль:" {...field} />
                         {meta.touched && meta.error && (
                             <div className="error">{meta.error}</div>

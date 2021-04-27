@@ -34,5 +34,36 @@
   @include to(576px){
     max-width: none;
   }
+}
 
+
+.input-group {
+  position: relative;
+  input {
+    transition: .3s ease-in-out;
+  }
+  .error {
+    color: var(--color-violet);
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    padding-right: 15px;
+    font-weight: 800;
+  }
+  &.required:after {
+    position: absolute;
+    content: '*';
+    color: var(--color-violet);
+    right: 10px;
+    top: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+  }
+}
+
+.input-group~.input-group {
+  margin-top: 10px;
 }
