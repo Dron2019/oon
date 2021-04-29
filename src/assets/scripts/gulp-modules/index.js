@@ -42,3 +42,16 @@ function renderNewMessagesInAsideButton(){
 }
 window.addEventListener('load', renderNewMessagesInAsideButton);
 window.addEventListener('storage', renderNewMessagesInAsideButton);
+
+
+
+function handleNextPageButtons(){
+  const buttons = document.querySelectorAll('[data-down-button]');
+  buttons.forEach(el=>{
+    el.addEventListener('click',function(evt){
+      const nextPage = el.closest('.page-part').nextElementSibling;
+      if (nextPage) nextPage.scrollIntoView({ behavior: 'smooth' });
+    });
+  })
+}
+handleNextPageButtons();

@@ -1,0 +1,33 @@
+.career-advice-link {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    cursor: pointer;
+    .subtitle-small {
+        margin-bottom: 20px;
+    }
+    @include from(951px){
+        &:hover .subtitle-small{
+            text-decoration: underline;
+        }
+    }
+}
+.career-advice-link~.career-advice-link {
+    margin-top: 20px;
+}
+.career-first-block {
+    .search-bar-wrap {
+        position: absolute;
+        right: var(--page-side-fields);
+        top: 20px;
+        z-index: 4;
+    }
+    .page-part__img {
+        margin-top: 30px;
+    }
+}
+.advices-block {
+
+}

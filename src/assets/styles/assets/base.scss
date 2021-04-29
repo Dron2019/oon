@@ -31,7 +31,7 @@ body {
   font-weight: 400;
 	overflow-x: hidden;
 	font-size: 14px;
-  @include from(1380px){
+  @include from(1680px){
     font-size: 18px;
   }
 }

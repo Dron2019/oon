@@ -1,0 +1,70 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'Кар\'єрні поради'
+    var id_page = 'id-page-career-advices'
+    var class_page = 'class-page-career-advices'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/career-advices.js')
+block content
+  .page-part.violet.career-first-block
+    .search-bar-wrap
+      form.search-bar(name="search-advices")
+        input(type="text", name="search" placeholder="Шукати по порадам")
+        button(type="submit")
+          +svg('search-bar-zoom-icon')
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
+    .page-part__text
+      include ../includes/breadcrumbs.pug
+      .page-title.text-white Кар'єрні поради
+      p.text-white Цей блок містить поле для вводу текстової інформації, з кнопкою “відправити”. Після відправки запитання, створюється заявка для консультанту, текст заявки відображається в особистому кабінеті. Після відповіді консультанту, текст відповіді відображається в особистому кабінеті. Відповідь консультанту буде показана після перезавантаження сторінки.
+      .button-std.button-std--violet.down-button(data-down-button) 
+        <svg class="button__up-icon" width="17" height="28" viewBox="0 0 17 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="16" height="27" rx="8" stroke="white"/>
+          <circle cx="8.5" cy="9.5" r="1.5" fill="white"/>
+          </svg>
+        span Дивитися поради
+    .page-part__img 
+      include ../../assets/images/career-advices/screen1-img.svg
+  .advices-block.page-part
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+    .white-bg-element.career-advice-link
+      .subtitle-small.text-violet Як правильно написати своє перше резюме
+      a(href="single-advice.html").button-std.button-std--orange.small Дивитися статтю
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

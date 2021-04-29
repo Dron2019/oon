@@ -42,7 +42,12 @@ block content
       include ../includes/breadcrumbs.pug
       .page-title.text-white Психологічна підтримка
       p.text-white Цей блок містить поле для вводу текстової інформації, з кнопкою “відправити”. Після відправки запитання, створюється заявка для консультанту, текст заявки відображається в особистому кабінеті. Після відповіді консультанту, текст відповіді відображається в особистому кабінеті. Відповідь консультанту буде показана після перезавантаження сторінки.
-      .button-std.button-std--violet Дізнатися більше
+      .button-std.button-std--violet.down-button(data-down-button)  
+        <svg class="button__up-icon" width="17" height="28" viewBox="0 0 17 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="16" height="27" rx="8" stroke="white"/>
+          <circle cx="8.5" cy="9.5" r="1.5" fill="white"/>
+          </svg>
+        span Дізнатися більше
     .page-part__img 
       include ../../assets/images/psychological-support/screen1-img.svg
   .page-part.psycho-accordeon-block.bg-white
