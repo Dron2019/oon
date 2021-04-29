@@ -1,0 +1,57 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'search-results'
+    var id_page = 'id-page-search-results'
+    var class_page = 'class-page-search-results'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/search-results.js')
+block content
+  .page-part.fdc
+    .page-title.text-violet Результати пошуку
+    p За запитом “Дім” знайдено <b><span class="result-count">1</span> результат:</b>
+    .white-bg-element.event-item
+      +img('teddy.jpg').event-item__img
+      .subtitle-small.text-violet Дім (не)безпеки
+      p Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим. Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим.
+      .button-std.button-std--orange.small.max-content Детальніше
+      .event-item__info-wrap 
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('calendar')
+          .event-item__info-item-text
+            b Дата проведення:
+            div 25.11.2020 – 10.12.2020
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('clock')
+          .event-item__info-item-text
+            b Час проведення:
+            div 10:00-16:00
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('marker')
+          .event-item__info-item-text
+            b Місце проведення: 
+            div м. Київ, Михайлівська площа
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

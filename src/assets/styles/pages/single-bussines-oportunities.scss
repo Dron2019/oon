@@ -12,7 +12,8 @@
     p~p {
         margin-top: 1.25em;
     }
-    ul {
+    
+    &>ul {
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -36,6 +37,7 @@
         margin-right: auto;
         margin-top: 20px;
         padding: 30px;
+        box-shadow: none;
     }
     button[type="submit"] {
         margin-top: 0;
@@ -59,4 +61,8 @@
 }
 .form__file--description {
     width: 100%;
+    margin-top: 10px;
+    .uploaded-file {
+        display: flex;justify-content: space-between;
+    }
 }

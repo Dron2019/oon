@@ -1,0 +1,36 @@
+.event-item {
+    padding: 20px 20px 30px 30px;
+    &__img {
+        border-radius: 10px;
+    } 
+    &__info-wrap {
+        background-color: var(--color-gray);
+        border-radius: 10px;
+        padding: 20px;
+    }
+    &__info-item-icon  {
+        width: 30px;
+        height: 30px;
+        background-color: var(--color-white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin-right: 20px;
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
+    &__info-item-text {
+        width: calc(100% - 50px);
+    }
+    &__info-item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    &__info-item~&__info-item {
+        margin-top: 10px;
+    }
+}
