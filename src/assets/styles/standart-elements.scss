@@ -69,6 +69,9 @@ body {
 .uppercased {
   text-transform: uppercase;
 }
+.max-content {
+  width: max-content;
+}
 .button-std {
   height: 55px;
   border-radius: 40px;
@@ -224,6 +227,7 @@ textarea,
   padding-bottom: 20px;
   border-radius: 10px;
   justify-content: center;
+  box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
   .button-std~.button-std {
     margin-left: 20px;
   }
@@ -236,6 +240,8 @@ textarea,
   display: flex;
   font-weight: 400;
   color: var(--color-white);
+  position: relative;
+  z-index: 3;
   a {
       text-decoration: none;
   }
@@ -263,6 +269,7 @@ textarea,
           color:  var(--color-orange);
           pointer-events: none;
       }
+    
   }
   @include from(1680px) {
       font-size: 14px;
@@ -278,6 +285,15 @@ textarea,
           text-overflow: ellipsis;
           overflow: hidden;
       }
+  }
+}
+.on-light-bg-breadcrumbs {
+  .breadcrumbs-item .breadcrumbs-item__link  { 
+    color: var(--color-violet);
+  }
+  .breadcrumbs-item:not(:first-child):before {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg width='3' height='4' viewBox='0 0 3 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1.5' cy='2' r='1.5' fill='rgba(153%2C30%2C102%2C1)'/%3E%3C/svg%3E%0A");
   }
 }
 
@@ -300,7 +316,7 @@ textarea,
   flex-wrap: wrap;
   padding: 50px 37px 50px 40px;
   --text-bg:#8B0353;
-  &:first-child {
+  &:first-child:not(.self-height) {
     min-height: 100vh;
   }
   &__img {

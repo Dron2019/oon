@@ -1,0 +1,17 @@
+.bussines-oport-item {
+    padding: 30px;
+    [class*="subtitle"]{
+        margin-bottom: 10px;
+    }
+    p~p {
+        margin-top: 1.25em;
+    }
+    .button-std {
+        margin-top: 20px;
+    }
+    font-size: 12px;
+    line-height: 140%;
+}
+.bussines-oport-item~.bussines-oport-item {
+    margin-top: 20px;
+}

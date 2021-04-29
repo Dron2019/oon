@@ -1,0 +1,46 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'Додаткові ресурси'
+    var id_page = 'id-page-additional-resourses'
+    var class_page = 'class-page-additional-resourses'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+    var resources = [
+      'Державна служба зайнятості',
+      'Сайт з пошуку роботи work.ua',
+      'Міністерство цифрової трансформації',
+      'Сайт з пошуку роботи rabota.ua',
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/additional-resourses.js')
+block content
+  .page-part.fdc
+    .on-light-bg-breadcrumbs 
+      include ../includes/breadcrumbs.pug
+    .page-title.text-violet Додаткові ресурси
+    .resources-wrapper
+      each val in resources
+        a(target='_blank' href="https://google.com").white-bg-element.resource-link.fdc.tdn
+          .subtitle-small.text-violet #{val}
+          .button-std.button-std--orange.small Перейти на сайт
+
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

@@ -1,0 +1,23 @@
+.resources-wrapper {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    gap:22px;
+    @include to(768px){
+        grid-template-columns: 1fr;
+    }
+}
+.resource-link {
+    padding: 30px;
+    [class*="subtitle"]{
+        margin-bottom: 20px;
+    }
+    .button-std {
+        width: max-content;
+    }
+    @include from(951px){
+        &:hover [class*="subtitle"] {
+            text-decoration: underline;
+        }
+    }
+}
