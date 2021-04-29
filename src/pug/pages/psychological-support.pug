@@ -1,0 +1,69 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'Психологічна підтримка'
+    var id_page = 'id-page-psychological-support'
+    var class_page = 'class-page-psychological-support'
+    var breadcrumbsSubitem = [
+      {
+        label: 'Психологічна підтримка',
+        link: pagesLink[0].about
+      }
+    ]
+    var accordeonItems = [
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+      'Власний жіночий бізнес - як зробити мрію реальністю?',
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/psychological-support.js')
+block content
+  .page-part.violet
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
+    .page-part__text
+      include ../includes/breadcrumbs.pug
+      .page-title.text-white Психологічна підтримка
+      p.text-white Цей блок містить поле для вводу текстової інформації, з кнопкою “відправити”. Після відправки запитання, створюється заявка для консультанту, текст заявки відображається в особистому кабінеті. Після відповіді консультанту, текст відповіді відображається в особистому кабінеті. Відповідь консультанту буде показана після перезавантаження сторінки.
+      .button-std.button-std--violet Дізнатися більше
+    .page-part__img 
+      include ../../assets/images/psychological-support/screen1-img.svg
+  .page-part.psycho-accordeon-block.bg-white
+    .accordeon-list 
+      each val in accordeonItems
+        .accordeon-item(data-accordeon)
+          .accordeon-item__title.text-violet.subtitle.fw-600 #{val} 
+          +svg('accordeon-arrow').accordeon-item__decor
+          //- <svg class="accordeon-item__decor" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          //-   <line data-hidden-while-opened x1="12.7646" x2="12.7646" y2="25" stroke="white" stroke-width="2"/>
+          //-   <line x1="25" y1="13.5" x2="-8.74228e-08" y2="13.5" stroke="white" stroke-width="2"/>
+          //-   </svg>
+          .accordeon-item__inner
+            p Домашнє та гендерно зумовлене насильство - проблема, з якою стикається надто багато людей в нашій країні. Фонд ООН у галузі народонаселення разом із партнерами створив кампанію “Розірви коло”, яка вже багато років допомагає усім, хто постраждав від насильства, отримати інформацію та розірвати це коло. 
+  .psycho-small-block.bg-orange.psycho-last-block
+    .subtitle.text-white Щоб подати заявку на консультацію <span class="fw-400">до кар’єрного радника / радниці, зареєструйтеся / авторизуйтеся на сайті.</span> 
+    a.button-std.button-std--violet.small Зареєструватися
+    a(href="cabinet.html#login").button-std.button-std--violet.small Увійти до сосбистого кабінету
+    +svg('quarter-violet-circle').quarter-circle-decor.right
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

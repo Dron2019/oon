@@ -10,8 +10,8 @@
             ['Вебінари','about.html'],
             ['Лекції','about.html'],
             ['Майстер-класи','about.html'],
-        ]],
-        ['Психологічна підтримка'],['Кар\'єрні поради'],
+    ]],
+        ['Психологічна підтримка','psychological-support.html'],['Кар\'єрні поради'],
         ['Анонси подій'],
         ['Додаткові ресурси',],['Можливостi від бізнесу ',],
     ];
@@ -24,6 +24,8 @@ aside.aside
     each val in points
         if val[1] == unefined
             div.text-violet.aside__link  #{val[0]}
+        else if typeof val[1] === 'string'
+            a(href=val[1]).text-violet.aside__link  #{val[0]}
         else 
             div.text-violet.aside__link.aside__link-dropdown  
                 .aside__link-dropdown-title #{val[0]}
