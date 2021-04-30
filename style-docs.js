@@ -4,7 +4,8 @@ fs.readFile('dist/assets/styles/main.min.css', 'utf8', (error, data) => {
   const docItems = data.match(/\/\*\~(.+)\~\*\/(.+|\n).+\{/g);
   let docString = '';
   docItems.forEach((el) => {
-    docString += `${el}\n\n`;
+    const formattedValue = el.replace(/\/|\*|\/|\)/g, '');
+    docString += `${formattedValue}\n\n`;
   });
   putInReadme(docString);
 });
@@ -12,7 +13,6 @@ fs.readFile('dist/assets/styles/main.min.css', 'utf8', (error, data) => {
 
 function putInReadme(styleData) {
   fs.readFile('README.md', 'utf8', (error, data) => {
-    const docItems = data.match(/<!-- styles -->\n((.*?))\n<!-- styles end -->/gis);
     const styleDocsBorderStart = '<!-- styles -->\n';
     const styleDocsBorderEnd = '<!-- styles end -->';
     let matchedStylesInReadme = data.replace(/<!-- styles -->\n(.*?)\n<!-- styles end -->/gis, styleDocsBorderStart + styleData + styleDocsBorderEnd);
