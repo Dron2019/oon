@@ -8,7 +8,13 @@ body {
 
 .page__inner {
   margin-left: auto;
-  width: calc(100vw - var(--aside-w) - 10px);
+ width: calc(100vw - var(--aside-w) - 10px);
+ transition: filter .3 ease-in-out;
+ &.opened-popup {
+  //  pointer-events: none;
+   filter: blur(3px);
+   cursor: pointer;
+ }
 
 }
 .page__content {
@@ -31,12 +37,17 @@ body {
   min-height: 100vh;
   margin: 0 10px;
 }
+
+
+/*~  Основной заголовок ~*/
 .title {
   font-size: 36px;
   line-height: 1.2em;
   font-weight: 800;
   
 }
+
+/*~  Основной заголовок в начале страницы ~*/
 .page-title {
     font-weight: 300;
     font-size: 36px;
@@ -56,22 +67,30 @@ body {
         margin-bottom: 20px;
     }
 }
+
+/*~  (основной подзаголовок) ~*/
 .subtitle {
   font-weight: 600;
   font-size: 24px;
   line-height: 1.2em;
 }
+
+/*~  (основной малый подзаголовок) ~*/
 .subtitle-small {
   font-weight: 600;
   font-size: 18px;
   line-height: 120%;
 }
+
+/*~  (большие символы) ~*/
 .uppercased {
   text-transform: uppercase;
 }
 .max-content {
   width: max-content;
 }
+
+/*~  (  standart button, add class small to decrease size) ~*/
 .button-std {
   height: 55px;
   border-radius: 40px;
@@ -218,6 +237,7 @@ textarea,
   }
 }
 
+/*~  (Белая закругленная подложка) ~*/
 .white-bg-element {
   background: var(--color-white);
   display: flex;

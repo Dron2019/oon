@@ -1,26 +1,23 @@
 const fs = require('fs');
 
-fs.readFile('dist/assets/styles/main.min.css', 'utf8', (error, data) => {
-  const docItems = data.match(/\/\*\~(.+)\~\*\/(.+|\n).+\{/g);
-  let docString = '';
-  docItems.forEach((el) => {
-    const formattedValue = el.replace(/\/|\*|\/|\n/g, '');
-    docString += `- ${formattedValue}\n`;
-  });
-  putInReadme(docString);
-});
-
-
 function putInReadme(styleData) {
   fs.readFile('README.md', 'utf8', (error, data) => {
     const styleDocsBorderStart = '<!-- styles -->\n';
     const styleDocsBorderEnd = '<!-- styles end -->';
-    let matchedStylesInReadme = data.replace(/<!-- styles -->\n(.*?)\n<!-- styles end -->/gis, styleDocsBorderStart + styleData + styleDocsBorderEnd);
-    fs.writeFile('README.md', matchedStylesInReadme , function(err) {
-        if (err) return console.log(err);
+    const matchedStylesInReadme = data.replace(/<!-- styles -->\n(.*?)\n<!-- styles end -->/gis, styleDocsBorderStart + styleData + styleDocsBorderEnd);
+    fs.writeFile('README.md', matchedStylesInReadme, (err) => {
+      if (err) return console.log(err);
+      return -1;
     });
   });
-
-  // <!-- styles -->
-  // <!-- styles end -->
 }
+
+fs.readFile('dist/assets/styles/main.min.css', 'utf8', (error, data) => {
+  const docItems = data.match(/\/\*\~(.+)\~\*\/(.+|\n).+\{/g);
+  let docString = '';
+  docItems.forEach((el) => {
+    const formattedValue = el.replace(/\/|\*|\/|~|\{|\n/g, '');
+    docString += `- ${formattedValue} \n`;
+  });
+  putInReadme(docString);
+});

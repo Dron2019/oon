@@ -15,7 +15,7 @@
   &__logo {
     width: 100px;
     height: 80px;
-    margin-bottom: 20px;
+    
   }
   &__title{
     font-weight: 800;
@@ -99,8 +99,19 @@
     margin: 30px 0;
   }
   
+  &__top-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
   .button-std {
     margin-top: auto;
+  }
+  .search-call-panel {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
   }
   @include from(951px){
     &__link:hover {
@@ -116,6 +127,61 @@
     }
     &__subtitle {
       font-size: 24px;
+    }
+  }
+}
+
+.search-popup-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: calc(100vw - var(--aside-w) - 10px);
+  background-color: var(--color-white);
+  z-index: 10;
+  padding: 50px 20px 32px 37px;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: transform .3s ease-in-out;
+  &.active {
+    transform: none;
+    pointer-events: all;
+  }
+  &__close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+  &__form {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    input {
+      margin-right: 20px;
+    }
+    max-width: 61.18%;
+  }
+  &__decor {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    height: 120px;
+  }
+  @include to(950px){
+    &__form {
+      max-width: calc(100% - 120px - 20px);
+    }
+  }
+  @include to(768px){
+    &__form {
+      flex-direction: column;
+      align-items: flex-start;
+      .button-std {
+        margin-top: 20px;
+      }
     }
   }
 }

@@ -55,3 +55,33 @@ function handleNextPageButtons(){
   })
 }
 handleNextPageButtons();
+
+
+
+/*Панель поиска */
+function handleSearchPanel(){
+  const call = document.querySelector('[data-call-search-panel]');
+  const panel = document.querySelector('[data-search-panel]');
+  const close = panel.querySelector('[data-close-search-panel]');
+  const pageInner = document.querySelector('.page__inner');
+  const className = 'active';
+  const pageInnerBlockClass = 'opened-popup';
+  
+  call.addEventListener('click', ()=>pageInner.classList.add(pageInnerBlockClass));
+  call.addEventListener('click', ()=>panel.classList.add(className));
+  
+  close.addEventListener('click', ()=>panel.classList.remove(className));
+  close.addEventListener('click', ()=>pageInner.classList.remove(pageInnerBlockClass));
+
+  window.addEventListener('click',function(evt){
+    console.log(evt.target.closest('[data-search-panel]'));
+    if (
+      evt.target.closest('[data-search-panel]')===null &&
+      evt.target.closest('[data-call-search-panel]') === null
+    ) {
+      panel.classList.remove(className);
+      pageInner.classList.remove(pageInnerBlockClass);
+    }
+  });
+}
+handleSearchPanel()

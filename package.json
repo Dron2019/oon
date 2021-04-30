@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "work builder",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "auto doc": "node style-docs.js"
+  },
   "browserslist": [
     "last 3 version"
   ],
