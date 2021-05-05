@@ -10,7 +10,7 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
-import {logout} from '../../stores/userDataStore/actions.jsx';
+import {logout, logoutAsync} from '../../stores/userDataStore/actions.jsx';
 
 function Home() {
   return <h2>Home</h2>;
@@ -67,7 +67,7 @@ export default function Cabinet(props){
             Мій кабінет
           </div>
           <div className="button-std button-std--violet" 
-            onClick={(evt)=>{store.dispatch(logout(evt.target.innerText))}}>
+            onClick={(evt)=>{store.dispatch(logoutAsync(evt.target.innerText))}}>
             Вийти: {userName.toString()}
           </div>
           <ul>

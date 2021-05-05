@@ -9,16 +9,25 @@ import {getLoginStatusOfUser, setLoginStatusOfUser} from './actions.jsx';
 function loginStatusReducer(state = getLoginStatusOfUser(), action) {
   switch (action.type) {
     case 'LOGIN':
-      setLoginStatusOfUser(true, state.name);
-      return Object.assign({ ...state }, { isLogined: true });
+      setLoginStatusOfUser(true, action.additionalValue.name);
+      return Object.assign({ ...state }, { isLogined: true, name:action.additionalValue.name });
+
+    case 'LOGIN_FAIL':
+      return Object.assign(state, {error:action.error});
+
+    case 'CLEAR_ERROR':
+      return Object.assign(state, {error:''});
+
     case 'LOGOUT':
       return Object.assign(
         { ...state }, 
         { isLogined: false }, 
         setLoginStatusOfUser(false, ''),
         {name:'',});
+
     case 'ENTERNAME':
       return Object.assign({ ...state }, { name: action.value });
+
     case 'INIT':
       return Object.assign(getLoginStatusOfUser());
     default:

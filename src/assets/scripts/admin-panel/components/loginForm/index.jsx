@@ -16,13 +16,13 @@ export default function(props){
     const isSome = useSelector(state=>state.name);
     const history = useHistory();
     const isPending = useSelector(state=>state.pendingStatusStore);
-    const userDataStore = useSelector(state=>state)
+    const userDataStore = useSelector(state=>state);
+    const errorMessage = useSelector(state=>state.loginStatusReducer.error);
     function loginSubmit(values, actions) {
         dataStore.dispatch(setPending());
         dataStore.dispatch(loginAsync(values))
     }
     const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
-    console.log(userDataStore);
     return (
         <div className="login-form">
             <div className="title text-violet">Мій кабінет</div>
@@ -32,11 +32,13 @@ export default function(props){
                 onSubmit={loginSubmit}>
                 <Form className="form-std">
                     <div className="form-std__subtitle text-violet">Вхід до особистого кабінету</div>
-                    <Field 
-                        className="input-std" 
-                        name="login" 
-                        placeholder="Логін:" 
-                        onInput={(evt)=>{dataStore.dispatch({type:'ENTERNAME', value:evt.target.value })}}/>
+                    <div className="input-group">
+                        <Field 
+                            className="input-std" 
+                            name="login" 
+                            placeholder="Логін:" 
+                            onInput={(evt)=>{dataStore.dispatch({type:'ENTERNAME', value:evt.target.value })}}/>
+                    </div>
                     <ErrorMessage 
                         component="div" 
                         name="login" />
@@ -62,7 +64,9 @@ export default function(props){
                         </div>
                     )}
                     </Field>
-                    <div className="subtitle">{responseFromLogin}</div>
+                    <div className="input-group">
+                        <div className="subtitle text-violet">{errorMessage}</div>
+                    </div>
                     <button 
                         className="button-std button-std--violet" 
                         type="submit">

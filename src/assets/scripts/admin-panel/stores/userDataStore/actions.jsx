@@ -1,24 +1,44 @@
 import axios from 'axios';
 
-import {LOGIN_URL} from '../urls.jsx';
-
+import {LOGIN_URL, LOGOUT_URL} from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
+import {PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN} from '../dispatchActions.jsx';
+
+export function logoutAsync(addValue) {
+  return (dispatch)=>{
+    const fd = new FormData();
+    fd.append('action' , 'log_me_out_please')
+    axios.post(LOGOUT_URL, fd)
+      .then(res=>{
+        if (res.data.error === 0) dataStore.dispatch(logout());
+      })
+  }
+  
+}
 export function logout(addValue) {
   const obj = { type: 'LOGOUT', payload: addValue };
   return obj;
 }
 export function login(additionalValue = {}) {
-  const obj = Object.assign({ type: 'LOGIN',additionalValue });
+  const obj = Object.assign({ type: LOGIN,additionalValue });
   return obj;
 }
 
 export function setPending(){
-  const obj = Object.assign({ type: 'PENDING_ON' });
+  const obj = Object.assign({ type: PENDING_ON });
   return obj;
 }
 
+export function clearError(){
+  const obj = Object.assign({ type: CLEAR_ERROR });
+  return obj;
+}
 export function resetPending(){
-  const obj = Object.assign({ type: 'PENDING_OFF' });
+  const obj = Object.assign({ type: PENDING_OFF });
+  return obj;
+}
+export function loginFail(error){
+  const obj = Object.assign({ type: LOGIN_FAIL, error });
   return obj;
 }
 
@@ -31,24 +51,20 @@ export function loginAsync(values) {
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
     .then(function (response) {
-      console.log(response);
       dataStore.dispatch(resetPending());
+      if (response.data.error === 0) dataStore.dispatch(login({name: values.login}));
+      if (response.data.error === 1) {
+        dataStore.dispatch(loginFail(response.data.mess));
+        setTimeout(() => dataStore.dispatch(clearError()), 2500);
+        
+      }
+      return response.data;
     })
     .catch(function (error) {
-      console.log(error);
+      dataStore.dispatch(dataStore.dispatch(loginFail('Помилка відправки')));
       dataStore.dispatch(resetPending());
+      setTimeout(() => dataStore.dispatch(clearError()), 2500);
     });
-    // fetch(LOGIN_URL , {
-    //   method: 'POST',
-    //   body: JSON.stringify(values)
-    // })
-    // .then(el=>{
-    //   console.log(el);
-    //   dataStore.dispatch(resetPending());
-    // })
-    // .then(el=>{
-    //   // dispatch(login());
-    // })
   };
 }
 export function getLoginStatusOfUser() {
