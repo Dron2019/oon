@@ -25,7 +25,7 @@ export default () => (
             </Tabs>
         </div>
         <div className="white-bg-element">
-            <Link to="/login" className="button-std button-std--violet small"> Ви вже зарєстровані</Link>
+            <Link to="/login" className="button-std button-std--violet small transparent "> Ви вже зарєстровані</Link>
         </div>
     </div>
   );

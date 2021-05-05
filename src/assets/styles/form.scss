@@ -3,7 +3,7 @@
   --outline-padding:30px;
   padding: calc(var(--padding) + var(--outline-padding));
   background: var(--color-white);
-  box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
+  // box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -176,4 +176,8 @@
 
 .required-legend-title {
   margin-top: 10px;
+}
+
+select option:hover {
+  background-color: yellow;
 }

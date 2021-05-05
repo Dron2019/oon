@@ -14,7 +14,7 @@ export default function(props) {
         }, 1000);
     }
     return (
-        <>
+        <div className="forgot-password-wrapper">
             <div className="title text-violet uppercased">Мій кабінет</div>
             <Formik
                 initialValues={{
@@ -43,24 +43,24 @@ export default function(props) {
                     />
                     {message.length === 0 ? null : <div>{message}</div>}
                     <button 
-                        className="button-std button-std--violet" 
+                        className="button-std button-std--violet small " 
                         type="submit">
-                        Submit
+                        Відновити пароль
                     </button>
                 </Form>
             </Formik>
             <div className="white-bg-element">
                 <Link 
                     to="/login" 
-                    className="button-std button-std--violet"> 
+                    className="button-std button-std--violet small transparent"> 
                     Ви згадали свій пароль?
                 </Link>
                 <Link 
                     to="/register" 
-                    className="button-std button-std--violet"> 
+                    className="button-std button-std--violet small transparent"> 
                     Зареєструватися
                 </Link>
             </div>
-        </>
+        </div>
     )
 }

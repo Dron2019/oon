@@ -68,7 +68,7 @@ export default function(props){
                         <div className="subtitle text-violet">{errorMessage}</div>
                     </div>
                     <button 
-                        className="button-std button-std--violet" 
+                        className="button-std button-std--violet small" 
                         type="submit">
                             Увійти до кабінету
                     </button>
@@ -78,12 +78,12 @@ export default function(props){
             <div className="white-bg-element">
                 <Link 
                     to={routes.forgotPassword} 
-                    className="button-std button-std--violet"> 
+                    className="button-std button-std--violet small transparent"> 
                     Забули пароль?
                 </Link>
                 <Link 
                     to={routes.register} 
-                    className="button-std button-std--violet"> 
+                    className="button-std button-std--violet small transparent"> 
                     Зареєструватися
                 </Link>
             </div>
