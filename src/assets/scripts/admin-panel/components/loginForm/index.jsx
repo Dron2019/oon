@@ -1,10 +1,12 @@
 import React, { useState }  from 'react';
-import ReactDOM from 'react-dom';
 import { Field, Form, Formik, FormikProps,ErrorMessage } from 'formik';
-import dataStore from '../../stores/userDataStore/index.jsx'
 import { useSelector } from 'react-redux';
 import {Redirect, useHistory} from 'react-router-dom';
-import {login} from '../../stores/userDataStore/actions.jsx';
+
+import {setPending} from '../../stores/userDataStore/actions.jsx';
+import dataStore from '../../stores/userDataStore/index.jsx'
+import Loader from "../loader/loader.jsx";
+import {login,loginAsync} from '../../stores/userDataStore/actions.jsx';
 import {
     Link
   } from "react-router-dom";
@@ -13,13 +15,14 @@ export default function(props){
     const [responseFromLogin, setResponse] = useState('');
     const isSome = useSelector(state=>state.name);
     const history = useHistory();
-    
+    const isPending = useSelector(state=>state.pendingStatusStore);
+    const userDataStore = useSelector(state=>state)
     function loginSubmit(values, actions) {
-        setTimeout(() => setResponse(''), 2000);
-        // history.push(routes.cabinet);
-        dataStore.dispatch(login({login:'cs'}))
+        dataStore.dispatch(setPending());
+        dataStore.dispatch(loginAsync(values))
     }
     const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
+    console.log(userDataStore);
     return (
         <div className="login-form">
             <div className="title text-violet">Мій кабінет</div>
@@ -65,6 +68,7 @@ export default function(props){
                         type="submit">
                             Увійти до кабінету
                     </button>
+                    {isPending ? <Loader/> : null}
                 </Form>
             </Formik>
             <div className="white-bg-element">

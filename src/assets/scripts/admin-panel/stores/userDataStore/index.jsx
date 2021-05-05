@@ -1,5 +1,9 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose,applyMiddleware  } from 'redux';
+import thunk from 'redux-thunk';
+
+
 import newMessagesReducer from '../newMessageReducer/index.jsx';
+import pendingStatusStore from '../pendingStatusStore/index.jsx';
 import {getLoginStatusOfUser, setLoginStatusOfUser} from './actions.jsx';
 
 function loginStatusReducer(state = getLoginStatusOfUser(), action) {
@@ -25,9 +29,11 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
 const rootReducer = combineReducers(
   {
     newMessagesReducer, 
-    loginStatusReducer 
+    loginStatusReducer,
+    pendingStatusStore
   })
 const store = createStore(rootReducer ,compose(
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+  applyMiddleware(thunk),
+  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
 ));
 export default store;
