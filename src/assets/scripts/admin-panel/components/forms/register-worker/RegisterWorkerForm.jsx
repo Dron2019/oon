@@ -3,7 +3,6 @@ import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 import routes from '../../../routes/routes.jsx';
 export default function(){
-    console.log(routes);
     const SignupSchema = Yup.object().shape({
         surname: Yup.string()
             .min(2, 'Too Short!')
@@ -36,8 +35,10 @@ export default function(){
     const inputs = [
         ['Ім`я:','name','','8'],
         ['Прізвище','surname','','8'],
-        ['Телефон:','tel','',''],
         ['E-mail:','email','','8'],
+        ['Пароль','password','','8'],
+        ['Підтвердження паролю','confirmPassword','','8'],
+        ['Телефон:','tel','',''],
         ['Вік: (вкажіть скільки вам років)','age','',''],
         ['Освіта:','education','',''],
         ['Сімейний стан:','family','',''],
@@ -45,8 +46,6 @@ export default function(){
         ['Досвід роботи (програміст, санітар)','work-expirience','',''],
         ['Місце проживання (м. Київ, вул. Хрещатик 25)','adress','',''],
         ['Складні життєві обставини (наркоман, п’яниця)','live-problems','',''],
-        ['Пароль','password','','8'],
-        ['Підтвердження паролю','confirmPassword','','8'],
     ]
     const initialValues = (function(){
         const finalObject = {};

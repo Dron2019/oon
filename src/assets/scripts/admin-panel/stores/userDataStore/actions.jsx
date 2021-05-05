@@ -48,8 +48,10 @@ export function loginAsync(values) {
   for ( var key in sendData ) {
     formDate.append(key, sendData[key]);
 }
+  console.log('1111111');
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
+
     .then(function (response) {
       dataStore.dispatch(resetPending());
       if (response.data.error === 0) dataStore.dispatch(login({name: values.login}));
