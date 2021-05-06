@@ -279,6 +279,8 @@ textarea,
     @include size(6.6);
     @include shift(0);
     z-index: 3;
+    display: flex;
+    align-items: flex-end;
     svg {
       max-width: 100%;
       height: auto;
@@ -295,6 +297,8 @@ textarea,
     display: flex;
     flex-direction: column;
     z-index: 0;
+    color: rgba(242, 214, 231, 1);
+    
   }
   &__text:before {
     content: '';
@@ -309,6 +313,7 @@ textarea,
   &__text p {
     @include shift-left(0.5);
     @include shift-right(4);
+    color: rgba(242, 214, 231, 1);
   }
   &__text .button-std {
     margin-top: auto;

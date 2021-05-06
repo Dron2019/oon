@@ -1,0 +1,42 @@
+.learn-block {
+    --self-height: 56px;
+    height: var(--self-height);
+    border-radius: 25px;
+    background-color: var(--color-white);
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    overflow: hidden;
+    border-radius: 40px;
+    border: 1px solid #E5E0E3;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    z-index: 5;
+    overflow: hidden;
+    &>* {
+        padding: 12px 25px;
+        text-decoration: none;
+        color: var(--color-violet);
+        border: 1px solid #E5E0E3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -1px;
+    }
+    &>*:first-child {
+        border-radius: 40px 0 0 40px;
+        margin-left: 0;
+    }
+    &>*:last-child {
+        border-radius:  0 40px 40px 0;
+    }
+    &>*.active{
+        color: var(--color-white);
+        background-color: var(--color-violet);
+    }
+}

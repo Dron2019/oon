@@ -255,12 +255,17 @@
 @import './pages/single-bussines-oportunities';
 @import './pages/search-results';
 @import './pages/courses.scss';
+@import './pages/webinars';
+
+
 @import '../scripts/admin-panel/components/loginForm/index';
 @import '../scripts/admin-panel/components/cabinet/cabinet';
 @import '../scripts/admin-panel/components/forms/forgotPassword/forgot-password';
 @import '../scripts/admin-panel/components/cabinet-message-bell/cabinet-message-bell';
 
 
+
+@import '../../pug/components/learn-block-navbar/learn-block-navbar';
 
 /*react-plugins style */
 // @import '../../../node_modules/react-tabs/style/react-tabs.scss';
