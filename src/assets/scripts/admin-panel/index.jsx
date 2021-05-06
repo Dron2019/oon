@@ -14,13 +14,16 @@ import {
   Route,
   Redirect,
   Link,
-  hashHistory
+  hashHistory,
+  useHistory
 } from "react-router-dom";
 import routes from './routes/routes.jsx';
 
 
 function App(props){
   const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
+  // isLogined ? useHistory().push(routes.cabinet) : null;
+  // isLogined ? hashHistory().push('/cabinet');
   return (
     <Switch>
       <Route exact path={routes.home}>

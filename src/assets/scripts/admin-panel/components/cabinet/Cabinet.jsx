@@ -13,22 +13,10 @@ import {
 
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
+import CreateConsultQuestion from '../create-consult-question/CreateConsultQuestion.jsx';
+import QuestionsHistory from '../questions-history/QuestionsHistory.jsx';
+import OnlineConsultationRequest from '../online-consultation-request/OnlineConsultationRequest.jsx';
 import {logout, logoutAsync} from '../../stores/userDataStore/actions.jsx';
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
-
-
 
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined);
@@ -60,21 +48,19 @@ export default function Cabinet(props){
     }
     const nestedElements = [
       {route:'/work-consultation',component: WorkConsultation()},
-      {route:'/createHistory',component: Home()},
-      {route:'/createQuestion',component: Users()},
+      {route:'/createConsultQuestion',component: CreateConsultQuestion()},
+      {route:'/questionsHistory',component: QuestionsHistory()},
+      {route:'/onlineConsultationRequest',component: OnlineConsultationRequest()},
     ];
     const menus = [
-      // ['Послуги психолога','/cabinet/psycho'],
-      // ['Послуги консультанта з пошуку роботи', '/cabinet/work-consultation'],
-      ['Створити запитання','/cabinet/createQuestion'],
-      ['Історія запитань','/cabinet/questionHistory'],
-      ['Запит на онлайн консультацію','/cabinet/consult-request'],
+      ['Створити запитання','/cabinet/createConsultQuestion'],
+      ['Історія запитань','/cabinet/questionsHistory'],
+      ['Запит на онлайн консультацію','/cabinet/onlineConsultationRequest'],
       ['Прийняті запити на консультацію','/cabinet'],
-      // ['Послуги консультанта з пошуку роботи','/cabinet'],
     ];
     const psychoMenus = [
       ['Створити запитання ','/cabinet/create-psycho-question'],
-      ['Історія запитань ','/cabinet/psycho-question-history'],
+      ['Історія запитань ','/cabinet/ '],
     ]
     return (
       <div className="cabinet-wrapper">
@@ -113,7 +99,7 @@ export default function Cabinet(props){
           <div className="text text-white fw-800 menu-bold-text with-vert-line">
             Часті запитання (FAQ)
           </div>
-          <div className="button-std button-std--white small" 
+          <div className="button-std button-std--white quit-button" 
             onClick={(evt)=>{store.dispatch(logoutAsync(evt.target.innerText))}}>
             Вийти: {userName.toString()}
           </div>
