@@ -31,12 +31,14 @@ $color-gray: rgba(233, 233, 233, 1);
   --header-h: 100px;
   --color-orange: rgba(255,127,65,1);
 	--color-violet: rgba(153,30,102,1);
+  --color-violet-dark: rgba(139, 3, 83, 1);
 	--color-white: rgba(255,255,255,1);
 	--color-black: rgba(62,12,41,1);
 	--color-gray: rgba(248,248,248,1);
   --home-sec-mb: 60px;
   --page-side-fields:50px;
   --aside-w:240px;
+  --cabinet-menu-width:200px;
   @include to(1440px){
       --header-h: 80px;
   }

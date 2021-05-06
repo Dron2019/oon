@@ -146,6 +146,10 @@ body {
   &--orange {
     background: var(--color-orange);
   }
+  &--white {
+    background: var(--color-white);
+    color: var(--color-violet);
+  }
   max-width: 280px;
   cursor: pointer;
 

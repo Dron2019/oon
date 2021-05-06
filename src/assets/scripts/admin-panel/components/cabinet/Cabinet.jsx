@@ -10,6 +10,8 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
+
+import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx'
 import {logout, logoutAsync} from '../../stores/userDataStore/actions.jsx';
 
 function Home() {
@@ -45,7 +47,14 @@ export default function Cabinet(props){
     }
     function renderCabinetLinks(el,index){
       const isActive = (activeLink === el[0]) ? 'active' : ''; 
-      return <li key={index}><Link onClick={()=>setActiveLink(el[0])}  className={isActive + ' menu__link'} to={el[1]}>{el[0]}</Link></li>
+      return (
+        <li className={isActive} key={index}>
+          <Link onClick={()=>setActiveLink(el[0])}  className={isActive + ' menu__link'} to={el[1]}>
+            {el[0]}
+            <CabinetMessageBell count={index}/>
+          </Link>
+        </li>
+      )
     }
     const nestedElements = [
       {route:'/psycho',component: About()},
@@ -53,33 +62,61 @@ export default function Cabinet(props){
       {route:'/createQuestion',component: Users()},
     ];
     const menus = [
-      ['Послуги психолога','/cabinet/psycho'],
+      // ['Послуги психолога','/cabinet/psycho'],
       ['Створити запитання','/cabinet/createQuestion'],
       ['Історія запитань','/cabinet/questionHistory'],
       ['Запит на онлайн консультацію','/cabinet/consult-request'],
       ['Прийняті запити на консультацію','/cabinet'],
-      ['Послуги консультанта з пошуку роботи','/cabinet'],
+      // ['Послуги консультанта з пошуку роботи','/cabinet'],
+    ];
+    const psychoMenus = [
+      ['Створити запитання ','/cabinet/create-psycho-question'],
+      ['Історія запитань ','/cabinet/psycho-question-history'],
     ]
     return (
-      <>
+      <div className="cabinet-wrapper">
         <div className="menu">
           <div className="menu__subtitle">
             Мій кабінет
           </div>
-          <div className="button-std button-std--violet" 
+          <div className="menu__dark-block">
+            <div className="text text-white fw-800 menu-bold-text">
+              Послуги консультанта  з пошуку роботи
+            </div>
+            <ul>
+              {menus.map(renderCabinetLinks)}
+            </ul>
+          </div>
+          <div className="text text-white fw-800 menu-bold-text">
+              Послуги психолога
+          </div>
+          <ul>
+              {psychoMenus.map(renderCabinetLinks)}
+          </ul>
+          <div className="text text-white fw-800 menu-bold-text with-vert-line mt-10">
+            Редагувати профіль
+          </div>
+          <div className="text text-white fw-800 menu-bold-text with-vert-line">
+            Створити резюме
+          </div>
+          <div className="text text-white fw-800 menu-bold-text with-vert-line">
+            Мої резюме
+          </div>
+          <div className="text text-white fw-800 menu-bold-text with-vert-line">
+            Часті запитання (FAQ)
+          </div>
+          <div className="button-std button-std--white small" 
             onClick={(evt)=>{store.dispatch(logoutAsync(evt.target.innerText))}}>
             Вийти: {userName.toString()}
           </div>
-          <ul>
-            {menus.map(renderCabinetLinks)}
-          </ul>
+          <div className="button-std button-std--white small">Звортній зв'язок</div>
         </div>
         <div className="content">
           <Switch>
             {nestedElements.map(renderCabinetNestedRoutes)}
           </Switch>
         </div>
-      </>
+      </div>
     )
   }
   
