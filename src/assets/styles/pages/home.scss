@@ -18,6 +18,12 @@
     text-align: center;
     font-weight: 800;
     margin-bottom: 20px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .button-std {
+    margin-bottom: auto;
   }
   @include from(1680px){
     &__title {

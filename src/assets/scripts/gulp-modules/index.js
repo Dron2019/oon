@@ -74,7 +74,6 @@ function handleSearchPanel(){
   close.addEventListener('click', ()=>pageInner.classList.remove(pageInnerBlockClass));
 
   window.addEventListener('click',function(evt){
-    console.log(evt.target.closest('[data-search-panel]'));
     if (
       evt.target.closest('[data-search-panel]')===null &&
       evt.target.closest('[data-call-search-panel]') === null
@@ -84,4 +83,23 @@ function handleSearchPanel(){
     }
   });
 }
-handleSearchPanel()
+handleSearchPanel();
+
+
+
+//mobile menu handle
+function mobMenuHandle(){
+  const menu = document.querySelector('aside');
+  const pageInner = document.querySelector('.page__inner');
+  menu.addEventListener('click',function(evt){
+
+    if (evt.target.tagName === 'ASIDE'){
+      this.classList.toggle('opened');
+     }
+    // evt.target.tagName === 'ASIDE' ? 
+    //   this.classList.toggle('opened') : 
+    //   null;
+    // console.log();
+  });
+}
+mobMenuHandle();

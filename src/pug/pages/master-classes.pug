@@ -1,0 +1,73 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'master-classes'
+    var id_page = 'id-page-master-classes'
+    var class_page = 'class-page-master-classes'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/master-classes.js')
+block content
+  .page-part.violet
+    include ../components/learn-block-navbar/learn-block-navbar.pug
+    .fixed-proportion-wrap
+      .fixed-proportion
+        .decor-white-circle
+    .page-part__text
+      include ../includes/breadcrumbs.pug
+      .page-title.text-white Майстер класи
+      p.text-white Домашнє та гендерно зумовлене насильство - проблема, з якою стикається надто багато людей в нашій країні. Фонд ООН у галузі народонаселення разом із партнерами створив кампанію “Розірви коло”, яка вже багато років допомагає усім, хто постраждав від насильства, отримати інформацію та розірвати це коло. 
+      .button-std.button-std--violet.down-button(data-down-button) 
+        <svg class="button__up-icon" width="17" height="28" viewBox="0 0 17 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="16" height="27" rx="8" stroke="white"/>
+          <circle cx="8.5" cy="9.5" r="1.5" fill="white"/>
+          </svg>
+        span Дивитися вебінари
+    .page-part__img 
+      include ../../assets/images/master-classes/screen1-img.svg
+  .page-part
+    .white-bg-element.webinar-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.right
+    .white-bg-element.webinar-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.left
+    .white-bg-element.webinar-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.right
+    .white-bg-element.webinar-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.left
+    .white-bg-element.webinar-story-item
+      .subtitle.text-violet FEM StartUp Lab. Власний жіночий бізнес - як зробити мрію реальністю? Катерина Дегтяр.
+      .fixed-proportion
+        iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      +svg('quarter-orange-circle').quarter-circle-decor.right
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug
