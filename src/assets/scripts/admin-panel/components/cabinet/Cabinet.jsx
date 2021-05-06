@@ -11,7 +11,8 @@ import {
   useHistory
 } from "react-router-dom";
 
-import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx'
+import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
+import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
 import {logout, logoutAsync} from '../../stores/userDataStore/actions.jsx';
 
 function Home() {
@@ -32,12 +33,13 @@ function Users() {
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined);
     const userName = useSelector(state=>state.loginStatusReducer.name) || '';
-    const test = true;
+    // const test = true;
     const history = useHistory();
+    const [activeGlobalLink, setGlobalLink] = useState('');
     const [activeLink, setActiveLink] = useState('');
     const parentUrlPart = '/cabinet';
-    // history.location.pathname!==parentUrlPart  ? history.push(parentUrlPart) : null;
-    if (!test) history.push('/');
+    // if (!test) history.push('/');
+
     function renderCabinetNestedRoutes(el,index){
       return (
         <Route key={index} path={parentUrlPart+el.route}>
@@ -46,23 +48,24 @@ export default function Cabinet(props){
       )
     }
     function renderCabinetLinks(el,index){
-      const isActive = (activeLink === el[0]) ? 'active' : ''; 
+      const isActive = (activeLink === el[0]) ? 'active' : '';
       return (
         <li className={isActive} key={index}>
           <Link onClick={()=>setActiveLink(el[0])}  className={isActive + ' menu__link'} to={el[1]}>
             {el[0]}
-            <CabinetMessageBell count={index}/>
           </Link>
+          <CabinetMessageBell count={index}/>
         </li>
       )
     }
     const nestedElements = [
-      {route:'/psycho',component: About()},
+      {route:'/work-consultation',component: WorkConsultation()},
       {route:'/createHistory',component: Home()},
       {route:'/createQuestion',component: Users()},
     ];
     const menus = [
       // ['Послуги психолога','/cabinet/psycho'],
+      // ['Послуги консультанта з пошуку роботи', '/cabinet/work-consultation'],
       ['Створити запитання','/cabinet/createQuestion'],
       ['Історія запитань','/cabinet/questionHistory'],
       ['Запит на онлайн консультацію','/cabinet/consult-request'],
@@ -80,9 +83,14 @@ export default function Cabinet(props){
             Мій кабінет
           </div>
           <div className="menu__dark-block">
-            <div className="text text-white fw-800 menu-bold-text">
+            <Link  
+              onClick={()=>setActiveLink('/work-consultation')} 
+              to={parentUrlPart+'/work-consultation'} 
+              className={'bold-link text text-white fw-800  ' + ((activeLink === ('/work-consultation')) ? 'active' : '')}>
+              <span>
               Послуги консультанта  з пошуку роботи
-            </div>
+              </span> 
+            </Link>
             <ul>
               {menus.map(renderCabinetLinks)}
             </ul>

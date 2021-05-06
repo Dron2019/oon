@@ -32,12 +32,12 @@ export default function(){
                 .max(50, 'Too Long!')
                 .required('Required'),
         },
-        {title:'Пароль',name:'password',initialValue: '', requiredClass: 'required',
+        {type: 'password',title:'Пароль',name:'password',initialValue: '', requiredClass: 'required',
             validationSchema: Yup
                 .string()
                 .required("Enter password"),
         },
-        {title:'Підтвердження паролю',name:'confirmPassword', initialValue: '', requiredClass: 'required',
+        {type: 'password',title:'Підтвердження паролю',name:'confirmPassword', initialValue: '', requiredClass: 'required',
             validationSchema:  Yup
                 .string()
                 .required("Confirm password")
@@ -74,7 +74,10 @@ export default function(){
                     <Field key={index}  name={element.name}>
                     {({ field, form, meta }) => (
                         <div key={index} className={`input-group ${paintUnfilledValue(meta)} ${setRequiredClass(element.requiredClass)}`} >
-                            <input type="text" {...field} className="input-std" placeholder={element.title}/>
+                            <input 
+                                type={element.type ? element.type : 'text'} {...field} 
+                                className="input-std" 
+                                placeholder={element.title}/>
                             {meta.touched &&
                             meta.error && <div className="error">{meta.error}</div>}
                         </div>

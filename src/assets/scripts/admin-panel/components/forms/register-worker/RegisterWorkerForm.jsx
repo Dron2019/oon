@@ -49,8 +49,8 @@ export default function(){
         {title:'Ім`я:',name:'name', initialValue: '', requiredClass: 'required'},
         {title:'Прізвище',name:'surname',initialValue: '', requiredClass: 'required'},
         {title:'E-mail:',name:'email',initialValue: '', requiredClass: 'required'},
-        {title:'Пароль',name:'password',initialValue: '', requiredClass: 'required'},
-        {title:'Підтвердження паролю',name:'confirmPassword',initialValue: '', requiredClass: 'required'},
+        {type: "password", title:'Пароль',name:'password',initialValue: '', requiredClass: 'required'},
+        {type: "password", title:'Підтвердження паролю',name:'confirmPassword',initialValue: '', requiredClass: 'required'},
         {title:'Телефон:',name:'tel',initialValue: '', requiredClass: false},
         {title:'Вік: (вкажіть скільки вам років)',name:'age',initialValue: '', requiredClass: false},
         {title:'Сімейний стан:',name:'family',initialValue: '', requiredClass: false},
@@ -118,7 +118,7 @@ export default function(){
                                         className={`input-group ${paintUnfilledValue(meta)} ${setRequiredClass(input.requiredClass)}`} 
                                         key={field.name}>
                                         <input 
-                                            className="input-std" type="text"  
+                                            className="input-std" type={input.type !== undefined ? input.type : 'text'}
                                             placeholder={input.title} {...field} />
                                         {
                                         meta.touched && meta.error && (
