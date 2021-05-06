@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import Select from 'react-select';
+import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
@@ -8,6 +8,9 @@ import * as Yup from 'yup';
 import {REGISTER_USER} from '../../../stores/urls.jsx';
 import routes from '../../../routes/routes.jsx';
 export default function(){
+    const [errorMessageAfterRequest, setError] = useState('');
+    const formFields = useSelector(state=>state.registerWorkerFormReducer);
+
     const SignupSchema = Yup.object().shape({
         surname: Yup.string()
             .min(2, 'Too Short!')
@@ -34,56 +37,26 @@ export default function(){
             })
     });
     function handleSubmit(values, actions){
-        console.log(values);
+        const userData = {}
         const sendData = new FormData();
+        sendData.append('ajax_data',1);
         Object.entries(values).forEach(value=>{
-            sendData.append(value[0], value[1]);
+            userData[value[0]] = value[1];
         })
+        sendData.append('userData', JSON.stringify(userData));
         axios.post(REGISTER_USER, sendData)
-            .then(el=>console.log(el))
+            .then(el=>{
+                setError('error');
+                setTimeout(() =>  setError(''), 2000);
+            })
             .catch(el=>console.log(el))
         actions.setSubmitting(false);
     }
 
-    const registerInputs = [
-        {title:'Ім`я:',name:'name', initialValue: '', requiredClass: 'required'},
-        {title:'Прізвище',name:'surname',initialValue: '', requiredClass: 'required'},
-        {title:'E-mail:',name:'email',initialValue: '', requiredClass: 'required'},
-        {type: "password", title:'Пароль',name:'password',initialValue: '', requiredClass: 'required'},
-        {type: "password", title:'Підтвердження паролю',name:'confirmPassword',initialValue: '', requiredClass: 'required'},
-        {title:'Телефон:',name:'tel',initialValue: '', requiredClass: false},
-        {title:'Вік: (вкажіть скільки вам років)',name:'age',initialValue: '', requiredClass: false},
-        {title:'Сімейний стан:',name:'family',initialValue: '', requiredClass: false},
-        {title:'Досвід роботи (програміст, санітар)',name:'work-expirience',initialValue: '', requiredClass: false},
-        {title:'Місце проживання (м. Київ, вул. Хрещатик 25)',name:'adress',initialValue: '', requiredClass: false},
-        {title:'Складні життєві обставини (наркоман, п’яниця)',name:'live-problems',initialValue: '', requiredClass: false},
-        {title: 'Освіта', name:'education', initialValues:'',requiredClass:false, as: 'select', values: ['Освіта', 'Вища', 'Середня']},
-        {title: 'Сімейний стан', name:'family-status', initialValues:'',requiredClass:false, as: 'select', values: ['Сімейний стан', 'Одружена', 'Не одружена']},
-        {title: 'Кількість дітей', name:'childs', initialValues:'',requiredClass:false, as: 'select', values: ['Кількість дітей', '1', '2', '3 і більше']},
-    ]
-    const inputs = [
-        ['Ім`я:','name','','8'],
-        ['Прізвище','surname','','8'],
-        ['E-mail:','email','','8'],
-        ['Пароль','password','','8'],
-        ['Підтвердження паролю','confirmPassword','','8'],
-        ['Телефон:','tel','',''],
-        ['Вік: (вкажіть скільки вам років)','age','',''],
-        ['Сімейний стан:','family','',''],
-        ['Кількість дітей:','childs','',''],
-        ['Досвід роботи (програміст, санітар)','work-expirience','',''],
-        ['Місце проживання (м. Київ, вул. Хрещатик 25)','adress','',''],
-        ['Складні життєві обставини (наркоман, п’яниця)','live-problems','',''],
-    ];
-    const selects = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-    ];
     const initialValues = (function(){
         const finalObject = {};
-        inputs.forEach(el=>{
-            finalObject[el[1]] = el[2];
+        formFields.forEach(el=>{
+            finalObject[el.name] = el.initialValue;
         });
         return finalObject;
     })();
@@ -95,13 +68,12 @@ export default function(){
             onSubmit={handleSubmit} 
             validationSchema={SignupSchema}>
             <Form  className="form-std" >
-            {registerInputs.map((input, index)=>{
-                console.log(input.as === 'select');
+            {formFields.map((input, index)=>{
                 if (input.as === 'select') {
                     return (
-                        <div className="input-group input-group-select">
-                            <Field name={input.name} as="select" className="fw-500 text-black" >
-                                {input.values.map((option) => <option value={option}>{option}</option>)}
+                        <div key={index+'aa'} className="input-group input-group-select">
+                            <Field key={index+'bb'} name={input.name} as="select" className="fw-500 text-black" >
+                                {input.values.map((option) => <option key={option[0]} value={option[0]}>{option[1]}</option>)}
                                 </Field>
                         </div>
                     )
@@ -127,36 +99,14 @@ export default function(){
                                     </div>
                                 );
                             }}
+                            
                             </Field>
                     )
                 }
             })}
-            {/* {inputs.map((input,index)=>(
-                <Field 
-                    className="dd"
-                    key={index}
-                    name={input[1]}>
-                {({
-                field, // { name, value, onChange, onBlur }
-                form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                meta,
-                }) => {
-                    return (
-                        <div 
-                            className={`input-group ${paintUnfilledValue(meta)} ${setRequiredClass(input[3])}`} 
-                            key={field.name}>
-                            <input 
-                                className="input-std" type="text"  
-                                placeholder={input[0]} {...field} />
-                            {
-                            meta.touched && meta.error && (
-                            <div className="error">{meta.error}</div>
-                            )}
-                        </div>
-                    );
-                }} */}
-            {/* </Field> */}
-            {/* ))} */}
+            <div className="input-group">
+                <div className="subtitle text-violet">{errorMessageAfterRequest}</div>
+            </div>
             <div className="text-violet fw-500 required-legend-title">* обов’язкові поля для заповнення</div>
             <button type="submit" className="button-std button-std--violet small" >
                 Зареєструватися як користувач

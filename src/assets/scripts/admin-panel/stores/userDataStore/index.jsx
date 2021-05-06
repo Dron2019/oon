@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 import newMessagesReducer from '../newMessageReducer/index.jsx';
 import pendingStatusStore from '../pendingStatusStore/index.jsx';
+import registerWorkerFormReducer from '../registerWorkerFormReducer/index.jsx';
 import {getLoginStatusOfUser, setLoginStatusOfUser} from './actions.jsx';
 
 function loginStatusReducer(state = getLoginStatusOfUser(), action) {
@@ -39,8 +40,11 @@ const rootReducer = combineReducers(
   {
     newMessagesReducer, 
     loginStatusReducer,
-    pendingStatusStore
-  })
+    pendingStatusStore,
+    registerWorkerFormReducer
+});
+
+
 const store = createStore(rootReducer ,compose(
   applyMiddleware(thunk),
   // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
