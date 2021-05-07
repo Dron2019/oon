@@ -8,7 +8,7 @@ import dataStore from '../../stores/userDataStore/index.jsx'
 import Loader from "../loader/loader.jsx";
 import {login,loginAsync, restoreByToken} from '../../stores/userDataStore/actions.jsx';
 
-import {GET} from '../../helpers.jsx';
+
 import {
     Link
   } from "react-router-dom";
@@ -23,8 +23,7 @@ export default function(props){
         dataStore.dispatch(setPending());
         dataStore.dispatch(loginAsync(values))
     }
-    const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
-
+    //Запуск восттановления через електронную почту с последующий логином
     if (history.location.search.match(/token/) && isPending===false) {
         let GET = (function(){
             let array = history.location.search.replace('?', '').split('&').map(el => el.split('='));

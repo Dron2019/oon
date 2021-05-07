@@ -62,7 +62,6 @@ export function restoreByToken(values){
         setTimeout(() => {
           dataStore.dispatch(login({name: values.login}))
           const queryParams = new URLSearchParams(history.location.search);
-          console.log(queryParams);
           history.replace({
               search: ''.toString(),
           });
@@ -82,7 +81,6 @@ export function restoreByToken(values){
         setTimeout(() => {
           dataStore.dispatch(login({name: values.login}))
           const queryParams = new URLSearchParams(history.location.search);
-          console.log(queryParams);
           history.replace({
               search: ''.toString(),
           });

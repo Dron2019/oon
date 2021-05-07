@@ -5,11 +5,15 @@ import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
 
+import dataStore from '../../../stores/userDataStore/index.jsx';
+import Loader from '../../loader/loader.jsx';
+import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
 import {REGISTER_USER} from '../../../stores/urls.jsx';
 import routes from '../../../routes/routes.jsx';
 export default function(){
     const [errorMessageAfterRequest, setError] = useState('');
     const formFields = useSelector(state=>state.registerWorkerFormReducer);
+    const isPending = useSelector(state=>state.pendingStatusStore);
 
     const SignupSchema = Yup.object().shape({
         surname: Yup.string()
@@ -42,14 +46,29 @@ export default function(){
         sendData.append('ajax_data',1);
         Object.entries(values).forEach(value=>{
             userData[value[0]] = value[1];
-        })
+        });
+        dataStore.dispatch(setPending());
         sendData.append('userData', JSON.stringify(userData));
         axios.post(REGISTER_USER, sendData)
-            .then(el=>{
-                setError('error');
-                setTimeout(() =>  setError(''), 2000);
+        .then(response=>{
+            switch (response.data.error) {
+                    case 0:
+                        setError(decodeURIComponent(response.data.mess));
+                        setTimeout(() =>  setError(''), 2000);
+                        dataStore.dispatch(resetPending());
+                        actions.resetForm();
+                        break;
+                    case 1:
+                        setError(decodeURIComponent(response.data.mess));
+                        setTimeout(() =>  setError(''), 2000);
+                        dataStore.dispatch(resetPending());
+                }
             })
-            .catch(el=>console.log(el))
+            .catch(el=>{
+                setError(decodeURIComponent('Помилка відправки'));
+                setTimeout(() =>  setError(''), 2000);
+                dataStore.dispatch(resetPending());
+            })
         actions.setSubmitting(false);
     }
 
@@ -111,6 +130,7 @@ export default function(){
             <button type="submit" className="button-std button-std--violet small" >
                 Зареєструватися як користувач
             </button>
+            {isPending ? <Loader/> : null}
          </Form>
         </Formik>
     )
