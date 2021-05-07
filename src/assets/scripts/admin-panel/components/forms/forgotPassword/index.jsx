@@ -1,17 +1,59 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+
+import axios from 'axios';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import {useHistory } from "react-router-dom";
 
+
+
+import dataStore from '../../../stores/userDataStore/index.jsx';
+
+import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
+import Loader from '../../loader/loader.jsx';
+import { RECOVERY_PASSWORD} from '../../../stores/urls.jsx';
+import routesMap from '../../../routes/routes.jsx';
+
 export default function(props) {
     let history = useHistory();
     const [message,setMessage] = useState('');
-    function redirect() {
-        let path = `/login`;        
+    const pending = useSelector(state=>state.pendingStatusStore);
+
+
+    function redirect() {   
         setTimeout(() => {
-            history.push(path);
+            setMessage('');
+            // history.push(routesMap.login);
         }, 1000);
+    }
+
+    function handleSubmit(values,formikApi){
+        dataStore.dispatch(setPending());
+        const sendData = new FormData();
+        Object.entries(values).forEach(el=>{
+            sendData.append(el[0], el[1]);
+        })
+        sendData.append('ajax_data' , 1);
+        axios.post(RECOVERY_PASSWORD, sendData)
+            .then(el=> {
+                if (el.data.error===0) {
+                    setMessage(decodeURIComponent(el.data.mess));
+                    formikApi.resetForm();
+                    dataStore.dispatch(resetPending());
+                    setTimeout(() => setMessage(''), 2000);
+                } else if (el.data.error===1) {
+                    setMessage(decodeURIComponent(el.data.mess));
+                    dataStore.dispatch(resetPending());
+                    setTimeout(() => setMessage(''), 2000);
+                }
+            })
+            .catch((el)=>{
+                setMessage('Помилка, повторіть будь-ласка пізніше');
+                setTimeout(() => setMessage(''), 2000);
+                dataStore.dispatch(resetPending());
+            })
+        // !values.email.length ? null : setMessage('Имейл правильный');
     }
     return (
         <div className="forgot-password-wrapper">
@@ -20,28 +62,22 @@ export default function(props) {
                 initialValues={{
                     email: '',
                 }}
-                onSubmit={(values,formikApi) => {
-                    console.log(values);
-                    !values.email.length ? null : setMessage('Имейл правильный');
-                    formikApi.resetForm();
-                    console.log(formikApi);
-                    setTimeout(() => {
-                        setMessage('');
-                        redirect();
-                    }, 1000);
-                }}
+                onSubmit={handleSubmit}
                 >
                 <Form  className="form-std">
                     <label htmlFor="email" className="form-std__subtitle text-violet">Забули пароль?</label>
-                    <Field
-                        required
-                        className="input-std"
-                        id="email"
-                        name="email"
-                        placeholder="E-mail:"
-                        type="email"
-                    />
-                    {message.length === 0 ? null : <div>{message}</div>}
+                    <div className="input-group">
+                        <Field
+                            required
+                            className="input-std"
+                            id="email"
+                            name="email"
+                            placeholder="E-mail:"
+                            type="email"
+                        />
+                    </div>
+                    {message.length === 0 ? null : <div className="input-group"><div className="text-violet subtitle">{message}</div> </div>}
+                    {pending ? <Loader/> : null}
                     <button 
                         className="button-std button-std--violet small " 
                         type="submit">

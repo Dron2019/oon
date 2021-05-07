@@ -1,19 +1,20 @@
 import React, { useState }  from 'react';
 import { Field, Form, Formik, FormikProps,ErrorMessage } from 'formik';
 import { useSelector } from 'react-redux';
-import {Redirect, useHistory} from 'react-router-dom';
+import {Redirect, useHistory, useLocation} from 'react-router-dom';
 
 import {setPending} from '../../stores/userDataStore/actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx'
 import Loader from "../loader/loader.jsx";
-import {login,loginAsync} from '../../stores/userDataStore/actions.jsx';
+import {login,loginAsync, restoreByToken} from '../../stores/userDataStore/actions.jsx';
+
+import {GET} from '../../helpers.jsx';
 import {
     Link
   } from "react-router-dom";
 import routes from '../../routes/routes.jsx';
 export default function(props){ 
     const [responseFromLogin, setResponse] = useState('');
-    const isSome = useSelector(state=>state.name);
     const history = useHistory();
     const isPending = useSelector(state=>state.pendingStatusStore);
     const userDataStore = useSelector(state=>state);
@@ -23,10 +24,20 @@ export default function(props){
         dataStore.dispatch(loginAsync(values))
     }
     const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
+
+    if (history.location.search.match(/token/) && isPending===false) {
+        let GET = (function(){
+            let array = history.location.search.replace('?', '').split('&').map(el => el.split('='));
+            let obj = {};
+            array.forEach(el => obj[el[0]] = el[1]);
+            return obj;
+        })()
+        dataStore.dispatch(restoreByToken(GET));
+    }
     return (
         <div className="login-form">
             <div className="title text-violet">Мій кабінет</div>
-            <Redirect to="/login" />
+            <Redirect to={'/login'+history.location.search} />
             <Formik
                 initialValues={{ login:'', password: '' }}
                 onSubmit={loginSubmit}>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {useHistory } from "react-router-dom";
 
 import {LOGIN_URL, LOGOUT_URL} from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
@@ -42,6 +43,70 @@ export function loginFail(error){
   return obj;
 }
 
+//Восстановление по токену - пользователь попадает из ссылки на мыло с ГЕТ ПАРАМЕТРОМ
+export function restoreByToken(values){
+  dataStore.dispatch(setPending());
+  const sendData = Object.assign(values,{ajax_data: 1});
+  const history = useHistory();
+  let formDate = new FormData();
+  for ( var key in sendData ) {
+    formDate.append(key, sendData[key]);
+  }
+  dataStore.dispatch(setPending());
+
+  return (dispatch)=>{
+    axios.post(LOGIN_URL, formDate)
+    .then(function (response) {
+      if (response.data.error === 0) {
+        dataStore.dispatch(loginFail('Вас переправить до особистого кабінету'));
+        setTimeout(() => {
+          dataStore.dispatch(login({name: values.login}))
+          const queryParams = new URLSearchParams(history.location.search);
+          console.log(queryParams);
+          history.replace({
+              search: ''.toString(),
+          });
+          dataStore.dispatch(resetPending());
+          dataStore.dispatch(clearError());
+        }, 2000);
+      };
+      if (response.data.error === 1) {
+        dataStore.dispatch(loginFail(response.data.mess));
+        history.replace({
+            search: ''.toString(),
+        })
+        setTimeout(() => dataStore.dispatch(clearError()), 2500);
+        dataStore.dispatch(resetPending());
+      } else if (response.data.error === 2){
+        dataStore.dispatch(loginFail(response.data.mess));
+        setTimeout(() => {
+          dataStore.dispatch(login({name: values.login}))
+          const queryParams = new URLSearchParams(history.location.search);
+          console.log(queryParams);
+          history.replace({
+              search: ''.toString(),
+          });
+          dataStore.dispatch(resetPending());
+          dataStore.dispatch(clearError());
+        }, 3000);
+      }
+      history.replace({
+        search: ''.toString(),
+      })
+      return response.data;
+    })
+    .catch(function (error) {
+      dataStore.dispatch(dataStore.dispatch(loginFail('Помилка відправки')));
+        history.replace({
+          search: ''.toString(),
+      })
+      dataStore.dispatch(resetPending());
+      setTimeout(() => dataStore.dispatch(clearError()), 2500);
+    });
+    
+  }
+}
+
 export function loginAsync(values) {
   const sendData = Object.assign(values,{ajax_data: 1});
   let formDate = new FormData();
@@ -50,7 +115,6 @@ export function loginAsync(values) {
 }
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
-
     .then(function (response) {
       dataStore.dispatch(resetPending());
       if (response.data.error === 0) dataStore.dispatch(login({name: values.login}));
