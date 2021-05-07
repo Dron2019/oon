@@ -8,6 +8,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const GET_WORKER_REGISTER_FIELDS = 'GET_WORKER_REGISTER_FIELDS';
+export const GET_CONSULT_REGISTER_FIELDS = 'GET_CONSULT_REGISTER_FIELDS';
 // export function login(additionalValue = {}) {
 //     const obj = Object.assign({ type: 'LOGIN',additionalValue });
 //     return obj;

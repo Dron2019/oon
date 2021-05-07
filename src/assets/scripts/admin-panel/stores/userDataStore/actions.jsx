@@ -29,12 +29,12 @@ export function setPending(){
   return obj;
 }
 
-export function clearError(){
-  const obj = Object.assign({ type: CLEAR_ERROR });
-  return obj;
-}
 export function resetPending(){
   const obj = Object.assign({ type: PENDING_OFF });
+  return obj;
+}
+export function clearError(){
+  const obj = Object.assign({ type: CLEAR_ERROR });
   return obj;
 }
 export function loginFail(error){
@@ -48,7 +48,6 @@ export function loginAsync(values) {
   for ( var key in sendData ) {
     formDate.append(key, sendData[key]);
 }
-  console.log('1111111');
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
 
