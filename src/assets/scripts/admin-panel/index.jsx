@@ -18,12 +18,14 @@ import {
   useHistory
 } from "react-router-dom";
 import routes from './routes/routes.jsx';
-
-
+import dataStore from './stores/userDataStore/index.jsx';
+import {checkSession} from './stores/userDataStore/actions.jsx';
 function App(props){
   const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
   // isLogined ? useHistory().push(routes.cabinet) : null;
   // isLogined ? hashHistory().push('/cabinet');
+  dataStore.dispatch(checkSession());
+  
   return (
     <Switch>
       <Route exact path={routes.home}>

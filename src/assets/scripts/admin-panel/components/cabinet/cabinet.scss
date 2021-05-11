@@ -162,6 +162,9 @@
         @include shift(0);
     }
     @include to( 1240px){
+        & *~* {
+            margin-top: 15px;
+        }
         &__left {
             @include size(12);
             @include shift(0);

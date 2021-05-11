@@ -40,10 +40,6 @@ export default function Cabinet(props){
     },[history])
     const parentUrlPart = '/cabinet';
 
-    dataStore.dispatch(checkSession());
-
-
-    console.log(cabinetUserRoutes);
     function renderCabinetNestedRoutes(el,index){
       return (
         <Route key={index} path={el.route}>
