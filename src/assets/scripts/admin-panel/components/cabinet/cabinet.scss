@@ -6,9 +6,17 @@
     .content {
         width: calc(100% - var(--cabinet-menu-width) - 30px);
         margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}
+.content {
+    .white-bg-element {
+        @include size(6);
+        @include shift(0);
     }
 }
-
 .menu {
     background: var(--color-violet);
     max-width: var(--cabinet-menu-width);

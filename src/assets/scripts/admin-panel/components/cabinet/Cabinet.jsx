@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import store from '../../stores/userDataStore/index.jsx';
 import { useSelector } from 'react-redux';
@@ -8,25 +8,45 @@ import {
   Route,
   Redirect,
   Link,
-  useHistory
+  useHistory,
+  useLocation
 } from "react-router-dom";
 
+
+
+import routes from '../../routes/routes.jsx';
+import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
 import CreateConsultQuestion from '../create-consult-question/CreateConsultQuestion.jsx';
 import QuestionsHistory from '../questions-history/QuestionsHistory.jsx';
 import OnlineConsultationRequest from '../online-consultation-request/OnlineConsultationRequest.jsx';
-import {logout, logoutAsync} from '../../stores/userDataStore/actions.jsx';
+import {logout, logoutAsync, checkSession} from '../../stores/userDataStore/actions.jsx';
 
 export default function Cabinet(props){
     const isLogined = useSelector(state=>state.isLogined);
     const userName = useSelector(state=>state.loginStatusReducer.name) || '';
     // const test = true;
     const history = useHistory();
-    const [activeGlobalLink, setGlobalLink] = useState('');
-    const [activeLink, setActiveLink] = useState('');
+    const location = useLocation();
+    console.log(location);
+    const [activeLink, setActiveLink] = useState(useLocation().pathname);
+    // setActiveLink(location.pathname);
+    useEffect(() => {
+      return history.listen((location) => { 
+         console.log(`You changed the page to: ${location.pathname}`);
+         setActiveLink(location.pathname);
+      }) 
+   },[history]) 
+
+
+
+
+
+
     const parentUrlPart = '/cabinet';
-    // if (!test) history.push('/');
+
+    dataStore.dispatch(checkSession());
 
     function renderCabinetNestedRoutes(el,index){
       return (
@@ -36,10 +56,10 @@ export default function Cabinet(props){
       )
     }
     function renderCabinetLinks(el,index){
-      const isActive = (activeLink === el[0]) ? 'active' : '';
+      const isActive = (activeLink === el[1]) ? 'active' : '';
       return (
         <li className={isActive} key={index}>
-          <Link onClick={()=>setActiveLink(el[0])}  className={isActive + ' menu__link'} to={el[1]}>
+          <Link onClick={()=>setActiveLink(el[1])}  className={isActive + ' menu__link'} to={el[1]}>
             {el[0]}
           </Link>
           <CabinetMessageBell count={index}/>

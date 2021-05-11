@@ -190,6 +190,9 @@ textarea,
   .button-std~.button-std {
     margin-left: 20px;
   }
+  &.with-padding {
+    padding: 30px;
+  }
 }
 
 .breadcrumbs {
@@ -342,7 +345,8 @@ textarea,
 }
 
 .input-group {
-  &.unfilled input {
+  &.unfilled input,
+  &.unfilled textarea {
     border-color: red;
   }
 }

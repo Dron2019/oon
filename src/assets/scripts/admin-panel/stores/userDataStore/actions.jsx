@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useHistory } from "react-router-dom";
 
-import {LOGIN_URL, LOGOUT_URL} from '../urls.jsx';
+import {LOGIN_URL, LOGOUT_URL, CHECK_SESSION_URL} from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
 import {PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN} from '../dispatchActions.jsx';
 
@@ -118,7 +118,7 @@ export function loginAsync(values) {
       if (response.data.error === 0) {
         dataStore.dispatch(loginFail(response.data.mess));
         setTimeout(() => {
-          dataStore.dispatch(login({name: values.login}));
+          dataStore.dispatch(login({name: response.data.userID, id:  response.data.userID}));
           dataStore.dispatch(clearError());
         }, 2000);
       }
@@ -141,10 +141,26 @@ export function getLoginStatusOfUser() {
   return {
     isLogined: loginFromStorage === 'true' ? true : false,
     name: localStorage.getItem('user-login'),
+    id: localStorage.getItem('id')
   }
 };
 
 export function setLoginStatusOfUser(status, name) {
   localStorage.setItem('login-status', status);
   localStorage.setItem('user-login', name);
+  localStorage.setItem('id', name);
+}
+
+
+export function checkSession(){
+  console.log(dataStore.getState().loginStatusReducer.id);
+  const sendData = new FormData();
+  sendData.append('ajax_data', 1);
+  sendData.append('id',dataStore.getState().loginStatusReducer.id);
+  return dispatch =>{
+    axios.post(CHECK_SESSION_URL, sendData)
+      .then(el=>{
+        console.log(el);
+      })
+  }
 }

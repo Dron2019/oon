@@ -12,7 +12,7 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
   switch (action.type) {
     case 'LOGIN':
       setLoginStatusOfUser(true, action.additionalValue.name);
-      return Object.assign({ ...state }, { isLogined: true, name:action.additionalValue.name });
+      return Object.assign({ ...state }, { isLogined: true, name:action.additionalValue.name, id: action.additionalValue.id}, );
 
     case 'LOGIN_FAIL':
       return Object.assign(state, {error:action.error});

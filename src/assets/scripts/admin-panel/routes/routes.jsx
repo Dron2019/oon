@@ -27,14 +27,18 @@ const routes = [
 ];
 const cabinetRoutes = [
     { name: 'createQuestion', path:'/cabinet/createQuestion', title:'Вхід',},
-    { name: 'questionHistory', path:'/cabinet/questionHistory', title:'Вхід',},
+    { name: 'questionsHistory', path:'/cabinet/questionsHistory', title:'Вхід',},
     { name: 'onlineConsultRequest', path:'/cabinet/consult-request', title:'Вхід',},
     { name: 'appliedConsultRequest', path:'/cabinet', title:'Вхід',},
     { name: 'jobSearchConsult', path:'/cabinet', title:'Вхід',},
 ]
 const routesMap = {};
 const routesMapSidebar = [];
-
+cabinetRoutes.forEach((route) => {
+    if(route.hasOwnProperty('name')){
+       routesMap[route.name] = route.path;
+         }
+     });
 routes.forEach((route) => {
    if(route.hasOwnProperty('name')){
       routesMap[route.name] = route.path;

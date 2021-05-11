@@ -4,3 +4,4 @@ export const REGISTER_USER = '/user/users/register/';
 export const REGISTER_CONSULT = '/consult/users/register/';
 
 export const RECOVERY_PASSWORD = '/user/users/recovery/';
+export const CHECK_SESSION_URL = '/user/users/check/';
