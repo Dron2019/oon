@@ -45,7 +45,7 @@ export default function(){
 
 
         const userData = {}
-        const sendData = formDataConstruction(values);
+        const sendData = new FormData();
         sendData.append('ajax_data',1);
         Object.entries(values).forEach(value=>{
             userData[value[0]] = value[1];

@@ -159,8 +159,28 @@ export function checkSession(){
   sendData.append('id',dataStore.getState().loginStatusReducer.id);
   return dispatch =>{
     axios.post(CHECK_SESSION_URL, sendData)
-      .then(el=>{
-        console.log(el);
+      .then(response=>{
+        switch (response.data.error) {
+          case 0:
+            
+            break;
+          case 1:
+            dataStore.dispatch(logout());
+            dataStore.dispatch(loginFail('Ваша сессия истекла, зайдите снова'));
+            setTimeout(() => {
+              dataStore.dispatch(clearError());
+            }, 2000);
+            break;
+        
+          default:
+            break;
+        }
+      })
+      .catch(error=>{
+        dataStore.dispatch(loginFail('Сталася помилка, повторіть будь-ласка пізніше'));
+          setTimeout(() => {
+            dataStore.dispatch(clearError());
+          }, 2000);
       })
   }
 }

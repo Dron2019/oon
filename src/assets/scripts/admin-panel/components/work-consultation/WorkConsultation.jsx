@@ -11,14 +11,14 @@ export default function(props) {
         }},
     ]
     return (
-        <>
+        <div className="cabinet-inner-double-part-wrapper">
             <div className="title text-violet uppercased">Послуги консультанта з пошуку роботи </div>
-            <div className="white-bg-element with-padding">
+            <div className="white-bg-element with-padding cabinet-inner-double-part-wrapper__left">
                 Кар’єрний хаб пропонує жінкам, постраждалим від домашнього / гендерно зумовленого насильства, 
                 послуги для покращення професійних навичок та успішного працевлаштування. Фахівці і фахівчині дотримуються індивідуального підходу до оцінки потреб і можливостей кожної жінки та допомагають 
                 побудувати персональну стратегію для досягнення вашої мети.
             </div>
-            <div className="white-bg-element">
+            <div className="cabinet-inner-double-part-wrapper__right white-bg-element">
             <Formik 
                 initialValues={(()=>{
                     const myObject = {};
@@ -55,11 +55,13 @@ export default function(props) {
                             )}
                         </Field>
                     })}
-                    <div onClick={()=>history.push(routes.questionsHistory)}>Історія запитань</div>
-                    <button type='submit' className="button-std button-std--violet small">Надіслати запитання психологу</button>
+                    <div className="df aic wrap">
+                        <a  className="text-violet underlined " onClick={()=>history.push(routes.questionsHistory)}>Історія запитань</a>
+                        <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
+                    </div>
                 </Form>
             </Formik>
             </div>
-        </>
+        </div>
     )
 }

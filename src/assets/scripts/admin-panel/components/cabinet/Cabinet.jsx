@@ -14,7 +14,7 @@ import {
 
 
 
-import routes from '../../routes/routes.jsx';
+import cabinetUserRoutes from '../../routes/cabinetUserRoutes.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
@@ -29,28 +29,24 @@ export default function Cabinet(props){
     // const test = true;
     const history = useHistory();
     const location = useLocation();
-    console.log(location);
     const [activeLink, setActiveLink] = useState(useLocation().pathname);
+    const [wasCheckedSession, setSessionCheckStatus] = useState(0); 
     // setActiveLink(location.pathname);
     useEffect(() => {
       return history.listen((location) => { 
-         console.log(`You changed the page to: ${location.pathname}`);
-         setActiveLink(location.pathname);
+        console.log(`You changed the page to: ${location.pathname}`);
+        setActiveLink(location.pathname);
       }) 
-   },[history]) 
-
-
-
-
-
-
+    },[history])
     const parentUrlPart = '/cabinet';
 
     dataStore.dispatch(checkSession());
 
+
+    console.log(cabinetUserRoutes);
     function renderCabinetNestedRoutes(el,index){
       return (
-        <Route key={index} path={parentUrlPart+el.route}>
+        <Route key={index} path={el.route}>
           {el.component}
         </Route>
       )
@@ -65,7 +61,8 @@ export default function Cabinet(props){
           <CabinetMessageBell count={index}/>
         </li>
       )
-    }
+    };
+
     const nestedElements = [
       {route:'/work-consultation',component: WorkConsultation()},
       {route:'/createConsultQuestion',component: CreateConsultQuestion()},
@@ -90,9 +87,9 @@ export default function Cabinet(props){
           </div>
           <div className="menu__dark-block">
             <Link  
-              onClick={()=>setActiveLink('/work-consultation')} 
+              onClick={()=>setActiveLink('/cabinet/work-consultation')} 
               to={parentUrlPart+'/work-consultation'} 
-              className={'bold-link text text-white fw-800  ' + ((activeLink === ('/work-consultation')) ? 'active' : '')}>
+              className={'bold-link text text-white fw-800  ' + ((activeLink === ('/cabinet/work-consultation')) ? 'active' : '')}>
               <span>
               Послуги консультанта  з пошуку роботи
               </span> 
@@ -127,7 +124,7 @@ export default function Cabinet(props){
         </div>
         <div className="content">
           <Switch>
-            {nestedElements.map(renderCabinetNestedRoutes)}
+            {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
           </Switch>
         </div>
       </div>

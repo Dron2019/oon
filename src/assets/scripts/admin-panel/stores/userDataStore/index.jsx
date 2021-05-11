@@ -1,4 +1,5 @@
 import { createStore, combineReducers, compose,applyMiddleware  } from 'redux';
+import {PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN, LOGOUT} from '../dispatchActions.jsx';
 import thunk from 'redux-thunk';
 
 
@@ -10,17 +11,17 @@ import {getLoginStatusOfUser, setLoginStatusOfUser} from './actions.jsx';
 
 function loginStatusReducer(state = getLoginStatusOfUser(), action) {
   switch (action.type) {
-    case 'LOGIN':
+    case LOGIN:
       setLoginStatusOfUser(true, action.additionalValue.name);
       return Object.assign({ ...state }, { isLogined: true, name:action.additionalValue.name, id: action.additionalValue.id}, );
 
-    case 'LOGIN_FAIL':
+    case LOGIN_FAIL:
       return Object.assign(state, {error:action.error});
 
-    case 'CLEAR_ERROR':
+    case  CLEAR_ERROR:
       return Object.assign(state, {error:''});
 
-    case 'LOGOUT':
+    case  LOGOUT:
       return Object.assign(
         { ...state }, 
         { isLogined: false }, 

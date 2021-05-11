@@ -28,7 +28,10 @@
   border: 1px solid red;
 }
 
-
+/*~  align-items center~*/
+.aic {
+	align-items: center;
+}
 .text-violet {
   color: var(--color-violet);
 }
@@ -47,4 +50,14 @@
 }
 .title--black{
   color: white
+}
+
+/*~  force nulling top margin of element~*/
+.mt-0 {
+	margin-top: 0 !important;
+}
+
+
+.wrap {
+	flex-wrap: wrap;
 }

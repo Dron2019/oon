@@ -11,12 +11,7 @@
     }
 
 }
-.content {
-    .white-bg-element {
-        @include size(6);
-        @include shift(0);
-    }
-}
+
 .menu {
     background: var(--color-violet);
     max-width: var(--cabinet-menu-width);
@@ -147,4 +142,33 @@
     bottom: 30px;
     z-index: 10;
     height: 55px;
+}
+
+
+.cabinet-inner-double-part-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    @include row-flex();
+    .title {
+        @include size(12);
+        @include shift(0);
+    }
+    &__left {
+        @include size(5);
+        @include shift(0);
+    }
+    &__right {
+        @include size(7);
+        @include shift(0);
+    }
+    @include to( 1240px){
+        &__left {
+            @include size(12);
+            @include shift(0);
+        }
+        &__right {
+            @include size(12);
+            @include shift(0);
+        }
+    }
 }

@@ -1,12 +1,14 @@
 # oon
 <!-- styles -->
+-   align-items center.aic  
 -   Основной заголовок .title  
 -   Основной заголовок в начале страницы .page-title  
 -   (основной подзаголовок) .subtitle  
 -   (основной малый подзаголовок) .subtitle-small  
 -   (большие символы) .uppercased  
--   (  standart button, add class small to decrease size) .button-std  
+-   (  standart button, add class small to decrease size, add class transparent) .button-std  
 -   (Белая закругленная подложка) .white-bg-element  
+-  font-weight 500.fw-500  
 -  font-weight 600.fw-600  
 -  font-weight 800.fw-800  
 -  background common styling gray.bg-gray  
