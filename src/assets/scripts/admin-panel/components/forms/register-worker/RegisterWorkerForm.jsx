@@ -9,6 +9,7 @@ import dataStore from '../../../stores/userDataStore/index.jsx';
 import Loader from '../../loader/loader.jsx';
 import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
 import {REGISTER_USER} from '../../../stores/urls.jsx';
+import {formDataConstruction} from '../../../stores/helpFunctions.jsx';
 import routes from '../../../routes/routes.jsx';
 export default function(){
     const [errorMessageAfterRequest, setError] = useState('');
@@ -41,8 +42,10 @@ export default function(){
             })
     });
     function handleSubmit(values, actions){
+
+
         const userData = {}
-        const sendData = new FormData();
+        const sendData = formDataConstruction(values);
         sendData.append('ajax_data',1);
         Object.entries(values).forEach(value=>{
             userData[value[0]] = value[1];

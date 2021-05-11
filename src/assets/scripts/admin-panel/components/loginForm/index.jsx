@@ -17,8 +17,8 @@ export default function(props){
     const [responseFromLogin, setResponse] = useState('');
     const history = useHistory();
     const isPending = useSelector(state=>state.pendingStatusStore);
-    const userDataStore = useSelector(state=>state);
     const errorMessage = useSelector(state=>state.loginStatusReducer.error);
+    
     function loginSubmit(values, actions) {
         dataStore.dispatch(setPending());
         dataStore.dispatch(loginAsync(values))

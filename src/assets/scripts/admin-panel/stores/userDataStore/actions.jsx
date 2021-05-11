@@ -115,7 +115,13 @@ export function loginAsync(values) {
     axios.post(LOGIN_URL, formDate)
     .then(function (response) {
       dataStore.dispatch(resetPending());
-      if (response.data.error === 0) dataStore.dispatch(login({name: values.login}));
+      if (response.data.error === 0) {
+        dataStore.dispatch(loginFail(response.data.mess));
+        setTimeout(() => {
+          dataStore.dispatch(login({name: values.login}));
+          dataStore.dispatch(clearError());
+        }, 2000);
+      }
       if (response.data.error === 1) {
         dataStore.dispatch(loginFail(response.data.mess));
         setTimeout(() => dataStore.dispatch(clearError()), 2500);

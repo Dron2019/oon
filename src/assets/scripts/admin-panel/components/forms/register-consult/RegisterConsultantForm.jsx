@@ -4,8 +4,9 @@ import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
+import dataStore from '../../../stores/userDataStore/index.jsx';
 import {REGISTER_CONSULT} from '../../../stores/urls.jsx';
-
+import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
 export default function(){
     const [errorMessageAfterRequest, setError] = useState('');
     const regInputs = useSelector(state=>state.registerConsultFormReducer);
@@ -20,14 +21,28 @@ export default function(){
         Object.entries(values).forEach(value=>{
             userData[value[0]] = value[1];
         });
-        
+        dataStore.dispatch(setPending());
         sendData.append('consultData', JSON.stringify(userData));
         axios.post(REGISTER_CONSULT, sendData)
-            .then(el=>{
-                setError('error');
-                setTimeout(() =>  setError(''), 2000);
+        .then(response=>{
+            switch (response.data.error) {
+                    case 0:
+                        setError(decodeURIComponent(response.data.mess));
+                        setTimeout(() =>  setError(''), 2000);
+                        dataStore.dispatch(resetPending());
+                        actions.resetForm();
+                        break;
+                    case 1:
+                        setError(decodeURIComponent(response.data.mess));
+                        setTimeout(() =>  setError(''), 2000);
+                        dataStore.dispatch(resetPending());
+                }
             })
-            .catch(el=>console.log(el))
+            .catch(el=>{
+                setError(decodeURIComponent('Помилка відправки'));
+                setTimeout(() =>  setError(''), 2000);
+                dataStore.dispatch(resetPending());
+            })
         actions.setSubmitting(false);
     }
     //Сбор схемы валидации по всем инпутам
