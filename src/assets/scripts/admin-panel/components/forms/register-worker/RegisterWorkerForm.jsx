@@ -9,8 +9,7 @@ import dataStore from '../../../stores/userDataStore/index.jsx';
 import Loader from '../../loader/loader.jsx';
 import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
 import {REGISTER_USER} from '../../../stores/urls.jsx';
-import {formDataConstruction} from '../../../stores/helpFunctions.jsx';
-import routes from '../../../routes/routes.jsx';
+
 export default function(){
     const [errorMessageAfterRequest, setError] = useState('');
     const formFields = useSelector(state=>state.registerWorkerFormReducer);

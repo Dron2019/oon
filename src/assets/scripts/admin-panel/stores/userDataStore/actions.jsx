@@ -153,9 +153,12 @@ export function setLoginStatusOfUser(status, name) {
 
 
 export function checkSession(){
+  const isLogined = dataStore.getState().loginStatusReducer.isLogined;
+
   const sendData = new FormData();
   sendData.append('ajax_data', 1);
   sendData.append('id',dataStore.getState().loginStatusReducer.id);
+  console.log();
   return dispatch =>{
     axios.post(CHECK_SESSION_URL, sendData)
       .then(response=>{

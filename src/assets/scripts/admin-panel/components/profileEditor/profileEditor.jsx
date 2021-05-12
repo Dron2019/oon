@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
@@ -10,6 +10,10 @@ import {ajax_getProfileData, getProfileData,  ajax_setProfileData} from '../../s
 
 export default function(props){
     dataStore.dispatch(getProfileData());
+    const firstRender = useMemo(
+        () => dataStore.dispatch(ajax_getProfileData()),
+        []
+    );
     const profileEditorFields = useSelector(state=>state.profileInfoReducers);
     const errorMessage = useSelector(state=>state.loginStatusReducer.error);
     // const errorMessage = 'Ваша сессия истекла, зайдите заново';
@@ -20,7 +24,17 @@ export default function(props){
     });
 
     const SignupSchema = Yup.object().shape(
-        
+        {
+        surname_r: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        name_r: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        email_r: Yup.string().email('Invalid email').required('Required'),
+        }
     );
     function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
         if (path.done) return;
@@ -54,12 +68,12 @@ export default function(props){
                 <div className="text ">Ви отримати доступ до повного функціоналу особистого кабінету</div>
             </div>
             <div className="white-bg-element">
-            <div 
+            {/* <div 
                 className="button-std button-std--violet"
                 onClick={()=>{dataStore.dispatch(ajax_getProfileData())}}
                 >
                     testAjax
-            </div>
+            </div> */}
             <Formik 
                 enableReinitialize
                 validationSchema={SignupSchema}
