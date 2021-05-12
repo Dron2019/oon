@@ -59,12 +59,6 @@ export default function Cabinet(props){
       )
     };
 
-    const nestedElements = [
-      {route:'/work-consultation',component: WorkConsultation()},
-      {route:'/createConsultQuestion',component: CreateConsultQuestion()},
-      {route:'/questionsHistory',component: QuestionsHistory()},
-      {route:'/onlineConsultationRequest',component: OnlineConsultationRequest()},
-    ];
     const menus = [
       ['Створити запитання','/cabinet/createConsultQuestion'],
       ['Історія запитань','/cabinet/questionsHistory'],
@@ -83,7 +77,7 @@ export default function Cabinet(props){
           </div>
           <div className="menu__dark-block">
             <Link  
-              onClick={()=>setActiveLink('/cabinet/work-consultation')} 
+              onClick={()=>setActiveLink(parentUrlPart+'/work-consultation')} 
               to={parentUrlPart+'/work-consultation'} 
               className={'bold-link text text-white fw-800  ' + ((activeLink === ('/cabinet/work-consultation')) ? 'active' : '')}>
               <span>
@@ -100,6 +94,14 @@ export default function Cabinet(props){
           <ul>
               {psychoMenus.map(renderCabinetLinks)}
           </ul>
+          <Link  
+            onClick={()=>setActiveLink(parentUrlPart+'/profileEditor')} 
+            to={parentUrlPart+'/profileEditor'} 
+            className={'bold-link text text-white fw-800  mt-10 ' + ((activeLink === ('/cabinet/profileEditor')) ? 'active' : '')}>
+            <span>
+            Редагувати профіль
+            </span> 
+          </Link>
           <div className="text text-white fw-800 menu-bold-text with-vert-line mt-10">
             Редагувати профіль
           </div>

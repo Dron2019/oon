@@ -3,6 +3,7 @@ import {GET_PROFILE_DATA_URL} from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
 import {setPending, resetPending} from '../userDataStore/actions.jsx';
 
+
 function ajax_getProfileData() {
     const userId = dataStore.getState().loginStatusReducer.id;
     const sendData = new FormData();
