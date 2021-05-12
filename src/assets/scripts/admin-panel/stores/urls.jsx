@@ -5,3 +5,5 @@ export const REGISTER_CONSULT = '/consult/users/register/';
 
 export const RECOVERY_PASSWORD = '/user/users/recovery/';
 export const CHECK_SESSION_URL = '/user/users/check/';
+
+export const GET_PROFILE_DATA_URL = '/user/users/edit/';
