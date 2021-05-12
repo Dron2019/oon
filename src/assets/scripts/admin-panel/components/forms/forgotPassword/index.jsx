@@ -9,7 +9,7 @@ import {useHistory } from "react-router-dom";
 
 
 import dataStore from '../../../stores/userDataStore/index.jsx';
-
+import ErrorView from '../../error-message/ErrorMessage.jsx';
 import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
 import Loader from '../../loader/loader.jsx';
 import { RECOVERY_PASSWORD} from '../../../stores/urls.jsx';
@@ -76,7 +76,8 @@ export default function(props) {
                             type="email"
                         />
                     </div>
-                    {message.length === 0 ? null : <div className="input-group"><div className="text-violet subtitle">{message}</div> </div>}
+                    {message ? <ErrorView errorMessage={message}/> : null }
+                    {/* {message.length === 0 ? null : <div className="input-group"><div className="text-violet subtitle">{message}</div> </div>} */}
                     {pending ? <Loader/> : null}
                     <button 
                         className="button-std button-std--violet small " 

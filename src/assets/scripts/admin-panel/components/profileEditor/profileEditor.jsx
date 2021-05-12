@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
-import {ajax_getProfileData, getProfileData} from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+import {ajax_getProfileData, getProfileData,  ajax_setProfileData} from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 
 export default function(props){
     dataStore.dispatch(getProfileData());
@@ -16,17 +16,11 @@ export default function(props){
     const isPending = useSelector(state=>state.pendingStatusStore);
     const initialValues = {};
     profileEditorFields.forEach(field => {
-        initialValues[field.name] =  field.initialValue;
+        initialValues[field.name] =  field.initialValue || field.value;
     });
 
     const SignupSchema = Yup.object().shape(
-        (()=>{
-            const object = {};
-            profileEditorFields.forEach(el=>{
-                object[el.name] = el.validationSchema || function(){};
-            });
-            return object;
-        })()
+        
     );
     function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
         if (path.done) return;
@@ -67,13 +61,12 @@ export default function(props){
                     testAjax
             </div>
             <Formik 
+                enableReinitialize
                 validationSchema={SignupSchema}
                 initialValues={initialValues}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    console.log(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 400);
+                    console.log(values);
+                    dataStore.dispatch(ajax_setProfileData(values));
                 }}>
             <Form className="form-std">
                 <div className="form-std__subtitle text-violet">Ваші особисті дані</div>

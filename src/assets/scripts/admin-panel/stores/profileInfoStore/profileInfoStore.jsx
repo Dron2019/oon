@@ -64,7 +64,7 @@ export default function profileInfoReducers(state = initState, action) {
             return state;
             break;
         case SET_PROFILE_DATA:
-            return state;
+            return action.payload;
             break;
     
         default:

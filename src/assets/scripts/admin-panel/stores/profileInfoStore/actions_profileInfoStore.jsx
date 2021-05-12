@@ -18,7 +18,8 @@ export function ajax_getProfileData() {
                 dataStore.dispatch(resetPending());
             })
             .then(response=>{
-                console.log(response);
+                const userData = response.data.user_data;
+                dataStore.dispatch(setProfileData(userData));
                 dataStore.dispatch(resetPending());
             })
         
@@ -33,6 +34,28 @@ export function getProfileData(data) {
 }
 
 export function ajax_setProfileData(data) {
+    const userId = dataStore.getState().loginStatusReducer.id;
+    const userData = {}
+    const sendData = new FormData();
+    sendData.append('ajax_data',1);
+    Object.entries(data).forEach(value=>{
+        userData[value[0]] = value[1];
+    });
+    dataStore.dispatch(setPending());
+    sendData.append('user_data', JSON.stringify(userData));
+    sendData.append('id', userId);
+    dataStore.dispatch(setPending());
+    return dispatch=>{
+        axios.post(GET_PROFILE_DATA_URL, sendData)
+            .then(el=>{
+                console.log(el);
+                dataStore.dispatch(resetPending());
+            })
+            .catch(el=>{
+                console.log(el);
+                dataStore.dispatch(resetPending());
+            })
+    }
     // return {
     //     type: SEND_PROFILE_DATA,
     //     payload: data,

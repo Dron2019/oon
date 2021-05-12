@@ -4,6 +4,8 @@ import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
+
+import ErrorView from '../../error-message/ErrorMessage.jsx';
 import dataStore from '../../../stores/userDataStore/index.jsx';
 import {REGISTER_CONSULT} from '../../../stores/urls.jsx';
 import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
@@ -77,9 +79,8 @@ export default function(){
                 </Field>
                 )
             })}
-            <div className="input-group">
-                <div className="subtitle text-violet">{errorMessageAfterRequest}</div>
-            </div>
+
+            {errorMessageAfterRequest ? <ErrorView errorMessage={errorMessageAfterRequest}/> : null}
             <div className="text-violet fw-500 required-legend-title">* обов’язкові поля для заповнення</div>
             <button type="submit" className="button-std button-std--violet small" >
                 Зареєструватися як соціальний працівник

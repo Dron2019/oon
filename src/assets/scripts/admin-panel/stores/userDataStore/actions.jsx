@@ -153,7 +153,6 @@ export function setLoginStatusOfUser(status, name) {
 
 
 export function checkSession(){
-  console.log(dataStore.getState().loginStatusReducer.id);
   const sendData = new FormData();
   sendData.append('ajax_data', 1);
   sendData.append('id',dataStore.getState().loginStatusReducer.id);

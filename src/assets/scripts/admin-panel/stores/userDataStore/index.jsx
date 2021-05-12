@@ -26,7 +26,7 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
     case  LOGOUT:
       return Object.assign(
         { ...state }, 
-        { isLogined: false }, 
+        { isLogined: false, id:'' }, 
         setLoginStatusOfUser(false, ''),
         {name:'',});
 

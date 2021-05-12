@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
-
+import ErrorView from '../../error-message/ErrorMessage.jsx';
 import dataStore from '../../../stores/userDataStore/index.jsx';
 import Loader from '../../loader/loader.jsx';
 import {setPending, resetPending} from '../../../stores/userDataStore/actions.jsx';
@@ -86,7 +86,14 @@ export default function(){
     const setRequiredClass = (data) => data!==undefined && data.length>0 ? 'required' : '';
     return (
         <Formik 
-            initialValues={initialValues} 
+        enableReinitialize={true} 
+            initialValues={(function(){
+                const finalObject = {};
+                formFields.forEach(el=>{
+                    finalObject[el.name] = el.initialValue;
+                });
+                return finalObject;
+            })()} 
             onSubmit={handleSubmit} 
             validationSchema={SignupSchema}>
             <Form  className="form-std" >
@@ -126,9 +133,7 @@ export default function(){
                     )
                 }
             })}
-            <div className="input-group">
-                <div className="subtitle text-violet">{errorMessageAfterRequest}</div>
-            </div>
+            {errorMessageAfterRequest ? <ErrorView errorMessage={errorMessageAfterRequest}/> : null}
             <div className="text-violet fw-500 required-legend-title">* обов’язкові поля для заповнення</div>
             <button type="submit" className="button-std button-std--violet small" >
                 Зареєструватися як користувач
