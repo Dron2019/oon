@@ -1,9 +1,8 @@
 
 import * as Yup from 'yup';
-
-const GET_PROFILE_DATA = 'GET_PROFILE_DATA';
-const SEND_PROFILE_DATA = 'SEND_PROFILE_DATA';
-const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
+import {GET_PROFILE_DATA,
+    SEND_PROFILE_DATA,
+    SET_PROFILE_DATA } from '../dispatchActions.jsx';
 
 
 const initState = [
@@ -12,6 +11,7 @@ const initState = [
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
+    
     
     },
     {title:'По батькові:',name:'fatherName',initialValue: '', requiredClass: 'required',
@@ -41,6 +41,7 @@ const initState = [
         validationSchema: Yup
             .string()
             .required("Enter password"),
+            type:'password'
     },
     {type: 'password',title:'Підтвердження паролю',name:'confirmPassword', initialValue: '', requiredClass: 'required',
         validationSchema:  Yup
@@ -49,7 +50,8 @@ const initState = [
             .when("password", {
                 is: password => (password && password.length > 0 ? true : false),
                 then: Yup.string().oneOf([Yup.ref("password")], "Password doesn't match")
-                })
+                }),
+            type:'password'
     },
 ]
 

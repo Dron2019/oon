@@ -102,9 +102,6 @@ export default function Cabinet(props){
             Редагувати профіль
             </span> 
           </Link>
-          <div className="text text-white fw-800 menu-bold-text with-vert-line mt-10">
-            Редагувати профіль
-          </div>
           <div className="text text-white fw-800 menu-bold-text with-vert-line">
             Створити резюме
           </div>

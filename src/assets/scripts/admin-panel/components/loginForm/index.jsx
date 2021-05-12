@@ -7,7 +7,7 @@ import {setPending} from '../../stores/userDataStore/actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx'
 import Loader from "../loader/loader.jsx";
 import {login,loginAsync, restoreByToken} from '../../stores/userDataStore/actions.jsx';
-
+import ErrorView from '../error-message/ErrorMessage.jsx';
 
 import {
     Link
@@ -74,15 +74,14 @@ export default function(props){
                         </div>
                     )}
                     </Field>
-                    <div className="input-group">
-                        <div className="subtitle text-violet">{errorMessage}</div>
-                    </div>
+                    
                     <button 
                         className="button-std button-std--violet small" 
                         type="submit">
                             Увійти до кабінету
                     </button>
                     {isPending ? <Loader/> : null}
+                    {errorMessage ? <ErrorView errorMessage={errorMessage}/> : null }
                 </Form>
             </Formik>
             <div className="white-bg-element">

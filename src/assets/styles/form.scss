@@ -60,6 +60,22 @@
     padding-top: 16px;
     // margin-bottom: 20px;
   }
+  &__error-mes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    margin: 0 -30px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 120%;
+    padding: 12px 30px;
+    margin-top: 10px;
+  }
+  &__error-mes svg {
+    margin-right: 10px;
+  }
   @include from(1680px){
     &__subtitle {
       font-size: 24px;

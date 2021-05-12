@@ -3,9 +3,31 @@ import {useSelector} from 'react-redux';
 import { Formik, Field,Form,FormikProps  } from 'formik';
 import * as Yup from 'yup';
 
+import Loader from '../loader/loader.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import dataStore from '../../stores/userDataStore/index.jsx';
+import {ajax_getProfileData, getProfileData} from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+
 export default function(props){
+    dataStore.dispatch(getProfileData());
     const profileEditorFields = useSelector(state=>state.profileInfoReducers);
-    console.log(profileEditorFields);
+    const errorMessage = useSelector(state=>state.loginStatusReducer.error);
+    // const errorMessage = 'Ваша сессия истекла, зайдите заново';
+    const isPending = useSelector(state=>state.pendingStatusStore);
+    const initialValues = {};
+    profileEditorFields.forEach(field => {
+        initialValues[field.name] =  field.initialValue;
+    });
+
+    const SignupSchema = Yup.object().shape(
+        (()=>{
+            const object = {};
+            profileEditorFields.forEach(el=>{
+                object[el.name] = el.validationSchema || function(){};
+            });
+            return object;
+        })()
+    );
     function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
         if (path.done) return;
         path.style.strokeDasharray = 0;
@@ -38,7 +60,49 @@ export default function(props){
                 <div className="text ">Ви отримати доступ до повного функціоналу особистого кабінету</div>
             </div>
             <div className="white-bg-element">
-
+            <div 
+                className="button-std button-std--violet"
+                onClick={()=>{dataStore.dispatch(ajax_getProfileData())}}
+                >
+                    testAjax
+            </div>
+            <Formik 
+                validationSchema={SignupSchema}
+                initialValues={initialValues}
+                onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                    console.log(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                    }, 400);
+                }}>
+            <Form className="form-std">
+                <div className="form-std__subtitle text-violet">Ваші особисті дані</div>
+                {profileEditorFields.map((field_config, index)=>{
+                    return (
+                        <Field key={index} name={field_config.name}>
+                        {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                        }) => (
+                        <div className={meta.error!==undefined ? 'unfilled input-group' : 'input-group'}>
+                            <input 
+                                className='input-std'
+                                type={field_config.type ? field_config.type : 'text'} 
+                                placeholder={field_config.title} {...field} />
+                            {meta.touched && meta.error && (
+                            <div className="error">{meta.error}</div>
+                            )}
+                        </div>
+                        )}
+                    </Field>
+                    )
+                })}
+                {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
+                {isPending ? <Loader/> : null}
+                <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
+            </Form>
+            </Formik>
             </div>
         </div>
 
