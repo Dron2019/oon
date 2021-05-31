@@ -49,6 +49,9 @@
   input {
     // margin-bottom: 10px;
   }
+  input:disabled {
+    background-color: #9a7e8e62;
+  }
   button.button-std,
   .button-std {
     margin-top: 20px;
