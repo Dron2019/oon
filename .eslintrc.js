@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   extends: ['airbnb-base', 'plugin:jest/recommended'],
-  plugins: ['jest'],
+  plugins: ['jest', 'react'],
   parserOptions: {
     ecmaVersion: 11,
     sourceType: 'module',

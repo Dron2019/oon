@@ -17,6 +17,13 @@
     &.new-answer &__title {
         color: var(--color-white);
     }
+    &.new-answer.opened &__head {
+        background-color: var(--color-white);
+        box-shadow: none;
+    }
+    &.new-answer.opened &__title {
+        color: var(--color-black);
+    }
     &__head {
         display: flex;
         flex-wrap: wrap;
@@ -26,6 +33,7 @@
         padding-left: var(--side-padding);
         padding-right: var(--side-padding);
         border-radius: 10px;
+        cursor: pointer;
     }
     &__body {
         padding-left: var(--side-padding);
@@ -55,6 +63,7 @@
         line-height: 100%;
         border-radius: 5px; 
         margin-left: auto;
+        transition: .3s ease-in-out;
     }
     &__status.await {
         background: #F35D52;
@@ -63,6 +72,10 @@
     &__status.answered {
         background: var(--color-white);
         color: var(--color-violet);
+    }
+    &.opened &__status.answered {
+        background-color: #26BE19;
+        color: var(--color-white);
     }
     &__birdy {
         clip-path: polygon(50% 100%, 0 0, 100% 0);
@@ -119,5 +132,57 @@
     &__single-mess-text{
         color: #707070;
         margin-top: 15px;
+    }
+
+    &__single-mess-head {
+        display: flex;
+        align-items: center;
+    }
+    &__date-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        font-size: 12px;
+        line-height: 100%;
+        /* identical to box height, or 12px */
+        color: #9A7E8E;
+
+        svg {
+            margin-right: 10px;
+        }
+    }
+    &__single-mess-title {
+        margin-right: auto;
+    }
+    .gray-bg-element {
+        margin-top: 35px;
+    }
+    @include to(950px){
+        &__single-mess {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.gray-bg-element {
+    background-color: var(--color-gray);
+    border-radius: 10px;
+
+    --self-padding :30px;
+    padding: var(--self-padding);
+}
+
+.history-message-form {
+    --padding:0px;
+    --outline-padding: 0px;
+    
+    background-color: transparent;
+    &:before {
+        display: none;
+    }
+    textarea {
+        padding-top: 16px;
+        height: 100px;
     }
 }
