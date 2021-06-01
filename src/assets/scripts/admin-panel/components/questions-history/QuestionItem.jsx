@@ -3,16 +3,16 @@ import React, {useState} from 'react';
 import {CalendarIcon, ClockIcon} from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 export default function(props) {
-    let [status, setStatus] = useState('answered');
-    let [dropdowned, setDropdown] = useState(true);
-
-    let [messaging, setMessaging] = useState([
+    let [status, setStatus] = useState('closed');
+    let [dropdowned, setDropdown] = useState(false);
+    let initMessages = props.history || [
         {time:'14:20', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'Hello' },
         {time:'15:55', date: '03.18.2021', name:'Сергій', side:'client', mess: 'Hello you too' },
         {time:'16:05', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'How are you?' },
         {time:'17:29', date: '03.18.2021', name:'Сергій', side:'client', mess: 'I`m fine, thank you. Have a nice day' },
         {time:'18:03', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'Thank you, you too' },
-    ]);
+    ];
+    let [messaging, setMessaging] = useState(initMessages);
     let statuses = {
         answered: <div className="question-item__status answered">
                     Отримано відповідь
@@ -20,20 +20,17 @@ export default function(props) {
         await: <div className="question-item__status await">
                     Немає відповіді
                 </div>,
+        closed: <div className="question-item__status closed">
+                    Завершено
+                </div>,
     }
-    // let messaging = [
-    //     {time:'14:20', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'Hello' },
-    //     {time:'15:55', date: '03.18.2021', name:'Сергій', side:'client', mess: 'Hello you too' },
-    //     {time:'16:05', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'How are you?' },
-    //     {time:'17:29', date: '03.18.2021', name:'Сергій', side:'client', mess: 'I`m fine, thank you. Have a nice day' },
-    //     {time:'18:03', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'Thank you, you too' },
-    // ]
-
 
     function setLayoutClassNames(){
         let output = 'question-item';
         dropdowned ? output+= ' opened' : null;
         status === 'await' ? null : output+= ' new-answer';
+        status === 'closed' ?  output+= ' closed' : null;
+
         return output; 
     }
 

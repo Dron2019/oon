@@ -21,6 +21,12 @@
         background-color: var(--color-white);
         box-shadow: none;
     }
+    &.closed &__head {
+        background-color: var(--color-white);
+    }
+    &.closed &__title {
+        color: var(--color-black);
+    }
     &.new-answer.opened &__title {
         color: var(--color-black);
     }
@@ -39,6 +45,7 @@
         padding-left: var(--side-padding);
         padding-right: var(--side-padding);    
         padding-bottom: var(--side-padding);
+        padding-top: 10px;
         display: flex;
         flex-direction: column;
         display: none;
@@ -72,6 +79,11 @@
     &__status.answered {
         background: var(--color-white);
         color: var(--color-violet);
+    }
+    &__status.closed {
+        background-color: #F8F8F8;
+        color: #707070;
+
     }
     &.opened &__status.answered {
         background-color: #26BE19;
@@ -164,7 +176,9 @@
         }
     }
 }
-
+.question-item~.question-item {
+    margin-top: 20px;
+}
 .gray-bg-element {
     background-color: var(--color-gray);
     border-radius: 10px;

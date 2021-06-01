@@ -6,31 +6,11 @@ export default function(props) {
             <div className="page-title text-violet uppercased">
                 Історія запитань
             </div>
-            <div className="question-item">
-                <div className="question-item__head">
-                    <div className="question-item__title">
-                        На мене напав мій кіт. Що мені робити?
-                    </div>
-                    <div className="question-item__status await">
-                        Немає відповіді
-                    </div>
-                    <div className="question-item__birdy"></div>
-                </div>
-                <div className="question-item__body"></div>
-            </div>
-            <div className="question-item new-answer">
-                <div className="question-item__head">
-                    <div className="question-item__title">
-                        На мене напав мій кіт. Що мені робити?
-                    </div>
-                    <div className="question-item__status answered">
-                        Отримано відповідь
-                    </div>
-                    <div className="question-item__birdy"></div>
-                </div>
-                <div className="question-item__body"></div>
-            </div>
             <QuestionItem/>
+            <QuestionItem history={[
+                {time:'14:20', date: '03.18.2021', name:'Консультант Марина', side:'admin', mess: 'Hello' },
+                {time:'15:55', date: '03.18.2021', name:'Сергій', side:'client', mess: 'Hello you too' },
+            ]}/>
         </div>
     )
 }
