@@ -1,6 +1,7 @@
 .cabinet-wrapper {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     padding-top: 30px;
     padding-bottom: 30px;
     .content {

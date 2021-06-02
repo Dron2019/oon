@@ -108,9 +108,17 @@ export default function Cabinet(props){
           <div className="text text-white fw-800 menu-bold-text with-vert-line">
             Мої резюме
           </div>
-          <div className="text text-white fw-800 menu-bold-text with-vert-line">
-            Часті запитання (FAQ)
-          </div>
+          <Link  
+            onClick={()=>setActiveLink(parentUrlPart+'/faq')} 
+            to={parentUrlPart+'/faq'} 
+            className={'bold-link text text-white fw-800  mt-10 ' + ((activeLink === ('/cabinet/faq')) ? 'active' : '')}>
+            <span>
+              Часті запитання (FAQ)
+            </span>
+          </Link>
+          {/* <div className="text text-white fw-800 menu-bold-text with-vert-line">
+            
+          </div> */}
           <div className="button-std button-std--white quit-button" 
             onClick={(evt)=>{store.dispatch(logoutAsync(evt.target.innerText))}}>
             Вийти: {userName.toString()}

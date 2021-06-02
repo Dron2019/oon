@@ -1,0 +1,32 @@
+
+.faq-wrapper {
+    .accordion {
+        border: none;
+        border-bottom: 2px solid #ECECEC;
+    }
+    .accordion__button {
+        background-color: transparent;
+        position: relative;
+        padding: 25px 18px;
+        &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg) !important;
+            background-image: url("data:image/svg+xml,%3Csvg width='28' height='33' viewBox='0 0 28 33' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 21C11.6667 21 14 29 14 33C14 29 16.3333 21 28 21' stroke='%23FF7F41' stroke-width='2'/%3E%3Cline x1='14' y1='33' x2='14' stroke='%23FF7F41' stroke-width='2'/%3E%3C/svg%3E%0A");
+            width: 28px !important;
+            height: 33px !important;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border-bottom: none;
+            border-right: none;
+            transition: transform .3s ease-in-out;
+        }
+        
+    }
+    .accordion__button[aria-expanded='true']::before, 
+    .accordion__button[aria-selected='true']::before {
+        transform: translateY(-50%) rotate(180deg) !important;
+    }
+}

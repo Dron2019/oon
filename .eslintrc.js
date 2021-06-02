@@ -5,6 +5,7 @@ module.exports = {
     node: true,
   },
   extends: ['airbnb-base', 'plugin:jest/recommended'],
+  parser: 'babel-eslint',
   plugins: ['jest', 'react'],
   parserOptions: {
     ecmaVersion: 11,
@@ -13,5 +14,6 @@ module.exports = {
   rules: {
     'class-methods-use-this': 0,
     camelcase: [2, { properties: 'never' }],
+    // 'no-unused-vars': ['all', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false }],
   },
 };
