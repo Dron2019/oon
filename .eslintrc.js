@@ -11,6 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "class-methods-use-this": 0
-  }
+    'class-methods-use-this': 0,
+    camelcase: [2, { properties: 'never' }],
+  },
 };

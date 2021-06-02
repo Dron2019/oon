@@ -18,12 +18,11 @@ export const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 //     const obj = Object.assign({ type: 'LOGIN',additionalValue });
 //     return obj;
 //   }
-  
+
 //   export function setPending(){
 //     const obj = Object.assign({ type: 'PENDING_ON' });
 //     return obj;
 //   }
-  
 //   export function clearError(){
 //     const obj = Object.assign({ type: 'CLEAR_ERROR' });
 //     return obj;

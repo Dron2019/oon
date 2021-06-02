@@ -6,10 +6,10 @@ const config = {
     mode: 'development',
     entry: {
         // index: "./src/assets/scripts/index-app.js",
-        adminPanel: "./src/assets/scripts/admin-panel/index.jsx",
+        adminPanel: './src/assets/scripts/admin-panel/index.jsx',
     },
     output: {
-        filename: "[name].bundle.js"
+        filename: '[name].bundle.js',
     },
     // optimization: {
     //     splitChunks: {
@@ -24,8 +24,8 @@ const config = {
     // },
     plugins: [
         new UglifyJSPlugin({
-            sourceMap: true
-        })
+            sourceMap: true,
+        }),
     ],
     module: {
         rules: [{
@@ -35,11 +35,11 @@ const config = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
-                    }
-                }
+                    },
+                },
             },
         ],
-    }
+    },
 };
 
 module.exports = config;

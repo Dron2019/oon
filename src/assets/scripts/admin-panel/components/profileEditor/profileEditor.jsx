@@ -15,6 +15,7 @@ export default function(props){
         []
     );
     const profileEditorFields = useSelector(state=>state.profileInfoReducers);
+    console.log(profileEditorFields);
     const errorMessage = useSelector(state=>state.loginStatusReducer.error);
     // const errorMessage = 'Ваша сессия истекла, зайдите заново';
     const isPending = useSelector(state=>state.pendingStatusStore);
