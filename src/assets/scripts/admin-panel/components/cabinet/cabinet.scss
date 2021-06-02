@@ -162,7 +162,7 @@
         @include shift(0);
     }
     @include to( 1240px){
-        & *~* {
+        & *:not(.error)~*:not(.error) {
             margin-top: 15px;
         }
         &__left {

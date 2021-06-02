@@ -12,7 +12,7 @@ export default function(props) {
     ]
     return (
         <div className="cabinet-inner-double-part-wrapper">
-            <div className="title text-violet uppercased">Послуги консультанта з пошуку роботи </div>
+            {props.title === false ? '' : <div className="title text-violet uppercased">Послуги консультанта з пошуку роботи </div>}
             <div className="white-bg-element with-padding cabinet-inner-double-part-wrapper__left">
                 Кар’єрний хаб пропонує жінкам, постраждалим від домашнього / гендерно зумовленого насильства, 
                 послуги для покращення професійних навичок та успішного працевлаштування. Фахівці і фахівчині дотримуються індивідуального підходу до оцінки потреб і можливостей кожної жінки та допомагають 

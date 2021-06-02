@@ -1,0 +1,39 @@
+.react-datetime-picker__inputGroup {
+    display: none;
+}
+.react-datetime-picker {
+    position: absolute !important; 
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    &__wrapper {
+        border: none !important;
+    }
+    &__clear-button {
+        display: none !important;
+    }
+    &__calendar-button {
+        svg {
+            stroke: var(--color-violet);
+        }
+    }
+    &__calendar {
+        width: 270px !important;
+    }
+}
+.react-calendar {
+    border-radius: 10px;
+    border-color: #e5e0e3 !important;
+    &__tile--active {
+        background: var(--color-violet) !important;
+    }
+    &__tile {
+        padding: 0.5em 0.5em !important;
+    }
+}
+
+.online-consultation-request-wrapper {
+    position: relative;
+    z-index: 0;
+}
