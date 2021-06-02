@@ -17,22 +17,24 @@ export const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 
 
 export const GET_MESSAGES = 'GET_MESSAGES';
-// export function login(additionalValue = {}) {
-//     const obj = Object.assign({ type: 'LOGIN',additionalValue });
-//     return obj;
-//   }
+export function login(additionalValue = {}) {
+  const obj = Object.assign({ type: 'LOGIN', additionalValue });
+  return obj;
+}
 
-//   export function setPending(){
-//     const obj = Object.assign({ type: 'PENDING_ON' });
-//     return obj;
-//   }
-//   export function clearError(){
-//     const obj = Object.assign({ type: 'CLEAR_ERROR' });
-//     return obj;
-//   }
-//   export function resetPending(){
-//     const obj = Object.assign({ type: 'PENDING_OFF' });
-//     return obj;
-//   }
-//   export function loginFail(error){
-//     const obj = Object.assign({ type: 'LOGIN_FAIL',error });
+export function setPending() {
+  const obj = Object.assign({ type: 'PENDING_ON' });
+  return obj;
+}
+export function clearError() {
+  const obj = Object.assign({ type: 'CLEAR_ERROR' });
+  return obj;
+}
+export function resetPending() {
+  const obj = Object.assign({ type: 'PENDING_OFF' });
+  return obj;
+}
+export function loginFail(error) {
+  const obj = Object.assign({ type: LOGIN_FAIL, error });
+  return obj;
+}

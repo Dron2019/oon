@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import * as Yup from 'yup';
-import { Formik, Field,Form,FormikProps  } from 'formik';
+import { Formik, Field,Form } from 'formik';
 import DateTimePicker from 'react-datetime-picker';
 
+
+import dataStore from '../../stores/userDataStore/index.jsx';
+import {setPending, resetPending, loginFail, clearError} from '../../stores/dispatchActions.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import Loader from '../loader/loader.jsx';
 import routes from '../../routes/routes.jsx';
 
 export default function(props){
+    
     const history = useHistory();
-
     const [choosedDate, setDate] = useState(new Date());
-    console.log(formFields);
+    const isPending = useSelector(state => state.pendingStatusStore);
+    const errorMessage = useSelector(state=>state.loginStatusReducer.error);
+
+
     function formSubmit(values, form) {
-        console.log(values);
+        dataStore.dispatch(setPending());
+        dataStore.dispatch(loginFail('Відправлено'));
+        setTimeout(() => {
+            form.resetForm();
+            dataStore.dispatch(resetPending());
+            
+        }, 2000);
     }
     const formFields = [
         {
@@ -21,9 +36,8 @@ export default function(props){
           initialValue: '',
           requiredClass: 'required',
           validationSchema: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(2, 'Введіть тему консультації')
+            .required('Введіть тему консультації:'),
         },
         {
           title: 'Бажана дата проведення консультації:',
@@ -32,10 +46,11 @@ export default function(props){
           initialValue: choosedDate.toLocaleString(),
           requiredClass: 'required',
           validationSchema: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+        //   .date()
+        //     .min(new Date(), 'Дата повинна бути')
+            .required('Оберіть дату консультації'),
           innerElems:  <DateTimePicker
+                minDate={new Date()}
                 locale='uk-UA'
                 value={choosedDate} 
                 onChange={setDate}
@@ -48,11 +63,10 @@ export default function(props){
           requiredClass: 'required',
           type: 'textarea',
           validationSchema: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(2, 'Введіть текст повідомлення')
+            .required('Введіть текст повідомлення:'),
         },
-      ];;
+      ];
     return (
         <div className="online-consultation-request-wrapper">
             <div className="page-title text-violet"> Запит на онлайн консультацію</div>
@@ -62,6 +76,11 @@ export default function(props){
             
             <Formik 
                 enableReinitialize={true}
+                validationSchema={(() => {
+                    let validation = {};
+                    formFields.forEach(field=>validation[field.name] = field.validationSchema)
+                    return Yup.object().shape(validation);
+                })()}
                 initialValues={(()=>{
                     const myObject = {};
                     formFields.forEach(element=> myObject[element.name] = element.initialValue );
@@ -71,13 +90,13 @@ export default function(props){
             >
                 <Form className="form-std">
                     {formFields.map(configField=> {
-                       return <Field value="fegege" validate={configField.validation} name={configField.name}  className="input-std">
+                       return <Field value="fegege" validate={configField.validationSchema} name={configField.name}  className="input-std">
                                 {({
                                 field, // { name, value, onChange, onBlur }
                                 form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                 meta,
                                 }) => (
-                                <div className={'input-group ' + (meta.error?'unfilled':'')}>
+                                <div className={'input-group ' + (meta.error?'unfilled ':'') + (configField.requiredClass)}>
                                     {configField.type === 'textarea' ? 
                                         <textarea  className='input-std' placeholder={configField.title} {...field} /> :
                                         <input   className='input-std' placeholder={configField.title} {...field} /> 
@@ -91,58 +110,15 @@ export default function(props){
                                 )}
                             </Field>
                     })}
-                   
-                </Form>
-                {/* <form className="form-std">
-                    <div className="form-std__subtitle text-violet">
-                        Отримати консультацію консультанта
-                    </div>
-                    <div className="input-group">
-                        <input className="input-std" type="text" name="text" id="" />
-                    </div>
+                    {isPending && <ErrorMessage errorMessage={errorMessage}/>}
+                    {isPending && <Loader/>}
                     <div className="input-group df aic wrap">
                         <a  className="text-violet underlined " onClick={()=>history.push(routes.questionsHistory)}>Історія запитань</a>
-                        <button type='submit' className="button-std button-std--violet small mt-0">Отримати консультацію</button>
+                        <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
                     </div>
-                </form> */}
+                </Form>
             </Formik>
         </div>
     )
-    function getFields() {
-        return [
-            {
-              title: 'Тема консультації:',
-              name: 'theme',
-              initialValue: '',
-              requiredClass: 'required',
-              validationSchema: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            },
-            {
-              title: 'Бажана дата проведення консультації:',
-              name: 'date',
-              value: choosedDate,
-              initialValue: 'vdvdvdv',
-              requiredClass: 'required',
-              validationSchema: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            },
-            {
-              title: 'Текст повідомлення:',
-              name: 'text',
-              initialValue: '',
-              requiredClass: 'required',
-              type: 'textarea',
-              validationSchema: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            },
-          ];
-    }
 }
 
