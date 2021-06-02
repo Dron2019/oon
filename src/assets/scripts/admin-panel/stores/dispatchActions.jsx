@@ -14,6 +14,9 @@ export const GET_CONSULT_REGISTER_FIELDS = 'GET_CONSULT_REGISTER_FIELDS';
 export const GET_PROFILE_DATA = 'GET_PROFILE_DATA';
 export const SEND_PROFILE_DATA = 'SEND_PROFILE_DATA';
 export const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
+
+
+export const GET_MESSAGES = 'GET_MESSAGES';
 // export function login(additionalValue = {}) {
 //     const obj = Object.assign({ type: 'LOGIN',additionalValue });
 //     return obj;
