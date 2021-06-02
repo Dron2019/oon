@@ -24,7 +24,6 @@ export default function (props) {
       time: '18:03', date: '03.18.2021', name: 'Консультант Марина', side: 'admin', mess: 'Thank you, you too',
     },
   ];
-  
   const [messaging, setMessaging] = useState(initMessages);
   const statuses = {
     answered: <div className="question-item__status answered">
@@ -40,9 +39,9 @@ export default function (props) {
 
   function setLayoutClassNames() {
     let output = 'question-item';
-    dropdowned ? output += ' opened' : null;
-    status === 'await' ? null : output += ' new-answer';
-    status === 'closed' ? output += ' closed' : null;
+    output += dropdowned ? ' opened' : null;
+    output += status === 'await' ? null : ' new-answer';
+    output += status === 'closed' ? ' closed' : null;
 
     return output;
   }
@@ -51,7 +50,6 @@ export default function (props) {
     const newState = Array.from(messaging);
     newState.push(value);
     setMessaging(newState);
-    console.log(value);
   }
   return (
             <div className={setLayoutClassNames()}>
