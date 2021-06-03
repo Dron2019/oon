@@ -1,74 +1,76 @@
-import React, {useMemo} from 'react';
-import {useSelector} from 'react-redux';
-import { Formik, Field,Form,FormikProps  } from 'formik';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  Formik, Field, Form, FormikProps,
+} from 'formik';
 import * as Yup from 'yup';
 
 import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
-import {ajax_getProfileData, getProfileData,  ajax_setProfileData} from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+import { ajax_getProfileData, getProfileData, ajax_setProfileData } from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 
-export default function(props){
-    dataStore.dispatch(getProfileData());
-    const firstRender = useMemo(
-        () => dataStore.dispatch(ajax_getProfileData()),
-        []
-    );
-    const profileEditorFields = useSelector(state=>state.profileInfoReducers);
-    console.log(profileEditorFields);
-    const errorMessage = useSelector(state=>state.loginStatusReducer.error);
-    // const errorMessage = 'Ваша сессия истекла, зайдите заново';
-    const isPending = useSelector(state=>state.pendingStatusStore);
-    const initialValues = {};
-    profileEditorFields.forEach(field => {
-        initialValues[field.name] =  field.initialValue || field.value;
-    });
-    const disabledFields = {
-        email: true,
-    }
-    const SignupSchema = Yup.object().shape(
-        {
-        surname_r: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
-        name_r: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
-        email_r: Yup.string().email('Invalid email').required('Required'),
-        }
-    );
-    const passwordSchema = Yup.object().shape({
-        password: Yup.string().required("This field is required"),
-        changepassword: Yup.string().when("password", {
-            is: val => (val && val.length > 0 ? true : false),
-            then: Yup.string().oneOf(
-            [Yup.ref("password")],
-            "Повторний пароль не вірний"
-        )
-        })
-    });
-    function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
-        if (path.done) return;
-        path.style.strokeDasharray = 0;
-        path.style.strokeDashoffset = 0;
-        // var path = document.querySelector('.squiggle-animated path');
-        const length = setDashoffsetCircle(path);
-        path.style.transition = path.style.WebkitTransition = "none";
-        path.style.fill = "none";
-        path.style.strokeDashoffset = "0";
-        path.style.transition = path.style.WebkitTransition = "stroke-dashoffset 1.5s ease";
-        // Set up the starting positions
-        path.style.strokeDasharray = `${length * (fillPercentage / 100)} ${length}`;
-        path.style.strokeDashoffset = length + length * (fillPercentage / 100);
-        path.style.transformOrigin = center;
-        // Trigger a layout so styles are calculated & the browser
-        // picks up the starting position before animating
-        path.style.strokeWidth = strokeWidth;
-        path.done = true;
-    }
-    return (
+export default function (props) {
+  dataStore.dispatch(getProfileData());
+  const firstRender = useMemo(
+    () => dataStore.dispatch(ajax_getProfileData()),
+    [],
+  );
+  const profileEditorFields = useSelector(state => state.profileInfoReducers);
+  console.log(profileEditorFields);
+  const errorMessage = useSelector(state => state.loginStatusReducer.error);
+  // const errorMessage = 'Ваша сессия истекла, зайдите заново';
+  const isPending = useSelector(state => state.pendingStatusStore);
+  const initialValues = {};
+  profileEditorFields.forEach((field) => {
+    initialValues[field.name] = field.initialValue || field.value;
+  });
+  const disabledFields = {
+    email: true,
+  };
+  const SignupSchema = Yup.object().shape(
+    {
+      surname_r: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+      name_r: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+      email_r: Yup.string().email('Invalid email').required('Required'),
+    },
+  );
+  const passwordSchema = Yup.object().shape({
+    password: Yup.string().required('This field is required'),
+    changepassword: Yup.string().when('password', {
+      is: val => (!!(val && val.length > 0)),
+      then: Yup.string().oneOf(
+        [Yup.ref('password')],
+        'Повторний пароль не вірний',
+      ),
+    }),
+  });
+  function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
+    if (path.done) return;
+    path.style.strokeDasharray = 0;
+    path.style.strokeDashoffset = 0;
+    // var path = document.querySelector('.squiggle-animated path');
+    const length = setDashoffsetCircle(path);
+    path.style.transition = path.style.WebkitTransition = 'none';
+    path.style.fill = 'none';
+    path.style.strokeDashoffset = '0';
+    path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 1.5s ease';
+    // Set up the starting positions
+    path.style.strokeDasharray = `${length * (fillPercentage / 100)} ${length}`;
+    path.style.strokeDashoffset = length + length * (fillPercentage / 100);
+    path.style.transformOrigin = center;
+    // Trigger a layout so styles are calculated & the browser
+    // picks up the starting position before animating
+    path.style.strokeWidth = strokeWidth;
+    path.done = true;
+  }
+  return (
         <div className="profile-editor-wrapper">
             <div className="page-title text-violet uppercased">Редагувати профіль</div>
             <div className="white-bg-element with-padding profile-editor-wrapper__left">
@@ -81,36 +83,35 @@ export default function(props){
                 <div className="text ">Ви отримали доступ до повного функціоналу особистого кабінету</div>
             </div>
             <div className="white-bg-element profile-editor-wrapper__right">
-            {/* <div 
+            {/* <div
                 className="button-std button-std--violet"
                 onClick={()=>{dataStore.dispatch(ajax_getProfileData())}}
                 >
                     testAjax
             </div> */}
-            <Formik 
+            <Formik
                 enableReinitialize
                 validationSchema={SignupSchema}
                 initialValues={initialValues}
                 onSubmit={(values, { setSubmitting }) => {
-                    console.log(values);
-                    dataStore.dispatch(ajax_setProfileData(values));
+                  console.log(values);
+                  dataStore.dispatch(ajax_setProfileData(values));
                 }}>
                 <Form className="form-std">
                     <div className="form-std__subtitle text-violet">Ваші особисті дані</div>
-                    {profileEditorFields.map((field_config, index)=>{
-                        return (
+                    {profileEditorFields.map((field_config, index) => (
                             <Field key={index} name={field_config.name}>
                             {({
-                            field, // { name, value, onChange, onBlur }
-                            form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                            meta,
+                              field, // { name, value, onChange, onBlur }
+                              form: { touched, errors },
+                              meta,
                             }) => (
-                            <div className={meta.error!==undefined ? 'unfilled input-group' : 'input-group'}>
-                                <input 
+                            <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
+                                <input
                                     title={field_config.title}
-                                    disabled = {disabledFields[field_config.name] === true ? true : false}
+                                    disabled = {disabledFields[field_config.name] === true}
                                     className='input-std'
-                                    type={field_config.type ? field_config.type : 'text'} 
+                                    type={field_config.type ? field_config.type : 'text'}
                                     placeholder={field_config.title} {...field} />
                                 {meta.touched && meta.error && (
                                 <div className="error">{meta.error}</div>
@@ -118,8 +119,7 @@ export default function(props){
                             </div>
                             )}
                         </Field>
-                        )
-                    })}
+                    ))}
                     {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
                     {isPending ? <Loader/> : null}
                     <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
@@ -127,19 +127,21 @@ export default function(props){
             </Formik>
             <Formik
                 initialValues={{
-                    password: "",
-                    changepassword: ""
+                  password: '',
+                  changepassword: '',
                 }}
                 validationSchema={passwordSchema}
                 onSubmit={() => {}}
                 >
-                    {({ values, errors, handleSubmit, handleChange, handleBlur }) => {
-                        console.log(errors);
-                        return (
+                    {({
+                      values, errors, handleSubmit, handleChange, handleBlur,
+                    }) => {
+                      console.log(errors);
+                      return (
                         <form className="form-std" onSubmit={handleSubmit}>
                             <div className="form-std__subtitle text-violet">Змінити ваш пароль:</div>
                             <div className="input-group">
-                                <input 
+                                <input
                                     className="input-std"
                                     placeholder="Вкажіть ваш старий пароль:"
                                     type="password"
@@ -163,7 +165,7 @@ export default function(props){
                                     </div>
                                     ) : null
                                 }
-                                
+
                             </div>
                             <div className="input-group">
                                 <input
@@ -185,11 +187,11 @@ export default function(props){
                             </div>
                             <button type="submit" className="button-std button-std--violet small">Зберегти пароль</button>
                         </form>
-                        );
+                      );
                     }}
                 </Formik>
             </div>
         </div>
 
-    )
+  );
 }
