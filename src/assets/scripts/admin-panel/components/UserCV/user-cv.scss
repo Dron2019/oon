@@ -1,0 +1,41 @@
+.user-cv-wrapper {
+    .white-bg-element {
+        padding-left: 30px;
+        padding-right: 30px;
+        max-width: Max(25% , 250px);  
+    }
+    .subtitle-small {
+        margin-right: auto;
+        margin-bottom: 10px;
+    }
+    p {
+        color: #9A7E8E;
+    }
+}
+
+
+.curriculum-vitae {
+    --icon-width:60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    &__icon {
+        background: #FFFFFF;
+        border: 1px solid #E5E0E3;
+        box-sizing: border-box;
+        border-radius: 10px;
+        width: 60px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__title {
+        width: calc(100% - var(--icon-width));
+        padding-left: 20px;
+    }
+    &__button {
+        margin-top: 10px;
+    }
+}

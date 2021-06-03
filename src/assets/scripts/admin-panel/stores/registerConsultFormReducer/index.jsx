@@ -79,6 +79,7 @@ export default function registerConsultFormReducer(state = registerInputs, actio
   switch (action.type) {
     case GET_CONSULT_REGISTER_FIELDS:
       return state;
+    default:
+      return state;
   }
-  return state;
 }
