@@ -200,3 +200,25 @@
 select option:hover {
   background-color: yellow;
 }
+
+.input-section {
+  padding: 15px 20px;
+  background: var(--color-gray);
+  border: 1px solid #E5E0E3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  margin-top: 10px;
+  &__title {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    transform: translateY(-50%);
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color-gray);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+  }
+}
