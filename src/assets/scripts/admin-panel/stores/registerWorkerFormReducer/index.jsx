@@ -1,5 +1,5 @@
 
-import GET_WORKER_REGISTER_FIELDS from '../dispatchActions.jsx';
+import { GET_WORKER_REGISTER_FIELDS } from '../dispatchActions.jsx';
 
 const registerInputs = [
   {

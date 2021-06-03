@@ -39,9 +39,9 @@ export default function (props) {
 
   function setLayoutClassNames() {
     let output = 'question-item';
-    output += dropdowned ? ' opened' : null;
-    output += status === 'await' ? null : ' new-answer';
-    output += status === 'closed' ? ' closed' : null;
+    output += dropdowned ? ' opened' : '';
+    output += status === 'await' ? '' : ' new-answer';
+    output += status === 'closed' ? ' closed' : '';
 
     return output;
   }

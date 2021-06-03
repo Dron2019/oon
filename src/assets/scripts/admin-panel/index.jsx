@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import LoginForm from "./components/loginForm/index.jsx";
-import store from './stores/userDataStore/index.jsx';
-import { useSelector } from 'react-redux';
-import Cabinet from './components/cabinet/Cabinet.jsx';
-import ForgotPassword from './components/forms/forgotPassword/index.jsx';
-import Register from './components/register/Register.jsx'
+import { Provider, useSelector } from 'react-redux';
 import {
   HashRouter,
   BrowserRouter as Router,
@@ -15,38 +9,45 @@ import {
   Redirect,
   Link,
   hashHistory,
-  useHistory
-} from "react-router-dom";
+  useHistory,
+} from 'react-router-dom';
+import LoginForm from './components/loginForm/index.jsx';
+import store from './stores/userDataStore/index.jsx';
+
+import Cabinet from './components/cabinet/Cabinet.jsx';
+import ForgotPassword from './components/forms/forgotPassword/index.jsx';
+import Register from './components/register/Register.jsx';
 import routes from './routes/routes.jsx';
 import dataStore from './stores/userDataStore/index.jsx';
-import {checkSession} from './stores/userDataStore/actions.jsx';
-function App(props){
-  const isLogined = useSelector(state=>state.loginStatusReducer.isLogined);
+import { checkSession } from './stores/userDataStore/actions.jsx';
+
+function App(props) {
+  const isLogined = useSelector(state => state.loginStatusReducer.isLogined);
   // isLogined ? useHistory().push(routes.cabinet) : null;
   // isLogined ? hashHistory().push('/cabinet');
   dataStore.dispatch(checkSession());
-  
+
   return (
     <Switch>
       <Route exact path={routes.home}>
-        {isLogined ? 
-        <Cabinet isLogined={isLogined}/> : 
-        <LoginForm/>}
+        {isLogined
+          ? <Cabinet isLogined={isLogined}/>
+          : <LoginForm/>}
         {/* <LoginForm/> */}
       </Route>
       <Route path={routes.register}>
         <Register></Register>
       </Route>
       <Route path={routes.login}>
-        {isLogined ? 
-        <Cabinet isLogined={isLogined}/> : 
-        <LoginForm/>}
+        {isLogined
+          ? <Cabinet isLogined={isLogined}/>
+          : <LoginForm/>}
         {/* <LoginForm/> */}
       </Route>
-      <Route  path={routes.cabinet}>
-        {isLogined ? 
-        <Cabinet isLogined={isLogined}/> : 
-        <LoginForm/>}
+      <Route path={routes.cabinet}>
+        {isLogined
+          ? <Cabinet isLogined={isLogined}/>
+          : <LoginForm/>}
         {/* <Cabinet isLogined={store.getState().isLogined.toString()}/> */}
       </Route>
       <Route path={routes.forgotPassword}>
@@ -54,12 +55,13 @@ function App(props){
       </Route>
     </Switch>
 
-  )
+  );
 }
 ReactDOM.render(
-  <HashRouter  history={hashHistory} basename="/">
+  <HashRouter history={hashHistory} basename="/">
       <Provider store={store}>
         <App/>
       </Provider>
-  </HashRouter>
-, document.querySelector('#root'));
+  </HashRouter>,
+  document.querySelector('#root'),
+);

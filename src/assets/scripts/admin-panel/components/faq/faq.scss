@@ -1,5 +1,9 @@
 
 .faq-wrapper {
+    width: 100%;
+    .page-title {
+        text-align: left;
+    }
     .accordion {
         border: none;
         border-bottom: 2px solid #ECECEC;
@@ -7,7 +11,7 @@
     .accordion__button {
         background-color: transparent;
         position: relative;
-        padding: 25px 18px;
+        padding: 25px 0px;
         &:before {
             content: '';
             position: absolute;
@@ -29,4 +33,30 @@
     .accordion__button[aria-selected='true']::before {
         transform: translateY(-50%) rotate(180deg) !important;
     }
+    .accordion__panel {
+        font-size: 14px;
+        line-height: 160%;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+    }
+
+    .question-item~.question-item {
+        margin-top: 30px;
+    }
+    .accordion {
+        margin-top: 30px;
+    }
+    .accordion__button:hover {
+        background-color: transparent;
+    }
+    .form-std {
+        margin-right: auto;
+        max-width: 475px;
+        margin-top: 30px;
+    }
+    button[type='submit'] {
+        margin-top: 10px;
+    }
 }
+

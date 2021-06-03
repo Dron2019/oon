@@ -1,5 +1,7 @@
 /* exported */
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Accordion,
   AccordionItem,
@@ -8,7 +10,16 @@ import {
   AccordionItemPanel,
 } from 'react-accessible-accordion';
 import QuestionItem from '../questions-history/QuestionItem.jsx';
+import { Formik, Field, Form } from 'formik';
+import * as Yup from 'yup';
 import 'react-accessible-accordion/dist/fancy-example.css';
+
+import dataStore from '../../stores/userDataStore/index.jsx';
+import {
+  setPending, resetPending, loginFail, clearError,
+} from '../../stores/dispatchActions.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import Loader from '../loader/loader.jsx';
 
 function getFaqQuestions() {
   return [
@@ -20,6 +31,31 @@ function getFaqQuestions() {
 
 export default function faq() {
   const questions = getFaqQuestions();
+  const history = useHistory();
+  const [choosedDate, setDate] = useState(new Date());
+  const isPending = useSelector(state => state.pendingStatusStore);
+  const errorMessage = useSelector(state => state.loginStatusReducer.error);
+
+  const formFields = [
+    {
+      title: 'Уведіть ваше запитання:',
+      name: 'theme',
+      initialValue: '',
+      type: 'textarea',
+      requiredClass: '',
+      validationSchema: Yup.string()
+        .min(2, 'Уведіть ваше запитання:')
+        .required('Уведіть ваше запитання:'),
+    },
+  ];
+  function formSubmit(values, form) {
+    dataStore.dispatch(setPending());
+    dataStore.dispatch(loginFail('Відправлено'));
+    setTimeout(() => {
+      form.resetForm();
+      dataStore.dispatch(resetPending());
+    }, 2000);
+  }
   return (
         <div className="faq-wrapper">
             <div className="page-title text-violet">Часті запитання (FAQ)</div>
@@ -43,6 +79,59 @@ export default function faq() {
                 ))
                 }
             </Accordion>
+            <Formik
+                enableReinitialize={true}
+                validationSchema={(() => {
+                  const validation = {};
+                  formFields.forEach((field) => {
+                    validation[field.name] = field.validationSchema;
+                  });
+                  return Yup.object().shape(validation);
+                })()}
+                initialValues={(() => {
+                  const myObject = {};
+                  formFields.forEach((element) => {
+                    myObject[element.name] = element.initialValue;
+                  });
+                  return myObject;
+                })()}
+                onSubmit={formSubmit}
+            >
+                <Form className="form-std">
+                    <div className="form-std__subtitle text-violet">
+                        Поставити запитання адміністратору
+                    </div>
+                    {formFields.map(configField => <Field
+                                        key={`key ${configField.name}`}
+                                        value="fegege"
+                                        validate={configField.validationSchema}
+                                        name={configField.name}
+                                        className="input-std">
+                                {({
+                                  field, // { name, value, onChange, onBlur }
+                                  form: { touched, errors },
+                                  meta,
+                                }) => (
+                                <div key={`key ${configField.name}`} className={`input-group ${meta.error ? 'unfilled ' : ''}${configField.requiredClass}`}>
+                                    {configField.type === 'textarea'
+                                      ? <textarea className='input-std' placeholder={configField.title} {...field} />
+                                      : <input className='input-std' placeholder={configField.title} {...field} />
+                                    }
+                                    {configField.innerElems ? configField.innerElems : ''}
+
+                                    {meta.touched && meta.error && (
+                                    <div className="error">{meta.error}</div>
+                                    )}
+                                </div>
+                                )}
+                            </Field>)}
+                    {isPending && <ErrorMessage errorMessage={errorMessage}/>}
+                    {isPending && <Loader/>}
+                    <div className="input-group df aic wrap">
+                        <button type='submit' className="button-std button-std--violet small ">Надіслати запитання адміністратору</button>
+                    </div>
+                </Form>
+            </Formik>
         </div>
   );
 }
