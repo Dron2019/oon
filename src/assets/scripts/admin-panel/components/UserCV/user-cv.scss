@@ -2,11 +2,19 @@
     .white-bg-element {
         padding-left: 30px;
         padding-right: 30px;
+    }
+    .empty-cv-block {
         max-width: Max(25% , 250px);  
     }
     .subtitle-small {
         margin-right: auto;
         margin-bottom: 10px;
+    }
+    .cv-list {
+        justify-content: space-between;
+        .subtitle-small {
+            width: 100%;
+        }
     }
     p {
         color: #9A7E8E;
@@ -16,6 +24,8 @@
 
 .curriculum-vitae {
     --icon-width:60px;
+    --self-width: 230px;
+    width: var(--self-width);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
