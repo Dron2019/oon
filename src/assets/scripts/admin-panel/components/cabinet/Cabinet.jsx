@@ -14,6 +14,9 @@ import store from '../../stores/userDataStore/index.jsx';
 
 
 import cabinetUserRoutes from '../../routes/cabinetUserRoutes.jsx';
+import routes from '../../routes/routes.jsx';
+
+
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
@@ -57,10 +60,10 @@ export default function Cabinet(props) {
   }
 
   const menus = [
-    ['Створити запитання', '/cabinet/createConsultQuestion'],
-    ['Історія запитань', '/cabinet/questionsHistory'],
-    ['Запит на онлайн консультацію', '/cabinet/onlineConsultationRequest'],
-    ['Прийняті запити на консультацію', '/cabinet'],
+    ['Створити запитання', routes.createConsultQuestion],
+    ['Історія запитань', routes.questionsHistory],
+    ['Запит на онлайн консультацію', routes.onlineConsultationRequest],
+    ['Прийняті запити на консультацію', routes.cabinet],
   ];
   const psychoMenus = [
     ['Створити запитання ', '/cabinet/create-psycho-question'],
@@ -74,9 +77,9 @@ export default function Cabinet(props) {
           </div>
           <div className="menu__dark-block">
             <Link
-              onClick={() => setActiveLink(`${parentUrlPart}/work-consultation`)}
-              to={`${parentUrlPart}/work-consultation`}
-              className={`bold-link text text-white fw-800  ${(activeLink === ('/cabinet/work-consultation')) ? 'active' : ''}`}>
+              onClick={() => setActiveLink(routes.workConsultation)}
+              to={routes.workConsultation}
+              className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
               <span>
               Послуги консультанта  з пошуку роботи
               </span>
@@ -92,28 +95,33 @@ export default function Cabinet(props) {
               {psychoMenus.map(renderCabinetLinks)}
           </ul>
           <Link
-            onClick={() => setActiveLink(`${parentUrlPart}/profileEditor`)}
-            to={`${parentUrlPart}/profileEditor`}
-            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === ('/cabinet/profileEditor')) ? 'active' : ''}`}>
+            onClick={() => setActiveLink(routes.profileEditor)}
+            to={routes.profileEditor}
+            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.profileEditor)) ? 'active' : ''}`}>
             <span>
             Редагувати профіль
             </span>
           </Link>
-          <div className="text text-white fw-800 menu-bold-text with-vert-line">
-            Створити резюме
-          </div>
           <Link
-            onClick={() => setActiveLink(`${parentUrlPart}/user-cv`)}
-            to={`${parentUrlPart}/user-cv`}
-            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === ('/cabinet/user-cv')) ? 'active' : ''}`}>
+            onClick={() => setActiveLink(routes.CreateCV)}
+            to={routes.CreateCV}
+            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.CreateCV)) ? 'active' : ''}`}>
+            <span>
+              Створити резюме
+            </span>
+          </Link>
+          <Link
+            onClick={() => setActiveLink(routes.userCV)}
+            to={routes.userCV}
+            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.userCV)) ? 'active' : ''}`}>
             <span>
               Мої резюме
             </span>
           </Link>
           <Link
-            onClick={() => setActiveLink(`${parentUrlPart}/faq`)}
-            to={`${parentUrlPart}/faq`}
-            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === ('/cabinet/faq')) ? 'active' : ''}`}>
+            onClick={() => setActiveLink(routes.FAQ)}
+            to={routes.FAQ}
+            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.FAQ)) ? 'active' : ''}`}>
             <span>
               Часті запитання (FAQ)
             </span>

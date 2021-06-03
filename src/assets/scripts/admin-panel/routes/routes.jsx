@@ -27,13 +27,22 @@ const routes = [
   },
 ];
 const cabinetRoutes = [
+  { name: 'cabinet', path: '/cabinet', title: 'Кабінет' },
   { name: 'createQuestion', path: '/cabinet/createQuestion', title: 'Вхід' },
   { name: 'questionsHistory', path: '/cabinet/questionsHistory', title: 'Вхід' },
   { name: 'onlineConsultRequest', path: '/cabinet/consult-request', title: 'Вхід' },
   { name: 'appliedConsultRequest', path: '/cabinet', title: 'Вхід' },
   { name: 'jobSearchConsult', path: '/cabinet', title: 'Вхід' },
+
+
   { name: 'userCV', path: '/cabinet/user-cv', title: 'Мої резюме' },
   { name: 'FAQ', path: '/cabinet/faq', title: 'Часті запитання' },
+  { name: 'CreateCV', path: '/cabinet/create-cv', title: 'Створити резюме' },
+  { name: 'profileEditor', path: '/cabinet/profileEditor', title: 'Редагувати профіль' },
+  { name: 'onlineConsultationRequest', path: '/cabinet/onlineConsultationRequest', title: 'Запит на онлайн консультацію' },
+  { name: 'createConsultQuestion', path: '/cabinet/createConsultQuestion', title: 'Створити запитання' },
+  { name: 'workConsultation', path: '/cabinet/work-consultation', title: 'Послуги консультанта з пошуку роботи' },
+  
 ];
 const routesMap = {};
 const routesMapSidebar = [];

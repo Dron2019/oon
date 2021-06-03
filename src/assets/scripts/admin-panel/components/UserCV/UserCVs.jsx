@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import routes from '../../routes/routes.jsx';
 import { Logo } from '../icons/Icons.jsx';
 
+import EmptyCV from '../EmptyCV/EmptyCV.jsx';
+
 /* Изменить ссылку, когда будет создан компонент "Создать резюме" */
 export default function UserCV(props) {
   const [cvs, setCV] = useState(getCVs());
@@ -17,20 +19,7 @@ export default function UserCV(props) {
   );
 }
 
-function EmptyCV(props) {
-  return (
-        <div className="white-bg-element empty-cv-block">
-            <div className="subtitle-small text-violet">Мої резюме:</div>
-            <p>
-                У вас ще не створено жодногу резюме. Щоб створити резюме,
-                <Link className="text-violet" to={routes.FAQ}>
-                    заповніть форму “створити нове резюме” та натисніть “зберегти резюме”.
-                </Link>
-                Резюме створиться автоматично
-            </p>
-        </div>
-  );
-}
+
 
 function ListCV(props) {
   return (
@@ -62,6 +51,13 @@ function getCVs() {
     // { title: 'Кухарка', id: 0 },
     // { title: 'Офіціант', id: 0 },
     // { title: 'Модель', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
+    // { title: 'SMM-менеджер', id: 0 },
     // { title: 'SMM-менеджер', id: 0 },
   ]
 }

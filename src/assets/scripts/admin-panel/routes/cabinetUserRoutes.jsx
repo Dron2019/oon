@@ -7,6 +7,7 @@ import OnlineConsultationRequest from '../components/online-consultation-request
 import ProfileEditor from '../components/profileEditor/profileEditor.jsx';
 import FAQ from '../components/faq/faq.jsx';
 import UserCV from '../components/UserCV/UserCVs.jsx';
+import CreateCV from '../components/CreateCV/CreateCV.jsx';
 
 export default [
   { title: '', route: '/cabinet/work-consultation', component: <WorkConsultation/> },
@@ -16,4 +17,5 @@ export default [
   { title: '', route: '/cabinet/profileEditor', component: <ProfileEditor/> },
   { title: '', route: '/cabinet/faq', component: <FAQ/> },
   { title: '', route: '/cabinet/user-cv', component: <UserCV/> },
+  { title: '', route: '/cabinet/create-cv', component: <CreateCV/> },
 ];

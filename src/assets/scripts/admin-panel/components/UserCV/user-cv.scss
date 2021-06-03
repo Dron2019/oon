@@ -1,4 +1,5 @@
 .user-cv-wrapper {
+    width: 100%;
     .white-bg-element {
         padding-left: 30px;
         padding-right: 30px;
@@ -11,13 +12,37 @@
         margin-bottom: 10px;
     }
     .cv-list {
-        justify-content: space-between;
+        width: 100%;
+        max-width: none;
+        @include row-flex();
+        justify-content: initial;
         .subtitle-small {
-            width: 100%;
+            @include size(12);
+            @include shift(0);
+        }
+        .curriculum-vitae {
+            @include size(4);
+            @include shift(0);
+            margin-bottom: 30px;
         }
     }
     p {
         color: #9A7E8E;
+    }
+    @include from(1680px){
+        .cv-list .curriculum-vitae {
+            @include size(3);
+        }
+    }
+    @include to(1320px){
+        .cv-list .curriculum-vitae {
+            @include size(6);
+        }
+    }
+    @include to(950px){
+        .cv-list .curriculum-vitae {
+            @include size(12);
+        }
     }
 }
 
@@ -47,5 +72,8 @@
     }
     &__button {
         margin-top: 10px;
+    }
+    &__pdf-button {
+        margin-right: auto;
     }
 }
