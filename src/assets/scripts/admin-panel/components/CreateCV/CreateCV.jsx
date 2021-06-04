@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
+import _ from 'lodash';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
@@ -33,30 +34,77 @@ function getFieldsForCV() {
     ],
     workExpirience: [
       [
-        { name: 'work-company', title: 'Назва компанії:', value: '' },
-        { name: 'work-position', title: 'Посада: (наприклад швачка, кухарка)', value: '' },
-        { name: 'work-description', title: 'Опис повний: (розкажіть чим ви займалися)', value: '' },
-        { name: 'work-start', title: 'Дата початку роботи:', value: '' },
-        { name: 'work-end', title: 'Дата кінця роботи:', value: '' },
+        { name: 'work-company_0', title: 'Назва компанії:', value: '' },
+        { name: 'work-position_0', title: 'Посада: (наприклад швачка, кухарка)', value: '' },
+        { name: 'work-description_0', title: 'Опис повний: (розкажіть чим ви займалися)', value: '' },
+        { name: 'work-start_0', title: 'Дата початку роботи:', value: '' },
+        { name: 'work-end_0', title: 'Дата кінця роботи:', value: '' },
       ],
     ],
     education: [
       [
-        { name: 'education-name', title: 'Назва закладу:', value: '' },
-        { name: 'education-specialization', title: 'Спеціальність:', value: '' },
-        { name: 'education-description', title: 'Опис повний: (розкажіть, які навички ви отримали у процесі навчання)', value: '' },
-        { name: 'education-start', title: 'Дата вступу:', value: '' },
-        { name: 'education-end', title: 'Дата закінчення:', value: '' },
-      ],
-      [
-        { name: 'education-name', title: 'Назва закладу:', value: '' },
-        { name: 'education-specialization', title: 'Спеціальність:', value: '' },
-        { name: 'education-description', title: 'Опис повний: (розкажіть, які навички ви отримали у процесі навчання)', value: '' },
-        { name: 'education-start', title: 'Дата вступу:', value: '' },
-        { name: 'education-end', title: 'Дата закінчення:', value: '' },
+        { name: 'education-name_0', title: 'Назва закладу:', value: '' },
+        { name: 'education-specialization_0', title: 'Спеціальність:', value: '' },
+        { name: 'education-description_0', title: 'Опис повний: (розкажіть, які навички ви отримали у процесі навчання)', value: '' },
+        { name: 'education-start_0', title: 'Дата вступу:', value: '' },
+        { name: 'education-end_0', title: 'Дата закінчення:', value: '' },
       ],
     ],
   };
+}
+
+function deleteGroupFromState(curState, setState, index) {
+  const newState = Array.from(curState);
+  newState.splice((index), 1);
+  setState(newState);
+}
+/** Меняет количество групп полей в форме */
+function changeState(curState, setState) {
+  const newState = _.cloneDeep(curState);
+  const changedIndexArray = _.cloneDeep(newState[newState.length - 1]);
+  changedIndexArray.forEach((fieldArg) => {
+    const field = fieldArg;
+    const currentIndex = +field.name.split('_')[1];
+    field.name = field.name.replace(/_(.+)/, `_${+currentIndex + 1}`);
+  });
+  newState.push(changedIndexArray);
+  setState(newState);
+}
+
+
+function InputGroupCV(props) {
+  const { field, inWhatGroupIsField, groupBelongsTo } = props;
+  const { index } = props;
+
+  return (
+    <Field key={index} name={field.name}>
+        {({
+          fieldFormik, // { name, value, onChange, onBlur }
+          form: { touched, errors },
+          meta,
+        }) => (
+        <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
+            <input
+                title={field.title}
+                className='input-std'
+                type={field.type ? field.type : 'text'}
+                placeholder={field.title} {...fieldFormik} />
+            {meta.touched && meta.error && (
+            <div className="error">{meta.error}</div>
+            )}
+        </div>
+        )}
+    </Field>
+  );
+}
+
+function PlusButton(props) {
+  return (
+    <>
+      <PlusButtonIcon minus={props.minus} onClick={() => props.toClick() } data-tip={props.title}/>
+      <ReactTooltip className="create-cv-tooltip" />
+    </>
+  );
 }
 
 
@@ -83,36 +131,19 @@ export default function CreateCV() {
           <span className="text-gray"> (розмір фото 150х150)</span>
           <input type="file" name="" id="" />
           {defaultFields.map(field => (
-              <div className="input-group">
-                <input type="text" className="input-std" value={field.value} placeholder={field.title} />
-              </div>
+              <InputGroupCV field={field}/>
           ))
           }
 
           {workAbilities.map((group, index) => (
-            <div className="input-section">
+            <div className="input-section fade-in-fwd">
                 <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities} {index+1}</div>
-                {index === 0 
-                  ? <PlusButton toClick={ evt => {
-                    const newState = Array.from(workAbilities);
-
-                    let changedIndexArray = Array.from(newState[0]);
-                    
-                    // changedIndexArray.forEach(field => {
-                    //   let currentIndex = +field.name.split('_')[1];
-                    //     field.name = field.name.replace(/_(.+)/, '_'+currentIndex+1);
-                    //     console.log(field);
-                    // })
-                    newState.push(changedIndexArray);
-                    setWorkAbilities(newState);
-                    setGlobalFormState(Object.assign(globalFormState, { workAbilities: newState }));
-                  }} title="Додати навичку"/> 
+                {index === 0
+                  ? <PlusButton
+                      toClick={ evt => changeState(workAbilities, setWorkAbilities)}
+                      title="Додати навичку"/>
                   : <PlusButton
-                    toClick={ evt => {
-                      const newState = Array.from(workAbilities);
-                      if (index > 0) newState.splice((index), 1);
-                      setWorkAbilities(newState);
-                    }} 
+                    toClick={ evt => deleteGroupFromState(workAbilities, setWorkAbilities, index)}
                     title="Видалити навичку"
                     minus={true}
                   />
@@ -121,20 +152,14 @@ export default function CreateCV() {
             </div>
           ))}
           {workExpirience.map((group, index) => (
-            <div className="input-section">
+            <div className="input-section fade-in-fwd">
                 <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience} {index+1}</div>
                 {index === 0 
-                  ? <PlusButton toClick={ evt => {
-                    const newState = Array.from(workExpirience);
-                    newState.push(newState[0]);
-                    setworkExpirience(newState);
-                  }} title="Додати навичку"/> 
+                  ? <PlusButton toClick={ (evt) => {
+                    changeState(workExpirience, setworkExpirience);
+                  }} title="Додати навичку"/>
                   : <PlusButton
-                    toClick={ evt => {
-                      const newState = Array.from(workExpirience);
-                      if (index > 0) newState.splice((index), 1);
-                      setworkExpirience(newState);
-                    }} 
+                    toClick={ evt => deleteGroupFromState(workExpirience, setworkExpirience, index)}
                     title="Видалити навичку"
                     minus={true}
                   />
@@ -143,20 +168,14 @@ export default function CreateCV() {
             </div>
           ))}
           {education.map((group, index) => (
-            <div className="input-section">
+            <div className="input-section fade-in-fwd">
                 <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education} {index+1}</div>
                 {index === 0 
                   ? <PlusButton toClick={ evt => {
-                    const newState = Array.from(education);
-                    newState.push(newState[0]);
-                    setEducation(newState);
+                    changeState(education, setEducation);
                   }} title="Додати навичку"/> 
                   : <PlusButton
-                    toClick={ evt => {
-                      const newState = Array.from(education);
-                      if (index > 0) newState.splice((index), 1);
-                      setEducation(newState);
-                    }} 
+                    toClick={ evt => deleteGroupFromState(education, setEducation, index)}
                     title="Видалити навичку"
                     minus={true}
                   />
@@ -165,106 +184,9 @@ export default function CreateCV() {
             </div>
           ))}
 
-
-
-
-
-
-
-
-
-
-
-          {/* <div className="input-section">
-            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities}</div>
-            <PlusButton toClick={ evt => {
-              const newState = Array.from(workAbilities);
-              newState.push(newState[0]);
-              setWorkAbilities(newState);
-            }} title="Додати навичку"/>
-            {workAbilities.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-          </div> */}
-          {/* <div className="input-section">
-            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience}</div>
-            <PlusButton 
-              toClick={ evt => {
-                const newState = Array.from(workExpirience);
-                newState.push(newState[0]);
-                setworkExpirience(newState);
-              }}
-              title="Додати місце роботи"/>
-            {workExpirience.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-          </div> */}
-          {/* <div className="input-section">
-            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education}</div>
-            <PlusButton 
-              toClick={ evt => {
-                const newState = Array.from(education);
-                newState.push(newState[0]);
-                setEducation(newState);
-              }}
-              title="Додати освіту"/>
-              {education.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-          </div> */}
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
         </div>
       </Formik>
     </div>
-  );
-}
-
-
-function CVGroup(props) {
-  const titles = props.titles;
-  // const groupOfData
-  return (
-    <>
-    </>
-  )
-}
-
-
-function InputGroupCV(props) {
-  const { field, inWhatGroupIsField, groupBelongsTo } = props;
-  const { index } = props;
-
-  // return (
-  //   <Field key={index} name={field.name}>
-  //       {({
-  //         field, // { name, value, onChange, onBlur }
-  //         form: { touched, errors },
-  //         meta,
-  //       }) => (
-  //       <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
-  //           <input
-  //               title={field.title}
-  //               className='input-std'
-  //               type={field.type ? field.type : 'text'}
-  //               placeholder={field.title} {...field} />
-  //           {meta.touched && meta.error && (
-  //           <div className="error">{meta.error}</div>
-  //           )}
-  //       </div>
-  //       )}
-  //   </Field>
-  // );
-
-  function changeHandler(evt) {
-
-  }
-  return (
-    <div className="input-group">
-      <input onChange={changeHandler} type="text" key={index} className="input-std" value={field.value} placeholder={field.title} />
-    </div>
-  );
-}
-
-
-function PlusButton(props) {
-  return (
-    <>
-      <PlusButtonIcon minus={props.minus} onClick={() => props.toClick() } data-tip={props.title}/>
-      <ReactTooltip className="create-cv-tooltip" />
-    </>
   );
 }

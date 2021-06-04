@@ -98,6 +98,7 @@
     "int-tel-input": "^1.0.6",
     "intl-tel-input": "^17.0.12",
     "locomotive-scroll": "^4.0.6",
+    "lodash": "^4.17.21",
     "on-change": "^2.2.1",
     "react": "^17.0.2",
     "react-accessible-accordion": "^3.3.4",
