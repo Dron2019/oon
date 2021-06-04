@@ -1,0 +1,30 @@
+.create-cv-wrapper {
+  .input-section {
+    position: relative;
+    padding-right: 50px;
+  }
+  .plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+
+  }
+
+}
+.create-cv-tooltip {
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  border-radius: 10px !important;
+  padding: 6px 15px !important;
+  background-color: #E7E3E6 !important;
+  line-height: 1em !important;
+  color: #000000 !important;
+  pointer-events: none !important;
+  &:after {
+    border-top-color: #E7E3E6 !important;
+  }
+}
+
+.plus-icon {
+  cursor: pointer;
+}

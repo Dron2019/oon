@@ -1,7 +1,11 @@
 /* eslint-disable max-len */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
+
+import ReactTooltip from 'react-tooltip';
+
+import { PlusButtonIcon } from '../icons/Icons.jsx';
 
 function getFieldsForCV() {
   return {
@@ -55,10 +59,10 @@ function getFieldsForCV() {
 
 
 export default function CreateCV() {
-  let [ defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
-  let [ workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
-  let [ workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
-  let [ education, setEducation] = useState(getFieldsForCV().education);
+  const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
+  const [workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
+  const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
+  const [education, setEducation] = useState(getFieldsForCV().education);
 
   return (
     <div className="create-cv-wrapper">
@@ -81,18 +85,24 @@ export default function CreateCV() {
         }
         <div className="input-section">
           <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities}</div>
+          <PlusButton toClick={ evt => {
+            
+          }} title="Додати навичку"/>
           {workAbilities.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
         </div>
         <div className="input-section">
           <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience}</div>
+          <PlusButton title="Додати місце роботи"/>
           {workExpirience.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
         </div>
         <div className="input-section">
           <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education}</div>
+          <PlusButton title="Додати освіту"/>
             {education.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
         </div>
         <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
       </div>
+
     </div>
   );
 }
@@ -104,5 +114,16 @@ function InputGroupCV(props) {
     <div className="input-group">
       <input type="text" key={index} className="input-std" value={field.value} placeholder={field.title} />
     </div>
+  );
+}
+
+
+function PlusButton(props) {
+  console.log(props);
+  return (
+    <>
+      <PlusButtonIcon onClick={() => props.toClick() } data-tip={props.title}/>
+      <ReactTooltip className="create-cv-tooltip" />
+    </>
   );
 }
