@@ -1,9 +1,11 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
+import {
+  Formik, Field, Form, FormikProps,
+} from 'formik';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
-
-import ReactTooltip from 'react-tooltip';
 
 import { PlusButtonIcon } from '../icons/Icons.jsx';
 
@@ -64,92 +66,104 @@ export default function CreateCV() {
   const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
   const [education, setEducation] = useState(getFieldsForCV().education);
 
+  const [globalFormState, setGlobalFormState] = useState(getFieldsForCV());
+
   return (
     <div className="create-cv-wrapper">
       <div className="page-title text-violet">
         Створити резюме
       </div>
       <EmptyCV/>
-      <div className="form-std">
-        <div className="form-std__subtitle text-violet">
-          Створити нове резюме:
-        </div>
-        <div className="button-std button-std--violet small">Додати фото</div>
-        <span className="text-gray"> (розмір фото 150х150)</span>
-        <input type="file" name="" id="" />
-        {defaultFields.map(field => (
-            <div className="input-group">
-              <input type="text" className="input-std" value={field.value} placeholder={field.title} />
-            </div>
-        ))
-        }
+      <Formik initialValues={{}}>
+        <div className="form-std">
+          <div className="form-std__subtitle text-violet">
+            Створити нове резюме:
+          </div>
+          <div className="button-std button-std--violet small">Додати фото</div>
+          <span className="text-gray"> (розмір фото 150х150)</span>
+          <input type="file" name="" id="" />
+          {defaultFields.map(field => (
+              <div className="input-group">
+                <input type="text" className="input-std" value={field.value} placeholder={field.title} />
+              </div>
+          ))
+          }
 
-        {workAbilities.map((group, index) => (
-          <div className="input-section">
-              <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities} {index+1}</div>
-              {index === 0 
-                ? <PlusButton toClick={ evt => {
-                  const newState = Array.from(workAbilities);
-                  newState.push(newState[0]);
-                  setWorkAbilities(newState);
-                }} title="Додати навичку"/> 
-                : <PlusButton
-                  toClick={ evt => {
+          {workAbilities.map((group, index) => (
+            <div className="input-section">
+                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities} {index+1}</div>
+                {index === 0 
+                  ? <PlusButton toClick={ evt => {
                     const newState = Array.from(workAbilities);
-                    if (index > 0) newState.splice((index), 1);
+
+                    let changedIndexArray = Array.from(newState[0]);
+                    
+                    // changedIndexArray.forEach(field => {
+                    //   let currentIndex = +field.name.split('_')[1];
+                    //     field.name = field.name.replace(/_(.+)/, '_'+currentIndex+1);
+                    //     console.log(field);
+                    // })
+                    newState.push(changedIndexArray);
                     setWorkAbilities(newState);
-                  }} 
-                  title="Видалити навичку"
-                  minus={true}
-                />
-              }
-              {group.map(field => <InputGroupCV field={field} index={index}/>)}
-          </div>
-        ))}
-        {workExpirience.map((group, index) => (
-          <div className="input-section">
-              <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience} {index+1}</div>
-              {index === 0 
-                ? <PlusButton toClick={ evt => {
-                  const newState = Array.from(workExpirience);
-                  newState.push(newState[0]);
-                  setworkExpirience(newState);
-                }} title="Додати навичку"/> 
-                : <PlusButton
-                  toClick={ evt => {
+                    setGlobalFormState(Object.assign(globalFormState, { workAbilities: newState }));
+                  }} title="Додати навичку"/> 
+                  : <PlusButton
+                    toClick={ evt => {
+                      const newState = Array.from(workAbilities);
+                      if (index > 0) newState.splice((index), 1);
+                      setWorkAbilities(newState);
+                    }} 
+                    title="Видалити навичку"
+                    minus={true}
+                  />
+                }
+                {group.map(field => <InputGroupCV groupBelongsTo={defaultFields.workAbilities} inWhatGroupIsField={workAbilities} field={field} index={index}/>)}
+            </div>
+          ))}
+          {workExpirience.map((group, index) => (
+            <div className="input-section">
+                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience} {index+1}</div>
+                {index === 0 
+                  ? <PlusButton toClick={ evt => {
                     const newState = Array.from(workExpirience);
-                    if (index > 0) newState.splice((index), 1);
+                    newState.push(newState[0]);
                     setworkExpirience(newState);
-                  }} 
-                  title="Видалити навичку"
-                  minus={true}
-                />
-              }
-              {group.map(field => <InputGroupCV field={field} index={index}/>)}
-          </div>
-        ))}
-        {education.map((group, index) => (
-          <div className="input-section">
-              <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education} {index+1}</div>
-              {index === 0 
-                ? <PlusButton toClick={ evt => {
-                  const newState = Array.from(education);
-                  newState.push(newState[0]);
-                  setEducation(newState);
-                }} title="Додати навичку"/> 
-                : <PlusButton
-                  toClick={ evt => {
+                  }} title="Додати навичку"/> 
+                  : <PlusButton
+                    toClick={ evt => {
+                      const newState = Array.from(workExpirience);
+                      if (index > 0) newState.splice((index), 1);
+                      setworkExpirience(newState);
+                    }} 
+                    title="Видалити навичку"
+                    minus={true}
+                  />
+                }
+                {group.map(field => <InputGroupCV field={field} index={index}/>)}
+            </div>
+          ))}
+          {education.map((group, index) => (
+            <div className="input-section">
+                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education} {index+1}</div>
+                {index === 0 
+                  ? <PlusButton toClick={ evt => {
                     const newState = Array.from(education);
-                    if (index > 0) newState.splice((index), 1);
+                    newState.push(newState[0]);
                     setEducation(newState);
-                  }} 
-                  title="Видалити навичку"
-                  minus={true}
-                />
-              }
-              {group.map(field => <InputGroupCV field={field} index={index}/>)}
-          </div>
-        ))}
+                  }} title="Додати навичку"/> 
+                  : <PlusButton
+                    toClick={ evt => {
+                      const newState = Array.from(education);
+                      if (index > 0) newState.splice((index), 1);
+                      setEducation(newState);
+                    }} 
+                    title="Видалити навичку"
+                    minus={true}
+                  />
+                }
+                {group.map(field => <InputGroupCV field={field} index={index}/>)}
+            </div>
+          ))}
 
 
 
@@ -161,57 +175,92 @@ export default function CreateCV() {
 
 
 
-        {/* <div className="input-section">
-          <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities}</div>
-          <PlusButton toClick={ evt => {
-            const newState = Array.from(workAbilities);
-            newState.push(newState[0]);
-            setWorkAbilities(newState);
-          }} title="Додати навичку"/>
-          {workAbilities.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-        </div> */}
-        {/* <div className="input-section">
-          <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience}</div>
-          <PlusButton 
-            toClick={ evt => {
-              const newState = Array.from(workExpirience);
+          {/* <div className="input-section">
+            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities}</div>
+            <PlusButton toClick={ evt => {
+              const newState = Array.from(workAbilities);
               newState.push(newState[0]);
-              setworkExpirience(newState);
-            }}
-            title="Додати місце роботи"/>
-          {workExpirience.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-        </div> */}
-        {/* <div className="input-section">
-          <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education}</div>
-          <PlusButton 
-            toClick={ evt => {
-              const newState = Array.from(education);
-              newState.push(newState[0]);
-              setEducation(newState);
-            }}
-            title="Додати освіту"/>
-            {education.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
-        </div> */}
-        <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
-      </div>
-
+              setWorkAbilities(newState);
+            }} title="Додати навичку"/>
+            {workAbilities.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
+          </div> */}
+          {/* <div className="input-section">
+            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience}</div>
+            <PlusButton 
+              toClick={ evt => {
+                const newState = Array.from(workExpirience);
+                newState.push(newState[0]);
+                setworkExpirience(newState);
+              }}
+              title="Додати місце роботи"/>
+            {workExpirience.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
+          </div> */}
+          {/* <div className="input-section">
+            <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education}</div>
+            <PlusButton 
+              toClick={ evt => {
+                const newState = Array.from(education);
+                newState.push(newState[0]);
+                setEducation(newState);
+              }}
+              title="Додати освіту"/>
+              {education.map(group => group.map((field, index) => <InputGroupCV field={field} index={index}/>))}
+          </div> */}
+          <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
+        </div>
+      </Formik>
     </div>
   );
 }
 
+
+function CVGroup(props) {
+  const titles = props.titles;
+  // const groupOfData
+  return (
+    <>
+    </>
+  )
+}
+
+
 function InputGroupCV(props) {
-  const { field } = props;
+  const { field, inWhatGroupIsField, groupBelongsTo } = props;
   const { index } = props;
+
+  // return (
+  //   <Field key={index} name={field.name}>
+  //       {({
+  //         field, // { name, value, onChange, onBlur }
+  //         form: { touched, errors },
+  //         meta,
+  //       }) => (
+  //       <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
+  //           <input
+  //               title={field.title}
+  //               className='input-std'
+  //               type={field.type ? field.type : 'text'}
+  //               placeholder={field.title} {...field} />
+  //           {meta.touched && meta.error && (
+  //           <div className="error">{meta.error}</div>
+  //           )}
+  //       </div>
+  //       )}
+  //   </Field>
+  // );
+
+  function changeHandler(evt) {
+
+  }
   return (
     <div className="input-group">
-      <input type="text" key={index} className="input-std" value={field.value} placeholder={field.title} />
+      <input onChange={changeHandler} type="text" key={index} className="input-std" value={field.value} placeholder={field.title} />
     </div>
   );
 }
 
 
 function PlusButton(props) {
-  console.log(props);
   return (
     <>
       <PlusButtonIcon minus={props.minus} onClick={() => props.toClick() } data-tip={props.title}/>

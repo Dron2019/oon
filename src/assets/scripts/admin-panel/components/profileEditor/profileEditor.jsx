@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-multi-assign */
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -51,25 +53,26 @@ export default function (props) {
       ),
     }),
   });
-  function simulatePathDrawing(path, fillPercentage = 10, strokeWidth) {
-    if (path.done) return;
-    path.style.strokeDasharray = 0;
-    path.style.strokeDashoffset = 0;
-    // var path = document.querySelector('.squiggle-animated path');
-    const length = setDashoffsetCircle(path);
-    path.style.transition = path.style.WebkitTransition = 'none';
-    path.style.fill = 'none';
-    path.style.strokeDashoffset = '0';
-    path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 1.5s ease';
-    // Set up the starting positions
-    path.style.strokeDasharray = `${length * (fillPercentage / 100)} ${length}`;
-    path.style.strokeDashoffset = length + length * (fillPercentage / 100);
-    path.style.transformOrigin = center;
-    // Trigger a layout so styles are calculated & the browser
-    // picks up the starting position before animating
-    path.style.strokeWidth = strokeWidth;
-    path.done = true;
-  }
+  // function simulatePathDrawing(pathArg, fillPercentage = 10, strokeWidth) {
+  //   const path = pathArg;
+  //   if (path.done) return;
+  //   path.style.strokeDasharray = 0;
+  //   path.style.strokeDashoffset = 0;
+  //   // var path = document.querySelector('.squiggle-animated path');
+  //   const length = setDashoffsetCircle(path);
+  //   path.style.transition = path.style.WebkitTransition = 'none';
+  //   path.style.fill = 'none';
+  //   path.style.strokeDashoffset = '0';
+  //   path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 1.5s ease';
+  //   // Set up the starting positions
+  //   path.style.strokeDasharray = `${length * (fillPercentage / 100)} ${length}`;
+  //   path.style.strokeDashoffset = length + length * (fillPercentage / 100);
+  //   path.style.transformOrigin = center;
+  //   // Trigger a layout so styles are calculated & the browser
+  //   // picks up the starting position before animating
+  //   path.style.strokeWidth = strokeWidth;
+  //   path.done = true;
+  // }
   return (
         <div className="profile-editor-wrapper">
             <div className="page-title text-violet uppercased">Редагувати профіль</div>
