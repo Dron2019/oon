@@ -49,7 +49,7 @@ export function PlusButtonIcon(props) {
   return (
     <svg className="plus-icon" onClick={props.onClick} data-tip={props['data-tip']} width={30} height={30} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx={15} cy={15} r={15} fill="#991E66" />
-      <rect x={15} y={9} width={1} height={13} fill="white" />
+      {!props.minus && <rect x={15} y={9} width={1} height={13} fill="white" />}
       <rect x={9} y={15} width={13} height={1} fill="white" />
     </svg>
   );
