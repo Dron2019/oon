@@ -12,14 +12,13 @@ import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import { ajax_getProfileData, getProfileData, ajax_setProfileData } from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 
-export default function (props) {
+export default function ProfileEditor(props) {
   dataStore.dispatch(getProfileData());
   const firstRender = useMemo(
     () => dataStore.dispatch(ajax_getProfileData()),
     [],
   );
   const profileEditorFields = useSelector(state => state.profileInfoReducers);
-  console.log(profileEditorFields);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
   // const errorMessage = 'Ваша сессия истекла, зайдите заново';
   const isPending = useSelector(state => state.pendingStatusStore);

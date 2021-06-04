@@ -107,6 +107,32 @@ function PlusButton(props) {
   );
 }
 
+function CreateFieldsSection(props) {
+  const {
+    groupsArrayName,
+    globalState,
+    setGlobalState,
+    globalObject,
+  } = props;
+  return (
+    globalState.map((group, index) => (
+      <div className="input-section fade-in-fwd">
+          <div className="input-section__title text-violet">{groupsArrayName} {index + 1}</div>
+          {index === 0
+            ? <PlusButton
+                toClick={ evt => changeState(globalState, setGlobalState)}
+                title="Додати навичку"/>
+            : <PlusButton
+              toClick={ evt => deleteGroupFromState(globalState, setGlobalState, index)}
+              title="Видалити навичку"
+              minus={true}
+            />
+          }
+          {group.map(field => <InputGroupCV groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
+      </div>
+    ))
+  );
+}
 
 export default function CreateCV() {
   const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
@@ -130,60 +156,26 @@ export default function CreateCV() {
           <div className="button-std button-std--violet small">Додати фото</div>
           <span className="text-gray"> (розмір фото 150х150)</span>
           <input type="file" name="" id="" />
-          {defaultFields.map(field => (
-              <InputGroupCV field={field}/>
-          ))
+          {defaultFields.map(field => <InputGroupCV field={field}/>)
           }
-
-          {workAbilities.map((group, index) => (
-            <div className="input-section fade-in-fwd">
-                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workAbilities} {index+1}</div>
-                {index === 0
-                  ? <PlusButton
-                      toClick={ evt => changeState(workAbilities, setWorkAbilities)}
-                      title="Додати навичку"/>
-                  : <PlusButton
-                    toClick={ evt => deleteGroupFromState(workAbilities, setWorkAbilities, index)}
-                    title="Видалити навичку"
-                    minus={true}
-                  />
-                }
-                {group.map(field => <InputGroupCV groupBelongsTo={defaultFields.workAbilities} inWhatGroupIsField={workAbilities} field={field} index={index}/>)}
-            </div>
-          ))}
-          {workExpirience.map((group, index) => (
-            <div className="input-section fade-in-fwd">
-                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.workExpirience} {index+1}</div>
-                {index === 0 
-                  ? <PlusButton toClick={ (evt) => {
-                    changeState(workExpirience, setworkExpirience);
-                  }} title="Додати навичку"/>
-                  : <PlusButton
-                    toClick={ evt => deleteGroupFromState(workExpirience, setworkExpirience, index)}
-                    title="Видалити навичку"
-                    minus={true}
-                  />
-                }
-                {group.map(field => <InputGroupCV field={field} index={index}/>)}
-            </div>
-          ))}
-          {education.map((group, index) => (
-            <div className="input-section fade-in-fwd">
-                <div className="input-section__title text-violet">{getFieldsForCV().groupNames.education} {index+1}</div>
-                {index === 0 
-                  ? <PlusButton toClick={ evt => {
-                    changeState(education, setEducation);
-                  }} title="Додати навичку"/> 
-                  : <PlusButton
-                    toClick={ evt => deleteGroupFromState(education, setEducation, index)}
-                    title="Видалити навичку"
-                    minus={true}
-                  />
-                }
-                {group.map(field => <InputGroupCV field={field} index={index}/>)}
-            </div>
-          ))}
-
+          <CreateFieldsSection
+            globalObject={getFieldsForCV()}
+            setGlobalState={setWorkAbilities}
+            groupsArrayName={getFieldsForCV().groupNames.workAbilities}
+            globalState={workAbilities}
+          />
+          <CreateFieldsSection
+            globalObject={getFieldsForCV()}
+            setGlobalState={setworkExpirience}
+            groupsArrayName={getFieldsForCV().groupNames.workExpirience}
+            globalState={workExpirience}
+          />
+          <CreateFieldsSection
+            globalObject={getFieldsForCV()}
+            setGlobalState={setEducation}
+            groupsArrayName={getFieldsForCV().groupNames.education}
+            globalState={education}
+          />
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
         </div>
       </Formik>

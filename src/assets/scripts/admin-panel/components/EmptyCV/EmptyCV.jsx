@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import routes from '../../routes/routes.jsx';
- 
+
 export default function EmptyCV(props) {
   return (
         <div className="white-bg-element empty-cv-block">
