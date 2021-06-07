@@ -33,16 +33,17 @@ export default function Cabinet(props) {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(useLocation().pathname);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
+  const [menuVisibility, setMenuVisibility] = useState(false);
   // setActiveLink(location.pathname);
   useEffect(() => history.listen((location) => {
-    console.log(`You changed the page to: ${location.pathname}`);
+    setMenuVisibility(false);
     setActiveLink(location.pathname);
   }), [history]);
   const parentUrlPart = '/cabinet';
 
   function renderCabinetNestedRoutes(el, index) {
     return (
-        <Route key={index} path={el.route}>
+        <Route exact={el.exact ? 'exact' : ''} key={index} path={el.route}>
           {el.component}
         </Route>
     );
@@ -69,9 +70,16 @@ export default function Cabinet(props) {
     ['Створити запитання ', '/cabinet/create-psycho-question'],
     ['Історія запитань ', '/cabinet/ '],
   ];
+  
+  function handleMobileMenuClick(evt) {
+    console.log(evt);
+    if (evt.target.classList.contains('menu')) {
+      setMenuVisibility(!menuVisibility);
+    }
+  }
   return (
       <div className="cabinet-wrapper">
-        <div className="menu">
+        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick}>
           <div className="menu__subtitle">
             Мій кабінет
           </div>

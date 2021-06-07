@@ -25,19 +25,20 @@ block scripts
 block content
   .page-part.event-anonce-wrapper
     .learn-block(data-anonce-filter)
-      button.active Відбудуться
-      button Завершилися
+      button.active(data-anonce-future) Відбудуться
+      button(data-anonce-past) Завершилися
     .on-light-bg-breadcrumbs 
       include ../includes/breadcrumbs.pug
     .page-title.text-violet Анонси подій
-    .white-bg-element.event-item.finished
+    .white-bg-element.event-item.finished.fade-in-fwd(data-event-item)
       +img('teddy.jpg').event-item__img
       .event-item__text
         .subtitle-small.text-violet Дім (не)безпеки
         p Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим. Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим.
-        a(href="single-event.html").button-std.button-std--orange.small.max-content Детальніше
+        a(href="single-event.html").button-std.button-std--orange.small.max-content 
+          div Детальніше
         .finish-phrase завершено
-      .event-item__info-wrap 
+      .event-item__info-wrap
         .event-item__info-item
           .event-item__info-item-icon 
             +svg('calendar')
@@ -56,12 +57,13 @@ block content
           .event-item__info-item-text
             b Місце проведення: 
             div м. Київ, Михайлівська площа
-    .white-bg-element.event-item
+    .white-bg-element.fade-in-fwd.event-item(data-event-item)
       +img('teddy.jpg').event-item__img
       .event-item__text
         .subtitle-small.text-violet Дім (не)безпеки
         p Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим. Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим.
-        a(href="single-event.html").button-std.button-std--orange.small.max-content Детальніше
+        a(href="single-event.html").button-std.button-std--orange.small.max-content 
+          div Детальніше
         .finish-phrase завершено
       .event-item__info-wrap 
         .event-item__info-item
