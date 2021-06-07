@@ -91,6 +91,13 @@
   @include to(1024px){
     --padding:15px;
   }
+  @include to(575px){
+    --outline-padding:15px;
+    button.button-std,
+    .button-std {
+      margin-left: 0;
+    }
+  }
 }
 
 .form-label{
@@ -220,5 +227,8 @@ select option:hover {
     font-weight: 500;
     font-size: 14px;
     line-height: 100%;
+  }
+  @include to(575px){
+    padding:15px;
   }
 }

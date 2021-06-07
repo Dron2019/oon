@@ -22,7 +22,11 @@
         .text-block {
             @include size(12);
         }
-
+    }
+    @include to(575px){
+        .text-block {
+            padding:15px;
+        }
     }
 }
 

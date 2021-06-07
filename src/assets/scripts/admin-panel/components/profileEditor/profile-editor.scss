@@ -13,4 +13,13 @@
         @include shift(0);
         @include size(7.5);
     }
+    @include to(575px){
+        &>*~*{
+            margin-top: 15px;
+        }
+        &__left,
+        &__right {
+            @include size(12);
+        }
+    }
 }

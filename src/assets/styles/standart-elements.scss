@@ -241,8 +241,25 @@ textarea,
   &.with-padding {
     padding: 30px;
   }
+  @include to(575px){
+    padding-top: 15px;
+    padding-bottom: 15px;
+    &.with-padding {
+      padding: 15px;
+    }
+  }
 }
 
+/*~  (Серая закругленная подложка) ~*/
+.gray-bg-element {
+  background-color: var(--color-gray);
+  border-radius: 10px;
+  --self-padding :30px;
+  padding: var(--self-padding);
+  @include to(575px){
+      --self-padding :15px;
+  }
+}
 .breadcrumbs {
   font-weight: 500;
   font-size: 12px;
@@ -316,6 +333,9 @@ textarea,
     margin-bottom: 20px;
     @include from(1680px){
       font-size: 54px;
+    }
+    @include to(575px){
+      font-size: 24px;
     }
 }
 

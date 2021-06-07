@@ -25,5 +25,12 @@
     color: inherit;
     text-decoration: none;
   }
-
+  @include to(950px){
+    --side-padding: 50px;
+    --vert-padding: 50px;
+  }
+  @include to(575px){
+    --side-padding:15px;
+    --vert-padding: 30px;
+  }
 }

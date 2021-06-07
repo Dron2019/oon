@@ -30,6 +30,11 @@
       font-size: 54px;
     }
   }
+  @include to(575px){
+    &__title {
+      font-size: 32px;
+    }
+  }
 }
 
 .screen2 {
@@ -70,6 +75,25 @@
   .button-std {
     width: 165px;
   }
+  @include to(768px){
+    width: auto;
+    padding-top: 20px;
+    &__img,
+    &__text {
+      @include size(12);
+    }
+    &__text {
+      @include shift-padding(0);
+      
+    }
+    &__img {
+      padding-top: 20px;
+    }
+    .button-std {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  } 
 }
 
 .screen3 {
@@ -116,6 +140,29 @@
   .button-std {
     width: 165px;
   }
+  @include to(768px){
+    width: auto;
+    padding-top: 20px;
+    &__img,
+    &__text {
+      @include size(12);
+    }
+    &__text {
+      @include shift-padding(0);
+      
+    }
+    &__img {
+      padding-top: 20px;
+    }
+    .button-std {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &__decor {
+      width: 100px;
+      height: 100px;
+    }
+  } 
 }
 .screen4 {
   min-height: 100vh;
@@ -160,6 +207,29 @@
   .button-std {
     width: 165px;
   }
+  @include to(768px){
+    width: auto;
+    padding-top: 20px;
+    &__img,
+    &__text {
+      @include size(12);
+    }
+    &__text {
+      @include shift-padding(0);
+      
+    }
+    &__img {
+      padding-top: 20px;
+    }
+    .button-std {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &__decor {
+      width: 100px;
+      height: 100px;
+    }
+  } 
 }
 
 .screen5 {
@@ -206,4 +276,27 @@
   .button-std {
     width: 165px;
   }
+  @include to(768px){
+    width: auto;
+    padding-top: 20px;
+    &__decor {
+      width: 100px;
+      height: 100px;
+    }
+    &__img,
+    &__text {
+      @include size(12);
+    }
+    &__text {
+      @include shift-padding(0);
+      
+    }
+    &__img {
+      padding-top: 20px;
+    }
+    .button-std {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  } 
 }
