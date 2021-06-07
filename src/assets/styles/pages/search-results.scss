@@ -1,5 +1,8 @@
+/*~  (Карточка события., выводится на многих страницах, класс "finished" для вывода плашки "завершено") ~*/
 .event-item {
-    padding: 20px 20px 30px 30px;
+    --top-padding:20px;
+    --finish-phrase-height: 30px;
+    padding: var(--top-padding) 20px 30px 30px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -72,6 +75,38 @@
         }
         &__text:after {
             display: none;
+        }
+    }
+    &.finished .finish-phrase {
+        display: flex;
+    }
+    .finish-phrase {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: calc(var(--top-padding) * -1);
+        background-repeat: no-repeat;
+        width: 115px;
+        height: var(--finish-phrase-height);
+        background-image: url("data:image/svg+xml,%3Csvg width='115' height='30' viewBox='0 0 115 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='path-1-inside-1' fill='white'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5 0H0C4.3467 4.52782 3.67473 6.84151 3.06349 8.94611C2.54975 10.715 2.07892 12.3361 4.66667 15C2.09034 17.4627 2.54565 19.0641 3.05669 20.8614C3.66968 23.0174 4.36284 25.4554 0 30H5H115V0H5Z'/%3E%3C/mask%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5 0H0C4.3467 4.52782 3.67473 6.84151 3.06349 8.94611C2.54975 10.715 2.07892 12.3361 4.66667 15C2.09034 17.4627 2.54565 19.0641 3.05669 20.8614C3.66968 23.0174 4.36284 25.4554 0 30H5H115V0H5Z' fill='%23F8F8F8'/%3E%3Cpath d='M0 0V-1H-2.34622L-0.721387 0.692532L0 0ZM3.06349 8.94611L4.02381 9.22502L3.06349 8.94611ZM4.66667 15L5.35765 15.7229L6.08637 15.0263L5.38395 14.3032L4.66667 15ZM3.05669 20.8614L2.09481 21.1349H2.09481L3.05669 20.8614ZM0 30L-0.721387 29.3075L-2.34622 31H0V30ZM115 30V31H116V30H115ZM115 0H116V-1H115V0ZM0 1H5V-1H0V1ZM4.02381 9.22502C4.3288 8.17488 4.72538 6.85121 4.36915 5.174C4.01628 3.51257 2.96149 1.64091 0.721387 -0.692532L-0.721387 0.692532C1.38521 2.88691 2.1678 4.43601 2.4128 5.58952C2.65445 6.72727 2.40942 7.61275 2.10317 8.66721L4.02381 9.22502ZM5.38395 14.3032C4.17956 13.0634 3.79217 12.1751 3.69131 11.4915C3.58625 10.7794 3.75918 10.1362 4.02381 9.22502L2.10317 8.66721C1.85406 9.52494 1.5347 10.5767 1.71273 11.7834C1.89496 13.0185 2.56602 14.2727 3.94939 15.6968L5.38395 14.3032ZM4.01856 20.588C3.75392 19.6572 3.58647 19.0162 3.69216 18.3331C3.7919 17.6885 4.1677 16.8603 5.35765 15.7229L3.97568 14.2771C2.5893 15.6023 1.90461 16.8062 1.71568 18.0273C1.5327 19.2099 1.84842 20.2683 2.09481 21.1349L4.01856 20.588ZM0.721387 30.6925C2.97508 28.3449 4.02682 26.4358 4.37407 24.735C4.72319 23.025 4.32421 21.663 4.01856 20.588L2.09481 21.1349C2.40215 22.2159 2.65624 23.1508 2.41449 24.3349C2.17086 25.5283 1.38775 27.1104 -0.721387 29.3075L0.721387 30.6925ZM5 29H0V31H5V29ZM115 29H5V31H115V29ZM114 0V30H116V0H114ZM5 1H115V-1H5V1Z' fill='%23E5E0E3' mask='url(%23path-1-inside-1)'/%3E%3C/svg%3E%0A");
+        background-size: contain;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 100%;
+        text-transform: capitalize;
+    }
+    @include to(950px){
+        position: relative;
+        border-top-right-radius: 0;
+        padding-top: calc(var(--top-padding) + var(--finish-phrase-height));
+        .finish-phrase {
+            top: 0;
+    
+        }
+        &__text {
+            position: static;
         }
     }
 }

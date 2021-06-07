@@ -1,6 +1,7 @@
 # oon
 <!-- styles -->
 -   align-items center.aic  
+-   force nulling top margin of element.mt-0  
 -   Основной заголовок .title  
 -   Основной заголовок в начале страницы .page-title  
 -   (основной подзаголовок) .subtitle  
@@ -15,6 +16,8 @@
 -  background common styling white.bg-white  
 -   Фиолетовый задний фон.bg-violet  
 -   Оранжевый задний фон.bg-orange  
+-   (добавление закругления рамки) .border-10  
+-   (Карточка события., выводится на многих страницах, класс "finished" для вывода плашки "завершено") .event-item  
 <!-- styles end -->
 
 # CTRL+ALT+S - отправка бандла личного кабинета не дев сервер
