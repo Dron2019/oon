@@ -1,3 +1,4 @@
+import { functions } from 'lodash';
 import React from 'react';
 
 export function CalendarIcon(props) {
@@ -51,6 +52,19 @@ export function PlusButtonIcon(props) {
       <circle cx={15} cy={15} r={15} fill="#991E66" />
       {!props.minus && <rect x={15} y={9} width={1} height={13} fill="white" />}
       <rect x={9} y={15} width={13} height={1} fill="white" />
+    </svg>
+  );
+}
+
+
+export function NoImageIcon(props) {
+  return (
+    <svg width={50} height={50} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0.5" y="0.5" width={49} height={49} rx="9.5" fill="white" stroke="#E5E0E3" />
+      <path d="M16.1074 29.0714L19.5067 25.6721C20.2908 24.888 21.5633 24.8916 22.343 25.6801L30.4646 33.8929" stroke="#9A7E8E" />
+      <path d="M23.7148 27.143L28.6823 22.2597C29.4412 21.5137 30.6514 21.4926 31.4358 22.2117L33.8934 24.4644" stroke="#9A7E8E" />
+      <rect x="16.5" y="16.5" width={17} height={17} rx="1.5" stroke="#9A7E8E" />
+      <circle cx="20.1789" cy="20.1784" r="1.32143" stroke="#9A7E8E" />
     </svg>
   );
 }

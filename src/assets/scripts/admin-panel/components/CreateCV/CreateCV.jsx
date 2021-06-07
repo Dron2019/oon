@@ -8,7 +8,7 @@ import {
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 
-import { PlusButtonIcon } from '../icons/Icons.jsx';
+import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 
 function getFieldsForCV() {
   return {
@@ -75,25 +75,29 @@ function changeState(curState, setState) {
 function InputGroupCV(props) {
   const { field, inWhatGroupIsField, groupBelongsTo } = props;
   const { index } = props;
-
+  
   return (
-    <Field key={index} name={field.name}>
+    <Field key={props.key} name={field.name} {...props}>
         {({
           fieldFormik, // { name, value, onChange, onBlur }
           form: { touched, errors },
           meta,
-        }) => (
-        <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
-            <input
-                title={field.title}
-                className='input-std'
-                type={field.type ? field.type : 'text'}
-                placeholder={field.title} {...fieldFormik} />
-            {meta.touched && meta.error && (
-            <div className="error">{meta.error}</div>
-            )}
-        </div>
-        )}
+        }) => {
+          console.log(fieldFormik);
+          return (
+            <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
+                <input
+                    title={field.title}
+                    name={field.name}
+                    className='input-std'
+                    type={field.type ? field.type : 'text'}
+                    placeholder={field.title} {...fieldFormik} />
+                {meta.touched && meta.error && (
+                <div className="error">{meta.error}</div>
+                )}
+            </div>
+            )
+        }}
     </Field>
   );
 }
@@ -142,21 +146,50 @@ export default function CreateCV() {
 
   const [globalFormState, setGlobalFormState] = useState(getFieldsForCV());
 
+  const [profileImg, setProfileImg] = useState('');
+
+  function handlePhotoInput(evt) {
+    // const format = evt.target.value.split('.').pop();
+    try {
+      const url = URL.createObjectURL(evt.currentTarget.files[0]);
+      setProfileImg(url);
+    } catch {
+      setProfileImg('');
+    }
+    console.log(evt.currentTarget.files[0]);
+  }
+  function handleSubmit(values, form) {
+    console.log(values);
+  }
   return (
     <div className="create-cv-wrapper">
       <div className="page-title text-violet">
         Створити резюме
       </div>
       <EmptyCV/>
-      <Formik initialValues={{}}>
-        <div className="form-std">
+      <Formik initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
+        <Form className="form-std">
           <div className="form-std__subtitle text-violet">
             Створити нове резюме:
           </div>
-          <div className="button-std button-std--violet small">Додати фото</div>
-          <span className="text-gray"> (розмір фото 150х150)</span>
-          <input type="file" name="" id="" />
-          {defaultFields.map(field => <InputGroupCV field={field}/>)
+          {defaultFields.map((field, index) => {
+            if (index === 2) {
+              return (
+                <>
+                  <InputGroupCV field={field} key={field.name + index}/>
+                  <div className="input-file-wrapper">
+                    {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
+                    <label for="cv-photo" className="button-std button-std--violet small mt-0">
+                      Додати фото
+                    </label>
+                    <span className="file-input-text"> (розмір фото 150х150)</span>
+                    <input onInput={handlePhotoInput} type="file" name="my-file" id="cv-photo" accept="image/gif, image/png, image/jpeg" />
+                  </div>
+                </>
+              );
+            }
+            return <InputGroupCV field={field} key={field.name + index}/>;
+          })
           }
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
@@ -177,7 +210,7 @@ export default function CreateCV() {
             globalState={education}
           />
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
-        </div>
+        </Form>
       </Formik>
     </div>
   );

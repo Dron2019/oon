@@ -9,6 +9,9 @@
     top: 25px;
 
   }
+  input[type='file'] {
+    display: none;
+  }
 
 }
 .create-cv-tooltip {
@@ -69,5 +72,27 @@
     -webkit-transform: translateZ(0);
             transform: translateZ(0);
     opacity: 1;
+  }
+}
+
+
+.cv-form-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.file-input-text {
+  color: #9A7E8E;
+}
+.input-file-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  &>* {
+    margin-right: 20px;
+  }
+  .button-std {
+    margin-left: 10px;
   }
 }
