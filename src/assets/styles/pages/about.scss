@@ -18,6 +18,19 @@
     .subtitle {
         line-height: 140%;
     }
+    @include to(768px){
+        padding: 35px 15px;
+        &__left {
+            @include size(12);
+        }
+        &__right {
+            @include size(12);
+            @include shift-left(0);
+        }
+        .subtitle {
+            margin-bottom: 15px;
+        }
+    }
 }
 
 .quarter-circle-decor {
@@ -36,6 +49,10 @@
         bottom: auto;
         top: 0;
         transform: rotate(-90deg);
+    }
+    @include to(575px){
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -58,6 +75,12 @@
     .white-bg-element {
         padding: 30px 50px 36px 50px;
     }
+    @include to(575px){
+        padding: 35px 15px;
+        .white-bg-element {
+            padding: 30px 15px 36px 15px;
+        }
+    }
 }
 
 
@@ -70,6 +93,17 @@
     .white-bg-element {
         @include size(4.8);
         @include shift(0);
+    }
+    @include to(768px){
+        .title {
+            @include size(12);
+            @include shift-left(0);
+            @include shift-right(0);
+            margin-bottom: 15px;
+        }
+        .white-bg-element {
+            @include size(12);
+        }
     }
 }
 
@@ -107,6 +141,21 @@
         position: relative;
         z-index: 2;
     }
+    @include to(575px){
+        .about-block__left {
+            @include size(12);
+            margin-bottom: 15px;
+        }
+        .about-block__right {
+            @include size(12);
+            @include shift-left(0);
+            padding-right: 0;
+        }
+        .about-block__left svg {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
 
 .about-last-block {
@@ -116,5 +165,12 @@
     }
     .button-std:not(:last-of-type){
         margin-right: 20px;
+    }
+    @include to(575px){
+       padding-left: 15px;
+       padding-right: 15px;
+       .button-std~.button-std {
+           margin-top: 15px;
+       }
     }
 }

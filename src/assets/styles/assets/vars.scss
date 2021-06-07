@@ -43,6 +43,9 @@ $color-gray: rgba(233, 233, 233, 1);
   @include to(1440px){
       --header-h: 80px;
   }
+  @include to(575px){
+    --aside-w: 175px;
+  }
 }
 @media screen and (max-width:950px){
   :root {

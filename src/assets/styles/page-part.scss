@@ -1,89 +1,127 @@
 .page-part {
-    position: relative;
-    min-height: 668px;
-    overflow: hidden;
+  position: relative;
+  min-height: 668px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px 37px 50px 40px;
+  --text-bg:#8B0353;
+  &:first-child:not(.self-height) {
+    min-height: 100vh;
+  }
+  &__img {
+    @include size(6.6);
+    @include shift(0);
+    z-index: 1;
     display: flex;
-    flex-wrap: wrap;
-    padding: 50px 37px 50px 40px;
-    --text-bg:#8B0353;
-    &:first-child:not(.self-height) {
-      min-height: 100vh;
+    align-items: flex-end;
+    position: relative;
+    align-self: flex-end;
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+      width: 100%;
+      max-height: 768px;
     }
+  }
+  &__img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 67vw;
+    height: 67vw;
+    background-color: var(--color-white);
+    transform: translate(-10%, 0);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  &__text {
+    @include size(5.4);
+    @include shift(0);
+    background: var(--text-bg);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    color: rgba(242, 214, 231, 1);
+    
+  }
+  &__text:before {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: -50px;
+    width: calc(100% + 50px);
+    height: calc(100% + 100px);
+    background: var(--text-bg);
+    z-index: -1;
+  }
+  &__text p {
+    @include shift-left(0.5);
+    @include shift-right(4);
+    color: rgba(242, 214, 231, 1);
+  }
+  &__text .button-std {
+    margin-top: auto;
+  }
+  &.violet {
+    background: var(--color-violet);
+  }
+  .page-title {
+    text-align: left;
+    margin-bottom: 20px;
+    @include shift-padding-right(2);
+  }
+  .breadcrumbs {
+    margin-bottom: 10px;
+  }
+  .fixed-proportion-wrap {
+    z-index: 2;
+    pointer-events: none;
+    display: none;
+  }
+  @include to(1024px){
+    padding: 50px 15px 50px 20px;
+  }
+  @include to(768px){
+    padding: 25px 15px;
     &__img {
-      @include size(6.6);
-      @include shift(0);
-      z-index: 1;
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-      align-self: flex-end;
-      svg {
-        max-width: 100%;
-        height: auto;
-        display: inline-block;
-        width: 100%;
-        max-height: 768px;
-      }
-    }
-    &__img:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 67vw;
-      height: 67vw;
-      background-color: var(--color-white);
-      transform: translate(-10%, 0);
-      border-radius: 50%;
-      z-index: -1;
+      @include size(12);
     }
     &__text {
-      @include size(5.4);
-      @include shift(0);
-      background: var(--text-bg);
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      z-index: 0;
-      color: rgba(242, 214, 231, 1);
-      
+      @include size(12);
+      margin-left: 0;
+      margin-right: 0;
     }
     &__text:before {
       content: '';
       position: absolute;
-      left: -50px;
-      top: -50px;
-      width: calc(100% + 50px);
+      left: -15px;
+      top: -25px;
+      width: calc(100% + 60px);
       height: calc(100% + 100px);
       background: var(--text-bg);
       z-index: -1;
     }
     &__text p {
-      @include shift-left(0.5);
-      @include shift-right(4);
-      color: rgba(242, 214, 231, 1);
+      margin-left: 0;
+      margin-right: 0;
     }
     &__text .button-std {
-      margin-top: auto;
+      margin-top: 15px;
     }
-    &.violet {
-      background: var(--color-violet);
+    &__img {
+      margin-right: 0;
+      margin-left: 0;
+      width: 100%;
+      margin-top: 30px;
     }
-    .page-title {
-      text-align: left;
-      margin-bottom: 20px;
-      @include shift-padding-right(2);
-    }
-    .breadcrumbs {
-      margin-bottom: 10px;
-    }
-    .fixed-proportion-wrap {
-      z-index: 2;
-      pointer-events: none;
-      display: none;
-    }
-    @include to(1024px){
-      padding: 50px 15px 50px 20px;
+    &__img:after {
+      width: 100vw;
+      height: 100vw;
     }
   }
+}
