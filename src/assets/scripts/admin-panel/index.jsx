@@ -12,7 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import LoginForm from './components/loginForm/index.jsx';
-import store from './stores/userDataStore/index.jsx';
+// import store from './stores/userDataStore/index.jsx';
 
 import Cabinet from './components/cabinet/Cabinet.jsx';
 import ForgotPassword from './components/forms/forgotPassword/index.jsx';
@@ -59,7 +59,7 @@ function App(props) {
 }
 ReactDOM.render(
   <HashRouter history={hashHistory} basename="/">
-      <Provider store={store}>
+      <Provider store={dataStore}>
         <App/>
       </Provider>
   </HashRouter>,

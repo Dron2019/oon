@@ -37,6 +37,14 @@
     p~p {
         margin-top: 1.2em;
     }
+    @include to(575px){
+        padding-left: Min(15px, 16%);
+        padding-right: Min(15px, 16%);
+        &:last-child{
+            padding-left: Min(15px, 8%);
+            padding-right: Min(15px, 16%);
+        }
+    }
 }
 .succes-story-item~.succes-story-item  {
     margin-top: 20px;

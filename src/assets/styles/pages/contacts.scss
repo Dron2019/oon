@@ -56,4 +56,12 @@ body[id*='contact'] {
       @include shift-padding-left(1);
     }
   }
+  @include to(575px){
+    .page-part__img {
+      margin-bottom: 20px;
+    }
+    .text-bg-absolute {
+      display: none;
+    }
+  }
 }
