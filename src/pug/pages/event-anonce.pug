@@ -24,6 +24,9 @@ block scripts
   script(defer src='./assets/scripts/event-anonce.js')
 block content
   .page-part.event-anonce-wrapper
+    .learn-block(data-anonce-filter)
+      button.active Відбудуться
+      button Завершилися
     .on-light-bg-breadcrumbs 
       include ../includes/breadcrumbs.pug
     .page-title.text-violet Анонси подій
