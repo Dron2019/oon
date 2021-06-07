@@ -1,0 +1,64 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'single-event'
+    var id_page = 'id-page-single-event'
+    var class_page = 'class-page-single-event'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/single-event.js')
+block content
+  .page-part.single-event-page
+    +svg('quarter-orange-circle').quarter-circle-decor.left
+    +svg('quarter-orange-circle').quarter-circle-decor.right.top
+    .on-light-bg-breadcrumbs 
+      include ../includes/breadcrumbs.pug
+    .white-bg-element.single-event-wrapper
+      .subtitle-small.text-violet.sigle-event__title Дім (не)безпеки
+      +img('teddy.jpg').border-10.sigle-event__img
+      .event-item__info-wrap.sigle-event__scheldule
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('calendar')
+          .event-item__info-item-text
+            b Дата проведення:
+            div 25.11.2020 – 10.12.2020
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('clock')
+          .event-item__info-item-text
+            b Час проведення:
+            div 10:00-16:00
+        .event-item__info-item
+          .event-item__info-item-icon 
+            +svg('marker')
+          .event-item__info-item-text
+            b Місце проведення: 
+            div м. Київ, Михайлівська площа
+      .sigle-event__text.text-violet
+        p Студія онлайн-освіти EdEra запустила курс з протидії домашньому насильству «Дім (не)безпеки».
+        p Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим. Студія онлайн-освіти EdEra запустила курс з протидії домашньому насильству «Дім (не)безпеки». Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим.
+        p Онлайн-курс складається з трьох блоків: по чотири лекції про форми, причини, наслідки домашнього насильства та допомогу постраждалим. Студія онлайн-освіти EdEra запустила курс з протидії домашньому насильству «Дім (не)безпеки».
+      .sigle-event__video
+        .fixed-proportion
+          iframe(href="https://fb.watch/52ss-oIXui/" src="https://www.youtube.com/embed/WHKEyK9kOqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen).border-10
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug

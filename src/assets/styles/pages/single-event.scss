@@ -1,0 +1,57 @@
+.single-event-wrapper {
+  --side-padding: 30px;
+  padding-right: var(--side-padding);
+  padding-left: var(--side-padding);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto auto 1fr;
+  gap: 20px 20px;
+  grid-template-areas:
+    "title title"
+    "img text"
+    "scheldule video";
+  .event-item__info-wrap {
+    width: 100%;
+    height: max-content;
+  }
+  z-index: 2;
+  p~p {
+    margin-top: 1.4em;
+  }
+  @include to(1240px){
+    grid-template-columns: 1fr 1fr;
+  }
+  @include to(950px){
+    --side-padding: 15px;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+    "title title"
+    "img img"
+    "text text"
+    "scheldule scheldule"
+    "video video";
+  }
+}
+.single-event-page {
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+
+.sigle-event {
+  &__img { grid-area: img; }
+  &__scheldule { grid-area: scheldule; }
+  &__video { grid-area: video; }
+  &__text { grid-area: text; }
+  &__title { grid-area: title; }
+  &__video .fixed-proportion {
+    padding-bottom: 52.5%;
+  }
+  &__video .fixed-proportion iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
