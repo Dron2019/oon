@@ -43,11 +43,18 @@ function getFieldsForCV() {
     ],
     education: [
       [
-        { name: 'education-name_0', title: 'Назва закладу:', value: '' },
+        { name: 'education-name_0', title: 'Назва закладу:', value: '123' },
         { name: 'education-specialization_0', title: 'Спеціальність:', value: '' },
         { name: 'education-description_0', title: 'Опис повний: (розкажіть, які навички ви отримали у процесі навчання)', value: '' },
         { name: 'education-start_0', title: 'Дата вступу:', value: '' },
         { name: 'education-end_0', title: 'Дата закінчення:', value: '' },
+      ],
+      [
+        { name: 'education-name_1', title: 'Назва закладу:', value: '' },
+        { name: 'education-specialization_1', title: 'Спеціальність:', value: '' },
+        { name: 'education-description_1', title: 'Опис повний: (розкажіть, які навички ви отримали у процесі навчання)', value: '' },
+        { name: 'education-start_1', title: 'Дата вступу:', value: '' },
+        { name: 'education-end_1', title: 'Дата закінчення:', value: '' },
       ],
     ],
   };
@@ -135,6 +142,8 @@ function CreateFieldsSection(props) {
   );
 }
 
+
+
 export default function CreateCV() {
   const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
   const [workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
@@ -144,6 +153,32 @@ export default function CreateCV() {
   const [globalFormState, setGlobalFormState] = useState(getFieldsForCV());
 
   const [profileImg, setProfileImg] = useState('');
+
+
+
+function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue = {}) {
+  // let finalValue = transferedValue;
+  // Object.values(objectArg).forEach(innerValue=>{
+  //   console.log(typeof innerValue.find === 'undefined');
+  //   if (typeof innerValue.find !== 'undefined') {
+  //     innerValue.find(input=>{
+  //       if (input[keyArg] === value) {
+  //         finalValue = input;
+  //         console.log('succes');
+  //         return finalValue;
+  //       } else {
+  //         return false;
+  //       }
+  //     })
+  //   } else if (typeof innerValue.find === 'undefined' && !innerValue.hasOwnProperty('constructor')) {
+  //     findObjectByValueRecursively(innerValue, keyArg, value, finalValue);
+  //   } else {
+  //     return;
+  //   }
+  // });
+
+  // return finalValue;
+}
 
   function handlePhotoInput(evt) {
     // const format = evt.target.value.split('.').pop();
@@ -160,11 +195,13 @@ export default function CreateCV() {
   }
   return (
     <div className="create-cv-wrapper">
+      <button onClick={() => { findObjectByValueRecursively(globalFormState, 'name', 'workAbilities_0'); }}>Пошук</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>
       <EmptyCV/>
       <Formik initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
+      {({ setFieldValue, handleChange, handleBlur, values, errors }) => (
         <Form className="form-std">
           <div className="form-std__subtitle text-violet">
             Створити нове резюме:
@@ -180,7 +217,15 @@ export default function CreateCV() {
                       Додати фото
                     </label>
                     <span className="file-input-text"> (розмір фото 150х150)</span>
-                    <input onInput={handlePhotoInput} type="file" name="my-file" id="cv-photo" accept="image/gif, image/png, image/jpeg" />
+                    <input
+                      onInput={handlePhotoInput}
+                      onChange={(event) => {
+                        setFieldValue('my-file', event.currentTarget.files[0]);
+                      }} 
+                      type="file"
+                      name="my-file"
+                      id="cv-photo"
+                      accept="image/gif, image/png, image/jpeg" />
                   </div>
                 </>
               );
@@ -208,6 +253,7 @@ export default function CreateCV() {
           />
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
         </Form>
+      )}
       </Formik>
     </div>
   );
