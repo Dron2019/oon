@@ -73,31 +73,28 @@ function changeState(curState, setState) {
 
 
 function InputGroupCV(props) {
-  const { field, inWhatGroupIsField, groupBelongsTo } = props;
+  const { field: fieldFromProps, inWhatGroupIsField, groupBelongsTo } = props;
   const { index } = props;
-  
   return (
-    <Field key={props.key} name={field.name} {...props}>
+    <Field key={props.key} name={fieldFromProps.name} {...props}>
         {({
-          fieldFormik, // { name, value, onChange, onBlur }
+          field, // { name, value, onChange, onBlur }
           form: { touched, errors },
           meta,
-        }) => {
-          console.log(fieldFormik);
-          return (
+        }) => (
             <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
                 <input
-                    title={field.title}
-                    name={field.name}
+                    title={fieldFromProps.title}
+                    name={fieldFromProps.name}
                     className='input-std'
-                    type={field.type ? field.type : 'text'}
-                    placeholder={field.title} {...fieldFormik} />
+                    type={fieldFromProps.type ? fieldFromProps.type : 'text'}
+                    placeholder={fieldFromProps.title} {...field} />
                 {meta.touched && meta.error && (
                 <div className="error">{meta.error}</div>
                 )}
             </div>
-            )
-        }}
+        )
+        }
     </Field>
   );
 }
@@ -176,7 +173,7 @@ export default function CreateCV() {
             if (index === 2) {
               return (
                 <>
-                  <InputGroupCV field={field} key={field.name + index}/>
+                  <InputGroupCV onSubmit={handleSubmit} field={field} key={field.name + index}/>
                   <div className="input-file-wrapper">
                     {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
                     <label for="cv-photo" className="button-std button-std--violet small mt-0">

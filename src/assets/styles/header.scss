@@ -219,4 +219,17 @@
       }
     }
   }
+  @include to(575px){
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    &__form {
+      max-width: none;
+    }
+    &__decor {
+      width: 60px;
+      height: 60px;
+    }
+  }
 }

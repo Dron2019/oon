@@ -12,6 +12,10 @@
   input[type='file'] {
     display: none;
   }
+  .empty-cv-block {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
   @include to(575px){
     &>*~* {
       margin-top: 15px;
@@ -106,5 +110,11 @@
   }
   .button-std {
     margin-left: 10px;
+  }
+  @include to(575px){
+    flex-wrap: wrap;
+    .file-input-text {
+      margin-top: 15px;
+    }
   }
 }
