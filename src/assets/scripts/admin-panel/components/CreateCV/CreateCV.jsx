@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
-import _ from 'lodash';
+import _, { isArray } from 'lodash';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
@@ -11,20 +11,28 @@ import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 
 function getFieldsForCV() {
+  if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
   return {
     groupNames: {
       workExpirience: 'Досвід роботи',
       education: 'Освіта',
       workAbilities: 'Професійні навички',
+      defaultFields: '1',
     },
     defaultFields: [
-      { name: 'cvName', title: 'Назва шаблону:', value: '' },
-      { name: 'name', title: 'Ім\'я:', value: '' },
-      { name: 'surname', title: 'Прізвище:', value: '' },
-      { name: 'tel', title: 'Телефон:', value: '' },
-      { name: 'email', title: 'E-mail:', value: '' },
-      { name: 'adress', title: 'Адреса: (м.Київ, вул.Хрещатик 25):', value: '' },
-      { name: 'self-info', title: 'Коротка інформація про себе (розкажіть хто ви)', value: '' },
+      [
+        { name: 'cvName', title: 'Назва шаблону:', value: '' },
+        { name: 'name', title: 'Ім\'я:', value: '' },
+        { name: 'surname', title: 'Прізвище:', value: '' },
+      ],
+    ],
+    defaultFields1: [
+      [
+        { name: 'tel', title: 'Телефон:', value: '' },
+        { name: 'email', title: 'E-mail:', value: '' },
+        { name: 'adress', title: 'Адреса: (м.Київ, вул.Хрещатик 25):', value: '' },
+        { name: 'self-info', title: 'Коротка інформація про себе (розкажіть хто ви)', value: '' },
+      ],
     ],
     workAbilities: [
 
@@ -142,44 +150,64 @@ function CreateFieldsSection(props) {
   );
 }
 
+function CreateFieldsSectionofDefaultFields(props) {
+  const {
+    groupsArrayName,
+    globalState,
+    setGlobalState,
+    globalObject,
+  } = props;
+  return (
+    globalState.map((group, index) => (
+      <>
+          {group.map(field => <InputGroupCV groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
+      </>
+    ))
+  );
+}
 
 
 export default function CreateCV() {
+  const [groupNames, setDefaultNames] = useState(getFieldsForCV().groupNames);
   const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
+  const [defaultFields1, setDefaultFields1] = useState(getFieldsForCV().defaultFields1);
   const [workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
   const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
   const [education, setEducation] = useState(getFieldsForCV().education);
 
-  const [globalFormState, setGlobalFormState] = useState(getFieldsForCV());
+  const [globalFormState, setGlobalFormState] = useState({
+    groupNames,
+    defaultFields,
+    defaultFields1,
+    workAbilities,
+    workExpirience,
+    education
+  });
 
   const [profileImg, setProfileImg] = useState('');
 
-
-
-function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue = {}) {
-  // let finalValue = transferedValue;
-  // Object.values(objectArg).forEach(innerValue=>{
-  //   console.log(typeof innerValue.find === 'undefined');
-  //   if (typeof innerValue.find !== 'undefined') {
-  //     innerValue.find(input=>{
-  //       if (input[keyArg] === value) {
-  //         finalValue = input;
-  //         console.log('succes');
-  //         return finalValue;
-  //       } else {
-  //         return false;
-  //       }
-  //     })
-  //   } else if (typeof innerValue.find === 'undefined' && !innerValue.hasOwnProperty('constructor')) {
-  //     findObjectByValueRecursively(innerValue, keyArg, value, finalValue);
-  //   } else {
-  //     return;
-  //   }
-  // });
-
-  // return finalValue;
-}
-
+  useEffect(() => {
+    localStorage.setItem('CV', JSON.stringify(globalFormState));
+  }, [globalFormState]);
+  function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue = {}) {
+    function geEntries(object) {
+      return Object.entries(object);
+    }
+    geEntries(objectArg).forEach((val) => {
+      console.log(val[1]);
+    });
+  }
+  function setGlobalStateAndAddItToStorage() {
+    setGlobalFormState({
+      groupNames,
+      defaultFields,
+      defaultFields1,
+      workAbilities,
+      workExpirience,
+      education,
+    });
+    
+  }
   function handlePhotoInput(evt) {
     // const format = evt.target.value.split('.').pop();
     try {
@@ -188,25 +216,26 @@ function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue 
     } catch {
       setProfileImg('');
     }
-    console.log(evt.currentTarget.files[0]);
   }
   function handleSubmit(values, form) {
     console.log(values);
+    localStorage.setItem('cv-init-fields', JSON.stringify(values));
+    setGlobalStateAndAddItToStorage();
   }
   return (
     <div className="create-cv-wrapper">
-      <button onClick={() => { findObjectByValueRecursively(globalFormState, 'name', 'workAbilities_0'); }}>Пошук</button>
+      <button onClick={() => { findObjectByValueRecursively(globalFormState, 'name', 'name'); }}>Пошук</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>
       <EmptyCV/>
-      <Formik initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
+      <Formik initialValues={JSON.parse(localStorage.getItem('cv-init-fields')) || {}} onSubmit={handleSubmit} validator={() => ({})}>
       {({ setFieldValue, handleChange, handleBlur, values, errors }) => (
         <Form className="form-std">
           <div className="form-std__subtitle text-violet">
             Створити нове резюме:
           </div>
-          {defaultFields.map((field, index) => {
+          {/* {defaultFields.map((field, index) => {
             if (index === 2) {
               return (
                 <>
@@ -232,7 +261,37 @@ function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue 
             }
             return <InputGroupCV field={field} key={field.name + index}/>;
           })
-          }
+          } */}
+          <CreateFieldsSectionofDefaultFields
+            noBorder={true}
+            globalObject={getFieldsForCV()}
+            setGlobalState={setDefaultFields}
+            groupsArrayName={getFieldsForCV().groupNames.defaultFields}
+            globalState={defaultFields}
+          />
+          <div className="input-file-wrapper">
+            {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
+            <label for="cv-photo" className="button-std button-std--violet small mt-0">
+              Додати фото
+            </label>
+            <span className="file-input-text"> (розмір фото 150х150)</span>
+            <input
+              onInput={handlePhotoInput}
+              onChange={(event) => {
+                setFieldValue('my-file', event.currentTarget.files[0]);
+              }} 
+              type="file"
+              name="my-file"
+              id="cv-photo"
+              accept="image/gif, image/png, image/jpeg" />
+          </div>
+          <CreateFieldsSectionofDefaultFields
+            noBorder={true}
+            globalObject={getFieldsForCV()}
+            setGlobalState={setDefaultFields1}
+            groupsArrayName={getFieldsForCV().groupNames.defaultFields1}
+            globalState={defaultFields1}
+          />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setWorkAbilities}
