@@ -17,6 +17,7 @@ export default function (props) {
       placeholder: 'Уведіть ваше запитання:',
       validation: (value) => {
         if (!value.length) return 'Введіть ваше повідомлення';
+        return undefined;
       },
     },
   ];
@@ -24,17 +25,20 @@ export default function (props) {
         <div className="cabinet-inner-double-part-wrapper">
             {props.title === false ? '' : <div className="title text-violet uppercased">Послуги консультанта з пошуку роботи </div>}
             <div className="white-bg-element with-padding cabinet-inner-double-part-wrapper__left">
-                Кар’єрний хаб пропонує жінкам, постраждалим 
-                від домашнього / гендерно зумовленого насильства,
-                послуги для покращення професійних навичок та успішного працевлаштування. 
-                Фахівці і фахівчині дотримуються індивідуального підходу до оцінки потреб і можливостей кожної жінки та допомагають
+                Кар’єрний хаб пропонує жінкам, постраждалим
+                 від домашнього / гендерно зумовленого насильства,
+                послуги для покращення професійних навичок та успішного працевлаштування.
+                Фахівці і фахівчині дотримуються індивідуального підходу
+                  до оцінки потреб і можливостей кожної жінки та допомагають
                 побудувати персональну стратегію для досягнення вашої мети.
             </div>
             <div className="cabinet-inner-double-part-wrapper__right white-bg-element">
             <Formik
                 initialValues={(() => {
                   const myObject = {};
-                  consultQuestionInitForm.forEach(element => myObject[element.name] = element.initialValue);
+                  consultQuestionInitForm.forEach((element) => {
+                    myObject[element.name] = element.initialValue;
+                  });
                   return myObject;
                 })()}
                 onSubmit={
@@ -50,7 +54,7 @@ export default function (props) {
                     {consultQuestionInitForm.map(configField => <Field validate={configField.validation} name={configField.name} className="input-std">
                             {({
                               field, // { name, value, onChange, onBlur }
-                              form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                              form: { touched, errors },
                               meta,
                             }) => (
                             <div className={`input-group ${meta.error ? 'unfilled' : ''}`}>

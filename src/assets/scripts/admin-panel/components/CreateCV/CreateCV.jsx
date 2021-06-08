@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
-import _, { isArray } from 'lodash';
+import _, { concat, isArray } from 'lodash';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
@@ -88,10 +88,12 @@ function changeState(curState, setState) {
 
 
 function InputGroupCV(props) {
-  const { field: fieldFromProps, inWhatGroupIsField, groupBelongsTo } = props;
-  const { index } = props;
+  const {
+    field: fieldFromProps, inWhatGroupIsField, groupBelongsTo, index,
+  } = props;
+  console.log(props);
   return (
-    <Field key={props.key} name={fieldFromProps.name} {...props}>
+    <Field key={index} name={fieldFromProps.name} {...props}>
         {({
           field, // { name, value, onChange, onBlur }
           form: { touched, errors },
@@ -132,19 +134,24 @@ function CreateFieldsSection(props) {
   } = props;
   return (
     globalState.map((group, index) => (
-      <div className="input-section fade-in-fwd">
+      <div key={`${groupsArrayName}${index}`} className="input-section fade-in-fwd" key={index}>
           <div className="input-section__title text-violet">{groupsArrayName} {index + 1}</div>
           {index === 0
             ? <PlusButton
                 toClick={ evt => changeState(globalState, setGlobalState)}
                 title="Додати навичку"/>
-            : <PlusButton
-              toClick={ evt => deleteGroupFromState(globalState, setGlobalState, index)}
-              title="Видалити навичку"
-              minus={true}
-            />
+            : <div className="double-plus-buttons">
+              <PlusButton
+                  toClick={ evt => changeState(globalState, setGlobalState)}
+                  title="Додати навичку"/>
+              <PlusButton
+                toClick={ evt => deleteGroupFromState(globalState, setGlobalState, index)}
+                title="Видалити навичку"
+                minus={true}
+              />
+            </div>
           }
-          {group.map(field => <InputGroupCV groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
+          {group.map((field, i) => <InputGroupCV key={`${field.name}${index}`} groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={i}/>)}
       </div>
     ))
   );
@@ -160,7 +167,7 @@ function CreateFieldsSectionofDefaultFields(props) {
   return (
     globalState.map((group, index) => (
       <>
-          {group.map(field => <InputGroupCV groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
+          {group.map((field, i) => <InputGroupCV key={i.toString() + groupsArrayName} groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
       </>
     ))
   );
@@ -174,6 +181,7 @@ export default function CreateCV() {
   const [workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
   const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
   const [education, setEducation] = useState(getFieldsForCV().education);
+  const [profileImg, setProfileImg] = useState('');
 
   const [globalFormState, setGlobalFormState] = useState({
     groupNames,
@@ -181,22 +189,14 @@ export default function CreateCV() {
     defaultFields1,
     workAbilities,
     workExpirience,
-    education
+    education,
   });
 
-  const [profileImg, setProfileImg] = useState('');
 
   useEffect(() => {
     localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
-  function findObjectByValueRecursively(objectArg, keyArg, value, transferedValue = {}) {
-    function geEntries(object) {
-      return Object.entries(object);
-    }
-    geEntries(objectArg).forEach((val) => {
-      console.log(val[1]);
-    });
-  }
+
   function setGlobalStateAndAddItToStorage() {
     setGlobalFormState({
       groupNames,
@@ -206,10 +206,8 @@ export default function CreateCV() {
       workExpirience,
       education,
     });
-    
   }
   function handlePhotoInput(evt) {
-    // const format = evt.target.value.split('.').pop();
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);
       setProfileImg(url);
@@ -224,46 +222,19 @@ export default function CreateCV() {
   }
   return (
     <div className="create-cv-wrapper">
-      <button onClick={() => { findObjectByValueRecursively(globalFormState, 'name', 'name'); }}>Пошук</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>
       <EmptyCV/>
       <Formik initialValues={JSON.parse(localStorage.getItem('cv-init-fields')) || {}} onSubmit={handleSubmit} validator={() => ({})}>
-      {({ setFieldValue, handleChange, handleBlur, values, errors }) => (
+      {({
+        setFieldValue, handleChange, handleBlur, values, errors,
+      }) => (
         <Form className="form-std">
           <div className="form-std__subtitle text-violet">
             Створити нове резюме:
           </div>
-          {/* {defaultFields.map((field, index) => {
-            if (index === 2) {
-              return (
-                <>
-                  <InputGroupCV onSubmit={handleSubmit} field={field} key={field.name + index}/>
-                  <div className="input-file-wrapper">
-                    {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
-                    <label for="cv-photo" className="button-std button-std--violet small mt-0">
-                      Додати фото
-                    </label>
-                    <span className="file-input-text"> (розмір фото 150х150)</span>
-                    <input
-                      onInput={handlePhotoInput}
-                      onChange={(event) => {
-                        setFieldValue('my-file', event.currentTarget.files[0]);
-                      }} 
-                      type="file"
-                      name="my-file"
-                      id="cv-photo"
-                      accept="image/gif, image/png, image/jpeg" />
-                  </div>
-                </>
-              );
-            }
-            return <InputGroupCV field={field} key={field.name + index}/>;
-          })
-          } */}
           <CreateFieldsSectionofDefaultFields
-            noBorder={true}
             globalObject={getFieldsForCV()}
             setGlobalState={setDefaultFields}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields}
@@ -271,7 +242,7 @@ export default function CreateCV() {
           />
           <div className="input-file-wrapper">
             {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
-            <label for="cv-photo" className="button-std button-std--violet small mt-0">
+            <label htmlFor="cv-photo" className="button-std button-std--violet small mt-0">
               Додати фото
             </label>
             <span className="file-input-text"> (розмір фото 150х150)</span>
@@ -279,14 +250,13 @@ export default function CreateCV() {
               onInput={handlePhotoInput}
               onChange={(event) => {
                 setFieldValue('my-file', event.currentTarget.files[0]);
-              }} 
+              }}
               type="file"
               name="my-file"
               id="cv-photo"
               accept="image/gif, image/png, image/jpeg" />
           </div>
           <CreateFieldsSectionofDefaultFields
-            noBorder={true}
             globalObject={getFieldsForCV()}
             setGlobalState={setDefaultFields1}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields1}
