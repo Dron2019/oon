@@ -15,6 +15,9 @@
             width: 100%;
         }
     }
+    @include to(575px){
+        padding-top: 65px;
+    }
 
 }
 
@@ -223,6 +226,11 @@
         &__right {
             @include size(12);
             @include shift(0);
+        }
+    }
+    @include to(575px){
+        button[type='submit']{
+            margin-top: 10px;
         }
     }
 }

@@ -6,7 +6,7 @@
     padding-right: Min(170px, 16%);
     display: flex;
     flex-direction: column;
-    &:last-child{
+    &:last-child {
         padding-left: Min(85px, 8%);
         padding-right: Min(170px, 16%);
     }
@@ -33,6 +33,15 @@
     }
     p~p {
         margin-top: 1.2em;
+    }
+    @include to(575px){
+        padding-bottom: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+        &:last-child {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
     }
 }
 .webinar-story-item~.webinar-story-item  {

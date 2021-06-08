@@ -49,6 +49,16 @@
         padding-left: var(--page-side-fields);
         padding-right: var(--page-side-fields);
     }
+    @include to(575px){
+        form {
+            padding: 20px;
+       }
+       .form-group {           
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
 }
 
 .file-input-group {

@@ -92,7 +92,7 @@
     --padding:15px;
   }
   @include to(575px){
-    --outline-padding:15px;
+    --outline-padding: 0px;
     button.button-std,
     .button-std {
       margin-left: 0;

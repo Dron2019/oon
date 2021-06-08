@@ -183,6 +183,12 @@
         &__head {
             flex-wrap: nowrap;
         }
+        &__single-mess {
+            padding-bottom: 20px;
+        }
+        &__single-mess~&__single-mess {
+            margin-top: 15px;
+        }
     }
 }
 .question-item~.question-item {

@@ -67,7 +67,7 @@ export default function (props) {
                         </Field>)}
                     <div className="input-group df aic wrap">
                         <a className="text-violet underlined " onClick={() => history.push(routes.questionsHistory)}>Історія запитань</a>
-                        <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
+                        <button type='submit' className="button-std button-std--violet small ">Надіслати запитання психологу</button>
                     </div>
                 </Form>
             </Formik>

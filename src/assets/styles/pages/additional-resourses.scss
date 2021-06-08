@@ -20,4 +20,7 @@
             text-decoration: underline;
         }
     }
+    @include to(575px){
+        padding: 15px;
+    }
 }

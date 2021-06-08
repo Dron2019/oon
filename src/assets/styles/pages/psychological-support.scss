@@ -56,6 +56,19 @@
         right: 50%;
         transform: translateX(calc(50vw - 175px + var(--page-side-fields)));
     }
+    @include to(575px){
+      padding-top: 35px;
+      padding-bottom: 35px;
+      padding-left: 15px;
+      padding-right: 15px;
+      .quarter-circle-decor {
+        right: 0;
+        transform: none;
+      }
+      .button-std~.button-std {
+        margin-top: 10px;
+      }
+    }
     
 }
 .accordeon-item {
@@ -166,8 +179,8 @@
     @include to(575px){
       --decor-size: 18px;
       &__inner>* {
-        text-indent: -30px;
-        padding-left: 30px
+        text-indent: 0px;
+        padding-left: 0px
       }
     }
   }

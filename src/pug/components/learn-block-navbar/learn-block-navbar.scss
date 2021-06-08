@@ -45,9 +45,25 @@
     @include to(575px){
         flex-direction: column;
         // height: auto;
-        border-radius: 10px;
+        border-radius: 0 0 0 10px;
         right: 0px;
         top: 0px;
+        --self-height: 46px;
+        --padding-for-decor:5px;
+        padding: var(--padding-for-decor);
+        &:after {
+            content: '';
+            background-color: var(--color-white);
+            width: calc(100% - var(--padding-for-decor) * 2);
+            left: calc(var(--padding-for-decor));
+            top: calc(var(--padding-for-decor) + 33px);
+            height: var(--padding-for-decor);
+            position: absolute;
+            pointer-events: none;
+        }
+        &:hover:after {
+            opacity: 0;
+        }
         &>*{
             padding: 10px 10px;
         }
@@ -61,6 +77,7 @@
         //     pointer-events: all;
         // }
         &>*:first-child {
+            // border-radius: 0 0 10px 10px;
             border-radius: 0;
             margin-left: 0;
         }

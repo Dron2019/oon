@@ -206,6 +206,9 @@ body {
       transform: none;
     }
   }
+  @include to(575px){
+    height: 40px;
+  }
 
 }
 

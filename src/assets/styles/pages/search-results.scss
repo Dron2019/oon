@@ -99,7 +99,9 @@
     }
     @include to(950px){
         position: relative;
-        border-top-right-radius: 0;
+        &.event-item-online {
+            border-top-right-radius: 0;
+        }
         padding-top: calc(var(--top-padding) + var(--finish-phrase-height));
         .finish-phrase {
             top: 0;
@@ -107,6 +109,19 @@
         }
         &__text {
             position: static;
+        }
+    }
+    @include to(575px){
+        --top-padding:15px;
+        padding: 15px;
+        &.finished {
+            border-top-right-radius: 0;
+        }
+        &__text {
+            padding-right: 0;
+        }
+        &>*:last-child {
+            margin-bottom: 0;
         }
     }
 }

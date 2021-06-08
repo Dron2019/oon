@@ -165,6 +165,15 @@
             display: none;
         }
     }
+    @include to(575px){
+        &>*~* {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        &__info-wrap {
+            padding: 15px;
+        }
+    }
 }
 .event-item~.event-item {
     margin-top: 20px;
