@@ -7,8 +7,9 @@ import {
 } from 'formik';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
-
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
+import { getCV } from '../../stores/CVStore/cv-actions.jsx';
+import dataStore from '../../stores/userDataStore/index.jsx';
 
 function getFieldsForCV() {
   if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
@@ -222,6 +223,7 @@ export default function CreateCV() {
   }
   return (
     <div className="create-cv-wrapper">
+      <button onClick={()=>{dataStore.dispatch(getCV())}}>some</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>
