@@ -60,6 +60,7 @@ export function ajax_setProfileData(data) {
     axios.post(GET_PROFILE_DATA_URL, sendData)
       .then(() => {
         dataStore.dispatch(resetPending());
+        dataStore.dispatch(ajax_getProfileData());
       })
       .catch(() => {
         dataStore.dispatch(resetPending());

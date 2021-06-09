@@ -223,7 +223,7 @@ export default function CreateCV() {
   }
   return (
     <div className="create-cv-wrapper">
-      <button onClick={()=>{dataStore.dispatch(getCV())}}>some</button>
+      <button onClick={() => { dataStore.dispatch(getCV()); }}>some</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>
