@@ -13,6 +13,7 @@ import pendingStatusStore from '../pendingStatusStore/index.jsx';
 import registerWorkerFormReducer from '../registerWorkerFormReducer/index.jsx';
 import registerConsultFormReducer from '../registerConsultFormReducer/index.jsx';
 import profileInfoReducers from '../profileInfoStore/profileInfoStore.jsx';
+import cvReducer from '../CVStore/cv-reducer.jsx';
 
 import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 
@@ -57,12 +58,13 @@ const rootReducer = combineReducers(
     registerWorkerFormReducer,
     registerConsultFormReducer,
     profileInfoReducers,
+    cvReducer,
   },
 );
 
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(thunk),
-  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
 ));
 export default store;

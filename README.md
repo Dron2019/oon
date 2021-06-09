@@ -23,3 +23,6 @@
 <!-- styles end -->
 
 # CTRL+ALT+S - отправка бандла личного кабинета не дев сервер
+
+#### Ведущее хранилище лежит в:
+##### src/assets/scripts/admin-panel/stores/userDataStore/index.jsx

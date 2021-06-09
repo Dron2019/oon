@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-export default function() {
-    return (
-        <svg className="loader-std" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{margin: 'auto', display: 'block'}}  viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+export default function Loader() {
+  return (
+        <svg className="loader-std" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{ margin: 'auto', display: 'block' }} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <g transform="rotate(0 50 50)">
                 <rect x={49} y="22.5" rx={1} ry="8.5" width={2} height={17} fill="#991e66">
                 <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1.5384615384615383s" begin="-1.4979757085020244s" repeatCount="indefinite" />
@@ -158,5 +158,5 @@ export default function() {
             </g>
             </svg>
 
-    )
+  );
 }

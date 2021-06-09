@@ -25,10 +25,20 @@
         background: var(--color-violet);
         color: var(--color-white);
     }
+    @include to(575px){
+        flex-wrap: wrap;
+        border-radius: 10px;
+        &>* {
+            width: 100%;
+        }
+    }
 }
 .login-tabs-head {
     padding: 0 30px;
     .subtitle {
         margin-bottom: 20px;
+    }
+    @include to(575px){
+        padding: 15px;
     }
 }

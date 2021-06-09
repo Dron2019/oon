@@ -9,6 +9,7 @@
   flex-direction: column;
   width: min-content;
   position: relative;
+  overflow: hidden;
   z-index: 1;
   width: 100%;
   // &:after {
@@ -92,7 +93,7 @@
     --padding:15px;
   }
   @include to(575px){
-    --outline-padding: 0px;
+    --outline-padding: 10px;
     button.button-std,
     .button-std {
       margin-left: 0;

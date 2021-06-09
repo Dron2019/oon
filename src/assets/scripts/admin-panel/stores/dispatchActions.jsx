@@ -17,6 +17,12 @@ export const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 
 
 export const GET_MESSAGES = 'GET_MESSAGES';
+
+export const CV_GET = 'CV_GET';
+export const CV_SEND = 'CV_SEND';
+
+
+
 export function login(additionalValue = {}) {
   const obj = Object.assign({ type: 'LOGIN', additionalValue });
   return obj;

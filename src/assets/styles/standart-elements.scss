@@ -18,6 +18,9 @@ body {
   @include to(1024px){
     width: 100vw;
   }
+  @include to(575px){
+    overflow: hidden;
+  }
 
 }
 .page__content {

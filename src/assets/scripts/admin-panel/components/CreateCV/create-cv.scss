@@ -44,6 +44,10 @@
 
   }
   @include to(575px){
+    .empty-cv-block,
+    form {
+      @include size(12);
+    }
     &>*~* {
       margin-top: 15px;
     }
@@ -53,6 +57,9 @@
     }
     .empty-cv-block .subtitle-small {
       margin-bottom: 15px;
+    }
+    .cv-form-img {
+      margin-bottom: 10px;
     }
   }
 
