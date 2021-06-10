@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-restricted-syntax */
 const routes = [
   {
@@ -42,7 +43,7 @@ const cabinetRoutes = [
   { name: 'onlineConsultationRequest', path: '/cabinet/onlineConsultationRequest', title: 'Запит на онлайн консультацію' },
   { name: 'createConsultQuestion', path: '/cabinet/createConsultQuestion', title: 'Створити запитання' },
   { name: 'workConsultation', path: '/cabinet/work-consultation', title: 'Послуги консультанта з пошуку роботи' },
-  
+  { name: 'psychoQuestionCreate', path: '/cabinet/psychoQuestionCreate', title: 'Поставити запитання психологу' },
 ];
 const routesMap = {};
 const routesMapSidebar = [];

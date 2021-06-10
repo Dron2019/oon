@@ -8,6 +8,7 @@ import ProfileEditor from '../components/profileEditor/profileEditor.jsx';
 import FAQ from '../components/faq/faq.jsx';
 import UserCV from '../components/UserCV/UserCVs.jsx';
 import CreateCV from '../components/CreateCV/CreateCV.jsx';
+import PsychoQuestionCreate from '../components/PsychoQuestionCreate/PsychoQuestionCreate.jsx';
 
 export default [
   {
@@ -36,5 +37,8 @@ export default [
   },
   {
     title: '', exact: false, route: '/cabinet/create-cv', component: <CreateCV/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/psychoQuestionCreate', component: <PsychoQuestionCreate/>,
   },
 ];

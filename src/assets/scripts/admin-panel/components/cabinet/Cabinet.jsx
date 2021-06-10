@@ -70,7 +70,7 @@ export default function Cabinet(props) {
     ['Прийняті запити на консультацію', routes.cabinet],
   ];
   const psychoMenus = [
-    ['Створити запитання ', '/cabinet/create-psycho-question'],
+    ['Створити запитання ', routes.psychoQuestionCreate],
     ['Історія запитань ', '/cabinet/ '],
   ];
   function handleMobileMenuClick(evt) {
