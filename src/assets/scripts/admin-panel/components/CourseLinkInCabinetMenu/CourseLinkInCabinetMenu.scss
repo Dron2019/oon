@@ -1,0 +1,28 @@
+.outer-course-block {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  left: 0;
+  border-radius: 10px;
+  background: var(--color-white);
+  --v-padding: 10px;
+  --h-padding: 10px;
+  padding: var(--v-padding) var(--h-padding);
+  overflow: hidden;
+  z-index: 0;
+  text-decoration: none;
+  color: inherit;
+  svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    transform: translate(35%, 0);
+    z-index: -1;
+  }
+  p {
+    font-size: 10px;
+    line-height: 1.4em;
+  }
+}

@@ -26,6 +26,7 @@ import CreateConsultQuestion from '../create-consult-question/CreateConsultQuest
 import QuestionsHistory from '../questions-history/QuestionsHistory.jsx';
 import OnlineConsultationRequest from '../online-consultation-request/OnlineConsultationRequest.jsx';
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
+import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
 export default function Cabinet(props) {
   const isLogined = useSelector(state => state.isLogined);
@@ -143,6 +144,7 @@ export default function Cabinet(props) {
             Вийти: {userName.toString()}
           </div>
           <div className="button-std button-std--white small">Звортній зв'язок</div>
+          <CourseLinkInCabinetMenu href="https://goodle.com" target='_blank'/>
         </div>
         <div className="content">
           <Switch>

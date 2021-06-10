@@ -72,7 +72,13 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 0;
-        max-width: var(--cabinet-menu-width);
+        max-width: calc(var(--cabinet-menu-width) + 100px);
+
+        width: var(--cabinet-menu-width);
+        left: calc(var(--side-padding) * -1);
+        transform: translate(0%, -50%);
+        z-index: 0;
+        max-width: none;
     }
     
     .text {
@@ -188,6 +194,17 @@
             margin-top: 5px;
         }
     }
+}
+
+.menu {
+    position: relative;
+    --online-course-h: 95px;
+    margin-bottom: var(--online-course-h);
+    overflow: visible;
+    .outer-course-block {
+        margin-top: 10px;
+    }
+
 }
 .quit-button{
     width: 180px;
