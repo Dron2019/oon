@@ -5,11 +5,13 @@ import _, { concat, isArray } from 'lodash';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
+import { useSelector } from 'react-redux';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
-import { getCV } from '../../stores/CVStore/cv-actions.jsx';
+import { getCV, sendCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
+import ErrorMessage from '../../components/error-message/ErrorMessage.jsx';
 
 function getFieldsForCV() {
   if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
@@ -92,7 +94,6 @@ function InputGroupCV(props) {
   const {
     field: fieldFromProps, inWhatGroupIsField, groupBelongsTo, index,
   } = props;
-  console.log(props);
   return (
     <Field key={index} name={fieldFromProps.name} {...props}>
         {({
@@ -183,7 +184,8 @@ export default function CreateCV() {
   const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
   const [education, setEducation] = useState(getFieldsForCV().education);
   const [profileImg, setProfileImg] = useState('');
-
+  const [imgBlob, setImgBlob] = useState('');
+  const errorMessage = useSelector(store => store.loginStatusReducer.error);
   const [globalFormState, setGlobalFormState] = useState({
     groupNames,
     defaultFields,
@@ -212,14 +214,26 @@ export default function CreateCV() {
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);
       setProfileImg(url);
+      setImgBlob(evt.currentTarget.files[0]);
     } catch {
       setProfileImg('');
+      setImgBlob('');
     }
   }
   function handleSubmit(values, form) {
     console.log(values);
     localStorage.setItem('cv-init-fields', JSON.stringify(values));
     setGlobalStateAndAddItToStorage();
+
+
+    const cvData = {};
+    cvData.image = imgBlob;
+    const jsonData = {
+      initialValues: values,
+      structure: globalFormState,
+    };
+    cvData.jsonData = jsonData;
+    dataStore.dispatch(sendCV(cvData));
   }
   return (
     <div className="create-cv-wrapper">
@@ -282,6 +296,7 @@ export default function CreateCV() {
             groupsArrayName={getFieldsForCV().groupNames.education}
             globalState={education}
           />
+          {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
         </Form>
       )}

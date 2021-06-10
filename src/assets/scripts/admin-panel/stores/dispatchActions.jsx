@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export const PENDING_ON = 'PENDING_ON';
 export const PENDING_OFF = 'PENDING_OFF';
 
@@ -20,6 +21,7 @@ export const GET_MESSAGES = 'GET_MESSAGES';
 
 export const CV_GET = 'CV_GET';
 export const CV_SEND = 'CV_SEND';
+export const CVs_SAVE = 'CVs_SAVE';
 
 
 export function login(additionalValue = {}) {

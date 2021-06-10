@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable import/no-duplicates */
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
@@ -70,7 +72,6 @@ export default function Cabinet(props) {
     ['Створити запитання ', '/cabinet/create-psycho-question'],
     ['Історія запитань ', '/cabinet/ '],
   ];
-  
   function handleMobileMenuClick(evt) {
     console.log(evt);
     if (evt.target.classList.contains('menu')) {

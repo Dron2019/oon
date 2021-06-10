@@ -111,9 +111,8 @@ export default function ProfileEditorCounter(props) {
   useEffect(() => {
     setCountedFields(countFilledFields(profileEditorFields));
     // eslint-disable-next-line max-len
-    const fieldsLength = profileEditorFields['length'];
+    const fieldsLength = profileEditorFields.length;
     const degreeValue = ((filledFieldsCount(profileEditorFields) * 360).toFixed() / (fieldsLength));
-    console.log(countedFields, degreeValue, fieldsLength);
     setCircleCords(setArcRadius(degreeValue));
     setBorderCords(setBorderArcRadius(degreeValue));
     setBorderCordsInnerBorder(setBorderArcRadius(degreeValue, 75, 5));

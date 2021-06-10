@@ -105,7 +105,7 @@ export default function ProfileEditor(props) {
                     ))}
                     {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
                     {isPending ? <Loader/> : null}
-                    <button type="submit" className="button-std button-std--violet small">Зберегти данні1</button>
+                    <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
                 </Form>
             </Formik>
             <Formik

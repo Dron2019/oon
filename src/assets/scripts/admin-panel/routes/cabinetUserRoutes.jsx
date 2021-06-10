@@ -10,13 +10,31 @@ import UserCV from '../components/UserCV/UserCVs.jsx';
 import CreateCV from '../components/CreateCV/CreateCV.jsx';
 
 export default [
-  { title: '', exact: true, route: '/cabinet', component: <WorkConsultation/> },
-  { title: '', exact: false, route: '/cabinet/work-consultation', component: <WorkConsultation/> },
-  { title: '', exact: false, route: '/cabinet/createConsultQuestion', component: <CreateConsultQuestion/> },
-  { title: '', exact: false, route: '/cabinet/questionsHistory', component: <QuestionsHistory/> },
-  { title: '', exact: false, route: '/cabinet/onlineConsultationRequest', component: <OnlineConsultationRequest/> },
-  { title: '', exact: false, route: '/cabinet/profileEditor', component: <ProfileEditor/> },
-  { title: '', exact: false, route: '/cabinet/faq', component: <FAQ/> },
-  { title: '', exact: false, route: '/cabinet/user-cv', component: <UserCV/> },
-  { title: '', exact: false, route: '/cabinet/create-cv', component: <CreateCV/> },
+  {
+    title: '', exact: true, route: '/cabinet', component: <WorkConsultation/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/work-consultation', component: <WorkConsultation/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/createConsultQuestion', component: <CreateConsultQuestion/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/questionsHistory', component: <QuestionsHistory/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/onlineConsultationRequest', component: <OnlineConsultationRequest/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/profileEditor', component: <ProfileEditor/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/faq', component: <FAQ/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/user-cv', component: <UserCV/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/create-cv', component: <CreateCV/>,
+  },
 ];
