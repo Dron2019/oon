@@ -7,6 +7,15 @@ import {
   PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN,
 } from '../dispatchActions.jsx';
 
+export function logout(addValue) {
+  const obj = { type: 'LOGOUT', payload: addValue };
+  return obj;
+}
+export function login(additionalValue = {}) {
+  const obj = Object.assign({ type: LOGIN, additionalValue });
+  return obj;
+}
+
 export function logoutAsync(addValue) {
   return (dispatch) => {
     const fd = new FormData();
@@ -17,14 +26,7 @@ export function logoutAsync(addValue) {
       });
   };
 }
-export function logout(addValue) {
-  const obj = { type: 'LOGOUT', payload: addValue };
-  return obj;
-}
-export function login(additionalValue = {}) {
-  const obj = Object.assign({ type: LOGIN, additionalValue });
-  return obj;
-}
+
 
 export function setPending() {
   const obj = Object.assign({ type: PENDING_ON });
@@ -157,7 +159,6 @@ export function checkSession() {
   const sendData = new FormData();
   sendData.append('ajax_data', 1);
   sendData.append('id', dataStore.getState().loginStatusReducer.id);
-  console.log();
   return (dispatch) => {
     axios.post(CHECK_SESSION_URL, sendData)
       .then((response) => {

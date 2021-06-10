@@ -3,13 +3,12 @@
 import axios from 'axios';
 import { GET_PROFILE_DATA_URL } from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
-import { setPending, resetPending } from '../userDataStore/actions.jsx';
+import { setPending, resetPending, loginFail,
+  clearError } from '../userDataStore/actions.jsx';
 import {
   GET_PROFILE_DATA,
-  // SEND_PROFILE_DATA,
   SET_PROFILE_DATA,
 } from '../dispatchActions.jsx';
-
 export function setProfileData(data) {
   return {
     type: SET_PROFILE_DATA,
@@ -58,9 +57,24 @@ export function ajax_setProfileData(data) {
   dataStore.dispatch(setPending());
   return () => {
     axios.post(GET_PROFILE_DATA_URL, sendData)
-      .then(() => {
-        dataStore.dispatch(resetPending());
-        dataStore.dispatch(ajax_getProfileData());
+      .then((response) => {
+        switch (response.data.error) {
+          case 1:
+            dataStore.dispatch(ajax_getProfileData());
+            dataStore.dispatch(resetPending());
+            dataStore.dispatch(loginFail(response.data.mess));
+            setTimeout(() => {
+              dataStore.dispatch(clearError());
+            }, 2000);
+            break;
+          default:
+            dataStore.dispatch(resetPending());
+            dataStore.dispatch(loginFail(response.data.mess));
+            setTimeout(() => {
+              dataStore.dispatch(clearError());
+            }, 2000);
+            break;
+        }
       })
       .catch(() => {
         dataStore.dispatch(resetPending());

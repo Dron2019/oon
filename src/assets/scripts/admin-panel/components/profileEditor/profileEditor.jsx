@@ -72,6 +72,8 @@ export default function ProfileEditor(props) {
   const [path1Stroke, setPath1Stroke] = useState({ array: '0 0', offset: 0 });
   const [path2Stroke, setPath2Stroke] = useState({ array: '0 0', offset: 0 });
   const [countedFields, setCountedFields] = useState(countFilledFields(profileEditorFields));
+
+  const [circleCords, setCircleCords] = useState(0);
   useEffect(() => {
     setCountedFields(countFilledFields(profileEditorFields));
     setPath1Stroke({
@@ -82,7 +84,9 @@ export default function ProfileEditor(props) {
       offset: path2.current.getTotalLength(),
       array: `${path2.current.getTotalLength()} ${path2.current.getTotalLength() - (countFilledFields(profileEditorFields) * path2.current.getTotalLength() / 100)}`,
     });
+    setCircleCords(setArcRadius(80));
   }, [profileEditorFields]);
+
   return (
         <div className="profile-editor-wrapper">
             <div className="page-title text-violet uppercased">Редагувати профіль</div>
@@ -90,10 +94,7 @@ export default function ProfileEditor(props) {
                 <div className="text-violet subtitle-small fw-600">Ваш профіль заповнено на:</div>
                 <div className="profile-filling-count-wrapper">
                   <svg width="190" height="190" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle style={{
-                        strokeDasharray: path1Stroke.array,
-                        strokeDashoffset: path1Stroke.offset,
-                      }} cx="95" cy="95" r="95" fill="none"/>
+                      <path id="arc" fill="var(--color-gray)" d={circleCords} stroke="none" fill-rule="evenodd" />
                       <path style={{
                         strokeDasharray: path1Stroke.array,
                         strokeDashoffset: path1Stroke.offset,
@@ -121,7 +122,7 @@ export default function ProfileEditor(props) {
                 validationSchema={SignupSchema}
                 initialValues={initialValues}
                 onSubmit={(values, { setSubmitting }) => {
-                  console.log(values);
+                  // console.log(values);
                   dataStore.dispatch(ajax_setProfileData(values));
                 }}>
                 <Form className="form-std">
@@ -221,4 +222,49 @@ export default function ProfileEditor(props) {
         </div>
 
   );
+}
+
+
+function setArcRadius(endDegree) {
+  function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+
+    return {
+      x: centerX + (radius * Math.cos(angleInRadians)),
+      y: centerY + (radius * Math.sin(angleInRadians)),
+    };
+  }
+
+  /*
+  opts = {
+    cx              <-- center x
+    cy              <-- center y
+    radius          <-- circle radius
+    start_angle     <-- start angle in degrees
+    end_angle       <-- end angle in degrees
+  };
+  */
+  // sector
+  const opts = {
+    cx: 190 / 2,
+    cy: 190 / 2,
+    radius: 190 / 2,
+    start_angle: 35,
+    end_angle: 35 + endDegree,
+  };
+
+  let start = polarToCartesian(opts.cx, opts.cy, opts.radius, opts.end_angle);
+  let end = polarToCartesian(opts.cx, opts.cy, opts.radius, opts.start_angle);
+  let largeArcFlag = opts.end_angle - opts.start_angle <= 180 ? '0' : '1';
+
+  let d = [
+    'M', start.x, start.y,
+    'A', opts.radius, opts.radius, 0, largeArcFlag, 0, end.x, end.y,
+    'L', opts.cx, opts.cy,
+    'Z',
+  ].join(' ');
+
+  // document.getElementById('sector').setAttribute('d', d);
+  // document.getElementById('sector_d_attr').innerHTML = d;
+  return d;
 }
