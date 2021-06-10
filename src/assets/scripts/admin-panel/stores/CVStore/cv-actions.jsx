@@ -1,8 +1,24 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
-import { clearError, CV_GET, CV_SEND, CVs_SAVE } from '../dispatchActions.jsx';
+import {
+  clearError, CV_GET, CV_SEND, CVs_SAVE,
+} from '../dispatchActions.jsx';
 import { GET_CV_URL, SEND_SINGLE_CV_URL } from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';
 import store from '../userDataStore/index.jsx';
+
+export function getCV(data) {
+  return (dispatch) => {
+    axios.get(GET_CV_URL)
+      .then(el => console.log(el.data));
+  };
+}
+export function saveCVsToStore(data) {
+  return {
+    type: CVs_SAVE,
+    payload: data,
+  };
+}
 
 export function sendCV(data) {
   const ID = store.getState().loginStatusReducer.id;
@@ -22,17 +38,5 @@ export function sendCV(data) {
         setTimeout(() => store.dispatch(clearError()), 2000);
         store.dispatch(saveCVsToStore(data.jsonData));
       });
-  };
-}
-export function getCV(data) {
-  return (dispatch) => {
-    axios.get(GET_CV_URL)
-      .then(el => console.log(el.data));
-  };
-}
-export function saveCVsToStore(data) {
-  return {
-    type: CVs_SAVE,
-    payload: data,
   };
 }

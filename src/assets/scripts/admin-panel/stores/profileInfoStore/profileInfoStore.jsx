@@ -1,5 +1,5 @@
 
-import * as Yup from 'yup';
+ 
 import {
   GET_PROFILE_DATA,
   SEND_PROFILE_DATA,
