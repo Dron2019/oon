@@ -3,12 +3,14 @@
 import axios from 'axios';
 import { GET_PROFILE_DATA_URL } from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
-import { setPending, resetPending, loginFail,
-  clearError } from '../userDataStore/actions.jsx';
+import {
+  setPending, resetPending, loginFail, clearError,
+} from '../userDataStore/actions.jsx';
 import {
   GET_PROFILE_DATA,
   SET_PROFILE_DATA,
 } from '../dispatchActions.jsx';
+
 export function setProfileData(data) {
   return {
     type: SET_PROFILE_DATA,
