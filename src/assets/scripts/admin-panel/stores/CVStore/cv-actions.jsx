@@ -25,7 +25,7 @@ export function sendCV(data) {
   const fd = new FormData();
   fd.append('ajax_data', 1);
   fd.append('data', JSON.stringify(data.jsonData));
-  fd.append('img', data.image);
+  fd.append('img[]', data.image);
   fd.append('id', ID);
   return (dispatch) => {
     axios.post(SEND_SINGLE_CV_URL, fd, {

@@ -197,7 +197,7 @@ export default function CreateCV() {
 
 
   useEffect(() => {
-    localStorage.setItem('CV', JSON.stringify(globalFormState));
+    // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
 
   function setGlobalStateAndAddItToStorage() {
@@ -213,7 +213,7 @@ export default function CreateCV() {
 
 
   function createValidationSchema() {
-    const requiredFieldsName = ['name', 'cvName', 'surname', 'phone'];
+    const requiredFieldsName = ['name', 'cvName', 'surname', 'tel'];
     const schemaParams = {
 
     };
@@ -228,7 +228,7 @@ export default function CreateCV() {
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);
       setProfileImg(url);
-      setImgBlob(evt.currentTarget.files);
+      setImgBlob(evt.currentTarget.files[0]);
     } catch {
       setProfileImg('');
       setImgBlob('');
@@ -236,7 +236,7 @@ export default function CreateCV() {
   }
   function handleSubmit(values, form) {
     console.log(values);
-    localStorage.setItem('cv-init-fields', JSON.stringify(values));
+    // localStorage.setItem('cv-init-fields', JSON.stringify(values));
     setGlobalStateAndAddItToStorage();
 
 
@@ -256,7 +256,7 @@ export default function CreateCV() {
         Створити резюме
       </div>
       <EmptyCV/>
-      <Formik validationSchema={createValidationSchema()} initialValues={JSON.parse(localStorage.getItem('cv-init-fields')) || {}} onSubmit={handleSubmit} validator={() => ({})}>
+      <Formik validationSchema={createValidationSchema()} initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
       {({
         setFieldValue, handleChange, handleBlur, values, errors,
       }) => (
