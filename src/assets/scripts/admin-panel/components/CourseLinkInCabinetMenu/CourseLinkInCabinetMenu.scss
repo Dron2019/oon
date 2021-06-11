@@ -34,6 +34,7 @@
   border:1px solid rgba(3, 24, 38, 0.2);
   display: flex;
   justify-content: center;align-items: center;
+  
 }
 .social-icons-wrapper {
   display: flex;
@@ -42,6 +43,9 @@
   .subtitle-small {
     width: 100%;
     margin-bottom: 20px;
+  }
+  @include to(1320px){
+    box-shadow: none;
   }
 }
 .social-icon~.social-icon{

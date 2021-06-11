@@ -197,7 +197,9 @@
 }
 
 .menu {
-    position: relative;
+    @include from(576px){
+        position: relative;
+    }
     --online-course-h: 95px;
     margin-bottom: var(--online-course-h);
     overflow: visible;

@@ -28,7 +28,9 @@ export function sendCV(data) {
   fd.append('img', data.image);
   fd.append('id', ID);
   return (dispatch) => {
-    axios.post(SEND_SINGLE_CV_URL, fd)
+    axios.post(SEND_SINGLE_CV_URL, fd, {
+      headers: {enctype: 'multipart/form-data' },
+    })
       .then((el) => {
         store.dispatch(loginFail('Резюме відправлено'));
       })

@@ -6,7 +6,7 @@ import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
 import { useSelector } from 'react-redux';
-
+import * as Yup from 'yup';
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 import { getCV, sendCV } from '../../stores/CVStore/cv-actions.jsx';
@@ -209,12 +209,26 @@ export default function CreateCV() {
       workExpirience,
       education,
     });
+  };
+
+
+  function createValidationSchema() {
+    const requiredFieldsName = ['name', 'cvName', 'surname', 'phone'];
+    const schemaParams = {
+
+    };
+    requiredFieldsName.forEach((fieldName) => {
+      schemaParams[fieldName] = Yup.string().required('Введіть дані').min(2, 'Введіть дані');
+    });
+
+    console.log(schemaParams);
+    return Yup.object().shape(schemaParams);
   }
   function handlePhotoInput(evt) {
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);
       setProfileImg(url);
-      setImgBlob(evt.currentTarget.files[0]);
+      setImgBlob(evt.currentTarget.files);
     } catch {
       setProfileImg('');
       setImgBlob('');
@@ -242,7 +256,7 @@ export default function CreateCV() {
         Створити резюме
       </div>
       <EmptyCV/>
-      <Formik initialValues={JSON.parse(localStorage.getItem('cv-init-fields')) || {}} onSubmit={handleSubmit} validator={() => ({})}>
+      <Formik validationSchema={createValidationSchema()} initialValues={JSON.parse(localStorage.getItem('cv-init-fields')) || {}} onSubmit={handleSubmit} validator={() => ({})}>
       {({
         setFieldValue, handleChange, handleBlur, values, errors,
       }) => (
