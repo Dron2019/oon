@@ -11,10 +11,10 @@ import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 import { getCV, sendCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
-import ErrorMessage from '../../components/error-message/ErrorMessage.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
 
 function getFieldsForCV() {
-  if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
+  // if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
   return {
     groupNames: {
       workExpirience: 'Досвід роботи',
