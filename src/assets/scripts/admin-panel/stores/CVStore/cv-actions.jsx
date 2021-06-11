@@ -24,12 +24,12 @@ export function sendCV(data) {
   const ID = store.getState().loginStatusReducer.id;
   const fd = new FormData();
   fd.append('ajax_data', 1);
-  fd.append('data', JSON.stringify(data.jsonData));
+  fd.append('data', JSON.stringify(data.jsonData).replace(/'/g, '&rsquo;'));
   fd.append('img[]', data.image);
   fd.append('id', ID);
   return (dispatch) => {
     axios.post(SEND_SINGLE_CV_URL, fd, {
-      headers: {enctype: 'multipart/form-data' },
+      headers: { enctype: 'multipart/form-data' },
     })
       .then((el) => {
         store.dispatch(loginFail('Резюме відправлено'));

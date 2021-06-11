@@ -209,7 +209,7 @@ export default function CreateCV() {
       workExpirience,
       education,
     });
-  };
+  }
 
 
   function createValidationSchema() {

@@ -139,13 +139,13 @@ export default function PsychoQuestionCreate() {
                 validationSchema={(() => {
                   const validation = {};
                   formFields.forEach((field) => {
-                    validation[field.name] = field.validationSchema
+                    validation[field.name] = field.validationSchema;
                   });
                   return Yup.object().shape(validation);
                 })()}
                 initialValues={(() => {
                   const myObject = {};
-                  formFields.forEach((element) => { 
+                  formFields.forEach((element) => {
                     myObject[element.name] = element.initialValue;
                   });
                   return myObject;

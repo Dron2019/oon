@@ -43,7 +43,7 @@
     @include shift(0);
 
   }
-  @include to(575px){
+  @include to(1240px){
     .empty-cv-block,
     form {
       @include size(12);
@@ -61,6 +61,10 @@
     .cv-form-img {
       margin-bottom: 10px;
     }
+  }
+  @include to(575px){
+    margin-left: 0;
+    margin-right: 0;
   }
 
 }

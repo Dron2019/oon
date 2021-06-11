@@ -197,7 +197,7 @@
 }
 
 .menu {
-    @include from(576px){
+    @include from(769px){
         position: relative;
     }
     --online-course-h: 95px;
