@@ -56,18 +56,20 @@ export default function (props) {
   }
   return (
             <div className={setLayoutClassNames()}>
-                <div className="question-item__user-info">
-                  <div>Богдан</div>
-                  <div className="question-item__date-wrapper">
-                      <CalendarIcon/> 14.04.2021
+                {props.userType === 'psycho'
+                && <div className="question-item__user-info">
+                    <p>Богдан</p>
+                    <div className="question-item__date-wrapper">
+                        <CalendarIcon/> 14.04.2021
+                    </div>
+                    <div className="question-item__date-wrapper">
+                        <ClockIcon/>  17:34
+                    </div>
                   </div>
-                  <div className="question-item__date-wrapper">
-                      <ClockIcon/>  17:34
-                  </div>
-                </div>
-                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="closed" />
-                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="new-answer" />
-                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="await" />
+                }
+                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="closed" />
+                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="new-answer" />
+                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="await" />
                 <div
                     className="question-item__head"
                     onClick={() => setDropdown(!dropdowned)}>
