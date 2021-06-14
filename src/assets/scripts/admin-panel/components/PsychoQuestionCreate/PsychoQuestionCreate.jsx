@@ -128,7 +128,7 @@ export default function PsychoQuestionCreate() {
                 </div>
                 )}
             </Field>
-            <div className="input-group df aic">
+            <div className="input-group df aic wrap">
               <Link className="text-violet" to={routes.questionsHistory}>Історія запитань</Link>
               <button type="submit" className="button-std button-std--violet small">Надіслати запитання психологу</button>
             </div>
