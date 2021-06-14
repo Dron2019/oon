@@ -83,7 +83,6 @@
     &__status.closed {
         background-color: #F8F8F8;
         color: #707070;
-
     }
     &.opened &__status.answered {
         background-color: #26BE19;
@@ -169,6 +168,17 @@
     .gray-bg-element {
         margin-top: 35px;
     }
+
+    &.psycho  {
+        position: relative;
+    }
+    &__user-info {
+        position: absolute;
+        bottom: 100%;left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
     @include to(950px){
         &__single-mess {
             max-width: 100%;
@@ -207,5 +217,61 @@
     textarea {
         padding-top: 16px;
         height: 100px;
+    }
+}
+
+.end-question-item {
+    text-decoration: underline;
+    color: rgba(255, 17, 0, 1);
+}
+
+.question-item-form-text-s {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    /* or 12px */
+
+    display: flex;
+    align-items: center;
+
+    color: #AFAFAF;
+}
+.form__group {
+    display: flex;
+    align-items: center;
+    // flex-wrap: wrap;
+    margin-top: 15px;
+    .question-item-form-text-s {
+        width: 33%;
+        margin-left: 10px;
+    }
+    button.button-std {
+        margin-top: 0;
+    }
+    .end-question-item {
+        width: 30%;
+    }
+    @include to(1240px){
+        // .question-item-form-text-s {
+        //     width: auto;
+        // }
+    }
+    @include to(575px){
+        flex-direction: column;
+        align-items: flex-start;
+        .question-item-form-text-s {
+            margin-top: 15px;
+            width: 100%;
+            margin-left: 0;
+            
+        }
+        .end-question-item {
+            margin-top: 15px;
+            width: 100%;
+        }
+        button.button-std {
+            margin-top: 15px;
+            margin-left: auto;
+        }
     }
 }

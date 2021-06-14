@@ -4,7 +4,7 @@ import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 
 export default function (props) {
-  const [status, setStatus] = useState('closed');
+  const [status, setStatus] = useState('await');
   const [dropdowned, setDropdown] = useState(false);
   const [renderWithoutForm, setFormView] = useState(props.noReply);
   const initMessages = props.history || [
@@ -35,10 +35,13 @@ export default function (props) {
     closed: <div className="question-item__status closed">
                     Завершено
                 </div>,
+    new: <div className="question-item__status new">
+                    Нова заявка
+                </div>,
   };
 
   function setLayoutClassNames() {
-    let output = 'question-item';
+    let output = `question-item ${props.userType}`;
     output += dropdowned ? ' opened' : '';
     output += status === 'await' ? '' : ' new-answer';
     output += status === 'closed' ? ' closed' : '';
@@ -53,6 +56,18 @@ export default function (props) {
   }
   return (
             <div className={setLayoutClassNames()}>
+                <div className="question-item__user-info">
+                  <div>Богдан</div>
+                  <div className="question-item__date-wrapper">
+                      <CalendarIcon/> 14.04.2021
+                  </div>
+                  <div className="question-item__date-wrapper">
+                      <ClockIcon/>  17:34
+                  </div>
+                </div>
+                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="closed" />
+                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="new-answer" />
+                <input type="radio" onChange={(evt) => { setStatus(evt.target.value) }} name="test-status-switch" value="await" />
                 <div
                     className="question-item__head"
                     onClick={() => setDropdown(!dropdowned)}>
