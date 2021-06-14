@@ -14,8 +14,6 @@ export default function SingleCV(props) {
     console.log(err);
   }
   const ID = props.item.id;
-  console.log(props);
-
   return (
         <div className="curriculum-vitae">
           <div className="curriculum-vitae__icon">

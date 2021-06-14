@@ -132,7 +132,7 @@ export default function EditCV(props) {
   const cvToEdit = useSelector(state => state.cvReducer.find(el => (
     el.id === ID
   )));
-  const [profileImg, setProfileImg] = useState('');
+  const [profileImg, setProfileImg] = useState(cvToEdit.img);
   const [imgBlob, setImgBlob] = useState('');
   const errorMessage = useSelector(store => store.loginStatusReducer.error);
   const [globalFormState, setGlobalFormState] = useState({
@@ -144,20 +144,84 @@ export default function EditCV(props) {
     // education,
   });
   useEffect(() => {
+    setProfileImg(cvToEdit.img);
+  }, [cvToEdit]);
+
+  console.log(profileImg);
+  useEffect(() => {
     // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
   const cvData = JSON.parse(cvToEdit.cvs);
-  console.log(cvData);
-  // const [groupNames, setDefaultNames] = useState(getFieldsForCV().groupNames);
-  // const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
-  // const [defaultFields1, setDefaultFields1] = useState(getFieldsForCV().defaultFields1);
-  // const [workAbilities, setWorkAbilities] = useState(getFieldsForCV().workAbilities);
-  // const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
-  // const [education, setEducation] = useState(getFieldsForCV().education);
-
+  const { initialValues, structure } = cvData;
+  const [groupNames, setDefaultNames] = useState(structure.groupNames);
+  const [defaultFields, setDefaultFields] = useState(structure.defaultFields);
+  const [defaultFields1, setDefaultFields1] = useState(structure.defaultFields1);
+  const [workAbilities, setWorkAbilities] = useState(structure.workAbilities);
+  const [workExpirience, setworkExpirience] = useState(structure.workExpirience);
+  const [education, setEducation] = useState(structure.education);
+  function handlePhotoInput(evt) {
+    try {
+      const url = URL.createObjectURL(evt.currentTarget.files[0]);
+      setProfileImg(url);
+      setImgBlob(evt.currentTarget.files[0]);
+    } catch {
+      setProfileImg('');
+      setImgBlob('');
+    }
+  }
   return (
     <>
       <div className="page-title text-violet">Редагувати резюме</div>
+      <Formik enableReinitialize={true} initialValues={initialValues}>
+        <Form>
+        <CreateFieldsSectionofDefaultFields
+              globalObject={structure}
+              setGlobalState={setDefaultFields}
+              groupsArrayName={structure.groupNames.defaultFields}
+              globalState={defaultFields1}
+            />
+        <div className="input-file-wrapper">
+            {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
+            <label htmlFor="cv-photo" className="button-std button-std--violet small mt-0">
+              Додати фото
+            </label>
+            <span className="file-input-text"> (розмір фото 150х150)</span>
+            <input
+              onInput={handlePhotoInput}
+              onChange={(event) => {
+                // setFieldValue('my-file', event.currentTarget.files[0]);
+              }}
+              type="file"
+              name="my-file"
+              id="cv-photo"
+              accept="image/gif, image/png, image/jpeg" />
+          </div>
+        <CreateFieldsSectionofDefaultFields
+              globalObject={structure}
+              setGlobalState={setDefaultFields1}
+              groupsArrayName={structure.groupNames.defaultFields1}
+              globalState={defaultFields1}
+            />
+        <CreateFieldsSection
+            globalObject={structure}
+            setGlobalState={setWorkAbilities}
+            groupsArrayName={structure.groupNames.workAbilities}
+            globalState={workAbilities}
+          />
+          <CreateFieldsSection
+            globalObject={structure}
+            setGlobalState={setworkExpirience}
+            groupsArrayName={structure.groupNames.workExpirience}
+            globalState={workExpirience}
+          />
+          <CreateFieldsSection
+            globalObject={structure}
+            setGlobalState={setEducation}
+            groupsArrayName={structure.groupNames.education}
+            globalState={education}
+          />
+        </Form>
+      </Formik>
     </>
   );
 }
