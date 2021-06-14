@@ -100,7 +100,13 @@ function CreateFieldsSectionofDefaultFields(props) {
   return (
     globalState.map((group, index) => (
       <>
-          {group.map((field, i) => <InputGroupCV key={i.toString() + groupsArrayName} groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
+          {group.map((field, i) => (
+            <InputGroupCV
+            key={i.toString() + groupsArrayName}
+            groupBelongsTo={globalObject.defaultFields.globalState}
+            inWhatGroupIsField={globalState}
+            field={field} index={index}/>
+          ))}
       </>
     ))
   );
@@ -140,9 +146,8 @@ export default function EditCV(props) {
   useEffect(() => {
     // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
-  console.log(cvToEdit);
-  if (cvToEdit === undefined) return <></>;
   const cvData = JSON.parse(cvToEdit.cvs);
+  console.log(cvData);
   // const [groupNames, setDefaultNames] = useState(getFieldsForCV().groupNames);
   // const [defaultFields, setDefaultFields] = useState(getFieldsForCV().defaultFields);
   // const [defaultFields1, setDefaultFields1] = useState(getFieldsForCV().defaultFields1);
@@ -150,10 +155,6 @@ export default function EditCV(props) {
   // const [workExpirience, setworkExpirience] = useState(getFieldsForCV().workExpirience);
   // const [education, setEducation] = useState(getFieldsForCV().education);
 
-
-
-  console.log(cvToEdit);
-  
   return (
     <>
       <div className="page-title text-violet">Редагувати резюме</div>

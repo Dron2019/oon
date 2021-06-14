@@ -5,7 +5,6 @@ const initialState = [
 ];
 
 export default function cvReducer(state = initialState, action) {
-  console.log(action, 'ACTION');
   switch (action.type) {
     case CV_SEND:
 
