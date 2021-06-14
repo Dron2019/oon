@@ -3,7 +3,7 @@ import QuestionItem from './QuestionItem.jsx';
 
 
 export default function QuestionsHistory(props) {
-    const userType = 'psycho';
+  const userType = 'psycho';
   return (
         <div className="question-history-wrapper">
             <div className="page-title text-violet uppercased">

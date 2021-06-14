@@ -49,13 +49,18 @@ export default function QuestionItemForm(props) {
                     )}
                     </Field>
                     <div className="form__group">
-                        <div className="text-orange end-question-item">
-                            Завершити бесіду
-                        </div>
-                        <p className="text-gray question-item-form-text-s">
-                            Натискаючи, діалог потрапить до історії. Клієнт
-                            завжди може відновити цей діалог і він зноу перейде до вхідних заявок.
-                        </p>
+                        {props.userType === 'psycho'
+                        && <>
+                            <div className="text-orange end-question-item">
+                                Завершити бесіду
+                            </div>
+                            <p className="text-gray question-item-form-text-s">
+                                Натискаючи, діалог потрапить до історії. Клієнт
+                                завжди може відновити цей діалог і
+                                 він зноу перейде до вхідних заявок.
+                            </p>
+                        </>
+                        }
                         <button
                             className="button-std button-std--violet small"
                             type="submit">

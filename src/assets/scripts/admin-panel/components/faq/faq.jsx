@@ -9,11 +9,11 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
-import QuestionItem from '../questions-history/QuestionItem.jsx';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
+import QuestionItem from '../questions-history/QuestionItem.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import {
   setPending, resetPending, loginFail, clearError,
@@ -61,8 +61,8 @@ export default function faq() {
             <div className="page-title text-violet">Часті запитання (FAQ)</div>
             <QuestionItem noReply={true}/>
             <Accordion>
-                {questions.map(singleQuestion => (
-                    <AccordionItem>
+                {questions.map((singleQuestion, index) => (
+                    <AccordionItem key={`faq${index}`}>
                         <AccordionItemHeading>
                             <AccordionItemButton>
                                 <div className="subtitle-small text-violet">

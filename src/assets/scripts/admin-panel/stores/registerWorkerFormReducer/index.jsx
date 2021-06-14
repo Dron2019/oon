@@ -9,7 +9,7 @@ const registerInputs = [
     title: 'Прізвище', name: 'surname', initialValue: '', requiredClass: 'required',
   },
   {
-    title: 'E-mail:', name: 'email', initialValue: 'tt@tt.ua', requiredClass: 'required',
+    title: 'E-mail:', name: 'email', initialValue: '', requiredClass: 'required',
   },
   {
     type: 'password', title: 'Пароль', name: 'password', initialValue: '', requiredClass: 'required',

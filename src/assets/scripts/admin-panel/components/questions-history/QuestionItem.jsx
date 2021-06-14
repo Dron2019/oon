@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 
-export default function (props) {
+export default function QuestionItem(props) {
   const [status, setStatus] = useState('await');
   const [dropdowned, setDropdown] = useState(false);
   const [renderWithoutForm, setFormView] = useState(props.noReply);
@@ -106,6 +107,7 @@ export default function (props) {
                     {!renderWithoutForm
                         && <div className="gray-bg-element">
                             <QuestionItemForm
+                                userType={props.userType}
                                 messagesHistory={messaging}
                                 callback={formMessageCallback}/>
                         </div>
@@ -114,3 +116,10 @@ export default function (props) {
             </div>
   );
 }
+
+
+QuestionItem.PropTypes = {
+  userType: PropTypes.string,
+  history: PropTypes.array,
+  callback: PropTypes.func,
+};

@@ -21,10 +21,7 @@ import routes from '../../routes/routes.jsx';
 
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
-import WorkConsultation from '../work-consultation/WorkConsultation.jsx';
-import CreateConsultQuestion from '../create-consult-question/CreateConsultQuestion.jsx';
-import QuestionsHistory from '../questions-history/QuestionsHistory.jsx';
-import OnlineConsultationRequest from '../online-consultation-request/OnlineConsultationRequest.jsx';
+
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
 import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
@@ -37,7 +34,7 @@ export default function Cabinet(props) {
   const [activeLink, setActiveLink] = useState(useLocation().pathname);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
-  // setActiveLink(location.pathname);
+
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
@@ -74,7 +71,6 @@ export default function Cabinet(props) {
     ['Історія запитань ', '/cabinet/ '],
   ];
   function handleMobileMenuClick(evt) {
-    console.log(evt);
     if (evt.target.classList.contains('menu')) {
       setMenuVisibility(!menuVisibility);
     }

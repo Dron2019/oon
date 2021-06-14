@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {Link} from 'react-router-dom';
+import {
+  Tab, Tabs, TabList, TabPanel,
+} from 'react-tabs';
+import { Link } from 'react-router-dom';
 import RegisterWorkerForm from '../forms/register-worker/RegisterWorkerForm.jsx';
 import RegisterConsultantForm from '../forms/register-consult/RegisterConsultantForm.jsx';
+
 export default () => (
     <div className="login-form">
         <div className="white-bg-element">
@@ -15,7 +18,6 @@ export default () => (
                     <Tab>Соціальний працівник</Tab>
                 </TabList>
             </div>
-        
             <TabPanel>
                 <RegisterWorkerForm></RegisterWorkerForm>
             </TabPanel>
@@ -28,4 +30,4 @@ export default () => (
             <Link to="/login" className="button-std button-std--violet small transparent "> Ви вже зарєстровані</Link>
         </div>
     </div>
-  );
+);

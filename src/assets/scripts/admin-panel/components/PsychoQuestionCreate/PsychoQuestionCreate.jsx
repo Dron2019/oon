@@ -85,7 +85,7 @@ export default function PsychoQuestionCreate() {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.5306 0.5H11.0661C13.2882 0.5 15.0967 2.30856 15.0967 4.5306V11.0661C15.0967 13.2882 13.2882 15.0967 11.0661 15.0967H4.5306C2.30856 15.0967 0.5 13.2882 0.5 11.0661V4.5306C0.5 2.30856 2.30856 0.5 4.5306 0.5Z" stroke="#2A3341"/>
               <path d="M4.09456 7.79853C4.09456 5.75667 5.7565 4.09473 7.79836 4.09473C9.84022 4.09473 11.5022 5.75667 11.5022 7.79853C11.5022 9.84039 9.84022 11.5023 7.79836 11.5023C5.7565 11.5023 4.09456 9.84039 4.09456 7.79853Z" stroke="#2A3341"/>
-              <path d="M11.6259 2.9707H11.6292" stroke="#2A3341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.6259 2.9707H11.6292" stroke="#2A3341" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
           <a href="https://facebook.com" className="social-icon" target="_blank" rel="noopener noreferrer">

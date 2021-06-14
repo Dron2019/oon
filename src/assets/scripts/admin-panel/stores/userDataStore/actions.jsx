@@ -1,7 +1,10 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import { LOGIN_URL, LOGOUT_URL, CHECK_SESSION_URL } from '../urls.jsx';
+// eslint-disable-next-line import/no-cycle
 import dataStore from './index.jsx';
 import {
   PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN,

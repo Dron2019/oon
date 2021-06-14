@@ -122,9 +122,9 @@ export default function ProfileEditorCounter(props) {
         <div className="text-violet subtitle-small fw-600">Ваш профіль заповнено на:</div>
         <div className="profile-filling-count-wrapper">
           <svg width="190" height="190" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path id="arc" fill="var(--color-gray)" d={circleCords} stroke="none" fill-rule="evenodd" />
-              <path fill="var(--color-violet)" d={borderCords} stroke="none" fill-rule="evenodd" />
-              <path fill="var(--color-violet)" d={borderCordsInnerBorder} stroke="none" fill-rule="evenodd" />
+              <path id="arc" fill="var(--color-gray)" d={circleCords} stroke="none" fillRule="evenodd" />
+              <path fill="var(--color-violet)" d={borderCords} stroke="none" fillRule="evenodd" />
+              <path fill="var(--color-violet)" d={borderCordsInnerBorder} stroke="none" fillRule="evenodd" />
           </svg>
           <div className="profile-filling-count-wrapper__value">
             {countedFields.toFixed()}%

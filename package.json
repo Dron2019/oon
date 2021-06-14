@@ -100,6 +100,7 @@
     "locomotive-scroll": "^4.0.6",
     "lodash": "^4.17.21",
     "on-change": "^2.2.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-accessible-accordion": "^3.3.4",
     "react-datetime-picker": "^3.3.0",
