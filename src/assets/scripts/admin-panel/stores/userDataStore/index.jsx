@@ -15,6 +15,7 @@ import registerWorkerFormReducer from '../registerWorkerFormReducer/index.jsx';
 import registerConsultFormReducer from '../registerConsultFormReducer/index.jsx';
 import profileInfoReducers from '../profileInfoStore/profileInfoStore.jsx';
 import cvReducer from '../CVStore/cv-reducer.jsx';
+import cvToEditStore from '../CVToEditStore/cvToEditStore.jsx';
 
 import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 
@@ -60,12 +61,13 @@ const rootReducer = combineReducers(
     registerConsultFormReducer,
     profileInfoReducers,
     cvReducer,
+    cvToEditStore,
   },
 );
 
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(thunk),
-  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(),
 ));
 export default store;

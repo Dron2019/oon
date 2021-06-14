@@ -264,10 +264,10 @@ export default function CreateCV() {
       <div className="page-title text-violet">
         Створити резюме
       </div>
-      {CVs.length === 0 ? <EmptyCV/> :
-        <div className="white-bg-element create-cv-list">
+      {CVs.length === 0 ? <EmptyCV/>
+        : <div className="white-bg-element create-cv-list">
         {
-          CVs.map((singleCV) => (
+          CVs.map(singleCV => (
           <SingleCV noLinks={true} item={singleCV}/>
           ))
         }
