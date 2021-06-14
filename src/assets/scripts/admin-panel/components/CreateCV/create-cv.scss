@@ -41,6 +41,12 @@
     padding-right: 30px;
     @include size(4);
     @include shift(0);
+  }
+  .create-cv-list {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include size(4);
+    @include shift(0);
 
   }
   @include to(1240px){
@@ -117,5 +123,13 @@
     .file-input-text {
       margin-top: 15px;
     }
+  }
+}
+
+.create-cv-list {
+  display: flex;
+  flex-direction: column;
+  .curriculum-vitae~.curriculum-vitae {
+    margin-top: 15px;
   }
 }

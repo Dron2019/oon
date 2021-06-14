@@ -5,12 +5,13 @@ const initialState = [
 ];
 
 export default function cvReducer(state = initialState, action) {
+  console.log(action, 'ACTION');
   switch (action.type) {
     case CV_SEND:
 
       return state;
     case CVs_SAVE:
-      return [...state, action.payload];
+      return [...action.payload];
     case CV_GET:
 
       return state;

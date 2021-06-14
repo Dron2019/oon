@@ -7,11 +7,15 @@ import {
 } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 import { getCV, sendCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import SingleCV from '../UserCV/SingleCV.jsx';
+import routes from '../../routes/routes.jsx';
 
 function getFieldsForCV() {
   // if (localStorage.getItem('CV') !== null) return JSON.parse(localStorage.getItem('CV'));
@@ -195,10 +199,15 @@ export default function CreateCV() {
     education,
   });
 
+  const CVs = useSelector(state => state.cvReducer);
 
   useEffect(() => {
     // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
+
+  useEffect(() => {
+    dataStore.dispatch(getCV());
+  }, []);
 
   function setGlobalStateAndAddItToStorage() {
     setGlobalFormState({
@@ -255,7 +264,17 @@ export default function CreateCV() {
       <div className="page-title text-violet">
         Створити резюме
       </div>
-      <EmptyCV/>
+      {CVs.length === 0 ? <EmptyCV/> :
+        <div className="white-bg-element create-cv-list">
+        {
+          CVs.map((singleCV) => (
+          <SingleCV noLinks={true} item={singleCV}/>
+          ))
+        }
+        <Link className='button-std button-std--violet small' to={routes.userCV}>Перейти до резюме</Link>
+        </div>
+      }
+
       <Formik validationSchema={createValidationSchema()} initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
       {({
         setFieldValue, handleChange, handleBlur, values, errors,

@@ -8,9 +8,16 @@ import { loginFail } from '../userDataStore/actions.jsx';
 import store from '../userDataStore/index.jsx';
 
 export function getCV(data) {
+  const dataToSend = new FormData();
+  dataToSend.append('ajax_data', 1);
+  dataToSend.append('id', store.getState().loginStatusReducer.id);
   return (dispatch) => {
-    axios.get(GET_CV_URL)
-      .then(el => console.log(el.data));
+    axios.post(GET_CV_URL, dataToSend)
+      .then(el => {
+        console.log(el.data.data);
+        store.dispatch(saveCVsToStore(el.data.data));
+      })
+      .catch(el => console.log(el));
   };
 }
 export function saveCVsToStore(data) {
