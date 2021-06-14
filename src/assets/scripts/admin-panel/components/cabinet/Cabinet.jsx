@@ -12,8 +12,8 @@ import {
   useHistory,
   useLocation,
 } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
 import store from '../../stores/userDataStore/index.jsx';
-
 
 import cabinetUserRoutes from '../../routes/cabinetUserRoutes.jsx';
 import routes from '../../routes/routes.jsx';
@@ -79,9 +79,14 @@ export default function Cabinet(props) {
       setMenuVisibility(!menuVisibility);
     }
   }
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setMenuVisibility(!menuVisibility),
+    delta: 80,
+
+  });
   return (
       <div className="cabinet-wrapper">
-        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick}>
+        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick} {...handlers}>
           <div className="menu__subtitle">
             Мій кабінет
           </div>
