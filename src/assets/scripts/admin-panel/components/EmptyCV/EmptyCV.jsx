@@ -9,7 +9,7 @@ export default function EmptyCV(props) {
             <div className="subtitle-small text-violet">Мої резюме:</div>
             <p>
                 У вас ще не створено жодного резюме. Щоб створити резюме,
-                <Link className="text-violet" to={routes.FAQ}>
+                <Link className="text-violet" to={routes.CreateCV}>
                     заповніть форму “створити нове резюме” та натисніть “зберегти резюме”.
                 </Link>
                 Резюме створиться автоматично

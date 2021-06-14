@@ -68,6 +68,9 @@
       margin-top: 20px;
     }
   }
+  @include to(575px){
+    width: 100%;
+  }
 }
 .blocking-block {
   position: absolute;
@@ -102,5 +105,12 @@
     background: linear-gradient(180deg, rgba(249,249,249,1) 50%, rgba(255,255,255,1) 50%);
     white-space: nowrap;
     // background-color: var(--color-white);
+  }
+  @include to(575px){
+    span {
+      white-space: initial;
+      width: calc(100% - 20px);
+      text-align: center;
+    }
   }
 }

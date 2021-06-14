@@ -34,12 +34,11 @@ export default function Cabinet(props) {
   const [activeLink, setActiveLink] = useState(useLocation().pathname);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
-
+  const [userType, setUserType] = useState(''); /* psycho */
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
   }), [history]);
-  const parentUrlPart = '/cabinet';
 
   function renderCabinetNestedRoutes(el, index) {
     return (
@@ -55,7 +54,7 @@ export default function Cabinet(props) {
           <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
             {el[0]}
           </Link>
-          <CabinetMessageBell count={index}/>
+          <CabinetMessageBell count={0}/>
         </li>
     );
   }
@@ -76,7 +75,10 @@ export default function Cabinet(props) {
     }
   }
   const handlers = useSwipeable({
-    onSwipedLeft: () => setMenuVisibility(!menuVisibility),
+    onSwipedLeft: () => {
+      setMenuVisibility(false);
+      console.log('ddd');
+    },
     delta: 80,
 
   });
@@ -113,22 +115,26 @@ export default function Cabinet(props) {
             Редагувати профіль
             </span>
           </Link>
-          <Link
-            onClick={() => setActiveLink(routes.CreateCV)}
-            to={routes.CreateCV}
-            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.CreateCV)) ? 'active' : ''}`}>
-            <span>
-              Створити резюме
-            </span>
-          </Link>
-          <Link
-            onClick={() => setActiveLink(routes.userCV)}
-            to={routes.userCV}
-            className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.userCV)) ? 'active' : ''}`}>
-            <span>
-              Мої резюме
-            </span>
-          </Link>
+          { userType !== 'psycho'
+          && <>
+              <Link
+                onClick={() => setActiveLink(routes.CreateCV)}
+                to={routes.CreateCV}
+                className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.CreateCV)) ? 'active' : ''}`}>
+                <span>
+                  Створити резюме
+                </span>
+              </Link>
+              <Link
+                onClick={() => setActiveLink(routes.userCV)}
+                to={routes.userCV}
+                className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.userCV)) ? 'active' : ''}`}>
+                <span>
+                  Мої резюме
+                </span>
+              </Link>
+          </>
+          }
           <Link
             onClick={() => setActiveLink(routes.FAQ)}
             to={routes.FAQ}

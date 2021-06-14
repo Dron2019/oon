@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function CabinetMessageBell(props) {
-  if (props === 0) return <></>;
+  if (props.count === 0) return <></>;
   return (
         <div className="menu-messages-bell">
             <svg width={18} height={20} viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">

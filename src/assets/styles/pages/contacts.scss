@@ -1,6 +1,7 @@
 body[id*='contact'] {
   .page-part {
     min-height: 100vh;
+    align-content: flex-start;
   }
   .page-part__text {
     background:rgb(236,236,236);
@@ -38,6 +39,9 @@ body[id*='contact'] {
     width: calc(100% + 100px);
     background:rgb(236,236,236);
     display: none;
+  }
+  .page-part__text.bg-gray {
+    background: none !important;
   }
   .page-part__text form {
     margin-top: auto;

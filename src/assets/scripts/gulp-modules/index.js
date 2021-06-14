@@ -103,3 +103,19 @@ function mobMenuHandle(){
   });
 }
 mobMenuHandle();
+
+
+/**Подсветка активного пункта меню */
+const asideLinks = document.querySelectorAll('aside a');
+asideLinks.forEach(el=>{
+  const href = el.getAttribute('href');
+  if ( href !== undefined && window.location.href.match(href)) {
+    console.log('ee');
+    el.style.fontWeight = 800;
+    el.style.pointerEvents = 'none';
+    const parentGroupEl = el.closest('.aside__link-dropdown');
+    if(parentGroupEl !== null) {
+      parentGroupEl.querySelector('.aside__link-dropdown-title').style.fontWeight = 800;
+    }
+  };
+});

@@ -12,6 +12,9 @@ import PsychoQuestionCreate from '../components/PsychoQuestionCreate/PsychoQuest
 
 export default [
   {
+    title: '', exact: true, route: '/', component: <WorkConsultation/>,
+  },
+  {
     title: '', exact: true, route: '/cabinet', component: <WorkConsultation/>,
   },
   {
