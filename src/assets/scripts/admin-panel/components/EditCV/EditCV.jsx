@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
-import { getCV, sendCV } from '../../stores/CVStore/cv-actions.jsx';
+import { sendEditedCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import SingleCV from '../UserCV/SingleCV.jsx';
@@ -42,13 +42,27 @@ function InputGroupCV(props) {
                 {meta.touched && meta.error && (
                 <div className="error">{meta.error}</div>
                 )}
+                {!meta.error && meta.value && meta.touched && (
+                <div className="error placeholder-in-focus">{fieldFromProps.title}</div>
+                )}
             </div>
         )
         }
     </Field>
   );
 }
-
+/** Меняет количество групп полей в форме */
+function changeState(curState, setState) {
+  const newState = _.cloneDeep(curState);
+  const changedIndexArray = _.cloneDeep(newState[newState.length - 1]);
+  changedIndexArray.forEach((fieldArg) => {
+    const field = fieldArg;
+    const currentIndex = +field.name.split('_')[1];
+    field.name = field.name.replace(/_(.+)/, `_${+currentIndex + 1}`);
+  });
+  newState.push(changedIndexArray);
+  setState(newState);
+}
 function PlusButton(props) {
   return (
     <>
@@ -112,19 +126,6 @@ function CreateFieldsSectionofDefaultFields(props) {
   );
 }
 
-/** Меняет количество групп полей в форме */
-function changeState(curState, setState) {
-  const newState = _.cloneDeep(curState);
-  const changedIndexArray = _.cloneDeep(newState[newState.length - 1]);
-  changedIndexArray.forEach((fieldArg) => {
-    const field = fieldArg;
-    const currentIndex = +field.name.split('_')[1];
-    field.name = field.name.replace(/_(.+)/, `_${+currentIndex + 1}`);
-  });
-  newState.push(changedIndexArray);
-  setState(newState);
-}
-
 
 export default function EditCV(props) {
   const CVs = useSelector(state => state.cvReducer);
@@ -135,22 +136,7 @@ export default function EditCV(props) {
   const [profileImg, setProfileImg] = useState(cvToEdit.img);
   const [imgBlob, setImgBlob] = useState('');
   const errorMessage = useSelector(store => store.loginStatusReducer.error);
-  const [globalFormState, setGlobalFormState] = useState({
-    // groupNames,
-    // defaultFields,
-    // defaultFields1,
-    // workAbilities,
-    // workExpirience,
-    // education,
-  });
-  useEffect(() => {
-    setProfileImg(cvToEdit.img);
-  }, [cvToEdit]);
 
-  console.log(profileImg);
-  useEffect(() => {
-    // localStorage.setItem('CV', JSON.stringify(globalFormState));
-  }, [globalFormState]);
   const cvData = JSON.parse(cvToEdit.cvs);
   const { initialValues, structure } = cvData;
   const [groupNames, setDefaultNames] = useState(structure.groupNames);
@@ -159,6 +145,32 @@ export default function EditCV(props) {
   const [workAbilities, setWorkAbilities] = useState(structure.workAbilities);
   const [workExpirience, setworkExpirience] = useState(structure.workExpirience);
   const [education, setEducation] = useState(structure.education);
+  const [globalFormState, setGlobalFormState] = useState({
+    groupNames,
+    defaultFields,
+    defaultFields1,
+    workAbilities,
+    workExpirience,
+    education,
+  });
+  function setGlobalStateAndAddItToStorage() {
+    setGlobalFormState({
+      groupNames,
+      defaultFields,
+      defaultFields1,
+      workAbilities,
+      workExpirience,
+      education,
+    });
+  }
+  useEffect(() => {
+    setProfileImg(cvToEdit.img);
+  }, [cvToEdit]);
+
+  console.log(profileImg);
+  useEffect(() => {
+    // localStorage.setItem('CV', JSON.stringify(globalFormState));
+  }, [globalFormState]);
   function handlePhotoInput(evt) {
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);
@@ -169,16 +181,28 @@ export default function EditCV(props) {
       setImgBlob('');
     }
   }
+  function handleSubmit(values, form) {
+    console.log(values);
+    setGlobalStateAndAddItToStorage();
+    const cvData = {};
+    cvData.image = imgBlob;
+    const jsonData = {
+      initialValues: values,
+      structure: globalFormState,
+    };
+    cvData.jsonData = jsonData;
+    dataStore.dispatch(sendEditedCV(cvData));
+  }
   return (
-    <>
+    <div className="edit-cv-wrapper">
       <div className="page-title text-violet">Редагувати резюме</div>
-      <Formik enableReinitialize={true} initialValues={initialValues}>
-        <Form>
+      <Formik onSubmit={handleSubmit} enableReinitialize={true} initialValues={initialValues}>
+        <Form className="form-std">
         <CreateFieldsSectionofDefaultFields
               globalObject={structure}
               setGlobalState={setDefaultFields}
               groupsArrayName={structure.groupNames.defaultFields}
-              globalState={defaultFields1}
+              globalState={defaultFields}
             />
         <div className="input-file-wrapper">
             {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
@@ -220,8 +244,10 @@ export default function EditCV(props) {
             groupsArrayName={structure.groupNames.education}
             globalState={education}
           />
+          {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+          <button type="submit" className="button-std button-std--violet small">Редагувати резюме</button>
         </Form>
       </Formik>
-    </>
+    </div>
   );
 }

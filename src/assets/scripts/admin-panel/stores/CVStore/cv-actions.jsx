@@ -49,3 +49,28 @@ export function sendCV(data) {
       });
   };
 }
+
+export function sendEditedCV(data) {
+  const ID = store.getState().loginStatusReducer.id;
+  const cvID = store.getState().cvToEditStore;
+  const fd = new FormData();
+  fd.append('ajax_data', 1);
+  fd.append('data', JSON.stringify(data.jsonData).replace(/'/g, '&rsquo;'));
+  fd.append('img[]', data.image);
+  fd.append('id', ID);
+  fd.append('cvs_id', cvID);
+  return (dispatch) => {
+    axios.post(SEND_SINGLE_CV_URL, fd, {
+      headers: { enctype: 'multipart/form-data' },
+    })
+      .then((el) => {
+        store.dispatch(loginFail('Резюме відправлено'));
+      })
+      .then(el => console.log(el))
+      .catch((el) => {
+        store.dispatch(loginFail('Помилка відправки'));
+        setTimeout(() => store.dispatch(clearError()), 2000);
+        store.dispatch(saveCVsToStore(data.jsonData));
+      });
+  };
+}

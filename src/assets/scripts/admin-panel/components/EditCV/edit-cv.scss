@@ -1,0 +1,163 @@
+.edit-cv-wrapper {
+  @include row-flex();
+  align-items: flex-start;
+  .input-section {
+    position: relative;
+    padding-right: 60px;
+  }
+  .plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+
+  }
+  .double-plus-buttons {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+  }
+  .double-plus-buttons .plus-icon {
+    position: static;
+    width: 17px;
+    height: 17px;
+  }
+  .double-plus-buttons .plus-icon~.plus-icon {
+    margin-left: 5px;
+  }
+  input[type='file'] {
+    display: none;
+  }
+  .page-title {
+    @include size(12);
+    @include shift(0);
+  }
+  form{
+    @include size(8);
+    @include shift(0);
+  }
+  .empty-cv-block {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include size(4);
+    @include shift(0);
+  }
+  .create-cv-list {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include size(4);
+    @include shift(0);
+
+  }
+  @include to(1240px){
+    .empty-cv-block,
+    form {
+      @include size(12);
+    }
+    &>*~* {
+      margin-top: 15px;
+    }
+    .empty-cv-block {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .empty-cv-block .subtitle-small {
+      margin-bottom: 15px;
+    }
+    .cv-form-img {
+      margin-bottom: 10px;
+    }
+  }
+  @include to(575px){
+    margin-left: 0;
+    margin-right: 0;
+    &>.form-std, 
+    &>.white-bg-element {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+}.create-cv-wrapper {
+  @include row-flex();
+  align-items: flex-start;
+  .input-section {
+    position: relative;
+    padding-right: 60px;
+  }
+  .plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+
+  }
+  .double-plus-buttons {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+  }
+  .double-plus-buttons .plus-icon {
+    position: static;
+    width: 17px;
+    height: 17px;
+  }
+  .double-plus-buttons .plus-icon~.plus-icon {
+    margin-left: 5px;
+  }
+  input[type='file'] {
+    display: none;
+  }
+  .page-title {
+    @include size(12);
+    @include shift(0);
+  }
+  form{
+    @include size(8);
+    @include shift(0);
+  }
+  .empty-cv-block {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include size(4);
+    @include shift(0);
+  }
+  .create-cv-list {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include size(4);
+    @include shift(0);
+
+  }
+  @include to(1240px){
+    .empty-cv-block,
+    form {
+      @include size(12);
+    }
+    &>*~* {
+      margin-top: 15px;
+    }
+    .empty-cv-block {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .empty-cv-block .subtitle-small {
+      margin-bottom: 15px;
+    }
+    .cv-form-img {
+      margin-bottom: 10px;
+    }
+  }
+  @include to(575px){
+    margin-left: 0;
+    margin-right: 0;
+    &>.form-std, 
+    &>.white-bg-element {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+}

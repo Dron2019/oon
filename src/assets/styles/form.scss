@@ -163,6 +163,25 @@
   /* identical to box height, or 10px */
   color: #9A7E8E;
   }
+
+  /*~  (Вывод плейсхолдера при заполненом инпуте) ~*/
+  .placeholder-in-focus {
+    color: var(--color-violet);
+    position: absolute;
+    left: 15px;
+    top: 0;
+    transform: translateY(-50%);
+    z-index: 5;
+    padding-right: 15px;
+    // background: var(--color-white);
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-size: 10px;
+    line-height: 100%;
+  /* identical to box height, or 10px */
+    animation: slide-in-bottom 0.25s 1 ease-in-out;
+  }
   .error:after {
     content:'';
     position: absolute;

@@ -115,6 +115,9 @@ function InputGroupCV(props) {
                 {meta.touched && meta.error && (
                 <div className="error">{meta.error}</div>
                 )}
+                {!meta.error && meta.value && meta.touched && (
+                <div className="error placeholder-in-focus">{fieldFromProps.title}</div>
+                )}
             </div>
         )
         }
