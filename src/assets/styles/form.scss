@@ -95,9 +95,14 @@
   @include to(575px){
     --outline-padding: 15px;
     --padding: 15px;
+    --outline-padding: 15px;
+    --padding: 15px;
     button.button-std,
     .button-std {
       margin-left: 0;
+    }
+    &__subtitle {
+      margin-top: 20px;
     }
   }
 }

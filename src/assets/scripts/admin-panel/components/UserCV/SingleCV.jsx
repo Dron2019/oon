@@ -11,10 +11,9 @@ export default function SingleCV(props) {
     titleFromProps = JSON.parse(props.item.cvs).initialValues.cvName;
   } catch (err) {
     titleFromProps = '!';
-    console.log(err);
   }
   const ID = props.item.id;
-  console.log(ID);
+
   return (
         <div className="curriculum-vitae">
           <div className="curriculum-vitae__icon">

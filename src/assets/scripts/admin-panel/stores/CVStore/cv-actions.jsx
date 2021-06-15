@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import {
-  clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT,
+  clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT, setPending, resetPending,
 } from '../dispatchActions.jsx';
 import { GET_CV_URL, SEND_SINGLE_CV_URL, SEND_PDF_REQUEST } from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';
@@ -101,13 +101,25 @@ export function sendPdfRequest(id) {
   fd.append('ajax_data', 1);
   fd.append('id', ID);
   fd.append('cvs_id', cvID);
+  store.dispatch(setPending());
   return (dispatch) => {
     axios.post(SEND_PDF_REQUEST, fd)
-      .then((el) => {
-        console.log(el);
+      .then((res) => {
+        switch (res.data.error) {
+          case 0:
+            setTimeout(() => {
+              window.open('/webroot/pdf');
+              store.dispatch(resetPending());
+            }, 1000);
+            break;
+          default:
+            store.dispatch(resetPending());
+            break;
+        }
       })
       .catch((el) => {
         console.warn('ERROR SEND PDF REQUEST');
+        store.dispatch(resetPending());
       });
   };
 }
