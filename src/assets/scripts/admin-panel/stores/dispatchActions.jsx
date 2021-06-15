@@ -24,6 +24,8 @@ export const CV_SEND = 'CV_SEND';
 export const CVs_SAVE = 'CVs_SAVE';
 
 
+export const SET_CV_ID_TO_EDIT = 'SET_CV_ID_TO_EDIT';
+
 export function login(additionalValue = {}) {
   const obj = Object.assign({ type: 'LOGIN', additionalValue });
   return obj;

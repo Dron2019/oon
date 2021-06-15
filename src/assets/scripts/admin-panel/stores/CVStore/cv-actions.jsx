@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import {
-  clearError, CV_GET, CV_SEND, CVs_SAVE,
+  clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT
 } from '../dispatchActions.jsx';
 import { GET_CV_URL, SEND_SINGLE_CV_URL } from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';
@@ -64,7 +64,19 @@ export function sendEditedCV(data) {
       headers: { enctype: 'multipart/form-data' },
     })
       .then((el) => {
-        store.dispatch(loginFail('Резюме відправлено'));
+        switch (el.data.error) {
+          case 0:
+            store.dispatch(loginFail('Резюме відправлено'));
+            setTimeout(() => {
+              store.dispatch(getCV());
+              store.dispatch(clearError());
+              store.dispatch(setCvIdToEdit(null));
+            }, 3000);
+            break;
+          default:
+            store.dispatch(clearError());
+            break;
+        }
       })
       .then(el => console.log(el))
       .catch((el) => {
@@ -72,5 +84,12 @@ export function sendEditedCV(data) {
         setTimeout(() => store.dispatch(clearError()), 2000);
         store.dispatch(saveCVsToStore(data.jsonData));
       });
+  };
+}
+
+export function setCvIdToEdit(id) {
+  return {
+    type: SET_CV_ID_TO_EDIT,
+    payload: id,
   };
 }
