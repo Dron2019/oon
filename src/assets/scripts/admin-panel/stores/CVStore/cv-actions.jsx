@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import {
-  clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT
+  clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT,
 } from '../dispatchActions.jsx';
-import { GET_CV_URL, SEND_SINGLE_CV_URL } from '../urls.jsx';
+import { GET_CV_URL, SEND_SINGLE_CV_URL, SEND_PDF_REQUEST } from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';
 import store from '../userDataStore/index.jsx';
 
@@ -91,5 +91,23 @@ export function setCvIdToEdit(id) {
   return {
     type: SET_CV_ID_TO_EDIT,
     payload: id,
+  };
+}
+
+export function sendPdfRequest(id) {
+  const ID = store.getState().loginStatusReducer.id;
+  const cvID = id;
+  const fd = new FormData();
+  fd.append('ajax_data', 1);
+  fd.append('id', ID);
+  fd.append('cvs_id', cvID);
+  return (dispatch) => {
+    axios.post(SEND_PDF_REQUEST, fd)
+      .then((el) => {
+        console.log(el);
+      })
+      .catch((el) => {
+        console.warn('ERROR SEND PDF REQUEST');
+      });
   };
 }

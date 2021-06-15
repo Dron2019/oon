@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, useSelector } from 'react-redux';
 import {
@@ -25,8 +25,9 @@ function App(props) {
   const isLogined = useSelector(state => state.loginStatusReducer.isLogined);
   // isLogined ? useHistory().push(routes.cabinet) : null;
   // isLogined ? hashHistory().push('/cabinet');
-  dataStore.dispatch(checkSession());
-
+  useEffect(() => {
+    dataStore.dispatch(checkSession());
+  }, []);
   return (
     <Switch>
       <Route exact path={routes.home}>

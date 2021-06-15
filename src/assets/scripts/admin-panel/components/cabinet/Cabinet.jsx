@@ -77,7 +77,6 @@ export default function Cabinet(props) {
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       setMenuVisibility(false);
-      console.log('ddd');
     },
     delta: 80,
 
