@@ -34,7 +34,7 @@
   }
   form{
     @include size(8);
-    @include shift(0);
+    margin: auto;
   }
   .empty-cv-block {
     padding-left: 30px;
@@ -131,6 +131,11 @@
 
   }
   @include to(1240px){
+    .create-cv-list {
+      @include size(12);
+      @include shift(0);
+  
+    }
     .empty-cv-block,
     form {
       @include size(12);

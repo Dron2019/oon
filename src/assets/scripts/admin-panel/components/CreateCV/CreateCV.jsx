@@ -247,7 +247,7 @@ export default function CreateCV() {
     }
   }
   function handleSubmit(values, form) {
-    console.log(values);
+    // console.log(values);
     // localStorage.setItem('cv-init-fields', JSON.stringify(values));
     setGlobalStateAndAddItToStorage();
 
@@ -263,7 +263,6 @@ export default function CreateCV() {
   }
   return (
     <div className="create-cv-wrapper">
-      <button onClick={() => { dataStore.dispatch(getCV()); }}>some</button>
       <div className="page-title text-violet">
         Створити резюме
       </div>

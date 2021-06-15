@@ -167,7 +167,7 @@ export default function EditCV(props) {
     setProfileImg(cvToEdit.img);
   }, [cvToEdit]);
 
-  console.log(profileImg);
+  // console.log(profileImg);
   useEffect(() => {
     // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
@@ -184,14 +184,14 @@ export default function EditCV(props) {
   function handleSubmit(values, form) {
     console.log(values);
     setGlobalStateAndAddItToStorage();
-    const cvData = {};
-    cvData.image = imgBlob;
+    const cvDataToSend = {};
+    cvDataToSend.image = imgBlob;
     const jsonData = {
       initialValues: values,
       structure: globalFormState,
     };
-    cvData.jsonData = jsonData;
-    dataStore.dispatch(sendEditedCV(cvData));
+    cvDataToSend.jsonData = jsonData;
+    dataStore.dispatch(sendEditedCV(cvDataToSend));
   }
   return (
     <div className="edit-cv-wrapper">

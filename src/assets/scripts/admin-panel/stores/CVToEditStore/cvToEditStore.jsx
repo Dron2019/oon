@@ -1,4 +1,5 @@
 import { SET_CV_ID_TO_EDIT } from '../dispatchActions.jsx';
+
 const initialState = 0;
 
 

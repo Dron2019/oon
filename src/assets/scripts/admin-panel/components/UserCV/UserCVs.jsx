@@ -20,8 +20,8 @@ export default function UserCV(props) {
   }, []);
   return (
     <div className="user-cv-wrapper">
-        <div className="page-title text-violet">Мої резюме</div>
-        {CVs.length === 0 ? <EmptyCV/> : <ListCV items={CVs}/>}
+        {!cvToEditStore && <div className="page-title text-violet">Мої резюме</div>}
+        {CVs.length === 0 ? <EmptyCV/> : !cvToEditStore && <ListCV items={CVs}/>}
         {cvToEditStore !== 0 && cvToEditStore !== null && <EditCV/>}
     </div>
 

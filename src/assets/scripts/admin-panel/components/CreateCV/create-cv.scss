@@ -129,9 +129,13 @@
 .create-cv-list {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   .curriculum-vitae~.button-std,
   .curriculum-vitae~.curriculum-vitae {
     margin-top: 15px;
+  }
+  .curriculum-vitae {
+    --self-width: 100%;
   }
   
 }
