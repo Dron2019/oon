@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import routes from '../../routes/routes.jsx';
-
+import { setCvIdToEdit } from '../../stores/CVStore/cv-actions.jsx';
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import { getCV } from '../../stores/CVStore/cv-actions.jsx';
@@ -17,6 +17,7 @@ export default function UserCV(props) {
   const cvToEditStore = useSelector(state => state.cvToEditStore);
   useEffect(() => {
     store.dispatch(getCV());
+    store.dispatch(setCvIdToEdit(null));
   }, []);
   return (
     <div className="user-cv-wrapper">
