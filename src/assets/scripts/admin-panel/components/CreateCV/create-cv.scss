@@ -1,6 +1,9 @@
 .create-cv-wrapper {
   @include row-flex();
   align-items: flex-start;
+  .page-title {
+    text-align: left;
+  }
   .input-section {
     position: relative;
     padding-right: 60px;

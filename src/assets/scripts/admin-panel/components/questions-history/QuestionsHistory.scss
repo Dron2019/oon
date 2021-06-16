@@ -4,6 +4,10 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    .page-title {
+        text-align: left;
+        width: 100%;
+    }
 }
 .question-item{
     background-color: var(--color-white);

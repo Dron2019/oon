@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT, setPending, resetPending,
 } from '../dispatchActions.jsx';
-import { 
+import {
   GET_CV_URL, SEND_SINGLE_CV_URL, SEND_PDF_REQUEST, DELETE_SINGLE_CV,
 } from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';

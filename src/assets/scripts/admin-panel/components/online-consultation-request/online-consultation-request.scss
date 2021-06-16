@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     .page-title {
         width: 100%;
+        text-align: left
     }
     .form-std {
         @include size(7);

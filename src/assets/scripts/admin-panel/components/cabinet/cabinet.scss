@@ -10,6 +10,11 @@
         display: flex;
         flex-wrap: wrap;
     }
+    @include to(1200px){
+        .content {
+            width: calc(100% - var(--cabinet-menu-width) - 15px);
+        }
+    }
     @include to(768px){
         .content {
             width: 100%;
@@ -230,6 +235,8 @@
     .title {
         @include size(12);
         @include shift(0);
+        margin-bottom: 20px;
+
     }
     &__left {
         @include size(5);
