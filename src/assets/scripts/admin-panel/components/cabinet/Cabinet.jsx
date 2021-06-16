@@ -39,7 +39,9 @@ export default function Cabinet(props) {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
   }), [history]);
-
+  useEffect(() => {
+    dataStore.dispatch(checkSession());
+  }, []);
   function renderCabinetNestedRoutes(el, index) {
     return (
         <Route exact={el.exact ? 'exact' : ''} key={index} path={el.route}>

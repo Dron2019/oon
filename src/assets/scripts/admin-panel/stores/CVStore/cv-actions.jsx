@@ -3,9 +3,18 @@ import axios from 'axios';
 import {
   clearError, CV_GET, CV_SEND, CVs_SAVE, SET_CV_ID_TO_EDIT, setPending, resetPending,
 } from '../dispatchActions.jsx';
-import { GET_CV_URL, SEND_SINGLE_CV_URL, SEND_PDF_REQUEST } from '../urls.jsx';
+import { 
+  GET_CV_URL, SEND_SINGLE_CV_URL, SEND_PDF_REQUEST, DELETE_SINGLE_CV,
+} from '../urls.jsx';
 import { loginFail } from '../userDataStore/actions.jsx';
 import store from '../userDataStore/index.jsx';
+
+export function saveCVsToStore(data) {
+  return {
+    type: CVs_SAVE,
+    payload: data,
+  };
+}
 
 export function getCV(data) {
   const dataToSend = new FormData();
@@ -13,19 +22,14 @@ export function getCV(data) {
   dataToSend.append('id', store.getState().loginStatusReducer.id);
   return (dispatch) => {
     axios.post(GET_CV_URL, dataToSend)
-      .then(el => {
+      .then((el) => {
         console.log(el.data.data);
         store.dispatch(saveCVsToStore(el.data.data));
       })
       .catch(el => console.log(el));
   };
 }
-export function saveCVsToStore(data) {
-  return {
-    type: CVs_SAVE,
-    payload: data,
-  };
-}
+
 
 export function sendCV(data) {
   const ID = store.getState().loginStatusReducer.id;
@@ -47,6 +51,13 @@ export function sendCV(data) {
         setTimeout(() => store.dispatch(clearError()), 2000);
         store.dispatch(saveCVsToStore(data.jsonData));
       });
+  };
+}
+
+export function setCvIdToEdit(id) {
+  return {
+    type: SET_CV_ID_TO_EDIT,
+    payload: id,
   };
 }
 
@@ -87,12 +98,6 @@ export function sendEditedCV(data) {
   };
 }
 
-export function setCvIdToEdit(id) {
-  return {
-    type: SET_CV_ID_TO_EDIT,
-    payload: id,
-  };
-}
 
 export function sendPdfRequest(id) {
   const ID = store.getState().loginStatusReducer.id;
@@ -120,6 +125,25 @@ export function sendPdfRequest(id) {
       .catch((el) => {
         console.warn('ERROR SEND PDF REQUEST');
         store.dispatch(resetPending());
+      });
+  };
+}
+
+export function deleteSingleCV(id) {
+  const data = new FormData();
+  data.append('ajax_data', '1');
+  data.append('id', id);
+  return (dispatch) => {
+    axios.post(DELETE_SINGLE_CV, data)
+      .catch(err => console.log('error'))
+      .then((res) => {
+        switch (res.data.error) {
+          case 0:
+            store.dispatch(getCV());
+            break;
+          default:
+            break;
+        }
       });
   };
 }

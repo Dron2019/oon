@@ -7,6 +7,7 @@ import {
 } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import { uniqueId } from 'lodash';
 import { Link } from 'react-router-dom';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
@@ -99,7 +100,7 @@ function InputGroupCV(props) {
     field: fieldFromProps, inWhatGroupIsField, groupBelongsTo, index,
   } = props;
   return (
-    <Field key={index} name={fieldFromProps.name} {...props}>
+    <Field key={uniqueId()} name={fieldFromProps.name} {...props}>
         {({
           field, // { name, value, onChange, onBlur }
           form: { touched, errors },
@@ -232,8 +233,6 @@ export default function CreateCV() {
     requiredFieldsName.forEach((fieldName) => {
       schemaParams[fieldName] = Yup.string().required('Введіть дані').min(2, 'Введіть дані');
     });
-
-    console.log(schemaParams);
     return Yup.object().shape(schemaParams);
   }
   function handlePhotoInput(evt) {
@@ -270,7 +269,7 @@ export default function CreateCV() {
         : <div className="white-bg-element create-cv-list">
         {
           CVs.map(singleCV => (
-          <SingleCV noLinks={true} item={singleCV}/>
+          <SingleCV key={uniqueId()} noLinks={true} item={singleCV}/>
           ))
         }
         <Link className='button-std button-std--violet small' to={routes.userCV}>Перейти до резюме</Link>
@@ -290,6 +289,7 @@ export default function CreateCV() {
             setGlobalState={setDefaultFields}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields}
             globalState={defaultFields}
+            key={101}
           />
           <div className="input-file-wrapper">
             {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
@@ -312,24 +312,28 @@ export default function CreateCV() {
             setGlobalState={setDefaultFields1}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields1}
             globalState={defaultFields1}
+            key={100}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setWorkAbilities}
             groupsArrayName={getFieldsForCV().groupNames.workAbilities}
             globalState={workAbilities}
+            key={123}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setworkExpirience}
             groupsArrayName={getFieldsForCV().groupNames.workExpirience}
             globalState={workExpirience}
+            key={124}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setEducation}
             groupsArrayName={getFieldsForCV().groupNames.education}
             globalState={education}
+            key={125}
           />
           {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>

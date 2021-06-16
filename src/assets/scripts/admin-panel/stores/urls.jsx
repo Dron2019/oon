@@ -11,3 +11,5 @@ export const GET_PROFILE_DATA_URL = '/user/users/edit/';
 export const GET_CV_URL = '/user/users/cvs_list/';
 export const SEND_SINGLE_CV_URL = '/user/users/cvs/';
 export const SEND_PDF_REQUEST = '/user/users/pdf/';
+
+export const DELETE_SINGLE_CV = '/user/users/cvs_delete/';

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import routes from '../../routes/routes.jsx';
+import { uniqueId } from 'lodash';
 import { setCvIdToEdit, getCV } from '../../stores/CVStore/cv-actions.jsx';
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import store from '../../stores/userDataStore/index.jsx';
@@ -36,7 +37,7 @@ function ListCV(props) {
   return (
         <div className="white-bg-element cv-list">
             <div className="subtitle-small text-violet">Мої резюме:</div>
-            {props.items.map(item => <SingleCV item={item} title={item.title}/>)}
+          {props.items.map((item, index) => <SingleCV key={index} item={item} title={item.title}/>)}
         </div>
   );
 }
