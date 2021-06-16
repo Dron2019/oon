@@ -74,19 +74,25 @@ export default function (props) {
                 Кар’єрний хаб пропонує жінкам,
                 постраждалим від домашнього / гендерно зумовленого насильства,
                 послуги для покращення професійних навичок та успішного працевлаштування.
-                Фахівці і фахівчині дотримуються індивідуального підходу до оцінки потреб і можливостей кожної жінки та допомагають побудувати персональну стратегію для досягнення вашої мети.
+                Фахівці і фахівчині дотримуються індивідуального підходу до
+                 оцінки потреб і можливостей кожної жінки та допомагають
+                 побудувати персональну стратегію для досягнення вашої мети.
             </div>
 
             <Formik
                 enableReinitialize={true}
                 validationSchema={(() => {
                   const validation = {};
-                  formFields.forEach(field => validation[field.name] = field.validationSchema);
+                  formFields.forEach((field) => {
+                    validation[field.name] = field.validationSchema;
+                  });
                   return Yup.object().shape(validation);
                 })()}
                 initialValues={(() => {
                   const myObject = {};
-                  formFields.forEach(element => myObject[element.name] = element.initialValue);
+                  formFields.forEach((element) => {
+                    myObject[element.name] = element.initialValue;
+                  });
                   return myObject;
                 })()}
                 onSubmit={formSubmit}
@@ -95,7 +101,7 @@ export default function (props) {
                     {formFields.map(configField => <Field value="fegege" validate={configField.validationSchema} name={configField.name} className="input-std">
                                 {({
                                   field, // { name, value, onChange, onBlur }
-                                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                                  form: { touched, errors },
                                   meta,
                                 }) => (
                                 <div className={`input-group ${meta.error ? 'unfilled ' : ''}${configField.requiredClass}`}>
@@ -113,7 +119,7 @@ export default function (props) {
                             </Field>)}
                     {isPending && <ErrorMessage errorMessage={errorMessage}/>}
                     {isPending && <Loader/>}
-                    <div className="input-group df aic wrap">
+                    <div className="input-group input-group--buttons df aic wrap">
                         <a className="text-violet underlined " onClick={() => history.push(routes.questionsHistory)}>Історія запитань</a>
                         <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
                     </div>

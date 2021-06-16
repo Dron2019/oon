@@ -93,9 +93,9 @@
     --padding:30px;
   }
   @include to(575px){
-    --outline-padding: 15px;
+    --outline-padding: 0px;
     --padding: 15px;
-    --outline-padding: 15px;
+    --outline-padding: 0px;
     --padding: 15px;
     button.button-std,
     .button-std {
@@ -103,6 +103,12 @@
     }
     &__subtitle {
       margin-top: 20px;
+    }
+    &::before {
+      background-color: var(--color-white);
+    }
+    .input-std, input {
+      background-color: var(--color-gray);
     }
   }
 }
@@ -167,6 +173,7 @@
   line-height: 100%;
   /* identical to box height, or 10px */
   color: #9A7E8E;
+  
   }
 
   /*~  (Вывод плейсхолдера при заполненом инпуте) ~*/
@@ -208,6 +215,19 @@
     font-size: 24px;
     line-height: 100%;
   }
+  @include to(575px){
+    textarea.input-std,
+    input.input-std {
+      background-color: var(--color-white);
+    }
+    &--buttons {
+      justify-content: center;
+    }
+    &--buttons>* {
+      margin-bottom: 10px;
+    }
+  }
+ 
 }
 .input-group-select {
   position: relative;
@@ -256,5 +276,10 @@ select option:hover {
   }
   @include to(575px){
     padding:15px;
+    &__title {
+      background: linear-gradient(
+180deg
+, rgba(255,255,255,1) 50%, rgba(248,248,248,1) 50%);
+    }
   }
 }

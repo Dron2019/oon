@@ -200,6 +200,7 @@
         --side-padding: 15px;
         &__title {
             font-size: 14px;
+            max-width: calc(100% / 8 * 5);
         }
         &__head {
             flex-wrap: nowrap;
@@ -209,6 +210,12 @@
         }
         &__single-mess~&__single-mess {
             margin-top: 15px;
+        }
+        &__birdy {
+            margin-left: 10px;
+        }
+        &__title~&__birdy {
+            margin-left: auto;
         }
     }
 }

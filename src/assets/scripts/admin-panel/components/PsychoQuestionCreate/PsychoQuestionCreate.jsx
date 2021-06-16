@@ -128,7 +128,7 @@ export default function PsychoQuestionCreate() {
                 </div>
                 )}
             </Field>
-            <div className="input-group df aic wrap">
+            <div className="input-group input-group--buttons df aic wrap">
               <Link className="text-violet" to={routes.questionsHistory}>Історія запитань</Link>
               <button type="submit" className="button-std button-std--violet small">Надіслати запитання психологу</button>
             </div>
@@ -174,7 +174,7 @@ export default function PsychoQuestionCreate() {
                           </Field>)}
                   {isPending && <ErrorMessage errorMessage={errorMessage}/>}
                   {isPending && <Loader/>}
-                  <div className="input-group df aic wrap">
+                  <div className="input-group input-group--buttons df aic wrap">
                       <Link className="text-violet" to={routes.questionsHistory}>Історія запитань</Link>
                       <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
                   </div>

@@ -7,7 +7,6 @@ import {
 } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { uniqueId } from 'lodash';
 import { Link } from 'react-router-dom';
 
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
@@ -100,13 +99,13 @@ function InputGroupCV(props) {
     field: fieldFromProps, inWhatGroupIsField, groupBelongsTo, index,
   } = props;
   return (
-    <Field key={uniqueId()} name={fieldFromProps.name} {...props}>
+    <Field name={fieldFromProps.name} {...props}>
         {({
           field, // { name, value, onChange, onBlur }
           form: { touched, errors },
           meta,
         }) => (
-            <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
+            <div className={meta.error !== undefined ? 'unfilled input-group ' : 'input-group '}>
                 <input
                     title={fieldFromProps.title}
                     name={fieldFromProps.name}
@@ -205,9 +204,9 @@ export default function CreateCV() {
 
   const CVs = useSelector(state => state.cvReducer);
 
-  useEffect(() => {
-    // localStorage.setItem('CV', JSON.stringify(globalFormState));
-  }, [globalFormState]);
+  // useEffect(() => {
+  //   // localStorage.setItem('CV', JSON.stringify(globalFormState));
+  // }, [globalFormState]);
 
   useEffect(() => {
     dataStore.dispatch(getCV());
@@ -268,8 +267,8 @@ export default function CreateCV() {
       {CVs.length === 0 ? <EmptyCV/>
         : <div className="white-bg-element create-cv-list">
         {
-          CVs.map(singleCV => (
-          <SingleCV key={uniqueId()} noLinks={true} item={singleCV}/>
+          CVs.map((singleCV, index) => (
+          <SingleCV key={`cv-${index}`} noLinks={true} item={singleCV}/>
           ))
         }
         <Link className='button-std button-std--violet small' to={routes.userCV}>Перейти до резюме</Link>
@@ -289,7 +288,6 @@ export default function CreateCV() {
             setGlobalState={setDefaultFields}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields}
             globalState={defaultFields}
-            key={101}
           />
           <div className="input-file-wrapper">
             {profileImg === '' ? <NoImageIcon/> : <img className="cv-form-img border-10" alt="" src={profileImg} />}
@@ -312,28 +310,24 @@ export default function CreateCV() {
             setGlobalState={setDefaultFields1}
             groupsArrayName={getFieldsForCV().groupNames.defaultFields1}
             globalState={defaultFields1}
-            key={100}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setWorkAbilities}
             groupsArrayName={getFieldsForCV().groupNames.workAbilities}
             globalState={workAbilities}
-            key={123}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setworkExpirience}
             groupsArrayName={getFieldsForCV().groupNames.workExpirience}
             globalState={workExpirience}
-            key={124}
           />
           <CreateFieldsSection
             globalObject={getFieldsForCV()}
             setGlobalState={setEducation}
             groupsArrayName={getFieldsForCV().groupNames.education}
             globalState={education}
-            key={125}
           />
           {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
           <button type="submit" className="button-std button-std--violet small">Створити резюме</button>
