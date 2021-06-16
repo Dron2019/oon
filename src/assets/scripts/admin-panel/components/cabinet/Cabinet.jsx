@@ -157,6 +157,7 @@ export default function Cabinet(props) {
         <div className="content">
           <Switch>
             {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
+            {/* <Route component={Missing} /> */}
           </Switch>
         </div>
       </div>

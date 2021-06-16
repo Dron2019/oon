@@ -14,6 +14,7 @@ import Loader from '../loader/loader.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import { ajax_getProfileData, getProfileData, ajax_setProfileData } from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+import { changePasswordRequest } from '../../stores/userDataStore/actions.jsx';
 
 export default function ProfileEditor(props) {
   dataStore.dispatch(getProfileData());
@@ -50,8 +51,9 @@ export default function ProfileEditor(props) {
     },
   );
   const passwordSchema = Yup.object().shape({
-    password: Yup.string().required('This field is required'),
-    changepassword: Yup.string().when('password', {
+    old_pass: Yup.string().required('Введіть старий пароль').min(2, 'Введіть старий пароль'),
+    password: Yup.string().required('Введіть новий пароль'),
+    changepassword: Yup.string().required('Повторіть новий пароль').when('password', {
       is: val => (!!(val && val.length > 0)),
       then: Yup.string().oneOf(
         [Yup.ref('password')],
@@ -108,59 +110,70 @@ export default function ProfileEditor(props) {
                     <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
                 </Form>
             </Formik>
+            {/*  Форма смены пароля */}
             <Formik
                 initialValues={{
                   password: '',
                   changepassword: '',
+                  old_pass: '',
                 }}
                 validationSchema={passwordSchema}
-                onSubmit={() => {}}
+                onSubmit={(vals, form) => {
+                  console.log(vals, 'PASS SUBMIT');
+                  dataStore.dispatch(changePasswordRequest(vals));
+                }}
                 >
                     {({
                       values, errors, handleSubmit, handleChange, handleBlur,
-                    }) => {
-                      console.log(errors);
-                      return (
-                        <form className="form-std" onSubmit={handleSubmit}>
+                    }) => (<form className="form-std" onSubmit={handleSubmit}>
                             <div className="form-std__subtitle text-violet">Змінити ваш пароль:</div>
-                            <div className="input-group">
+                            <div className={`input-group ${errors.old_pass && 'unfilled'}`}>
                                 <input
                                     className="input-std"
                                     placeholder="Вкажіть ваш старий пароль:"
-                                    type="password"
-                                    name="old_password"
+                                    type="text"
+                                    name="old_pass"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
                                 />
+                                {
+                                    errors.old_pass ? (
+                                    <div class="error">
+                                        {errors.old_pass}
+                                    </div>
+                                    ) : null
+                                }
                             </div>
-                            <div className="input-group">
+                            <div className={`input-group ${errors.password && 'unfilled'}`}>
                                 <input
                                 type="password"
                                 name="password"
+                                // value={values.password}
+                                placeholder="Введіть новий пароль:"
+                                className='input-std'
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.password}
-                                placeholder="Password"
-                                className='input-std'
                                 />
                                 {
-                                    Object.keys(errors).length > 0 ? (
+                                    errors.password ? (
                                     <div class="error">
                                         {errors.password}
                                     </div>
                                     ) : null
                                 }
                             </div>
-                            <div className="input-group">
+                            <div className={`input-group ${errors.changepassword && 'unfilled'}`}>
                                 <input
                                 type="password"
                                 name="changepassword"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.changepassword}
+                                // value={values.changepassword}
                                 className='input-std'
-                                placeholder="Confirm Password"
+                                placeholder="Повторіть новий пароль:"
                                 />
                                 {
-                                    Object.keys(errors).length > 0 ? (
+                                    errors.changepassword ? (
                                     <div class="error">
                                         {errors.changepassword}
                                     </div>
@@ -169,8 +182,8 @@ export default function ProfileEditor(props) {
                             </div>
                             <button type="submit" className="button-std button-std--violet small">Зберегти пароль</button>
                         </form>
-                      );
-                    }}
+                    )
+                    }
                 </Formik>
             </div>
         </div>

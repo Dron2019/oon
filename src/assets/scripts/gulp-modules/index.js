@@ -109,7 +109,7 @@ mobMenuHandle();
 const asideLinks = document.querySelectorAll('aside a');
 asideLinks.forEach(el=>{
   const href = el.getAttribute('href');
-  if ( href !== undefined && window.location.href.match(href)) {
+  if ( href !== undefined && href !== '/' && window.location.href.match(href)) {
     console.log('ee');
     el.style.fontWeight = 800;
     el.style.pointerEvents = 'none';

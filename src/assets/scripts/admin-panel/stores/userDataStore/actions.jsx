@@ -189,3 +189,15 @@ export function checkSession() {
       });
   };
 }
+
+export function changePasswordRequest(data) {
+  const formDate = new FormData();
+  formDate.append('ajax_data', '1');
+  Object.entries(data).forEach(el => formDate.append(el[0], el[1]));
+  console.log('changePasswordAction', formDate);
+  return (dispatch) => {
+    axios.post('user/users/change-pass', formDate)
+      .then(el => console.log(el))
+      .catch(el => console.log(el));
+  };
+}
