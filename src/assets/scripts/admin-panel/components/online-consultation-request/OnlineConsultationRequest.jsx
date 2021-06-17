@@ -98,7 +98,7 @@ export default function (props) {
                 onSubmit={formSubmit}
             >
                 <Form className="form-std">
-                    {formFields.map(configField => <Field value="fegege" validate={configField.validationSchema} name={configField.name} className="input-std">
+                    {formFields.map((configField, index) => <Field key={index} value="fegege" validate={configField.validationSchema} name={configField.name} className="input-std">
                                 {({
                                   field, // { name, value, onChange, onBlur }
                                   form: { touched, errors },

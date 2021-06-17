@@ -85,8 +85,8 @@ export default function QuestionItem(props) {
                     </div>
                 </div>
                 <div className="question-item__body">
-                    {messaging.map(part => (
-                            <div className={`text question-item__single-mess ${part.side}`}>
+                    {messaging.map((part, index) => (
+                            <div key={index} className={`text question-item__single-mess ${part.side}`}>
                                 <div className="question-item__single-mess-head">
                                     <span className="fw-600 question-item__single-mess-title">
                                         {part.name}
@@ -118,7 +118,7 @@ export default function QuestionItem(props) {
 }
 
 
-QuestionItem.PropTypes = {
+QuestionItem.propTypes = {
   userType: PropTypes.string,
   history: PropTypes.array,
   callback: PropTypes.func,

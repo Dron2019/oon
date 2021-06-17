@@ -51,7 +51,7 @@ export default function (props) {
                     <div className="form-std__subtitle text-violet">
                         Поставити консультанту запитання
                     </div>
-                    {consultQuestionInitForm.map(configField => <Field validate={configField.validation} name={configField.name} className="input-std">
+                    {consultQuestionInitForm.map((configField, index) => <Field key={index} validate={configField.validation} name={configField.name} className="input-std">
                             {({
                               field, // { name, value, onChange, onBlur }
                               form: { touched, errors },

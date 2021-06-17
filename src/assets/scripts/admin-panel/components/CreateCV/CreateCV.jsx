@@ -131,9 +131,9 @@ function CreateFieldsSectionofDefaultFields(props) {
   } = props;
   return (
     globalState.map((group, index) => (
-      <>
+      <React.Fragment key={index}>
           {group.map((field, i) => <InputGroupCV key={i.toString() + groupsArrayName} groupBelongsTo={globalObject.defaultFields.globalState} inWhatGroupIsField={globalState} field={field} index={index}/>)}
-      </>
+      </React.Fragment>
     ))
   );
 }
