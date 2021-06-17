@@ -60,6 +60,7 @@ const registerInputs = [
 export default function registerWorkerFormReducer(state = registerInputs, action) {
   switch (action.type) {
     case GET_WORKER_REGISTER_FIELDS:
+      // eslint-disable-next-line no-undef
       setLoginStatusOfUser(true, action.additionalValue.name);
       return state;
     default:
