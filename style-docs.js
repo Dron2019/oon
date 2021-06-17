@@ -20,4 +20,5 @@ fs.readFile('dist/assets/styles/main.min.css', 'utf8', (error, data) => {
     docString += `- ${formattedValue} \n`;
   });
   putInReadme(docString);
+  console.log('\x1b[47m \x1b[36m%s\x1b[0m', 'Документация сформирована');
 });

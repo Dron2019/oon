@@ -505,3 +505,23 @@ textarea,
 .border-10 {
   border-radius: 10px;
 }
+
+/*~  (Елемент фискированый для вывода общих сообщений) ~*/
+.el-for-alerts {
+  width: 150px;
+  display: flex;
+  z-index: 1400;
+  position: fixed;
+  left: auto;
+  right: 24px;
+  bottom: 24px;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  padding: 6px 16px;
+  width: 288px;
+  border-radius: 10px;
+
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+    
+    animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}

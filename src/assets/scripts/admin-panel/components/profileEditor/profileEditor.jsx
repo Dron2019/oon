@@ -109,7 +109,7 @@ export default function ProfileEditor(props) {
                             )}
                         </Field>
                     ))}
-                    {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
+                    {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                     {isPending ? <Loader/> : null}
                     <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
                 </Form>
@@ -189,7 +189,7 @@ export default function ProfileEditor(props) {
                                     ) : null
                                 }
                             </div>
-                            {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
+                            {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                             {isPending ? <Loader/> : null}
                             <button type="submit" className="button-std button-std--violet small">Зберегти пароль</button>
                         </form>
@@ -197,6 +197,9 @@ export default function ProfileEditor(props) {
                     }
                 </Formik>
             </div>
+            {errorMessage && <div className="el-for-alerts">
+              {errorMessage}
+            </div>}
         </div>
 
   );
