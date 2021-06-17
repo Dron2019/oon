@@ -48,8 +48,12 @@ export function sendCV(data) {
       .then(el => console.log(el))
       .catch((el) => {
         store.dispatch(loginFail('Помилка відправки'));
-        setTimeout(() => store.dispatch(clearError()), 2000);
         store.dispatch(saveCVsToStore(data.jsonData));
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setTimeout(() => store.dispatch(clearError()), 2000);
+        }, 2000);
       });
   };
 }

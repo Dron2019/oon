@@ -7,3 +7,5 @@ export const GET = (function get() {
   array.forEach(el => obj[el[0]] = el[1]);
   return obj;
 }());
+
+export const telephoneMask = '+3 (80) 99 999 99 99';

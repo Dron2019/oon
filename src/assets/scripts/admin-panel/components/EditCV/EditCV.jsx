@@ -5,12 +5,17 @@ import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
 import { useSelector } from 'react-redux';
+import InputMask from 'react-input-mask';
 import * as Yup from 'yup';
+
 import { Link } from 'react-router-dom';
 import { PlusButtonIcon, NoImageIcon } from '../icons/Icons.jsx';
 import { sendEditedCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import { telephoneMask } from '../../helpers.jsx';
+
+
 import SingleCV from '../UserCV/SingleCV.jsx';
 import routes from '../../routes/routes.jsx';
 
@@ -33,12 +38,22 @@ function InputGroupCV(props) {
           meta,
         }) => (
             <div className={meta.error !== undefined ? 'unfilled input-group fade-in-fwd' : 'input-group fade-in-fwd'}>
-                <input
+                {fieldFromProps.name !== 'phone' && fieldFromProps.name !== 'phone' && fieldFromProps.name !== 'tel'
+                  ? <input
                     title={fieldFromProps.title}
                     name={fieldFromProps.name}
                     className='input-std'
                     type={fieldFromProps.type ? fieldFromProps.type : 'text'}
                     placeholder={fieldFromProps.title} {...field} />
+                  : <InputMask
+                mask={telephoneMask}
+                  title={fieldFromProps.title}
+                  name={fieldFromProps.name}
+                  className='input-std'
+                  type={fieldFromProps.type ? fieldFromProps.type : 'text'}
+                  placeholder={fieldFromProps.title} {...field} />
+
+              }
                 {meta.touched && meta.error && (
                 <div className="error">{meta.error}</div>
                 )}
@@ -113,7 +128,7 @@ function CreateFieldsSectionofDefaultFields(props) {
   } = props;
   return (
     globalState.map((group, index) => (
-      <>
+      <React.Fragment key={index}>
           {group.map((field, i) => (
             <InputGroupCV
             key={i.toString() + groupsArrayName}
@@ -121,7 +136,7 @@ function CreateFieldsSectionofDefaultFields(props) {
             inWhatGroupIsField={globalState}
             field={field} index={index}/>
           ))}
-      </>
+      </React.Fragment>
     ))
   );
 }

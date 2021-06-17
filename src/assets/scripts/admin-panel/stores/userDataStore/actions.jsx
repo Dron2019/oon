@@ -196,8 +196,25 @@ export function changePasswordRequest(data) {
   Object.entries(data).forEach(el => formDate.append(el[0], el[1]));
   console.log('changePasswordAction', formDate);
   return (dispatch) => {
-    axios.post('user/users/change-pass', formDate)
-      .then(el => console.log(el))
-      .catch(el => console.log(el));
+    axios.post('/user/users/change_pass/', formDate)
+      .then((el) => {
+        switch (el.data.error) {
+          case 0:
+            dataStore.dispatch(loginFail(el.data.mess));
+            break;
+          case 1:
+            dataStore.dispatch(loginFail(el.data.mess));
+            break;
+          default:
+            dataStore.dispatch(loginFail('Помилка відправки'));
+            break;
+        }
+      })
+      .catch(el => dataStore.dispatch(loginFail('Помилка відправки')))
+      .finally(() => {
+        setTimeout(() => {
+          dataStore.dispatch(clearError());
+        }, 2000);
+      });
   };
 }

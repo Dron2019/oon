@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "auto doc": "node style-docs.js",
-    "gulp" : "gulp"
+    "gulp": "gulp"
   },
   "browserslist": [
     "last 3 version"
@@ -14,7 +14,7 @@
     "node": ">=14"
   },
   "keywords": [],
-  "author": "Dmitriy Lukianov",
+  "author": "Andrey Dubko",
   "license": "ISC",
   "husky": {
     "hooks": {
@@ -107,6 +107,7 @@
     "react-datetime-picker": "^3.3.0",
     "react-dom": "^17.0.2",
     "react-filepond": "^7.1.1",
+    "react-input-mask": "^2.0.4",
     "react-redux": "^7.2.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

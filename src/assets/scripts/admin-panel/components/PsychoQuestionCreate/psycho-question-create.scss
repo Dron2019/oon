@@ -46,6 +46,7 @@
   &__left {
     @include size(4);
     @include shift(0);
+    
     &>*~* {
       margin-top: 20px;
     }
@@ -53,6 +54,9 @@
   &__right {
     @include size(8);
     @include shift(0);
+    .form-std {
+      overflow: visible;
+    }
   }
   @include to(1320px){
     &__left {

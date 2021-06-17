@@ -8,6 +8,7 @@ import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
 import * as Yup from 'yup';
+import InputMask from 'react-input-mask';
 
 import ProfileEditorCounter from '../ProfileEditorCounter/index.jsx';
 import Loader from '../loader/loader.jsx';
@@ -15,6 +16,7 @@ import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import { ajax_getProfileData, getProfileData, ajax_setProfileData } from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 import { changePasswordRequest } from '../../stores/userDataStore/actions.jsx';
+import { telephoneMask } from '../../helpers.jsx';
 
 export default function ProfileEditor(props) {
   dataStore.dispatch(getProfileData());
@@ -92,12 +94,14 @@ export default function ProfileEditor(props) {
                               meta,
                             }) => (
                             <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
-                                <input
+                                {(field_config.name !== 'tel' && field_config.name !== 'mainPhone') ? <input
                                     title={field_config.title}
                                     disabled = {disabledFields[field_config.name] === true}
                                     className='input-std'
                                     type={field_config.type ? field_config.type : 'text'}
                                     placeholder={field_config.title || ''} {...field} />
+                                  : <InputMask className="input-std" placeholder={field_config.title || ''} {...field} mask={telephoneMask} type={field_config.type ? field_config.type : 'text'} name={field_config.name}></InputMask>
+                                  }
                                 {meta.touched && meta.error && (
                                 <div className="error">{meta.error}</div>
                                 )}
@@ -180,6 +184,8 @@ export default function ProfileEditor(props) {
                                     ) : null
                                 }
                             </div>
+                            {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null }
+                            {isPending ? <Loader/> : null}
                             <button type="submit" className="button-std button-std--violet small">Зберегти пароль</button>
                         </form>
                     )
