@@ -3,7 +3,9 @@
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import { LOGIN_URL, LOGOUT_URL, CHECK_SESSION_URL } from '../urls.jsx';
+import {
+  LOGIN_URL, LOGOUT_URL, CHECK_SESSION_URL, CHANGE_PASSWORD_URL,
+} from '../urls.jsx';
 // eslint-disable-next-line import/no-cycle
 import dataStore from './index.jsx';
 import {
@@ -190,17 +192,18 @@ export function checkSession() {
   };
 }
 
-export function changePasswordRequest(data) {
+export function changePasswordRequest(data, resetForm) {
   const formDate = new FormData();
   formDate.append('ajax_data', '1');
   Object.entries(data).forEach(el => formDate.append(el[0], el[1]));
   console.log('changePasswordAction', formDate);
   return (dispatch) => {
-    axios.post('/user/users/change_pass/', formDate)
+    axios.post(CHANGE_PASSWORD_URL, formDate)
       .then((el) => {
         switch (el.data.error) {
           case 0:
             dataStore.dispatch(loginFail(el.data.mess));
+            resetForm();
             break;
           case 1:
             dataStore.dispatch(loginFail(el.data.mess));

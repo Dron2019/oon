@@ -13,3 +13,4 @@ export const SEND_SINGLE_CV_URL = '/user/users/cvs/';
 export const SEND_PDF_REQUEST = '/user/users/pdf/';
 
 export const DELETE_SINGLE_CV = '/user/users/cvs_delete/';
+export const CHANGE_PASSWORD_URL = '/user/users/change_pass/';

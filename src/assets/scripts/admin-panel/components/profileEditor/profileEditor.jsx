@@ -121,10 +121,12 @@ export default function ProfileEditor(props) {
                   changepassword: '',
                   old_pass: '',
                 }}
+                enableReinitialize={true}
                 validationSchema={passwordSchema}
-                onSubmit={(vals, form) => {
-                  console.log(vals, 'PASS SUBMIT');
-                  dataStore.dispatch(changePasswordRequest(vals));
+                onSubmit={(vals, { resetForm, setStatus, setSubmitting }) => {
+                  // console.log(resetForm, 'reset');
+                  setSubmitting(false);
+                  dataStore.dispatch(changePasswordRequest(vals, resetForm));
                 }}
                 >
                     {({
@@ -137,6 +139,7 @@ export default function ProfileEditor(props) {
                                     placeholder="Вкажіть ваш старий пароль:"
                                     type="text"
                                     name="old_pass"
+                                    value={values.old_pass}
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                 />
@@ -157,6 +160,7 @@ export default function ProfileEditor(props) {
                                 className='input-std'
                                 onBlur={handleBlur}
                                 onChange={handleChange}
+                                value={values.password}
                                 />
                                 {
                                     errors.password ? (
@@ -175,6 +179,7 @@ export default function ProfileEditor(props) {
                                 // value={values.changepassword}
                                 className='input-std'
                                 placeholder="Повторіть новий пароль:"
+                                value={values.changepassword}
                                 />
                                 {
                                     errors.changepassword ? (
