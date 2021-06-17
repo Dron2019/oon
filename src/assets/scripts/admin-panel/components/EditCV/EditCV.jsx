@@ -171,6 +171,15 @@ export default function EditCV(props) {
   useEffect(() => {
     // localStorage.setItem('CV', JSON.stringify(globalFormState));
   }, [globalFormState]);
+  useEffect(() => {
+    setGlobalStateAndAddItToStorage();
+  }, [groupNames,
+    defaultFields,
+    defaultFields1,
+    workAbilities,
+    workExpirience,
+    education]);
+
   function handlePhotoInput(evt) {
     try {
       const url = URL.createObjectURL(evt.currentTarget.files[0]);

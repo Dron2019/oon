@@ -4,7 +4,8 @@
   "description": "work builder",
   "main": "index.js",
   "scripts": {
-    "auto doc": "node style-docs.js"
+    "auto doc": "node style-docs.js",
+    "gulp" : "gulp"
   },
   "browserslist": [
     "last 3 version"

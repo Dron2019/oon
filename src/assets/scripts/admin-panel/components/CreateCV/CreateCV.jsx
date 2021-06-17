@@ -223,7 +223,14 @@ export default function CreateCV() {
     });
   }
 
-
+  useEffect(() => {
+    setGlobalStateAndAddItToStorage();
+  }, [groupNames,
+    defaultFields,
+    defaultFields1,
+    workAbilities,
+    workExpirience,
+    education]);
   function createValidationSchema() {
     const requiredFieldsName = ['name', 'cvName', 'surname', 'tel'];
     const schemaParams = {
