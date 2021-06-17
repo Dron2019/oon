@@ -32,6 +32,7 @@ export default function ProfileEditor(props) {
   profileEditorFields.forEach((field) => {
     if (field.initialValue
       || field.value) initialValues[field.name] = field.initialValue || field.value;
+    if (field.type === 'select') initialValues[field.name] = field.value;
   });
   const disabledFields = {
     email: true,
@@ -86,14 +87,28 @@ export default function ProfileEditor(props) {
                 }}>
                 <Form className="form-std">
                     <div className="form-std__subtitle text-violet">Ваші особисті дані</div>
-                    {profileEditorFields.map((field_config, index) => (
-                            <Field key={index} name={field_config.name}>
+                    {profileEditorFields.map((field_config, index) => {
+                      if (field_config.type === 'select') {
+                        return (
+                            <div key={`${index}aa`} className="input-group input-group-select">
+                            <div className="error placeholder-in-focus">{field_config.selects[0]}</div>
+                            <Field key={`${index}bb`} name={field_config.name} className="fw-500 text-black" as={field_config.type}>
+                                {field_config.selects.map((option, i) => (
+                                    <option key={option[0]} value={i}>{option}</option>
+                                ))}
+                                </Field>
+                            </div>
+                        );
+                      }
+                      return (
+                          <Field key={index} name={field_config.name}>
                             {({
                               field, // { name, value, onChange, onBlur }
                               form: { touched, errors },
                               meta,
                             }) => (
                             <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
+                                {field_config.title && <div className="error placeholder-in-focus">{field_config.title}</div>}
                                 {(field_config.name !== 'tel' && field_config.name !== 'mainPhone') ? <input
                                     title={field_config.title}
                                     disabled = {disabledFields[field_config.name] === true}
@@ -107,8 +122,38 @@ export default function ProfileEditor(props) {
                                 )}
                             </div>
                             )}
+                          </Field>
+                      );
+                    })}
+                    {/* {profileEditorFields.map((field_config, index) => (
+                            <Field key={index} name={field_config.name}>
+                            {({
+                              field, // { name, value, onChange, onBlur }
+                              form: { touched, errors },
+                              meta,
+                            }) => (
+                            <div className={meta.error !== undefined ?
+                              'unfilled input-group' : 'input-group'}>
+                              {(field_config.name !== 'tel' && field_config.name !== 'mainPhone') ?
+                                <input
+                                    title={field_config.title}
+                                    disabled = {disabledFields[field_config.name] === true}
+                                    className='input-std'
+                                    type={field_config.type ? field_config.type : 'text'}
+                                    placeholder={field_config.title || ''} {...field} />
+                              : <InputMask className="input-std"
+                              placeholder={field_config.title || ''}
+                              {...field} mask={telephoneMask}
+                              type={field_config.type ? field_config.type : 'text'}
+                                  name={field_config.name}></InputMask>
+                                  }
+                                {meta.touched && meta.error && (
+                                <div className="error">{meta.error}</div>
+                                )}
+                            </div>
+                            )}
                         </Field>
-                    ))}
+                    ))} */}
                     {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                     {isPending ? <Loader/> : null}
                     <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
@@ -189,7 +234,6 @@ export default function ProfileEditor(props) {
                                     ) : null
                                 }
                             </div>
-                            {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                             {isPending ? <Loader/> : null}
                             <button type="submit" className="button-std button-std--violet small">Зберегти пароль</button>
                         </form>

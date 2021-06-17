@@ -44,7 +44,7 @@ export default function Cabinet(props) {
   }, []);
   function renderCabinetNestedRoutes(el, index) {
     return (
-        <Route exact={el.exact ? true : false} key={index} path={el.route}>
+        <Route exact={el.exact} key={index} path={el.route}>
           {el.component}
         </Route>
     );

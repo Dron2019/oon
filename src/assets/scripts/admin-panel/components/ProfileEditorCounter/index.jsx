@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 function filledFieldsCount(data) {
   let result = 0;
   Object.values(data).forEach((el) => {
-    if (el.value && el.value.length > 0) {
+    if (el.value !== '0' && el.value && el.value.length > 0) {
       result += 1;
     }
   });
@@ -95,7 +95,7 @@ function countFilledFields(dataObject) {
   const oneFraction = 100 / dataObject.length;
   let result = 0;
   Object.values(dataObject).forEach((el) => {
-    if (el.value && el.value.length > 0) {
+    if (el.value !== '0' && el.value && el.value.length > 0) {
       result += oneFraction;
     }
   });
