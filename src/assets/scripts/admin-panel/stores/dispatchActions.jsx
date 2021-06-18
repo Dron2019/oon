@@ -26,6 +26,8 @@ export const CVs_SAVE = 'CVs_SAVE';
 
 export const SET_CV_ID_TO_EDIT = 'SET_CV_ID_TO_EDIT';
 
+export const SEND_CONSULT_QUESTION = 'SEND_CONSULT_QUESTION';
+
 export function login(additionalValue = {}) {
   const obj = Object.assign({ type: 'LOGIN', additionalValue });
   return obj;
@@ -44,6 +46,10 @@ export function resetPending() {
   return obj;
 }
 export function loginFail(error) {
+  const obj = Object.assign({ type: LOGIN_FAIL, error });
+  return obj;
+}
+export function formMessage(error) {
   const obj = Object.assign({ type: LOGIN_FAIL, error });
   return obj;
 }

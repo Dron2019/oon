@@ -90,14 +90,14 @@ export default function Cabinet(props) {
             Мій кабінет
           </div>
           <div className="menu__dark-block">
-            <Link
-              onClick={() => setActiveLink(routes.workConsultation)}
+            <div
+              // onClick={() => setActiveLink(routes.workConsultation)}
               to={routes.workConsultation}
               className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
               <span>
               Послуги консультанта  з пошуку роботи
               </span>
-            </Link>
+            </div>
             <ul>
               {menus.map(renderCabinetLinks)}
             </ul>

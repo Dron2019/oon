@@ -16,6 +16,7 @@ import registerConsultFormReducer from '../registerConsultFormReducer/index.jsx'
 import profileInfoReducers from '../profileInfoStore/profileInfoStore.jsx';
 import cvReducer from '../CVStore/cv-reducer.jsx';
 import cvToEditStore from '../CVToEditStore/cvToEditStore.jsx';
+import consultQuestionsStore from '../consultQuestionsStore/consult-questions-store.jsx';
 
 import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 
@@ -62,6 +63,7 @@ const rootReducer = combineReducers(
     profileInfoReducers,
     cvReducer,
     cvToEditStore,
+    consultQuestionsStore,
   },
 );
 

@@ -4,19 +4,36 @@ import {
 } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
 import routes from '../../routes/routes.jsx';
+
+import { sendConsultQuestion } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
+import dataStore from '../../stores/userDataStore/index.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
 
 export default function (props) {
   const history = useHistory();
+  const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const consultQuestionInitForm = [
+    {
+      name: 'title',
+      initialValue: '',
+      signUpSchema: () => false,
+      type: 'text',
+      placeholder: 'Введіть тему повідомлення:',
+      validation: (value) => {
+        if (!value.length) return 'Введіть тему повідомлення:';
+        return undefined;
+      },
+    },
     {
       name: 'message',
       initialValue: '',
       signUpSchema: () => false,
       type: 'textarea',
-      placeholder: 'Уведіть ваше запитання:',
+      placeholder: 'Введіть ваше запитання:',
       validation: (value) => {
-        if (!value.length) return 'Введіть ваше повідомлення';
+        if (!value.length) return 'Введіть ваше повідомлення:';
         return undefined;
       },
     },
@@ -42,7 +59,8 @@ export default function (props) {
                   return myObject;
                 })()}
                 onSubmit={
-                    (values) => {
+                    (values, form) => {
+                      dataStore.dispatch(sendConsultQuestion(values, form));
                       console.log(values);
                     }
                 }
@@ -69,6 +87,7 @@ export default function (props) {
                             </div>
                             )}
                         </Field>)}
+                    {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
                     <div className="input-group df aic wrap">
                         <a className="text-violet underlined " onClick={() => history.push(routes.questionsHistory)}>Історія запитань</a>
                         <button type='submit' className="button-std button-std--violet small ">Надіслати запитання психологу</button>
