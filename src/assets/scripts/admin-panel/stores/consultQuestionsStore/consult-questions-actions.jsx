@@ -72,13 +72,7 @@ export function appendMessagesToQuestion(arrayWithMessages) {
     // eslint-disable-next-line no-param-reassign
     if (el.id === arrayWithMessages[0].requestID) el.messages = arrayWithMessages;
   });
-  // const part = newState.find(item=> {
-  //   // console.log('item ID', item.id);
-  //   // console.log('array ID', arrayWithMessages[0].id);
-  //   return item.id === arrayWithMessages[0].id;
-  // });
-  // part.messages = arrayWithMessages;
-  // console.log(part, 'FINd PART');
+
   return {
     type: 'APPEND_MESSAGE',
     payload: [...newState],

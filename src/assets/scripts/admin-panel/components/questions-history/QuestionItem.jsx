@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable camelcase */
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import gsap from 'gsap';
+
 
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
@@ -12,13 +15,18 @@ export default function QuestionItem(props) {
     messages,
     userID,
     status: messStatus,
+    request_date,
+    request_time,
   } = props;
+
+
+  const ref1 = useRef(null);
+ const timeLine = useRef(null);
 
   const [firstRendered, setFirstRender] = useState(false);
   const [status, setStatus] = useState(+messStatus);
   const [dropdowned, setDropdown] = useState(false);
-  const [renderWithoutForm, setFormView] = useState(props.noReply);
-  console.log(messStatus, 'STATUS');
+
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     firstRendered !== false ? store.dispatch(getSingleConsultQuestion(id)) : null;
@@ -27,13 +35,12 @@ export default function QuestionItem(props) {
     if (messages !== undefined) {
       const lastItem = messages[messages.length - 1] || [];
       setStatus(+messStatus);
-      // eslint-disable-next-line no-unused-expressions
-      // (lastItem && lastItem.consultID === '0')
-      //   ? setStatus('await')
-      //   : setStatus('answered');
     }
   }, [messages]);
 
+  useEffect(() => {
+    gsap.fromTo('.question-item', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1 });
+  }, []);
 
   const statuses = {
     answered: <div className="question-item__status answered">
@@ -60,27 +67,23 @@ export default function QuestionItem(props) {
   }
 
   function formMessageCallback(value) {
-    // const newState = Array.from(messaging);
-    // newState.push(value);
-    // setMessaging(newState);
     const data = {
       request_id: id,
       userId: userID,
       message: value.message,
     };
-    console.log(data);
     store.dispatch(sendSingleQuestion(data));
   }
   return (
-            <div className={setLayoutClassNames()}>
+            <div ref={ref1} className={setLayoutClassNames()}>
                 {props.userType === 'psycho'
                 && <div className="question-item__user-info">
                     <p>Богдан</p>
                     <div className="question-item__date-wrapper">
-                        <CalendarIcon/> 14.04.2021
+                        <CalendarIcon/> {request_date}
                     </div>
                     <div className="question-item__date-wrapper">
-                        <ClockIcon/>  17:34
+                        <ClockIcon/> {request_time}
                     </div>
                   </div>
                 }
@@ -91,7 +94,6 @@ export default function QuestionItem(props) {
                       // eslint-disable-next-line no-unused-expressions
                       firstRendered === false ? setFirstRender(true) : null;
                     }}>
-
                     <div className="question-item__title">
                         {props.title}
                     </div>

@@ -15,7 +15,6 @@ export default function QuestionItemForm(props) {
             <Formik
                 initialValues={{ message: '' }}
                 onSubmit={loginSubmit}
-
             >
             <Form className="form-std history-message-form">
                 <div className="form-std__subtitle text-violet">Надіслати відповідь</div>
@@ -24,7 +23,6 @@ export default function QuestionItemForm(props) {
                         type="textarea">
                     {({
                       field, // { name, value, onChange, onBlur }
-                      form: { touched, errors },
                       meta,
                     }) => (
                         <div className="input-group">
