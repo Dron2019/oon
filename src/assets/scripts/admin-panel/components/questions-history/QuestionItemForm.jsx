@@ -7,14 +7,7 @@ export default function QuestionItemForm(props) {
   function loginSubmit(vals, form) {
     if (vals.message.length === 0) return false;
     form.resetForm();
-    props.callback(
-      {
-        time: new Date().getTime(),
-        name: 'Богдан',
-        side: 'client',
-        mess: vals.message,
-      },
-    );
+    props.callback(vals);
     return false;
   }
   return (

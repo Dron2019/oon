@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
+import store from '../../stores/userDataStore/index.jsx';
+import { getSingleConsultQuestion, sendSingleQuestion } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
+import { values } from 'lodash';
 
 export default function QuestionItem(props) {
+  const { id, messages, userID } = props;
+  const [firstRendered, setFirstRender] = useState(false);
   const [status, setStatus] = useState('await');
   const [dropdowned, setDropdown] = useState(false);
   const [renderWithoutForm, setFormView] = useState(props.noReply);
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    firstRendered !== false ? store.dispatch(getSingleConsultQuestion(id)) : null;
+  }, [firstRendered]);
+  useEffect(() => {
+    if (messages !== undefined) {
+      var lastItem = messages[messages.length - 1] || [];
+      (lastItem && lastItem.consultID === '0')
+      ? setStatus('await') 
+      : setStatus('answered');
+    }
+  }, [messages])
   const initMessages = props.history || [
     {
       time: '14:20', date: '03.18.2021', name: 'Консультант Марина', side: 'admin', mess: 'Hello',
@@ -51,9 +68,16 @@ export default function QuestionItem(props) {
   }
 
   function formMessageCallback(value) {
-    const newState = Array.from(messaging);
-    newState.push(value);
-    setMessaging(newState);
+    // const newState = Array.from(messaging);
+    // newState.push(value);
+    // setMessaging(newState);
+    const data = {
+      request_id: id,
+      userId: userID,
+      text: value.message,
+    };
+    console.log(data);
+    store.dispatch(sendSingleQuestion(data));
   }
   return (
             <div className={setLayoutClassNames()}>
@@ -68,15 +92,19 @@ export default function QuestionItem(props) {
                     </div>
                   </div>
                 }
-                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="closed" />
+                {/* <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="closed" />
                 <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="new-answer" />
-                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="await" />
+                <input type="radio" onChange={evt => setStatus(evt.target.value)} name="test-status-switch" value="await" /> */}
                 <div
                     className="question-item__head"
-                    onClick={() => setDropdown(!dropdowned)}>
+                    onClick={() => {
+                      setDropdown(!dropdowned);
+                      // eslint-disable-next-line no-unused-expressions
+                      firstRendered === false ? setFirstRender(true) : null;
+                    }}>
 
                     <div className="question-item__title">
-                        На мене напав мій кіт. Що мені робити?
+                        {props.title}
                     </div>
                     {statuses[status]}
                     <div
@@ -85,21 +113,21 @@ export default function QuestionItem(props) {
                     </div>
                 </div>
                 <div className="question-item__body">
-                    {messaging.map((part, index) => (
-                            <div key={index} className={`text question-item__single-mess ${part.side}`}>
+                    {messages && messages.map((part, index) => (
+                            <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'admin' : 'user'}`}>
                                 <div className="question-item__single-mess-head">
                                     <span className="fw-600 question-item__single-mess-title">
                                         {part.name}
                                     </span>
                                     <div className="question-item__date-wrapper">
-                                        <CalendarIcon/> {part.date}
+                                        <CalendarIcon/> {part.request_date}
                                     </div>
                                     <div className="question-item__date-wrapper">
-                                        <ClockIcon/>  {part.time}
+                                        <ClockIcon/>  {part.request_time}
                                     </div>
                                 </div>
                                 <div className="question-item__single-mess-text">
-                                    {part.mess}
+                                    {part.text}
                                 </div>
 
                             </div>

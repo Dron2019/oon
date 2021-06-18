@@ -16,3 +16,7 @@ export const DELETE_SINGLE_CV = '/user/users/cvs_delete/';
 export const CHANGE_PASSWORD_URL = '/user/users/change_pass/';
 
 export const SEND_CONSULT_QUESTION_URL = '/user/users/request/';
+export const GET_CONSULT_QUESTION_URL = '/user/users/requests_list/';
+export const GET_SINGLE_CONSULT_QUESTION_URL = '/user/users/request_get/';
+
+export const SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL = '/user/users/request/';
