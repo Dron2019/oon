@@ -25,13 +25,15 @@ export default function QuestionsHistory(props) {
             {/* <QuestionItem userType={userType}/>
             <QuestionItem userType={userType} history={[
               {
-                time: '14:20', date: '03.18.2021', name: 'Консультант Марина', side: 'admin', mess: 'Hello',
+                time: '14:20', date: '03.18.2021', name:
+                'Консультант Марина', side: 'admin', mess: 'Hello',
               },
               {
-                time: '15:55', date: '03.18.2021', name: 'Сергій', side: 'client', mess: 'Hello you too',
+                time: '15:55', date: '03.18.2021',
+                name: 'Сергій', side: 'client', mess: 'Hello you too',
               },
             ]}/> */}
-            {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
+            {errorMessage && <div className="el-for-alerts">{errorMessage}</div>}
         </div>
   );
 }

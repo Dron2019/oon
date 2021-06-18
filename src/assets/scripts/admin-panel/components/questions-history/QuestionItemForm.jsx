@@ -44,13 +44,13 @@ export default function QuestionItemForm(props) {
                     <div className="form__group">
                         {props.userType === 'psycho'
                         && <>
-                            <div className="text-orange end-question-item">
+                            <div className="text-orange end-question-item" onClick={props.closeQuestion}>
                                 Завершити бесіду
                             </div>
                             <p className="text-gray question-item-form-text-s">
                                 Натискаючи, діалог потрапить до історії. Клієнт
                                 завжди може відновити цей діалог і
-                                 він зноу перейде до вхідних заявок.
+                                він зноу перейде до вхідних заявок.
                             </p>
                         </>
                         }
