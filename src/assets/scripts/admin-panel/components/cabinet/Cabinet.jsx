@@ -22,12 +22,16 @@ import routes from '../../routes/routes.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 
+import { countNewMessages } from '../../stores/newMessageReducer/actions-newMessageReducer.jsx';
+import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
 import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
 export default function Cabinet(props) {
   const isLogined = useSelector(state => state.isLogined);
   const userName = useSelector(state => state.loginStatusReducer.name) || '';
+  const newMessages = useSelector(state => state.newMessagesReducer);
+  const messagesList = useSelector(state => state.consultQuestionsStore);
   // const test = true;
   const history = useHistory();
   const location = useLocation();
@@ -35,15 +39,22 @@ export default function Cabinet(props) {
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const userType = useSelector(state => state.loginStatusReducer.role); /* psycho */
+
+
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
+    store.dispatch(countNewMessages());
   }), [history]);
   useEffect(() => {
     dataStore.dispatch(checkSession());
+    store.dispatch(getConsultQuestions());
+    store.dispatch(countNewMessages());
   }, []);
+  useEffect(() => {
+    store.dispatch(countNewMessages());
+  }, [messagesList]);
 
-  console.log(userType);
   function renderCabinetNestedRoutes(el, index) {
     return (
         <Route exact={el.exact} key={index} path={el.route}>
@@ -59,7 +70,7 @@ export default function Cabinet(props) {
           <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
             {el[0]}
           </Link>
-          <CabinetMessageBell count={0}/>
+          <CabinetMessageBell count={newMessages}/>
         </li>
     );
   }

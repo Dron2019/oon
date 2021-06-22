@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 import {
   GET_CONSULT_QUESTION_URL,
@@ -5,9 +6,11 @@ import {
   SEND_CONSULT_QUESTION_URL,
   SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL,
   CLOSE_CONSULT_QUESTION_URL,
+  SEND_SINGLE_CONSULT_QUESTION_URL,
 } from '../urls.jsx';
 import { formMessage, SEND_CONSULT_QUESTION } from '../dispatchActions.jsx';
 import store from '../userDataStore/index.jsx';
+import { countNewMessages } from '../newMessageReducer/actions-newMessageReducer.jsx';
 
 export function saveConsultQuestions(data) {
   return {
@@ -66,11 +69,11 @@ export function getConsultQuestions() {
 
 export function appendMessagesToQuestion(arrayWithMessages) {
   const newState = store.getState().consultQuestionsStore;
-  console.log(newState, 'new-state');
-  console.log(arrayWithMessages, 'array with messages');
   newState.forEach((el) => {
     // eslint-disable-next-line no-param-reassign
     if (el.id === arrayWithMessages[0].requestID) el.messages = arrayWithMessages;
+    if (el.id === arrayWithMessages[0].requestID) el.status = arrayWithMessages[0].status;
+    if (el.id === arrayWithMessages[0].requestID) el.is_read = true;
   });
 
   return {

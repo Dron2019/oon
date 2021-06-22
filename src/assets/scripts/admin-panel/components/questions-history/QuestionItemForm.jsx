@@ -40,7 +40,7 @@ export default function QuestionItemForm(props) {
                     )}
                     </Field>
                     <div className="form__group">
-                        {props.userType === 'psycho'
+                        {props.userType === 'consult'
                         && <>
                             <div className="text-orange end-question-item" onClick={props.closeQuestion}>
                                 Завершити бесіду

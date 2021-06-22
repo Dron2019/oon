@@ -14,13 +14,14 @@ export default function QuestionItem(props) {
     id,
     messages,
     userID,
-    status: messStatus,
+    status,
     request_date,
     request_time,
     fName,
-    concultName,
+    consultName,
     userName,
     userType,
+    is_read,
   } = props;
 
 
@@ -28,9 +29,9 @@ export default function QuestionItem(props) {
   const timeLine = useRef(null);
 
   const [firstRendered, setFirstRender] = useState(false);
-  const [status, setStatus] = useState(+messStatus);
+  const [statusOfMessage, setStatus] = useState(+status);
   const [dropdowned, setDropdown] = useState(false);
-
+  const [isRead, setIsRead] = useState(true);
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     firstRendered !== false ? store.dispatch(getSingleConsultQuestion(id)) : null;
@@ -38,7 +39,7 @@ export default function QuestionItem(props) {
   useEffect(() => {
     if (messages !== undefined) {
       const lastItem = messages[messages.length - 1] || [];
-      setStatus(+messStatus);
+      setStatus(+status);
     }
   }, [messages]);
 
@@ -62,8 +63,28 @@ export default function QuestionItem(props) {
     10: <div className="question-item__status closed">
                     Завершено
                 </div>,
-    3: <div className="question-item__status answered">
-                    Повторна відповідь
+    3: <div className="question-item__status await">
+                    Немає відповіді
+                </div>,
+  };
+  const consultStatuses = {
+    answered: <div className="question-item__status answered">
+                    Отримано відповідь
+                </div>,
+    0: <div className="question-item__status answered">
+                    Нова заявка
+                </div>,
+    1: <div className="question-item__status await">
+                    Немає відповіді
+                </div>,
+    2: <div className="question-item__status answered">
+                    Надіслано відповідь
+                </div>,
+    10: <div className="question-item__status closed">
+                    Завершено
+                </div>,
+    3: <div className="question-item__status await">
+                    Чекає відповіді
                 </div>,
   };
 
@@ -73,7 +94,9 @@ export default function QuestionItem(props) {
     output += status === 0 ? ' new-answer' : ' ';
     output += status === 1 ? ' await' : ' ';
     output += status === 10 ? ' closed' : '';
+    output += status === 2 ? ' new-answer' : '';
     output += status === 3 ? '  answered' : '';
+    output += (+is_read === 0 && props.userType !== 'consult') ? 'new-answer' : '';
 
     return output;
   }
@@ -87,10 +110,10 @@ export default function QuestionItem(props) {
     store.dispatch(sendSingleQuestion(data));
   }
   return (
-            <div ref={ref1} className={setLayoutClassNames()}>
-                {props.userType === 'psycho'
+            <div data-is_read={is_read} ref={ref1} className={setLayoutClassNames()}>
+                {props.userType === 'consult'
                 && <div className="question-item__user-info">
-                    <p> {concultName || userName}</p>
+                    <p> {consultName || userName}</p>
                     <div className="question-item__date-wrapper">
                         <CalendarIcon/> {request_date}
                     </div>
@@ -109,7 +132,7 @@ export default function QuestionItem(props) {
                     <div className="question-item__title">
                         {props.title}
                     </div>
-                    {statuses[status]}
+                    {props.userType === 'consult' ? consultStatuses[statusOfMessage] : statuses[statusOfMessage]}
                     <div
                         className="question-item__birdy"
                     >
@@ -122,7 +145,7 @@ export default function QuestionItem(props) {
                           <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'client' : 'admin'}`}>
                                 <div className="question-item__single-mess-head">
                                     <span className="fw-600 question-item__single-mess-title">
-                                        {part.consultID === '0' ? userName : concultName}
+                                        {part.consultID === '0' ? userName : consultName}
                                     </span>
                                     <div className="question-item__date-wrapper">
                                         <CalendarIcon/> {part.request_date}
@@ -134,15 +157,14 @@ export default function QuestionItem(props) {
                                 <div className="question-item__single-mess-text">
                                     {part.text}
                                 </div>
-
                             </div>
-                        )
+                        );
                       }
                       return (
                         <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'admin' : 'client'}`}>
                                 <div className="question-item__single-mess-head">
                                     <span className="fw-600 question-item__single-mess-title">
-                                        {part.consultID === '0' ? userName : concultName}
+                                        {part.consultID === '0' ? userName : consultName}
                                     </span>
                                     <div className="question-item__date-wrapper">
                                         <CalendarIcon/> {part.request_date}
@@ -158,7 +180,7 @@ export default function QuestionItem(props) {
                             </div>
                       );
                     })}
-                    {status !== 10
+                    {statusOfMessage !== 10
                         && <div className="gray-bg-element">
                             <QuestionItemForm
                                 closeQuestion={() => store.dispatch(closeConsultQuestion(id)) }

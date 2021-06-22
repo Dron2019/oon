@@ -21,4 +21,6 @@ export const GET_SINGLE_CONSULT_QUESTION_URL = '/user/users/request_get/';
 
 export const SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL = '/user/users/request/';
 
+export const SEND_SINGLE_CONSULT_QUESTION_URL = '/user/users/request_set/';
+
 export const CLOSE_CONSULT_QUESTION_URL = '/user/users/request_status/';

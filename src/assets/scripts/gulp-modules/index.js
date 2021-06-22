@@ -33,7 +33,7 @@ function renderNewMessagesInAsideButton(){
   const menuCabinetLink = document.querySelector('[data-new-messages]');
   const messageInformerElement = menuCabinetLink.closest('svg');
   const messageInStorage = window.localStorage.getItem('newMessages');
-  if (messageInStorage !== null) {
+  if (messageInStorage !== null && messageInStorage !== 0 && messageInStorage !== '0') {
     menuCabinetLink.innerHTML =  messageInStorage;
     messageInformerElement.style.opacity = 1;
   }else {
