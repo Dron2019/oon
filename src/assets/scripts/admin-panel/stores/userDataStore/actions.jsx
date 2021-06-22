@@ -178,7 +178,11 @@ export function checkSession() {
       .then((response) => {
         switch (response.data.error) {
           case 0:
-
+            console.log();
+            console.log();
+            setTimeout(() => {
+              dataStore.dispatch(logout());
+            }, (response.data.sessionTime * 1000) - (new Date().getTime()));
             break;
           case 1:
             dataStore.dispatch(logout());
@@ -205,7 +209,6 @@ export function changePasswordRequest(data, resetForm) {
   const formDate = new FormData();
   formDate.append('ajax_data', '1');
   Object.entries(data).forEach(el => formDate.append(el[0], el[1]));
-  console.log('changePasswordAction', formDate);
   return (dispatch) => {
     axios.post(CHANGE_PASSWORD_URL, formDate)
       .then((el) => {

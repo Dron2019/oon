@@ -7,6 +7,7 @@ import {
   SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL,
   CLOSE_CONSULT_QUESTION_URL,
   SEND_SINGLE_CONSULT_QUESTION_URL,
+  RECOVER_CONSULT_QUESTION_URL,
 } from '../urls.jsx';
 import { formMessage, SEND_CONSULT_QUESTION } from '../dispatchActions.jsx';
 import store from '../userDataStore/index.jsx';
@@ -130,6 +131,32 @@ export function closeConsultQuestion(messageID) {
   data.append('request_id', messageID);
   return (dispatch) => {
     axios.post(CLOSE_CONSULT_QUESTION_URL, data)
+      .then((el) => {
+        switch (el.data.error) {
+          case 0:
+            store.dispatch(formMessage(el.data.mess));
+            store.dispatch(getConsultQuestions());
+            store.dispatch(getSingleConsultQuestion(messageID));
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(el => console.log(el))
+      .finally((el) => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+        }, 2000);
+      });
+  };
+}
+
+export function recoverConversation(messageID) {
+  const data = new FormData();
+  data.append('ajax_data', '1');
+  data.append('id', messageID);
+  return (dispatch) => {
+    axios.post(RECOVER_CONSULT_QUESTION_URL, data)
       .then((el) => {
         switch (el.data.error) {
           case 0:

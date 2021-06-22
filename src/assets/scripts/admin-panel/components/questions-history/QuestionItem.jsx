@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 import store from '../../stores/userDataStore/index.jsx';
-import { getSingleConsultQuestion, sendSingleQuestion, closeConsultQuestion } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
+import { getSingleConsultQuestion, sendSingleQuestion, closeConsultQuestion, recoverConversation } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
 
 export default function QuestionItem(props) {
   const {
@@ -187,6 +187,10 @@ export default function QuestionItem(props) {
                                 userType={props.userType}
                                 callback={formMessageCallback}/>
                         </div>
+                    }
+                    {statusOfMessage === 10 && <div onClick={() => {
+                      store.dispatch(recoverConversation(id));
+                    }} className="  mt-10 button-std button-std--violet small">Відновити діалог</div>
                     }
                 </div>
             </div>

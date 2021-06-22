@@ -10,6 +10,9 @@
         display: flex;
         flex-wrap: wrap;
     }
+    @include from(769px){
+        position: relative;
+    }
     @include to(1200px){
         .content {
             width: calc(100% - var(--cabinet-menu-width) - 15px);
@@ -206,7 +209,9 @@
 
 .menu {
     @include from(769px){
-        position: relative;
+        position: sticky;
+        top: 20px;
+
     }
     --online-course-h: 95px;
     margin-bottom: var(--online-course-h);
