@@ -17,6 +17,10 @@ export default function QuestionItem(props) {
     status: messStatus,
     request_date,
     request_time,
+    fName,
+    concultName,
+    userName,
+    userType,
   } = props;
 
 
@@ -46,22 +50,30 @@ export default function QuestionItem(props) {
     answered: <div className="question-item__status answered">
                     Отримано відповідь
                 </div>,
-    0: <div className="question-item__status await">
+    0: <div className="question-item__status answered">
+                    Нова заявка
+                </div>,
+    1: <div className="question-item__status await">
                     Немає відповіді
+                </div>,
+    2: <div className="question-item__status answered">
+                    Отримано відповідь
                 </div>,
     10: <div className="question-item__status closed">
                     Завершено
                 </div>,
-    new: <div className="question-item__status new">
-                    Нова заявка
+    3: <div className="question-item__status answered">
+                    Повторна відповідь
                 </div>,
   };
 
   function setLayoutClassNames() {
     let output = `question-item ${props.userType}`;
     output += dropdowned ? ' opened' : '';
-    output += status === 0 ? '' : ' new-answer';
+    output += status === 0 ? ' new-answer' : ' ';
+    output += status === 1 ? ' await' : ' ';
     output += status === 10 ? ' closed' : '';
+    output += status === 3 ? '  answered' : '';
 
     return output;
   }
@@ -78,7 +90,7 @@ export default function QuestionItem(props) {
             <div ref={ref1} className={setLayoutClassNames()}>
                 {props.userType === 'psycho'
                 && <div className="question-item__user-info">
-                    <p>Богдан</p>
+                    <p> {concultName || userName}</p>
                     <div className="question-item__date-wrapper">
                         <CalendarIcon/> {request_date}
                     </div>
@@ -104,11 +116,13 @@ export default function QuestionItem(props) {
                     </div>
                 </div>
                 <div className="question-item__body">
-                    {messages && messages.map((part, index) => (
-                            <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'admin' : 'user'}`}>
+                    {messages && messages.map((part, index) => {
+                      if (userType === 'consult') {
+                        return (
+                          <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'client' : 'admin'}`}>
                                 <div className="question-item__single-mess-head">
                                     <span className="fw-600 question-item__single-mess-title">
-                                        {part.name}
+                                        {part.consultID === '0' ? userName : concultName}
                                     </span>
                                     <div className="question-item__date-wrapper">
                                         <CalendarIcon/> {part.request_date}
@@ -122,7 +136,28 @@ export default function QuestionItem(props) {
                                 </div>
 
                             </div>
-                    ))}
+                        )
+                      }
+                      return (
+                        <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'admin' : 'client'}`}>
+                                <div className="question-item__single-mess-head">
+                                    <span className="fw-600 question-item__single-mess-title">
+                                        {part.consultID === '0' ? userName : concultName}
+                                    </span>
+                                    <div className="question-item__date-wrapper">
+                                        <CalendarIcon/> {part.request_date}
+                                    </div>
+                                    <div className="question-item__date-wrapper">
+                                        <ClockIcon/>  {part.request_time}
+                                    </div>
+                                </div>
+                                <div className="question-item__single-mess-text">
+                                    {part.text}
+                                </div>
+
+                            </div>
+                      );
+                    })}
                     {status !== 10
                         && <div className="gray-bg-element">
                             <QuestionItemForm

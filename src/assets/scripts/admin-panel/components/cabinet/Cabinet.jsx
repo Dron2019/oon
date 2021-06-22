@@ -34,7 +34,7 @@ export default function Cabinet(props) {
   const [activeLink, setActiveLink] = useState(useLocation().pathname);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
-  const [userType, setUserType] = useState(''); /* psycho */
+  const userType = useSelector(state => state.loginStatusReducer.role); /* psycho */
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
@@ -42,6 +42,8 @@ export default function Cabinet(props) {
   useEffect(() => {
     dataStore.dispatch(checkSession());
   }, []);
+
+  console.log(userType);
   function renderCabinetNestedRoutes(el, index) {
     return (
         <Route exact={el.exact} key={index} path={el.route}>
@@ -51,6 +53,7 @@ export default function Cabinet(props) {
   }
   function renderCabinetLinks(el, index) {
     const isActive = (activeLink === el[1]) ? 'active' : '';
+    if (userType === 'consult' && el[2]) return <></>;
     return (
         <li className={isActive} key={index}>
           <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
@@ -62,13 +65,13 @@ export default function Cabinet(props) {
   }
 
   const menus = [
-    ['Створити запитання', routes.createConsultQuestion],
+    ['Створити запитання', routes.createConsultQuestion, true],
     ['Історія запитань', routes.questionsHistory],
-    ['Запит на онлайн консультацію', routes.onlineConsultationRequest],
+    ['Запит на онлайн консультацію', routes.onlineConsultationRequest, true],
     ['Прийняті запити на консультацію', routes.cabinet],
   ];
   const psychoMenus = [
-    ['Створити запитання ', routes.psychoQuestionCreate],
+    ['Створити запитання ', routes.psychoQuestionCreate, true],
     ['Історія запитань ', '/cabinet/ '],
   ];
   function handleMobileMenuClick(evt) {
@@ -90,7 +93,7 @@ export default function Cabinet(props) {
             Мій кабінет
           </div>
           <div className="menu__dark-block">
-            <div
+          <div
               // onClick={() => setActiveLink(routes.workConsultation)}
               to={routes.workConsultation}
               className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
@@ -116,7 +119,7 @@ export default function Cabinet(props) {
             Редагувати профіль
             </span>
           </Link>
-          { userType !== 'psycho'
+          { userType !== 'consult'
           && <>
               <Link
                 onClick={() => setActiveLink(routes.CreateCV)}

@@ -127,7 +127,11 @@ export function loginAsync(values, history) {
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail(response.data.mess));
           setTimeout(() => {
-            dataStore.dispatch(login({ name: response.data.userID, id: response.data.userID }));
+            dataStore.dispatch(login({
+              name: response.data.userID,
+              id: response.data.userID,
+              role: response.data.role,
+            }));
             dataStore.dispatch(clearError());
             history.push(routes.cabinet);
           }, 2000);
@@ -151,13 +155,15 @@ export function getLoginStatusOfUser() {
     isLogined: loginFromStorage === 'true',
     name: localStorage.getItem('user-login'),
     id: localStorage.getItem('id'),
+    role: localStorage.getItem('role'),
   };
 }
 
-export function setLoginStatusOfUser(status, name) {
+export function setLoginStatusOfUser(status, name, role) {
   localStorage.setItem('login-status', status);
   localStorage.setItem('user-login', name);
   localStorage.setItem('id', name);
+  localStorage.setItem('role', role);
 }
 
 

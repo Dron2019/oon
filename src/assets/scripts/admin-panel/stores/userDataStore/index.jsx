@@ -23,10 +23,15 @@ import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 function loginStatusReducer(state = getLoginStatusOfUser(), action) {
   switch (action.type) {
     case LOGIN:
-      setLoginStatusOfUser(true, action.additionalValue.name);
+      setLoginStatusOfUser(true, action.additionalValue.name, action.additionalValue.role);
       return Object.assign(
         { ...state },
-        { isLogined: true, name: action.additionalValue.name, id: action.additionalValue.id },
+        {
+          isLogined: true,
+          name: action.additionalValue.name,
+          id: action.additionalValue.id,
+          role: action.additionalValue.role,
+        },
       );
 
     case LOGIN_FAIL:

@@ -9,7 +9,7 @@ export default function QuestionsHistory(props) {
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const messages = useSelector(state => state.consultQuestionsStore);
   const userID = useSelector(state => state.loginStatusReducer.id);
-  const userType = 'psycho';
+  const userType = useSelector(state => state.loginStatusReducer.role);
   useEffect(() => {
     store.dispatch(getConsultQuestions());
   }, []);
