@@ -53,7 +53,7 @@ export function getConsultQuestions() {
       .then((el) => {
         switch (el.data.error) {
           case 0:
-            store.dispatch(saveConsultQuestions(el.data.request));
+            store.dispatch(saveConsultQuestions(el.data.request || []));
             break;
           default:
             break;

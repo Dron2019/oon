@@ -19,7 +19,7 @@ import ErrorView from '../error-message/ErrorMessage.jsx';
 
 import routes from '../../routes/routes.jsx';
 
-export default function (props) {
+export default function LoginForm(props) {
   const [responseFromLogin, setResponse] = useState('');
   const history = useHistory();
   const isPending = useSelector(state => state.pendingStatusStore);
@@ -27,7 +27,7 @@ export default function (props) {
 
   function loginSubmit(values, actions) {
     dataStore.dispatch(setPending());
-    dataStore.dispatch(loginAsync(values));
+    dataStore.dispatch(loginAsync(values, history));
   }
   // Запуск восттановления через електронную почту с последующий логином
   if (history.location.search.match(/token/) && isPending === false) {

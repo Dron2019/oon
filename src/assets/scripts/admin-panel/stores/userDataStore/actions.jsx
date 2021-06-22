@@ -11,6 +11,8 @@ import dataStore from './index.jsx';
 import {
   PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN,
 } from '../dispatchActions.jsx';
+import routes from '../../routes/routes.jsx';
+
 
 export function logout(addValue) {
   const obj = { type: 'LOGOUT', payload: addValue };
@@ -112,7 +114,7 @@ export function restoreByToken(values) {
   };
 }
 
-export function loginAsync(values) {
+export function loginAsync(values, history) {
   const sendData = Object.assign(values, { ajax_data: 1 });
   const formDate = new FormData();
   for (const key in sendData) {
@@ -127,6 +129,7 @@ export function loginAsync(values) {
           setTimeout(() => {
             dataStore.dispatch(login({ name: response.data.userID, id: response.data.userID }));
             dataStore.dispatch(clearError());
+            history.push(routes.cabinet);
           }, 2000);
         }
         if (response.data.error === 1) {

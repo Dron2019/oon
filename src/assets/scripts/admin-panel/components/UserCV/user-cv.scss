@@ -110,14 +110,19 @@
             width: 100%;
         }
         button {
-            width: 50%;
+            width: calc(50% - 20px);
+            margin-left: 10px;
+            margin-right: 10px;
             background: #ff7f41;
             border: none;
             color: white;
             font-weight: 800;
             padding: 5px 2px;
-            border-radius: 10px;
+            border-radius: 40px;
             transition: .3s ease-in-out;
+            height: 36px;
+            font-size: 12px;
+            padding: 13px 25px;
         }
         button:hover {
             background: var(--color-violet);

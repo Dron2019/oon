@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import QuestionItem from './QuestionItem.jsx';
-
+import EmptyQuestions from '../EmptyQuestions/EmptyQuestion.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
 
@@ -21,6 +21,7 @@ export default function QuestionsHistory(props) {
             {messages.map((message, index) => (
               <QuestionItem key={index} {...message} userID={userID} userType={userType}/>
             ))}
+            {messages.length === 0 && <EmptyQuestions/>}
             {errorMessage && <div className="el-for-alerts">{errorMessage}</div>}
         </div>
   );

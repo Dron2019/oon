@@ -526,3 +526,11 @@ textarea,
     
     animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
+
+.empty-questions-wrapper {
+  width: 100%;
+  .subtitle-small {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
