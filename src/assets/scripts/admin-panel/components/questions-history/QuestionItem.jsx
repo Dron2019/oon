@@ -7,7 +7,12 @@ import gsap from 'gsap';
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 import store from '../../stores/userDataStore/index.jsx';
-import { getSingleConsultQuestion, sendSingleQuestion, closeConsultQuestion, recoverConversation } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
+import {
+  getSingleConsultQuestion,
+  sendSingleQuestion,
+  closeConsultQuestion,
+  recoverConversation,
+} from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
 
 export default function QuestionItem(props) {
   const {
@@ -173,8 +178,12 @@ export default function QuestionItem(props) {
                                         <ClockIcon/>  {part.request_time}
                                     </div>
                                 </div>
-                                <div className="question-item__single-mess-text">
-                                    {part.text}
+                                <div className="question-item__single-mess-text"
+                                    dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}>
+                                    {/* {part.text.replace(
+                                      /\b(https?\:\/\/\S+)/mg,
+                                      '<a href="$1">$1</a>'
+                                    )} */}
                                 </div>
 
                             </div>

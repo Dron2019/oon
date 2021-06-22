@@ -221,6 +221,7 @@ export default function CreateCV() {
     };
     cvData.jsonData = jsonData;
     dataStore.dispatch(sendCV(cvData));
+    localStorage.setItem('cv-temp-vals', JSON.stringify({}));
   }
   return (
     <div className="create-cv-wrapper">
@@ -238,11 +239,19 @@ export default function CreateCV() {
         </div>
       }
 
-      <Formik validationSchema={createValidationSchema()} initialValues={{}} onSubmit={handleSubmit} validator={() => ({})}>
+      <Formik validationSchema={createValidationSchema()} initialValues={(() => {
+        if (localStorage.getItem('cv-temp-vals') !== null) {
+          return JSON.parse(localStorage.getItem('cv-temp-vals'));
+        }
+        return {};
+      })()} 
+      onSubmit={handleSubmit} validator={() => ({})}>
       {({
         setFieldValue, handleChange, handleBlur, values, errors,
       }) => (
-        <Form className="form-std">
+        <Form onChange={() => {
+          if (values !== null) localStorage.setItem('cv-temp-vals', JSON.stringify(values));
+        }} className="form-std">
           <div className="form-std__subtitle text-violet">
             Створити нове резюме:
           </div>
