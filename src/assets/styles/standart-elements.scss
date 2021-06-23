@@ -126,6 +126,11 @@ body {
   outline: none;
   position: relative;
   white-space: nowrap;
+
+  &:hover {
+    box-shadow: 0 0 0 rgba(255,127,65, 0.4);
+    animation: pulse 1s infinite;
+  }
   &.down-button {
     width: max-content;
   }

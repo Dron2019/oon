@@ -149,6 +149,7 @@
         right: 0;
         top: 0.6em;
         transform: translateY(-50%) translateX(100%);
+        z-index: 5;
         text {
             stroke: var(--color-white);
             font-size: 7px;
@@ -156,6 +157,11 @@
             text-anchor: middle;
         }
     } 
+    li.active .menu-messages-bell svg path,
+    li.active .menu-messages-bell svg {
+        fill: var(--color-violet);
+        stroke: var(--color-violet);
+    }
     a {
         text-decoration: none;
     }
@@ -199,10 +205,10 @@
     }
     @include to(575px){
         .bold-link {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         .mt-10 {
-            margin-top: 5px;
+            margin-top: 10px;
         }
     }
 }

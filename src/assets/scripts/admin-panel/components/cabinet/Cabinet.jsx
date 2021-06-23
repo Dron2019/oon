@@ -1,8 +1,10 @@
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-duplicates */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
+import { useClickAway, useLockBodyScroll, useToggle } from 'react-use';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +41,7 @@ export default function Cabinet(props) {
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const userType = useSelector(state => state.loginStatusReducer.role); /* psycho */
-
+  const ref = useRef(null);
 
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
@@ -63,6 +65,7 @@ export default function Cabinet(props) {
     );
   }
   function renderCabinetLinks(el, index) {
+    /** el[3] - переменная новых сообщений в разделе */
     const isActive = (activeLink === el[1]) ? 'active' : '';
     if (userType === 'consult' && el[2]) return <></>;
     return (
@@ -70,14 +73,14 @@ export default function Cabinet(props) {
           <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
             {el[0]}
           </Link>
-          <CabinetMessageBell count={newMessages}/>
+          <CabinetMessageBell count={el[3] > 0 ? el[3] : 0}/>
         </li>
     );
   }
 
   const menus = [
     ['Створити запитання', routes.createConsultQuestion, true],
-    ['Історія запитань', routes.questionsHistory],
+    ['Історія запитань', routes.questionsHistory, false, newMessages],
     ['Запит на онлайн консультацію', routes.onlineConsultationRequest, true],
     ['Прийняті запити на консультацію', routes.cabinet],
   ];
@@ -97,9 +100,19 @@ export default function Cabinet(props) {
     delta: 80,
 
   });
+
+  const [locked, toggleLocked] = useToggle(false);
+  useLockBodyScroll(locked);
+  useEffect(() => {
+    toggleLocked(menuVisibility);
+  }, [menuVisibility]);
+  useClickAway(ref, () => {
+    if (menuVisibility === true) setMenuVisibility(false);
+  }, ['mousedown', 'touchstart']);
+
   return (
       <div className="cabinet-wrapper">
-        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick} {...handlers}>
+        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick} {...handlers} ref={ref}>
           <div className="menu__subtitle">
             Мій кабінет
           </div>
