@@ -141,9 +141,11 @@
 /*PAGINATION*/
 .paginationjs {
     line-height: 1.6;
-    font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
+    // font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
     font-size: 14px;
-    box-sizing: initial
+    box-sizing: initial;
+    margin-top: 20px;
+
 }
 
 .paginationjs:after {
@@ -153,13 +155,20 @@
 }
 
 .paginationjs .paginationjs-pages {
-    float: left
+    // float: left
+    display: flex;
+    align-items: center;justify-content: center;
 }
 
 .paginationjs .paginationjs-pages ul {
-    float: left;
+    // float: left;
+    display: flex;
     margin: 0;
-    padding: 0
+    padding: 0;
+    &>li {
+        margin-right: 10px;
+    }
+
 }
 
 .paginationjs .paginationjs-go-button,.paginationjs .paginationjs-go-input,.paginationjs .paginationjs-nav {
@@ -169,10 +178,11 @@
 }
 
 .paginationjs .paginationjs-pages li {
-    float: left;
-    border: 1px solid #aaa;
+    // border: 1px solid var(--color-violet);
+    border-radius: 10px;
     border-right: none;
-    list-style: none
+    list-style: none;
+    transition: .2s ease-in-out;
 }
 
 .paginationjs .paginationjs-pages li>a {
@@ -180,15 +190,17 @@
     height: 28px;
     line-height: 28px;
     display: block;
-    background: #fff;
+    background: var(--color-violet);
     font-size: 14px;
-    color: #333;
+    color: var(--color-white);
     text-decoration: none;
-    text-align: center
+    text-align: center;
+    border-radius: 25px;
+    transition: .3s ease-in-out;
 }
 
 .paginationjs .paginationjs-pages li>a:hover {
-    background: #eee
+    background: var(--color-violet-dark);
 }
 
 .paginationjs .paginationjs-pages li.active {
@@ -198,8 +210,10 @@
 .paginationjs .paginationjs-pages li.active>a {
     height: 30px;
     line-height: 30px;
-    background: #aaa;
-    color: #fff
+    // background: #aaa;
+    // color: #fff
+    // font-weight: bold;
+    transform: scale(1.2);
 }
 
 .paginationjs .paginationjs-pages li.disabled>a {
@@ -207,20 +221,21 @@
 }
 
 .paginationjs .paginationjs-pages li.disabled>a:hover {
-    background: 0 0
+    background: var(--color-violet-dark);
 }
 
 .paginationjs .paginationjs-pages li:first-child,.paginationjs .paginationjs-pages li:first-child>a {
-    border-radius: 3px 0 0 3px
+    // border-radius: 3px 0 0 3px
+    border-radius: 25px;
 }
 
 .paginationjs .paginationjs-pages li:last-child {
-    border-right: 1px solid #aaa;
-    border-radius: 0 3px 3px 0
+    border-right: none;
+    border-radius: 25px;
 }
 
 .paginationjs .paginationjs-pages li:last-child>a {
-    border-radius: 0 3px 3px 0
+    // border-radius: 0 3px 3px 0
 }
 
 .paginationjs .paginationjs-go-input>input[type=text] {
@@ -261,7 +276,7 @@
 }
 
 .paginationjs .paginationjs-go-button>input[type=button]:hover {
-    background-color: #f8f8f8
+    // background-color: #f8f8f8
 }
 
 .paginationjs .paginationjs-nav {
@@ -362,11 +377,11 @@
 }
 
 .paginationjs.paginationjs-theme-blue .paginationjs-pages li>a {
-    color: #289de9
+    // color: #289de9
 }
 
 .paginationjs.paginationjs-theme-blue .paginationjs-pages li>a:hover {
-    background: #e9f4fc
+    // background: #e9f4fc
 }
 
 .paginationjs.paginationjs-theme-blue .paginationjs-pages li.active>a {
@@ -379,8 +394,8 @@
 }
 
 .paginationjs.paginationjs-theme-blue .paginationjs-go-button>input[type=button] {
-    background: #289de9;
-    border-color: #289de9;
+    // background: #289de9;
+    // border-color: #289de9;
     color: #fff
 }
 
@@ -482,7 +497,7 @@
 }
 
 .paginationjs .paginationjs-pages li.paginationjs-next {
-    border-right: 1px solid #aaa\9
+    // border-right: 1px solid #aaa\9
 }
 
 .paginationjs .paginationjs-go-input>input[type=text] {
@@ -504,15 +519,25 @@
     width: 50%;
     background-color: white;
     padding: 20px;
-    text-align: center;
     border-radius: 20px;
+    &:nth-child(n+3) {
+        margin-top: 20px;
+    }
+    .page-subtitle  {
+        margin-top: 10px;
+    }
+    &.career-advice-link {
+        justify-content: flex-start;
+    }
 }
 
 [data-result-container] {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: strench;
     align-content: center;
+    margin-left: -15px;
+    margin-right: -15px;
     &>* {
         margin-left: 15px;
         margin-right: 15px;
@@ -520,5 +545,47 @@
     }
     .fixed-proportion {
         padding-bottom: initial;
+        iframe {
+            width: 100%;
+        }
+    }
+}
+
+.event-item-in-search-results {
+    // &.event-item~&.event-item {
+    //     margin-top: 0;
+    // }
+    .event-item__img {
+        width: calc(50% - 30px);
+        margin-right: 30px;
+        padding-right: 0;
+        height: 100%;
+        object-fit: cover;
+    }
+    .event-item__text {
+        width: 50%;
+        p {
+            overflow: hidden;
+        text-overflow: ellipsis;
+        display: -moz-box;
+        -moz-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        line-clamp: 5;
+        }
+        p:nth-child(n+4) {
+            display: none;
+        }
+        box-orient: vertical;
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.search-results-wrapper {
+    .career-advice-link:nth-child(2) {
+         margin-top: 0;
     }
 }
