@@ -1,5 +1,6 @@
 
 @@include('../libs/gsap/gsap.js')
+;;;
 const lazyImages = document.querySelectorAll('img[data-src]');
 
 lazyImages.forEach((imageArgs) => {
