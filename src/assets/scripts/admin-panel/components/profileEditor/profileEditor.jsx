@@ -26,6 +26,8 @@ export default function ProfileEditor(props) {
   );
   const profileEditorFields = useSelector(state => state.profileInfoReducers);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
+  const messageColors = ['green', 'orange'];
+  const formMessageColor = useSelector(state => state.messageStatusStore);
   // const errorMessage = 'Ваша сессия истекла, зайдите заново';
   const isPending = useSelector(state => state.pendingStatusStore);
   const initialValues = {};
@@ -241,7 +243,9 @@ export default function ProfileEditor(props) {
                     }
                 </Formik>
             </div>
-            {errorMessage && <div className="el-for-alerts">
+            {errorMessage && <div className="el-for-alerts" style={
+              { backgroundColor: messageColors[formMessageColor] }
+            }>
               {errorMessage}
             </div>}
         </div>

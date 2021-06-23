@@ -11,6 +11,8 @@ import dataStore from './index.jsx';
 import {
   PENDING_ON, CLEAR_ERROR, PENDING_OFF, LOGIN_FAIL, LOGIN,
 } from '../dispatchActions.jsx';
+
+import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
 import routes from '../../routes/routes.jsx';
 
 
@@ -67,6 +69,7 @@ export function restoreByToken(values) {
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
       .then((response) => {
+        setMessageColor(response.data.error);
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail('Вас переправить до особистого кабінету'));
           setTimeout(() => {
@@ -124,6 +127,7 @@ export function loginAsync(values, history) {
     axios.post(LOGIN_URL, formDate)
       .then((response) => {
         dataStore.dispatch(resetPending());
+        dataStore.dispatch(setMessageColor(response.data.error));
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail(response.data.mess));
           setTimeout(() => {
@@ -176,10 +180,9 @@ export function checkSession() {
   return (dispatch) => {
     axios.post(CHECK_SESSION_URL, sendData)
       .then((response) => {
+        dataStore.dispatch(setMessageColor(response.data.error));
         switch (response.data.error) {
           case 0:
-            console.log();
-            console.log();
             setTimeout(() => {
               dataStore.dispatch(logout());
             }, (response.data.sessionTime * 1000) - (new Date().getTime()));
@@ -212,6 +215,7 @@ export function changePasswordRequest(data, resetForm) {
   return (dispatch) => {
     axios.post(CHANGE_PASSWORD_URL, formDate)
       .then((el) => {
+        dataStore.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             dataStore.dispatch(loginFail(el.data.mess));

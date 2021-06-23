@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { GET_PROFILE_DATA_URL } from '../urls.jsx';
 import dataStore from '../userDataStore/index.jsx';
+import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
 import {
   setPending, resetPending, loginFail, clearError,
 } from '../userDataStore/actions.jsx';
@@ -31,6 +32,7 @@ export function ajax_getProfileData() {
       })
       .then((response) => {
         const userData = response.data.user_data;
+        dataStore.dispatch(setMessageColor(response.data.error));
         dataStore.dispatch(setProfileData(userData));
         dataStore.dispatch(resetPending());
       });
@@ -60,6 +62,7 @@ export function ajax_setProfileData(data) {
   return () => {
     axios.post(GET_PROFILE_DATA_URL, sendData)
       .then((response) => {
+        dataStore.dispatch(setMessageColor(response.data.error));
         switch (response.data.error) {
           case 1:
             dataStore.dispatch(ajax_getProfileData());

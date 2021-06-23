@@ -69,4 +69,18 @@
 .online-consultation-request-wrapper {
     position: relative;
     z-index: 0;
+    @include to(575px){
+        .page-title {
+            order: 1;
+        }
+        .white-bg-element {
+            order: 3;
+            margin-top: 20px;
+        }
+        .form-std {
+            order: 2;
+            margin-top: 0;
+        }
+
+    }
 }

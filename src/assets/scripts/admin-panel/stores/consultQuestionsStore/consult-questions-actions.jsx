@@ -10,6 +10,7 @@ import {
   RECOVER_CONSULT_QUESTION_URL,
 } from '../urls.jsx';
 import { formMessage, SEND_CONSULT_QUESTION } from '../dispatchActions.jsx';
+import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
 import store from '../userDataStore/index.jsx';
 import { countNewMessages } from '../newMessageReducer/actions-newMessageReducer.jsx';
 
@@ -39,6 +40,7 @@ export function sendConsultQuestion(data, form) {
     axios.post(SEND_CONSULT_QUESTION_URL, sendData)
       .catch(err => store.dispatch(formMessage(err.data.mess)))
       .then((err) => {
+        store.dispatch(setMessageColor(err.data.error));
         store.dispatch(formMessage(err.data.mess));
         form.resetForm();
       })
@@ -55,6 +57,7 @@ export function getConsultQuestions() {
   return (dispatch) => {
     axios.post(GET_CONSULT_QUESTION_URL, data)
       .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             store.dispatch(saveConsultQuestions(el.data.request || []));
@@ -90,6 +93,7 @@ export function getSingleConsultQuestion(id) {
   return (dispatch) => {
     axios.post(GET_SINGLE_CONSULT_QUESTION_URL, data)
       .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             store.dispatch(appendMessagesToQuestion(el.data.request));
@@ -112,6 +116,7 @@ export function sendSingleQuestion(messageData) {
   return (dispatch) => {
     axios.post(SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL, data)
       .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleConsultQuestion(messageData.request_id));
@@ -132,6 +137,7 @@ export function closeConsultQuestion(messageID) {
   return (dispatch) => {
     axios.post(CLOSE_CONSULT_QUESTION_URL, data)
       .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             store.dispatch(formMessage(el.data.mess));
@@ -158,6 +164,7 @@ export function recoverConversation(messageID) {
   return (dispatch) => {
     axios.post(RECOVER_CONSULT_QUESTION_URL, data)
       .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
             store.dispatch(formMessage(el.data.mess));

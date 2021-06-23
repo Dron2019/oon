@@ -530,10 +530,17 @@ textarea,
     box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
     
     animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  @include to(575px){
+    right: 15px;
+    top: 15px;
+  }
 }
 
 .empty-questions-wrapper {
   width: 100%;
+  svg {
+    width: 100%;
+  }
   .subtitle-small {
     text-align: center;
     margin-top: 20px;

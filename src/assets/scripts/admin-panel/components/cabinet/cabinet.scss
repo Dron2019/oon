@@ -275,5 +275,17 @@
         button[type='submit']{
             margin-top: 10px;
         }
+        .page-title {
+            order: 0;
+        }
+        &__left {
+            order: 2;
+            margin-top: 20px;
+        }
+        &__right {
+            order: 1;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
     }
 }
