@@ -23,7 +23,7 @@ export function saveConsultQuestions(data) {
 
 export const questionTypes = {
   consultQuestion: 'consult_question',
-  onlineConsultation: 'online_consultation',
+  onlineConsultation: 'online_consult',
   psychoQuestion: 'psycho_question',
   admin: 'admin_question',
 };

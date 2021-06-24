@@ -4,17 +4,19 @@ import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { Formik, Field, Form } from 'formik';
 import DateTimePicker from 'react-datetime-picker';
+import { concat } from 'lodash';
 
 
 import dataStore from '../../stores/userDataStore/index.jsx';
 import {
   setPending, resetPending, loginFail, clearError,
 } from '../../stores/dispatchActions.jsx';
+import { sendOnlineConsultQuestion } from '../../stores/onlineConsultQuestionsStore/actions_onlineConsultQuestionsStore.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Loader from '../loader/loader.jsx';
 import routes from '../../routes/routes.jsx';
 
-export default function (props) {
+export default function OnlineConsultationRequest(props) {
   const history = useHistory();
   const [choosedDate, setDate] = useState(new Date());
   const isPending = useSelector(state => state.pendingStatusStore);
@@ -22,12 +24,20 @@ export default function (props) {
 
 
   function formSubmit(values, form) {
-    dataStore.dispatch(setPending());
-    dataStore.dispatch(loginFail('Відправлено'));
-    setTimeout(() => {
-      form.resetForm();
-      dataStore.dispatch(resetPending());
-    }, 2000);
+    const textData = `${values.text} ${values.date}`;
+
+    const sendData = {
+      message: textData,
+      title: values.theme,
+    };
+
+    dataStore.dispatch(sendOnlineConsultQuestion(sendData, form.resetForm));
+    // dataStore.dispatch(setPending());
+    // dataStore.dispatch(loginFail('Відправлено'));
+    // setTimeout(() => {
+    //   form.resetForm();
+    //   dataStore.dispatch(resetPending());
+    // }, 2000);
   }
   const formFields = [
     {
@@ -75,10 +85,9 @@ export default function (props) {
                 постраждалим від домашнього / гендерно зумовленого насильства,
                 послуги для покращення професійних навичок та успішного працевлаштування.
                 Фахівці і фахівчині дотримуються індивідуального підходу до
-                 оцінки потреб і можливостей кожної жінки та допомагають
-                 побудувати персональну стратегію для досягнення вашої мети.
+                оцінки потреб і можливостей кожної жінки та допомагають
+                побудувати персональну стратегію для досягнення вашої мети.
             </div>
-
             <Formik
                 enableReinitialize={true}
                 validationSchema={(() => {

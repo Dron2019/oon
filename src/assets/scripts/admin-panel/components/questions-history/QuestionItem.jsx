@@ -39,7 +39,15 @@ export default function QuestionItem(props) {
   const [isRead, setIsRead] = useState(true);
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    firstRendered !== false ? store.dispatch(getSingleConsultQuestion(id)) : null;
+    if (firstRendered !== false) {
+      if (props.getSingleOnlineConsultQuestion) {
+        store.dispatch(props.getSingleOnlineConsultQuestion(id));
+      }
+      else {
+        store.dispatch(getSingleConsultQuestion(id));
+      }
+    }
+    // firstRendered !== false ?  : null;
   }, [firstRendered]);
   useEffect(() => {
     if (messages !== undefined) {
@@ -112,7 +120,11 @@ export default function QuestionItem(props) {
       userId: userID,
       message: value.message,
     };
-    store.dispatch(sendSingleQuestion(data));
+    if (props.sendSingleOnlineConsultQuestion) {
+      store.dispatch(props.sendSingleOnlineConsultQuestion(data));
+    } else {
+      store.dispatch(sendSingleQuestion(data));
+    }
   }
   return (
             <div data-is_read={is_read} ref={ref1} className={setLayoutClassNames()}>

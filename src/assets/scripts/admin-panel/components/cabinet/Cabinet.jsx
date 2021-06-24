@@ -82,7 +82,7 @@ export default function Cabinet(props) {
     ['Створити запитання', routes.createConsultQuestion, true],
     ['Історія запитань', routes.questionsHistory, false, newMessages],
     ['Запит на онлайн консультацію', routes.onlineConsultationRequest, true],
-    ['Прийняті запити на консультацію', routes.cabinet],
+    ['Прийняті запити на консультацію', routes.onlineConsultQuestionsHistory],
   ];
   const psychoMenus = [
     ['Створити запитання ', routes.psychoQuestionCreate, true],

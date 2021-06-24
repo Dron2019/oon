@@ -44,6 +44,8 @@ const cabinetRoutes = [
   { name: 'createConsultQuestion', path: '/cabinet/createConsultQuestion', title: 'Створити запитання' },
   { name: 'workConsultation', path: '/cabinet/work-consultation', title: 'Послуги консультанта з пошуку роботи' },
   { name: 'psychoQuestionCreate', path: '/cabinet/psychoQuestionCreate', title: 'Поставити запитання психологу' },
+  { name: 'onlineConsultQuestionsHistory', path: '/cabinet/onlineConsultQuestionsHistory', title: 'Прийняті запити на консультацію' },
+
 ];
 const routesMap = {};
 const routesMapSidebar = [];

@@ -9,6 +9,7 @@ import FAQ from '../components/faq/faq.jsx';
 import UserCV from '../components/UserCV/UserCVs.jsx';
 import CreateCV from '../components/CreateCV/CreateCV.jsx';
 import PsychoQuestionCreate from '../components/PsychoQuestionCreate/PsychoQuestionCreate.jsx';
+import OnlineConsultQuestionsHistory from '../components/OnlineConsultQuestionsHistory/OnlineConsultQuestionsHistory.jsx';
 
 export default [
   {
@@ -43,5 +44,8 @@ export default [
   },
   {
     title: '', exact: false, route: '/cabinet/psychoQuestionCreate', component: <PsychoQuestionCreate/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/onlineConsultQuestionsHistory', component: <OnlineConsultQuestionsHistory/>,
   },
 ];

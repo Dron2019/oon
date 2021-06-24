@@ -25,3 +25,6 @@ export const SEND_SINGLE_CONSULT_QUESTION_URL = '/user/users/request_set/';
 
 export const CLOSE_CONSULT_QUESTION_URL = '/user/users/request_status/';
 export const RECOVER_CONSULT_QUESTION_URL = '/user/users/recovery_request/';
+
+export const GET_ONLINE_CONSULT_QUESTIONS_URL = '/user/users/requests_list/';
+export const SEND_ONLINE_CONSULT_QUESTION_URL = '/user/users/request/';
