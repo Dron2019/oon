@@ -26,6 +26,7 @@ import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 
 import { countNewMessages } from '../../stores/newMessageReducer/actions-newMessageReducer.jsx';
 import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
+import { getOnlineConsultQuestions } from '../../stores/onlineConsultQuestionsStore/actions_onlineConsultQuestionsStore.jsx';
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
 import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
@@ -34,6 +35,7 @@ export default function Cabinet(props) {
   const userName = useSelector(state => state.loginStatusReducer.name) || '';
   const newMessages = useSelector(state => state.newMessagesReducer);
   const messagesList = useSelector(state => state.consultQuestionsStore);
+  const onlineConsultMessagesList = useSelector(state => state.onlineConsultQuestionsStore);
   // const test = true;
   const history = useHistory();
   const location = useLocation();
@@ -46,16 +48,19 @@ export default function Cabinet(props) {
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
     setActiveLink(location.pathname);
-    store.dispatch(countNewMessages());
+    // store.dispatch(countNewMessages());
   }), [history]);
   useEffect(() => {
     dataStore.dispatch(checkSession());
     store.dispatch(getConsultQuestions());
-    store.dispatch(countNewMessages());
+    store.dispatch(getOnlineConsultQuestions());
+    // store.dispatch(countNewMessages());
   }, []);
   useEffect(() => {
-    store.dispatch(countNewMessages());
-  }, [messagesList]);
+    setTimeout(() => {
+      // store.dispatch(countNewMessages());
+    }, 100);
+  }, [messagesList, onlineConsultMessagesList]);
 
   function renderCabinetNestedRoutes(el, index) {
     return (
@@ -80,9 +85,9 @@ export default function Cabinet(props) {
 
   const menus = [
     ['Створити запитання', routes.createConsultQuestion, true],
-    ['Історія запитань', routes.questionsHistory, false, newMessages],
+    ['Історія запитань', routes.questionsHistory, false, newMessages.consult],
     ['Запит на онлайн консультацію', routes.onlineConsultationRequest, true],
-    ['Прийняті запити на консультацію', routes.onlineConsultQuestionsHistory],
+    ['Прийняті запити на консультацію', routes.onlineConsultQuestionsHistory, false, newMessages.onlineConsult],
   ];
   const psychoMenus = [
     ['Створити запитання ', routes.psychoQuestionCreate, true],

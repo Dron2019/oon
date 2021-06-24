@@ -4,7 +4,13 @@ import store from '../../stores/userDataStore/index.jsx';
 
 import QuestionItem from '../questions-history/QuestionItem.jsx';
 import EmptyQuestions from '../EmptyQuestions/EmptyQuestion.jsx';
-import { getOnlineConsultQuestions, getSingleOnlineConsultQuestion, sendSingleOnlineConsultQuestion } from '../../stores/onlineConsultQuestionsStore/actions_onlineConsultQuestionsStore.jsx';
+import {
+  getOnlineConsultQuestions,
+  getSingleOnlineConsultQuestion,
+  sendSingleOnlineConsultQuestion,
+  closeOnlineConsultQuestion,
+  recoverOnlineConsultConversation,
+} from '../../stores/onlineConsultQuestionsStore/actions_onlineConsultQuestionsStore.jsx';
 
 export default function OnlineConsultQuestionsHistory() {
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
@@ -23,6 +29,8 @@ export default function OnlineConsultQuestionsHistory() {
           <QuestionItem
             getSingleOnlineConsultQuestion={getSingleOnlineConsultQuestion}
             sendSingleOnlineConsultQuestion={sendSingleOnlineConsultQuestion}
+            closeOnlineConsultQuestion={closeOnlineConsultQuestion}
+            recoverOnlineConsultConversation={recoverOnlineConsultConversation}
             key={index}
             {...message}
             userID={userID}

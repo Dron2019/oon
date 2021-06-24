@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable no-unused-expressions */
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -16,12 +18,18 @@ import {
 import routes from '../../routes/routes.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import getProfileData from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+import { getPsychoQuestions, sendPsychoQuestion } from '../../stores/psychoQuestionsStore/actions_psychoQuestionsStore.jsx';
 
 export default function PsychoQuestionCreate() {
   const [choosedDate, setDate] = useState(new Date());
   const isPending = useSelector(state => state.pendingStatusStore);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
-  const [testPercent, setTestPercent] = useState(0);
+  const questions = useSelector(state => state.psychoQuestionsStore);
+  
+  useEffect(() => {
+    store.dispatch(getPsychoQuestions());
+  }, []);
+  const [testPercent, setTestPercent] = useState(500);
   // store.dispatch(getProfileData());
   const formFields = [
     {
@@ -63,6 +71,8 @@ export default function PsychoQuestionCreate() {
   ];
   function handleSubmit(values, form) {
     console.table(values);
+    store.dispatch(sendPsychoQuestion(values, form.resetForm));
+    // sendPsychoQuestion
   }
   return (
     <div className="psycho-querstion-create-wrapper">
@@ -111,9 +121,29 @@ export default function PsychoQuestionCreate() {
         <Formik
           onSubmit={handleSubmit}
           initialValues={{}}
+          validate={(vals) => {
+            const errors = {};
+            !vals.title ? errors.title = 'Введіть тему:' : null;
+            !vals.message ? errors.message = 'Введіть питання:' : null;
+            return errors;
+          }}
         >
           <Form className="form-std">
             <div className="form-std__subtitle text-violet">Поставити психологу запитання</div>
+            <Field name="title" className="input-std">
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors },
+                  meta,
+                }) => (
+                <div className={`input-group ${meta.error ? 'unfilled' : ''}`}>
+                    <input className='input-std' placeholder="Уведіть ваше запитання" {...field} />
+                    {errors.title && (
+                    <div className="error">{errors.title}</div>
+                    )}
+                </div>
+                )}
+            </Field>
             <Field name="message" className="input-std">
                 {({
                   field, // { name, value, onChange, onBlur }
@@ -122,8 +152,8 @@ export default function PsychoQuestionCreate() {
                 }) => (
                 <div className={`input-group ${meta.error ? 'unfilled' : ''}`}>
                     <textarea className='input-std' placeholder="Уведіть ваше запитання" {...field} />
-                    {meta.touched && meta.error && (
-                    <div className="error">{meta.error}</div>
+                    {errors.message && (
+                    <div className="error">{errors.message}</div>
                     )}
                 </div>
                 )}
@@ -134,7 +164,7 @@ export default function PsychoQuestionCreate() {
             </div>
           </Form>
         </Formik>
-        <Formik
+        {/* <Formik
                 enableReinitialize={true}
                 validationSchema={(() => {
                   const validation = {};
@@ -179,7 +209,7 @@ export default function PsychoQuestionCreate() {
                       <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
                   </div>
               </Form>
-            </Formik>
+            </Formik> */}
       </div>
       </div>
     </div>

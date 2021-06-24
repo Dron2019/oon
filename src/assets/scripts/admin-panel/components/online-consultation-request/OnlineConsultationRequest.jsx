@@ -106,7 +106,8 @@ export default function OnlineConsultationRequest(props) {
                 })()}
                 onSubmit={formSubmit}
             >
-                <Form className="form-std">
+                <Form
+                  className="form-std">
                     {formFields.map((configField, index) => <Field key={index} value="fegege" validate={configField.validationSchema} name={configField.name} className="input-std">
                                 {({
                                   field, // { name, value, onChange, onBlur }
@@ -129,7 +130,7 @@ export default function OnlineConsultationRequest(props) {
                     {isPending && <ErrorMessage errorMessage={errorMessage}/>}
                     {isPending && <Loader/>}
                     <div className="input-group input-group--buttons df aic wrap">
-                        <a className="text-violet underlined " onClick={() => history.push(routes.questionsHistory)}>Історія запитань</a>
+                        <a className="text-violet underlined " onClick={() => history.push(routes.onlineConsultQuestionsHistory)}>Історія запитань</a>
                         <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
                     </div>
                 </Form>

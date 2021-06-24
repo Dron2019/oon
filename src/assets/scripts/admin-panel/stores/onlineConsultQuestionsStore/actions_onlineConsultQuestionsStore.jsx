@@ -1,12 +1,21 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 import store from '../userDataStore/index.jsx';
 import {
   SEND_ONLINE_CONSULT_QUESTION, formMessage, setPending, resetPending, clearError,
 } from '../dispatchActions.jsx';
-import { GET_ONLINE_CONSULT_QUESTIONS_URL, SEND_ONLINE_CONSULT_QUESTION_URL, GET_SINGLE_CONSULT_QUESTION_URL, SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL } from '../urls.jsx';
+import {
+  GET_ONLINE_CONSULT_QUESTIONS_URL,
+  SEND_ONLINE_CONSULT_QUESTION_URL,
+  GET_SINGLE_CONSULT_QUESTION_URL,
+  SEND_NEW_MESSAGE_IN_CONSULT_QUESTION_URL,
+  RECOVER_CONSULT_QUESTION_URL,
+  CLOSE_CONSULT_QUESTION_URL,
+} from '../urls.jsx';
 import { questionTypes } from '../consultQuestionsStore/consult-questions-actions.jsx';
 
 import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
+import { countNewMessages } from '../newMessageReducer/actions-newMessageReducer.jsx';
 
 export function saveOnlineConsultQuestions(data) {
   return {
@@ -64,8 +73,8 @@ export function getOnlineConsultQuestions() {
         store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
-            store.dispatch(formMessage(el.data.mess));
-            store.dispatch(saveOnlineConsultQuestions(el.data.request));
+            store.dispatch(saveOnlineConsultQuestions(el.data.request || []));
+            store.dispatch(countNewMessages());
             break;
           case 1:
             store.dispatch(formMessage(el.data.mess));
@@ -113,6 +122,7 @@ export function getSingleOnlineConsultQuestion(id) {
         switch (el.data.error) {
           case 0:
             store.dispatch(appendOnlineConsultMessagesToQuestion(el.data.request));
+            store.dispatch(countNewMessages());
             break;
           default:
             break;
@@ -136,6 +146,7 @@ export function sendSingleOnlineConsultQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleOnlineConsultQuestion(messageData.request_id));
+            store.dispatch(countNewMessages());
             break;
           default:
             break;
@@ -143,5 +154,59 @@ export function sendSingleOnlineConsultQuestion(messageData) {
       })
       .catch(el => console.log(el))
       .finally(el => console.log(el));
+  };
+}
+
+export function closeOnlineConsultQuestion(messageID) {
+  const data = new FormData();
+  data.append('ajax_data', '1');
+  data.append('request_id', messageID);
+  return (dispatch) => {
+    axios.post(CLOSE_CONSULT_QUESTION_URL, data)
+      .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
+        switch (el.data.error) {
+          case 0:
+            store.dispatch(formMessage(el.data.mess));
+            store.dispatch(getOnlineConsultQuestions());
+            store.dispatch(getSingleOnlineConsultQuestion(messageID));
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(el => console.log(el))
+      .finally((el) => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+        }, 2000);
+      });
+  };
+}
+
+export function recoverOnlineConsultConversation(messageID) {
+  const data = new FormData();
+  data.append('ajax_data', '1');
+  data.append('id', messageID);
+  return (dispatch) => {
+    axios.post(RECOVER_CONSULT_QUESTION_URL, data)
+      .then((el) => {
+        store.dispatch(setMessageColor(el.data.error));
+        switch (el.data.error) {
+          case 0:
+            store.dispatch(formMessage(el.data.mess));
+            store.dispatch(getOnlineConsultQuestions());
+            store.dispatch(getSingleOnlineConsultQuestion(messageID));
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(el => console.log(el))
+      .finally((el) => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+        }, 2000);
+      });
   };
 }

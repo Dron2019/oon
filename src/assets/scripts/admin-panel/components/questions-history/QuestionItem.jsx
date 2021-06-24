@@ -42,8 +42,7 @@ export default function QuestionItem(props) {
     if (firstRendered !== false) {
       if (props.getSingleOnlineConsultQuestion) {
         store.dispatch(props.getSingleOnlineConsultQuestion(id));
-      }
-      else {
+      } else {
         store.dispatch(getSingleConsultQuestion(id));
       }
     }
@@ -191,6 +190,7 @@ export default function QuestionItem(props) {
                                     </div>
                                 </div>
                                 <div className="question-item__single-mess-text"
+                                    // eslint-disable-next-line no-useless-escape
                                     dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}>
                                     {/* {part.text.replace(
                                       /\b(https?\:\/\/\S+)/mg,
@@ -204,13 +204,23 @@ export default function QuestionItem(props) {
                     {statusOfMessage !== 10
                         && <div className="gray-bg-element">
                             <QuestionItemForm
-                                closeQuestion={() => store.dispatch(closeConsultQuestion(id)) }
+                                closeQuestion={() => {
+                                  if (props.closeOnlineConsultQuestion) {
+                                    store.dispatch(props.closeOnlineConsultQuestion(id));
+                                  } else {
+                                    store.dispatch(closeConsultQuestion(id));
+                                  }
+                                }}
                                 userType={props.userType}
                                 callback={formMessageCallback}/>
                         </div>
                     }
                     {statusOfMessage === 10 && <div onClick={() => {
-                      store.dispatch(recoverConversation(id));
+                      if (props.recoverOnlineConsultConversation) {
+                        store.dispatch(props.recoverOnlineConsultConversation(id));
+                      } else {
+                        store.dispatch(recoverConversation(id));
+                      }
                     }} className="  mt-10 button-std button-std--violet small">Відновити діалог</div>
                     }
                 </div>

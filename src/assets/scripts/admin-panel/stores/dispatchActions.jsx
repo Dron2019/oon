@@ -27,8 +27,9 @@ export const CVs_SAVE = 'CVs_SAVE';
 export const SET_CV_ID_TO_EDIT = 'SET_CV_ID_TO_EDIT';
 
 export const SEND_CONSULT_QUESTION = 'SEND_CONSULT_QUESTION';
-
 export const SEND_ONLINE_CONSULT_QUESTION = 'SEND_ONLINE_CONSULT_QUESTION';
+
+export const ADD_PSYCHO_QUESTIONS = 'ADD_PSYCHO_QUESTIONS';
 
 export function login(additionalValue = {}) {
   const obj = Object.assign({ type: 'LOGIN', additionalValue });

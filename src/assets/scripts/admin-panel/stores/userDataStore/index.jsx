@@ -19,6 +19,7 @@ import cvToEditStore from '../CVToEditStore/cvToEditStore.jsx';
 import consultQuestionsStore from '../consultQuestionsStore/consult-questions-store.jsx';
 import messageStatusStore from '../messageStatusStore/messageStatusStore.jsx';
 import onlineConsultQuestionsStore from '../onlineConsultQuestionsStore/onlineConsultQuestionsStore.jsx';
+import psychoQuestionsStore from '../psychoQuestionsStore/psychoQuestionsStore.jsx';
 
 import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 
@@ -73,6 +74,7 @@ const rootReducer = combineReducers(
     consultQuestionsStore,
     messageStatusStore,
     onlineConsultQuestionsStore,
+    psychoQuestionsStore,
   },
 );
 
