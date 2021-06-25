@@ -17,7 +17,8 @@ import {
 } from '../../stores/dispatchActions.jsx';
 import routes from '../../routes/routes.jsx';
 import store from '../../stores/userDataStore/index.jsx';
-import getProfileData from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
+// eslint-disable-next-line camelcase
+import { getProfileData, ajax_getProfileData } from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 import { getPsychoQuestions, sendPsychoQuestion } from '../../stores/psychoQuestionsStore/actions_psychoQuestionsStore.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 
@@ -26,11 +27,24 @@ export default function PsychoQuestionCreate() {
   const isPending = useSelector(state => state.pendingStatusStore);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const questions = useSelector(state => state.psychoQuestionsStore);
+  const profileFields = useSelector(state => state.profileInfoReducers);
+  const [profileFillingPercentage, setProfileFillingPercentage] = useState(0);
 
+  function countFields(fields) {
+    const counted = fields.reduce((acc, el) => {
+      if (el.value && el.value.length > 0 && +el.value !== 0) return acc + 1;
+      return acc;
+    }, 0);
+    const countInPercent = 100 * counted / fields.length;
+    return countInPercent;
+  }
   useEffect(() => {
     store.dispatch(getPsychoQuestions());
+    store.dispatch(ajax_getProfileData());
   }, []);
-  const [testPercent, setTestPercent] = useState(500);
+  useEffect(() => {
+    setProfileFillingPercentage(countFields(profileFields));
+  }, [profileFields]);
   // store.dispatch(getProfileData());
   const formFields = [
     {
@@ -77,7 +91,6 @@ export default function PsychoQuestionCreate() {
   }
   return (
     <div className="psycho-querstion-create-wrapper">
-      <input type="number" onInput={evt => setTestPercent(evt.target.value)} />
       <div className="page-title text-violet">Послуги психолога</div>
       <div className="psycho-querstion-create-wrapper__left">
         <div className="white-bg-element with-padding">
@@ -109,7 +122,7 @@ export default function PsychoQuestionCreate() {
       <div className="psycho-querstion-create-wrapper__right">
 
       <div className="white-bg-element">
-        {testPercent < 50 && (
+        {profileFillingPercentage < 50 && (
         <div className="blocking-block text-orange">
           <span>
             <Link to={routes.profileEditor}>

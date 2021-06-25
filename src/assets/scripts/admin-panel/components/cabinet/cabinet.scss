@@ -203,6 +203,7 @@
             background-size: 50% 50%;
             background-position: center;
             transition: .3s ease-in-out;
+            box-shadow: 5px 4px 6px -1px black;
         }
         &.opened:after {
             content: '';
@@ -212,6 +213,8 @@
         }
     }
     @include to(575px){
+        top: 30px;
+        z-index: 20;
         .bold-link {
             margin-bottom: 10px;
         }

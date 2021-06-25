@@ -39,7 +39,7 @@
     }
     &>*.active{
         transition: background-color .5s ease-in-out;
-        color: var(--color-white);
+        color: var(--color-violet) !important;
         background-color: var(--color-violet);
     }
     @include to(575px){
@@ -70,8 +70,16 @@
         // &>*:first-child {
             
         // }
-        &:hover {
-            height: auto;
+        @include from(576px){
+            & a:not(.active) {
+                // pointer-events: none;
+            }
+            &:hover a {
+                pointer-events: all;
+            }
+            &:hover {
+                height: auto;
+            }
         }
         // &:hover>*:first-child {
         //     pointer-events: all;
@@ -93,6 +101,18 @@
             pointer-events: none;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+            position: relative;
+            z-index: 5;
+            // color: white !important;
+            background: var(--color-white);
+        }
+        @include to(575px){
+            a.active {
+                // color: red;
+            }
+            &:hover {
+                height: 145px;       
+            }
         }
 
     }

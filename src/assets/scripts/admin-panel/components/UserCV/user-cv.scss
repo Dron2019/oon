@@ -47,6 +47,16 @@
             @include size(12);
         }
     }
+    @include to(575px){
+        .cv-list {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .white-bg-element {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
 }
 
 
@@ -107,6 +117,7 @@
         border-radius: 15px;
         z-index: 10;
         align-items: center;
+        box-shadow: 3px 7px 11px 0px black;
         span {
             margin-bottom: 5px;
             width: 100%;
