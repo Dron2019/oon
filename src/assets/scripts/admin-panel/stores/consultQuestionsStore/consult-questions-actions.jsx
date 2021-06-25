@@ -25,7 +25,7 @@ export const questionTypes = {
   consultQuestion: 'consult_question',
   onlineConsultation: 'online_consult',
   psychoQuestion: 'psych_consult',
-  admin: 'admin_question',
+  admin: 'faq_admin',
 };
 
 export function sendConsultQuestion(data, form) {

@@ -27,6 +27,7 @@ export default function QuestionItem(props) {
     userName,
     userType,
     is_read,
+    hideForm,
   } = props;
 
 
@@ -44,6 +45,8 @@ export default function QuestionItem(props) {
         store.dispatch(props.getSingleOnlineConsultQuestion(id));
       } else if (props.getSinglePsychConsultQuestion) {
         store.dispatch(props.getSinglePsychConsultQuestion(id));
+      } else if (props.getSingleFaqQuestion) {
+        store.dispatch(props.getSingleFaqQuestion(id));
       } else {
         store.dispatch(getSingleConsultQuestion(id));
       }
@@ -205,7 +208,7 @@ export default function QuestionItem(props) {
                             </div>
                       );
                     })}
-                    {statusOfMessage !== 10
+                    {statusOfMessage !== 10 && !hideForm
                         && <div className="gray-bg-element">
                             <QuestionItemForm
                                 closeQuestion={() => {

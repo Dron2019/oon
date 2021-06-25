@@ -1,5 +1,5 @@
 /* exported */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -20,6 +20,7 @@ import {
 } from '../../stores/dispatchActions.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Loader from '../loader/loader.jsx';
+import { getFaqUserQuestions, sendFaqQuestion, getSingleFaqQuestion } from '../../stores/faqStore/actions_faqStore.jsx';
 
 function getFaqQuestions() {
   return [
@@ -35,11 +36,27 @@ export default function faq() {
   const [choosedDate, setDate] = useState(new Date());
   const isPending = useSelector(state => state.pendingStatusStore);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
+  const messages = useSelector(state => state.faqStore);
+  const userID = useSelector(state => state.loginStatusReducer.id);
+  const userType = useSelector(state => state.loginStatusReducer.role);
 
+  useEffect(() => {
+    dataStore.dispatch(getFaqUserQuestions());
+  }, []);
   const formFields = [
     {
+      title: 'Уведіть тему запитання:',
+      name: 'title',
+      initialValue: '',
+      type: 'text',
+      requiredClass: '',
+      validationSchema: Yup.string()
+        .min(2, 'Уведіть тему запитання:')
+        .required('Уведіть тему запитання:'),
+    },
+    {
       title: 'Уведіть ваше запитання:',
-      name: 'theme',
+      name: 'message',
       initialValue: '',
       type: 'textarea',
       requiredClass: '',
@@ -49,8 +66,9 @@ export default function faq() {
     },
   ];
   function formSubmit(values, form) {
-    dataStore.dispatch(setPending());
-    dataStore.dispatch(loginFail('Відправлено'));
+    // dataStore.dispatch(setPending());
+    // dataStore.dispatch(loginFail('Відправлено'));
+    dataStore.dispatch(sendFaqQuestion(values, form.resetForm));
     setTimeout(() => {
       form.resetForm();
       dataStore.dispatch(resetPending());
@@ -59,7 +77,18 @@ export default function faq() {
   return (
         <div className="faq-wrapper">
             <div className="page-title text-violet">Часті запитання (FAQ)</div>
-            <QuestionItem noReply={true}/>
+            {messages.map((message, index) => (
+              <QuestionItem
+                hideForm
+                getSingleFaqQuestion={getSingleFaqQuestion}
+                // sendSingleOnlineConsultQuestion={sendSingleOnlineConsultQuestion}
+                // closeOnlineConsultQuestion={closeOnlineConsultQuestion}
+                // recoverOnlineConsultConversation={recoverOnlineConsultConversation}
+                key={index}
+                {...message}
+                userID={userID}
+                userType={userType}/>
+            ))}
             <Accordion>
                 {questions.map((singleQuestion, index) => (
                     <AccordionItem key={`faq${index}`}>

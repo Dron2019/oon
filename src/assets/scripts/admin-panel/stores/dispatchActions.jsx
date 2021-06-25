@@ -30,6 +30,7 @@ export const SEND_CONSULT_QUESTION = 'SEND_CONSULT_QUESTION';
 export const SEND_ONLINE_CONSULT_QUESTION = 'SEND_ONLINE_CONSULT_QUESTION';
 
 export const ADD_PSYCHO_QUESTIONS = 'ADD_PSYCHO_QUESTIONS';
+export const ADD_FAQ_QUESTIONS = 'ADD_FAQ_QUESTIONS';
 
 export function login(additionalValue = {}) {
   const obj = Object.assign({ type: 'LOGIN', additionalValue });

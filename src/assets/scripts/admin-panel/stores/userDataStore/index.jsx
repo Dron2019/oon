@@ -20,6 +20,8 @@ import consultQuestionsStore from '../consultQuestionsStore/consult-questions-st
 import messageStatusStore from '../messageStatusStore/messageStatusStore.jsx';
 import onlineConsultQuestionsStore from '../onlineConsultQuestionsStore/onlineConsultQuestionsStore.jsx';
 import psychoQuestionsStore from '../psychoQuestionsStore/psychoQuestionsStore.jsx';
+import faqStore from '../faqStore/faqStore.jsx';
+
 
 import { getLoginStatusOfUser, setLoginStatusOfUser } from './actions.jsx';
 
@@ -75,6 +77,7 @@ const rootReducer = combineReducers(
     onlineConsultQuestionsStore,
     psychoQuestionsStore,
     newMessagesReducer,
+    faqStore,
   },
 );
 
