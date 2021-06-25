@@ -24,6 +24,8 @@ export default function ProfileEditor(props) {
     () => dataStore.dispatch(ajax_getProfileData()),
     [],
   );
+
+  const [initialSubmitBlock, setInitialSubmitBlock] = useState(true);
   const profileEditorFields = useSelector(state => state.profileInfoReducers);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const messageColors = ['green', 'orange'];
@@ -86,8 +88,15 @@ export default function ProfileEditor(props) {
                 onSubmit={(values, { setSubmitting }) => {
                   console.log(values);
                   dataStore.dispatch(ajax_setProfileData(values));
+                  setInitialSubmitBlock(true);
                 }}>
-                <Form className="form-std">
+                <Form
+                  className="form-std"
+                  onChange={() => {
+                    // eslint-disable-next-line no-unused-expressions
+                    initialSubmitBlock ? setInitialSubmitBlock(false) : null;
+                  }}
+                >
                     <div className="form-std__subtitle text-violet">Ваші особисті дані</div>
                     {profileEditorFields.map((field_config, index) => {
                       if (field_config.type === 'select') {
@@ -158,7 +167,7 @@ export default function ProfileEditor(props) {
                     ))} */}
                     {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                     {isPending ? <Loader/> : null}
-                    <button type="submit" className="button-std button-std--violet small">Зберегти данні</button>
+                    <button disabled={initialSubmitBlock} type="submit" className="button-std button-std--violet small">Зберегти данні</button>
                 </Form>
             </Formik>
             {/*  Форма смены пароля */}

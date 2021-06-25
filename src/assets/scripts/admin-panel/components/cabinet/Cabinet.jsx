@@ -27,6 +27,7 @@ import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import { countNewMessages } from '../../stores/newMessageReducer/actions-newMessageReducer.jsx';
 import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
 import { getOnlineConsultQuestions } from '../../stores/onlineConsultQuestionsStore/actions_onlineConsultQuestionsStore.jsx';
+import { getPsychoQuestions } from '../../stores/psychoQuestionsStore/actions_psychoQuestionsStore.jsx';
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
 import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
@@ -54,11 +55,11 @@ export default function Cabinet(props) {
     dataStore.dispatch(checkSession());
     store.dispatch(getConsultQuestions());
     store.dispatch(getOnlineConsultQuestions());
-    // store.dispatch(countNewMessages());
+    store.dispatch(getPsychoQuestions());
   }, []);
   useEffect(() => {
     setTimeout(() => {
-      // store.dispatch(countNewMessages());
+      store.dispatch(countNewMessages());
     }, 100);
   }, [messagesList, onlineConsultMessagesList]);
 
@@ -91,7 +92,7 @@ export default function Cabinet(props) {
   ];
   const psychoMenus = [
     ['Створити запитання ', routes.psychoQuestionCreate, true],
-    ['Історія запитань ', routes.psychoQuestionHistory, false , newMessages.psycho],
+    ['Історія запитань ', routes.psychoQuestionHistory, false, newMessages.psycho],
   ];
   function handleMobileMenuClick(evt) {
     if (evt.target.classList.contains('menu')) {

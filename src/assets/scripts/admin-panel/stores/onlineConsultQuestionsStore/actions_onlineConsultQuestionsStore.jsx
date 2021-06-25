@@ -15,7 +15,6 @@ import {
 import { questionTypes } from '../consultQuestionsStore/consult-questions-actions.jsx';
 
 import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
-import { countNewMessages } from '../newMessageReducer/actions-newMessageReducer.jsx';
 
 export function saveOnlineConsultQuestions(data) {
   return {
@@ -74,7 +73,6 @@ export function getOnlineConsultQuestions() {
         switch (el.data.error) {
           case 0:
             store.dispatch(saveOnlineConsultQuestions(el.data.request || []));
-            store.dispatch(countNewMessages());
             break;
           case 1:
             store.dispatch(formMessage(el.data.mess));
@@ -118,13 +116,13 @@ export function getSingleOnlineConsultQuestion(id) {
   return (dispatch) => {
     axios.post(GET_SINGLE_CONSULT_QUESTION_URL, data)
       .then((el) => {
-        store.dispatch(setMessageColor(el.data.error));
         switch (el.data.error) {
           case 0:
+            store.dispatch(setMessageColor(el.data.error));
             store.dispatch(appendOnlineConsultMessagesToQuestion(el.data.request));
-            store.dispatch(countNewMessages());
             break;
           default:
+            store.dispatch(setMessageColor(el.data.error));
             break;
         }
       })
@@ -146,7 +144,6 @@ export function sendSingleOnlineConsultQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleOnlineConsultQuestion(messageData.request_id));
-            store.dispatch(countNewMessages());
             break;
           default:
             break;

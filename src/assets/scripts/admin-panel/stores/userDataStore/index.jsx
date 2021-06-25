@@ -63,7 +63,6 @@ function loginStatusReducer(state = getLoginStatusOfUser(), action) {
 
 const rootReducer = combineReducers(
   {
-    newMessagesReducer,
     loginStatusReducer,
     pendingStatusStore,
     registerWorkerFormReducer,
@@ -75,6 +74,7 @@ const rootReducer = combineReducers(
     messageStatusStore,
     onlineConsultQuestionsStore,
     psychoQuestionsStore,
+    newMessagesReducer,
   },
 );
 

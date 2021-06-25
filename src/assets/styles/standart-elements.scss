@@ -176,6 +176,13 @@ body {
   }
   max-width: 280px;
   cursor: pointer;
+  &[disabled] {
+    background: gray;
+  }
+  &[disabled]:hover {
+    box-shadow: none;
+    background: gray;
+  }
   @include from(950px){
     // overflow: hidden;
     // z-index: 0;

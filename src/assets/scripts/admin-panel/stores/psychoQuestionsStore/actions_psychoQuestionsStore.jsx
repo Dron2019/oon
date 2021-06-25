@@ -122,7 +122,6 @@ export function getSinglePsychConsultQuestion(id) {
         switch (el.data.error) {
           case 0:
             store.dispatch(appendPsychMessagesToQuestion(el.data.request));
-            store.dispatch(countNewMessages());
             break;
           default:
             break;

@@ -11,7 +11,6 @@ import {
 } from '../urls.jsx';
 import { formMessage, SEND_CONSULT_QUESTION } from '../dispatchActions.jsx';
 import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
-import { countNewMessages } from '../newMessageReducer/actions-newMessageReducer.jsx';
 import store from '../userDataStore/index.jsx';
 
 
@@ -62,7 +61,6 @@ export function getConsultQuestions() {
         switch (el.data.error) {
           case 0:
             store.dispatch(saveConsultQuestions(el.data.request || []));
-            store.dispatch(countNewMessages());
             break;
           default:
             break;
@@ -99,7 +97,6 @@ export function getSingleConsultQuestion(id) {
         switch (el.data.error) {
           case 0:
             store.dispatch(appendMessagesToQuestion(el.data.request));
-            store.dispatch(countNewMessages());
             break;
           default:
             break;
@@ -123,7 +120,6 @@ export function sendSingleQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleConsultQuestion(messageData.request_id));
-            store.dispatch(countNewMessages());
             break;
           default:
             break;
