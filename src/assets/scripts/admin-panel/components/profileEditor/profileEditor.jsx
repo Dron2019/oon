@@ -110,7 +110,6 @@ export default function ProfileEditor(props) {
                               meta,
                             }) => (
                             <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
-                                {field_config.title && <div className="error placeholder-in-focus">{field_config.title}</div>}
                                 {(field_config.name !== 'tel' && field_config.name !== 'mainPhone') ? <input
                                     title={field_config.title}
                                     disabled = {disabledFields[field_config.name] === true}
@@ -119,6 +118,7 @@ export default function ProfileEditor(props) {
                                     placeholder={field_config.title || ''} {...field} />
                                   : <InputMask className="input-std" placeholder={field_config.title || ''} {...field} mask={telephoneMask} type={field_config.type ? field_config.type : 'text'} name={field_config.name}></InputMask>
                                   }
+                                {field_config.title && <div className="error placeholder-in-focus">{field_config.title}</div>}
                                 {meta.touched && meta.error && (
                                 <div className="error">{meta.error}</div>
                                 )}

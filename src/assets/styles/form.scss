@@ -195,13 +195,18 @@
   /* identical to box height, or 10px */
     animation: slide-in-bottom 0.25s 1 ease-in-out;
   }
+  input[disabled]~.error.placeholder-in-focus:after {
+      background: #d4c9d0;
+      height: 50%;
+  }
   .error:after {
     content:'';
     position: absolute;
     left: 0;
     bottom: 0;
     height: 50%;
-    height: calc(50% + 1px);
+    // height: calc(50% + 1px);
+    height: calc(50% + 0px);
     width: 100%;
     background-color: var(--color-white);
     z-index: -1;
