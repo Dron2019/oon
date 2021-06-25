@@ -91,7 +91,7 @@ export default function Cabinet(props) {
   ];
   const psychoMenus = [
     ['Створити запитання ', routes.psychoQuestionCreate, true],
-    ['Історія запитань ', '/cabinet/ '],
+    ['Історія запитань ', routes.psychoQuestionHistory],
   ];
   function handleMobileMenuClick(evt) {
     if (evt.target.classList.contains('menu')) {

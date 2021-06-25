@@ -41,7 +41,7 @@ body {
 }
 #root {
   min-height: 100vh;
-  margin: 0 30px;
+  margin: 0 15px;
   @include to(1200px){
     
     margin: 0 15px;

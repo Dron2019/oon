@@ -10,6 +10,7 @@ import UserCV from '../components/UserCV/UserCVs.jsx';
 import CreateCV from '../components/CreateCV/CreateCV.jsx';
 import PsychoQuestionCreate from '../components/PsychoQuestionCreate/PsychoQuestionCreate.jsx';
 import OnlineConsultQuestionsHistory from '../components/OnlineConsultQuestionsHistory/OnlineConsultQuestionsHistory.jsx';
+import PsychoQuestionHistory from '../components/PsychoQuestionHistory/PsychoQuestionHistory.jsx';
 
 export default [
   {
@@ -47,5 +48,8 @@ export default [
   },
   {
     title: '', exact: false, route: '/cabinet/onlineConsultQuestionsHistory', component: <OnlineConsultQuestionsHistory/>,
+  },
+  {
+    title: '', exact: false, route: '/cabinet/psychoQuestionHistory', component: <PsychoQuestionHistory/>,
   },
 ];

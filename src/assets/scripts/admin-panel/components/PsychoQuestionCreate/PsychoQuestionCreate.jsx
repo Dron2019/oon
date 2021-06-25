@@ -19,13 +19,14 @@ import routes from '../../routes/routes.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import getProfileData from '../../stores/profileInfoStore/actions_profileInfoStore.jsx';
 import { getPsychoQuestions, sendPsychoQuestion } from '../../stores/psychoQuestionsStore/actions_psychoQuestionsStore.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
 
 export default function PsychoQuestionCreate() {
   const [choosedDate, setDate] = useState(new Date());
   const isPending = useSelector(state => state.pendingStatusStore);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const questions = useSelector(state => state.psychoQuestionsStore);
-  
+
   useEffect(() => {
     store.dispatch(getPsychoQuestions());
   }, []);
@@ -158,6 +159,7 @@ export default function PsychoQuestionCreate() {
                 </div>
                 )}
             </Field>
+            {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
             <div className="input-group input-group--buttons df aic wrap">
               <Link className="text-violet" to={routes.questionsHistory}>Історія запитань</Link>
               <button type="submit" className="button-std button-std--violet small">Надіслати запитання психологу</button>

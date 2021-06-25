@@ -42,6 +42,8 @@ export default function QuestionItem(props) {
     if (firstRendered !== false) {
       if (props.getSingleOnlineConsultQuestion) {
         store.dispatch(props.getSingleOnlineConsultQuestion(id));
+      } else if (props.getSinglePsychConsultQuestion) {
+        store.dispatch(props.getSinglePsychConsultQuestion(id));
       } else {
         store.dispatch(getSingleConsultQuestion(id));
       }
@@ -121,6 +123,8 @@ export default function QuestionItem(props) {
     };
     if (props.sendSingleOnlineConsultQuestion) {
       store.dispatch(props.sendSingleOnlineConsultQuestion(data));
+    } else if (props.sendSinglePsychQuestion) {
+      store.dispatch(props.sendSinglePsychQuestion(data));
     } else {
       store.dispatch(sendSingleQuestion(data));
     }
@@ -207,6 +211,8 @@ export default function QuestionItem(props) {
                                 closeQuestion={() => {
                                   if (props.closeOnlineConsultQuestion) {
                                     store.dispatch(props.closeOnlineConsultQuestion(id));
+                                  } else if (props.closePsychQuestion) {
+                                    store.dispatch(props.closePsychQuestion(id));
                                   } else {
                                     store.dispatch(closeConsultQuestion(id));
                                   }
@@ -218,6 +224,8 @@ export default function QuestionItem(props) {
                     {statusOfMessage === 10 && <div onClick={() => {
                       if (props.recoverOnlineConsultConversation) {
                         store.dispatch(props.recoverOnlineConsultConversation(id));
+                      } else if (props.recoverPsychConversation) {
+                        store.dispatch(props.recoverPsychConversation(id));
                       } else {
                         store.dispatch(recoverConversation(id));
                       }

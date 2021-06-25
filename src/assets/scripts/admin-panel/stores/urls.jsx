@@ -31,3 +31,8 @@ export const SEND_ONLINE_CONSULT_QUESTION_URL = '/user/users/request/';
 
 export const GET_PSYCHO_QUESTIONS_URL = '/user/users/requests_list/';
 export const SEND_PSYCHO_QUESTIONS_QUESTION_URL = '/user/users/request/';
+
+export const GET_SINGLE_PSYCH_QUESTION_URL = '/user/users/request_get/';
+export const CLOSE_PSYCH_QUESTION_URL = '/user/users/request_status/';
+export const RECOVER_PSYCH_QUESTION_URL = '/user/users/recovery_request/';
+export const SEND_NEW_MESSAGE_PSYCH_QUESTION_URL = '/user/users/request/';
