@@ -21,7 +21,7 @@ export default function SingleCV(props) {
           onMouseLeave={() => setDeleteModalShow(false)}
         >
           {deleteModalShow && (
-            <div className="delete-cv-accept-block">
+            <div className="delete-cv-accept-block fade-in">
               <span>Ви підтверджуєте видалення резюме?</span>
               <button onClick={() => store.dispatch(deleteSingleCV(ID))}>Так</button>
               <button onClick={() => setDeleteModalShow(false)}>Ні</button>

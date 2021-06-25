@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import routes from '../../routes/routes.jsx';
-import { uniqueId } from 'lodash';
+
 import { setCvIdToEdit, getCV } from '../../stores/CVStore/cv-actions.jsx';
 import EmptyCV from '../EmptyCV/EmptyCV.jsx';
 import store from '../../stores/userDataStore/index.jsx';
