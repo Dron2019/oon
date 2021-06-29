@@ -75,6 +75,12 @@
     .white-bg-element {
         padding: 30px 50px 36px 50px;
     }
+    @include from(576px){
+        
+        .white-bg-element {
+            padding: 30px 50px 36px 25px;
+        }
+    }
     @include to(575px){
         padding: 35px 15px;
         .white-bg-element {
@@ -140,6 +146,14 @@
         @include shift-padding-right(0.6);
         position: relative;
         z-index: 2;
+    }
+    @include from(576px){
+        .about-block__left {
+            align-self: flex-start;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 50px
+        }
     }
     @include to(575px){
         .about-block__left {

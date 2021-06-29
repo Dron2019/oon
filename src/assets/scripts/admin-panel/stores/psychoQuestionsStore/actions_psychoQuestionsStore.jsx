@@ -44,7 +44,7 @@ export function getPsychoQuestions() {
         store.dispatch(setMessageColor(res.data.error));
         switch (res.data.error) {
           case 0:
-            store.dispatch(savePsychoQuestions(res.data.request));
+            store.dispatch(savePsychoQuestions(res.data.request || []));
             break;
           default:
             break;

@@ -183,6 +183,13 @@ body {
     box-shadow: none;
     background: gray;
   }
+  @include from(1680px){
+    &.small {
+      height: 46px;
+      font-size: 14px;
+      padding: 13px 25px;
+    }
+  }
   @include from(950px){
     // overflow: hidden;
     // z-index: 0;
@@ -241,7 +248,13 @@ body {
   }
 
 }
-
+@include from(951px){
+  .bg-orange .button-std:hover {
+    background-color: var(--color-violet-dark);
+    box-shadow: 0 0 0 rgba(139,3,83, 0.4);
+    animation: pulseViolet 1s infinite;
+  }
+}
 textarea,
 .input-std {
   // width: 355px;
@@ -399,7 +412,7 @@ textarea,
     list-style: circle;
     list-style-type: disc;
     list-style-position: inside;
-    text-indent: -24px;
+    text-indent: -18px;
     padding-left: 24px;
   }
   li:first-line{
@@ -555,4 +568,8 @@ textarea,
 }
 .mt-10 {
   margin-top: 10px;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
 }

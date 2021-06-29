@@ -58,6 +58,7 @@ body[id*='contact'] {
   @include from(1680px){
     .page-part__text  {
       @include shift-padding-left(1);
+      @include shift-padding-right(0.5);
     }
   }
   @include to(575px){

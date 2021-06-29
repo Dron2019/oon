@@ -33,7 +33,7 @@ export function ajax_getProfileData() {
       .then((response) => {
         const userData = response.data.user_data;
         dataStore.dispatch(setMessageColor(response.data.error));
-        dataStore.dispatch(setProfileData(userData));
+        dataStore.dispatch(setProfileData(userData || []));
         dataStore.dispatch(resetPending());
       });
   };

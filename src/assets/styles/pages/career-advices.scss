@@ -1,3 +1,21 @@
+.advices-block {
+    align-items: flex-start;
+    align-content: flex-start;
+    @include from(1241px){
+        @include row-flex();
+        .career-advice-link {
+            @include size(6);
+            @include shift(0);
+            margin-bottom: 20px;
+            
+        }
+    }
+    @include from(1680px){
+        .career-advice-link {
+            @include size(4);
+        }
+    }
+}
 .career-advice-link {
     flex-wrap: wrap;
     flex-direction: column;
@@ -18,8 +36,10 @@
         padding:15px;
     }
 }
-.career-advice-link~.career-advice-link {
-    margin-top: 20px;
+@include to(1240px){
+    .career-advice-link~.career-advice-link {
+        margin-top: 20px;
+    }
 }
 .career-first-block {
     .search-bar-wrap {

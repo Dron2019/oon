@@ -26,6 +26,11 @@
             width: calc(100% - var(--cabinet-menu-width) - 15px);
         }
     }
+    @include to(950px){
+        .content {
+            width: calc(100% - var(--cabinet-menu-width) - 35px);
+        }
+    }
     @include to(768px){
         .content {
             width: 100%;
@@ -203,7 +208,7 @@
             background-size: 50% 50%;
             background-position: center;
             transition: .3s ease-in-out;
-            box-shadow: 5px 4px 6px -1px black;
+            box-shadow: 5px 4px 30px -1px #00000040;
         }
         &.opened:after {
             content: '';

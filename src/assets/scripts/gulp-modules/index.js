@@ -120,3 +120,19 @@ asideLinks.forEach(el=>{
     }
   };
 });
+// gsap.registerPlugin(ScrollTrigger);
+// ScrollTrigger.refresh();
+
+// const paralaxSections = document.querySelectorAll('[data-home-paralax]');
+// paralaxSections.forEach((section) => {
+//   gsap.set(section, { backgroundPositionY: '-50px' });
+//   ScrollTrigger.create({
+//     triggerHook: 'center',
+//     trigger: section,
+//     end: 'bottom',
+//     onEnter: () => {},
+//     onUpdate: (self) => {
+//       gsap.to(section, { backgroundPositionY: `${(self.progress * 100) - 50}px` });
+//     },
+//   });
+// });

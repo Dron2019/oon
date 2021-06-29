@@ -15,10 +15,11 @@
     font-size: 12px;
     line-height: 100%;
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 20px;
     z-index: 5;
     overflow: hidden;
+    box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
     &>* {
         padding: 12px 25px;
         text-decoration: none;
@@ -39,8 +40,13 @@
     }
     &>*.active{
         transition: background-color .5s ease-in-out;
-        color: var(--color-violet) !important;
+        color: var(--color-white) !important;
         background-color: var(--color-violet);
+    }
+    @include from(951px){
+        &>*:hover {
+            animation: pulseViolet 1s infinite ease-in-out;
+        }
     }
     @include to(575px){
         flex-direction: column;

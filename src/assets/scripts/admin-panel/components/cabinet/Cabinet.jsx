@@ -23,6 +23,7 @@ import routes from '../../routes/routes.jsx';
 
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
+import CabinetReviewForm from '../cabinet-review-form/CabinetReviewForm.jsx';
 
 import { countNewMessages } from '../../stores/newMessageReducer/actions-newMessageReducer.jsx';
 import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
@@ -41,6 +42,7 @@ export default function Cabinet(props) {
   const history = useHistory();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(useLocation().pathname);
+  const [formReviewViewer, setFormReviewViewer] = useState(false);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const userType = useSelector(state => state.loginStatusReducer.role); /* psycho */
@@ -184,10 +186,11 @@ export default function Cabinet(props) {
             onClick={(evt) => { store.dispatch(logoutAsync(evt.target.innerText)); }}>
             Вийти: {userName.toString()}
           </div>
-          <div className="button-std button-std--white small">Звортній зв'язок</div>
+          <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Звортній зв'язок</div>
           <CourseLinkInCabinetMenu href="https://goodle.com" target='_blank'/>
         </div>
         <div className="content">
+          {formReviewViewer && <CabinetReviewForm onClose={() => setFormReviewViewer(false)} />}
           <Switch>
             {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
             {/* <Route component={Missing} /> */}

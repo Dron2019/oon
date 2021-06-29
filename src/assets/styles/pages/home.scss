@@ -12,7 +12,7 @@
   }
   &__title {
     letter-spacing: 0.03em;
-    width: 80%;
+    width: 100%;
     font-size: 42px;
     line-height: 1.25em;
     text-align: center;
@@ -74,6 +74,14 @@
   }
   .button-std {
     width: 165px;
+  }
+  @include from(1680px){
+    &__text {
+      @include size(5);
+    }
+    &__img {
+      @include size(7);
+    }
   }
   @include to(768px){
     width: auto;
@@ -144,6 +152,17 @@
   .button-std {
     width: 165px;
   }
+  @include from(1680px){
+    &__text {
+      @include size(5);
+    }
+    &__img {
+      @include size(7);
+      svg {
+        height: auto;
+      }
+    }
+  }
   @include to(768px){
     width: auto;
     padding-top: 20px;
@@ -211,6 +230,14 @@
   }
   .button-std {
     width: 165px;
+  }
+  @include from(1680px){
+    &__text {
+      @include size(5);
+    }
+    &__img {
+      @include size(7);
+    }
   }
   @include to(768px){
     width: auto;
@@ -281,6 +308,17 @@
   }
   .button-std {
     width: 165px;
+  }
+  @include from(1680px){
+    &__text {
+      @include size(5);
+    }
+    &__img {
+      @include size(7);
+      svg {
+        height: auto;
+      }
+    }
   }
   @include to(768px){
     width: auto;

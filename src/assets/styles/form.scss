@@ -28,6 +28,7 @@
     border-radius: 10px;
     border-color: #e5e0e3;
     appearance: none;
+    -webkit-appearance: none;
     width: 100%;
   }
   &::before {
@@ -235,11 +236,15 @@
     .error {
       top: -1px;
     }
+    input[disabled]~.error.placeholder-in-focus:after {
+      background-color: var(--color-white);
+    }
   }
  
 }
 .input-group-select {
   position: relative;
+  
   &:after {
     content: '';
     position: absolute;
@@ -249,6 +254,9 @@
     background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 6L0 0H6L3 6Z' fill='%233E0C29'/%3E%3C/svg%3E%0A");
     width: 6px;
     height: 6px;
+  }
+  @include to(768px){
+    
   }
 }
 .input-group~.input-group {

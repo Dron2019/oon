@@ -7,6 +7,7 @@ block meta
 block head
     link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
+  script(defer src='./assets/scripts/index.bundle.js')
   script(defer src='./assets/scripts/index.js')
 block content
   .ms 
@@ -29,7 +30,7 @@ block content
       .title.text-violet Консультації кар’єрних радників
       p Через Кар’єрний хаб ви можете домовитися про безкоштовну індивідуальну консультацію з кар’єрним радником чи радницею для здобуття чи покращення професійних навичок. Фахівці оцінять ваші персональні кар’єрні потреби, проаналізують можливості, допоможуть сформувати кар’єрний план, скласти резюме та навіть забезпечать супроводом під час адаптації на новому робочому місці. 
       .button-std.button-std--orange Дивитися розділ
-    .screen3__img 
+    .screen3__img( data-home-paralax)
       include ../../assets/images/home/screen3-img.svg
   .screen4
     img(src="./assets/images/home/screen2-decor.svg").screen4__decor

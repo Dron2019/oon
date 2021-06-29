@@ -5,7 +5,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const config = {
     mode: 'development',
     entry: {
-        // index: "./src/assets/scripts/index-app.js",
+        index: './src/assets/scripts/index-app.js',
         adminPanel: './src/assets/scripts/admin-panel/index.jsx',
     },
     output: {
