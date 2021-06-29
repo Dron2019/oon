@@ -112,7 +112,7 @@ export default function Cabinet(props) {
   const [locked, toggleLocked] = useToggle(false);
   useLockBodyScroll(locked);
   useEffect(() => {
-    toggleLocked(menuVisibility);
+    if (document.documentElement.clientWidth < 576) toggleLocked(menuVisibility);
   }, [menuVisibility]);
   useClickAway(ref, () => {
     if (menuVisibility === true) setMenuVisibility(false);

@@ -47,6 +47,15 @@ export default function LoginForm(props) {
             <div className="title text-violet">Мій кабінет</div>
             <Redirect to={`/login${history.location.search}`} />
             <Formik
+                validate={(el) => {
+                  // const
+                  const errors = {};
+                  Object.entries(el).forEach((field) => {
+                    // eslint-disable-next-line no-unused-expressions
+                    field[1].length === 0 ? errors[field[0]] = 'Заповніть поле' : null;
+                  });
+                  return errors;
+                }}
                 initialValues={{ login: '', password: '' }}
                 onSubmit={loginSubmit}>
                 <Form className="form-std">
@@ -57,10 +66,11 @@ export default function LoginForm(props) {
                             name="login"
                             placeholder="Логін:"
                             onInput={(evt) => { dataStore.dispatch({ type: 'ENTERNAME', value: evt.target.value }); }}/>
+                      <ErrorMessage
+                          className="error"
+                          component="div"
+                          name="login" />
                     </div>
-                    <ErrorMessage
-                        component="div"
-                        name="login" />
                     <Field
                         name="password"
                         type="password">

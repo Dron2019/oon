@@ -76,6 +76,8 @@
     width: 165px;
   }
   @include from(1680px){
+    padding-top: 50px;
+    padding-bottom: 50px;
     &__text {
       @include size(5);
     }
@@ -153,6 +155,8 @@
     width: 165px;
   }
   @include from(1680px){
+    padding-top: 50px;
+    padding-bottom: 50px;
     &__text {
       @include size(5);
     }
@@ -232,6 +236,8 @@
     width: 165px;
   }
   @include from(1680px){
+    padding-top: 50px;
+    padding-bottom: 50px;
     &__text {
       @include size(5);
     }
@@ -310,6 +316,8 @@
     width: 165px;
   }
   @include from(1680px){
+    padding-top: 50px;
+    padding-bottom: 50px;
     &__text {
       @include size(5);
     }
