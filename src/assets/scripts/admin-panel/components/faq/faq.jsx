@@ -9,6 +9,7 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
+import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import 'react-accessible-accordion/dist/fancy-example.css';
@@ -21,6 +22,8 @@ import {
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Loader from '../loader/loader.jsx';
 import { getFaqUserQuestions, sendFaqQuestion, getSingleFaqQuestion } from '../../stores/faqStore/actions_faqStore.jsx';
+import { GET_FAQ_STATIC_QUESTIONS_URL } from '../../stores/urls.jsx';
+
 
 function getFaqQuestions() {
   return [
@@ -31,7 +34,7 @@ function getFaqQuestions() {
 }
 
 export default function faq() {
-  const questions = getFaqQuestions();
+  const [questions, setQuestions] = useState([]);
   const history = useHistory();
   const [choosedDate, setDate] = useState(new Date());
   const isPending = useSelector(state => state.pendingStatusStore);
@@ -39,9 +42,30 @@ export default function faq() {
   const messages = useSelector(state => state.faqStore);
   const userID = useSelector(state => state.loginStatusReducer.id);
   const userType = useSelector(state => state.loginStatusReducer.role);
-
+  /** Статические вопросы получаются напрямую из компонента */
   useEffect(() => {
     dataStore.dispatch(getFaqUserQuestions());
+    const data = new FormData();
+    data.append('ajax_data', '1');
+    axios.post(GET_FAQ_STATIC_QUESTIONS_URL, data)
+      .then((res) => {
+        switch (res.data.error) {
+          case 0:
+            setQuestions(res.data.request || []);
+            break;
+          case 1:
+            dataStore.dispatch(loginFail(res.data.mess));
+            break;
+          default:
+            break;
+        }
+      })
+      .catch((el) => {})
+      .finally((el) => {
+        setTimeout(() => {
+          dataStore.dispatch(clearError());
+        }, 2000);
+      });
   }, []);
   const formFields = [
     {
@@ -66,8 +90,6 @@ export default function faq() {
     },
   ];
   function formSubmit(values, form) {
-    // dataStore.dispatch(setPending());
-    // dataStore.dispatch(loginFail('Відправлено'));
     dataStore.dispatch(sendFaqQuestion(values, form.resetForm));
     setTimeout(() => {
       form.resetForm();
@@ -101,7 +123,7 @@ export default function faq() {
                         </AccordionItemHeading>
                         <AccordionItemPanel>
                             <p>
-                                {singleQuestion.content}
+                                {singleQuestion.text}
                             </p>
                         </AccordionItemPanel>
                     </AccordionItem>

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
@@ -43,13 +44,23 @@ export default function CabinetReviewForm(props) {
   const isPending = useSelector(state => state.pendingStatusStore);
   const ref = useRef(null);
   useClickAway(ref, () => {
-    props.onClose();
+    gsap.to(ref.current.parentElement, {
+      y: 50,
+      autoAlpha: 0,
+      duration: 0.35,
+      onComplete: () => {
+        props.onClose();
+      },
+    });
   });
-
+  useEffect(() => {
+    gsap.from(ref.current, { autoAlpha: 0.5, y: 50 });
+  }, ref);
 
   function getSchema() {
     const innerSchema = {};
     initState.forEach((el) => {
+      // eslint-disable-next-line no-unused-expressions
       el.validationSchema !== undefined ? innerSchema[el.name] = el.validationSchema : null;
     });
     return Yup.object().shape(innerSchema);
@@ -69,7 +80,16 @@ export default function CabinetReviewForm(props) {
                   className="form-std cabinet-review-form"
                   ref={ref}
                 >
-                  <svg className="form-review-close" onClick={() => props.onClose() } width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="form-review-close" onClick={() => {
+                    gsap.to(ref.current.parentElement, {
+                      y: 50,
+                      autoAlpha: 0,
+                      duration: 0.35,
+                      onComplete: () => {
+                        props.onClose();
+                      },
+                    });
+                  } } width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 15L1 1M1 15L15 1L1 15Z" stroke="#991E66" stroke-width="2"/>
                     </svg>
                     <div className="form-std__subtitle text-violet">Зворотній зв’язок</div>

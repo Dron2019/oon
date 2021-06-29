@@ -41,3 +41,5 @@ export const GET_FAQ_QUESTIONS_URL = '/user/users/requests_list/';
 export const GET_SINGLE_FAQ_QUESTION_URL = '/user/users/request_get/';
 export const CLOSE_FAQ_QUESTION_URL = '/user/users/request_status/';
 export const SEND_NEW_MESSAGE_FAQ_QUESTION_URL = '/user/users/request/';
+
+export const GET_FAQ_STATIC_QUESTIONS_URL = '/user/faqs/';
