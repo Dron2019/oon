@@ -183,6 +183,26 @@ export default function QuestionItem(props) {
                             </div>
                         );
                       }
+                      if (part.questType === 'faq_admin') {
+                        return (
+                          <div key={index} className={`text question-item__single-mess ${index === 0 ? 'admin' : 'client'}`}>
+                            <div className="question-item__single-mess-head">
+                                <span className="fw-600 question-item__single-mess-title">
+                                    {part.consultID === '0' ? userName : consultName}
+                                </span>
+                                <div className="question-item__date-wrapper">
+                                    <CalendarIcon/> {part.request_date}
+                                </div>
+                                <div className="question-item__date-wrapper">
+                                    <ClockIcon/>  {part.request_time}
+                                </div>
+                            </div>
+                            <div className="question-item__single-mess-text">
+                                {part.text}
+                            </div>
+                        </div>
+                        );
+                      }
                       return (
                         <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'admin' : 'client'}`}>
                                 <div className="question-item__single-mess-head">

@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 
@@ -68,7 +69,10 @@ export function getSingleFaqQuestion(id) {
         store.dispatch(setMessageColor(el.data.error || 1));
         switch (el.data.error) {
           case 0:
-            store.dispatch(appendMessagesToFaqQuestion(el.data.request));
+            // eslint-disable-next-line no-case-declarations
+            const changedData = [...el.data.request];
+            changedData.forEach(part => part.questType = el.data.data.type);
+            store.dispatch(appendMessagesToFaqQuestion(changedData));
             break;
           default:
             break;
