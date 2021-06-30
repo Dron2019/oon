@@ -26,9 +26,17 @@
         &__right {
             @include size(12);
             @include shift-left(0);
+           
         }
         .subtitle {
             margin-bottom: 15px;
+        }
+    }
+    @include to(575px){
+        z-index: 2;
+        &__right {
+           position: relative;
+           
         }
     }
 }

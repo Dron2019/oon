@@ -201,7 +201,7 @@ export default function ProfileEditor(props) {
                                 />
                                 {
                                     errors.old_pass ? (
-                                    <div class="error">
+                                    <div className="error">
                                         {errors.old_pass}
                                     </div>
                                     ) : null
@@ -220,7 +220,7 @@ export default function ProfileEditor(props) {
                                 />
                                 {
                                     errors.password ? (
-                                    <div class="error">
+                                    <div className="error">
                                         {errors.password}
                                     </div>
                                     ) : null
@@ -239,7 +239,7 @@ export default function ProfileEditor(props) {
                                 />
                                 {
                                     errors.changepassword ? (
-                                    <div class="error">
+                                    <div className="error">
                                         {errors.changepassword}
                                     </div>
                                     ) : null
