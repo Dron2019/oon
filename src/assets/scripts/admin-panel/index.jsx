@@ -19,7 +19,7 @@ import ForgotPassword from './components/forms/forgotPassword/index.jsx';
 import Register from './components/register/Register.jsx';
 import routes from './routes/routes.jsx';
 import dataStore from './stores/userDataStore/index.jsx';
-import { checkSession } from './stores/userDataStore/actions.jsx';
+import { checkSession, logoutAsync } from './stores/userDataStore/actions.jsx';
 
 function App(props) {
   const isLogined = useSelector(state => state.loginStatusReducer.isLogined);
@@ -28,6 +28,19 @@ function App(props) {
   // useEffect(() => {
   //   dataStore.dispatch(checkSession());
   // }, []);
+  function logoutFromOuter() {
+    dataStore.dispatch(logoutAsync());
+  }
+  useEffect(() => {
+    if (isLogined) {
+      // eslint-disable-next-line prefer-arrow-callback
+      document.querySelector('aside .button-std.button-std--violet').addEventListener('click', logoutFromOuter);
+      document.querySelector('aside .button-std.button-std--violet span').innerHTML = 'Вийти з кабінету';
+    } else {
+      document.querySelector('aside .button-std.button-std--violet span').innerHTML = 'Мій Кабінет';
+      document.querySelector('aside .button-std.button-std--violet').removeEventListener('click', logoutFromOuter);
+    }
+  }, [isLogined]);
   return (
     <Switch>
       <Route exact path={routes.home}>

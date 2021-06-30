@@ -97,16 +97,10 @@ export function getOnlineConsultQuestions() {
 export function appendOnlineConsultMessagesToQuestion(arrayWithMessages) {
   const state = store.getState().onlineConsultQuestionsStore;
   const newState = cloneDeep(state);
-  console.log(arrayWithMessages);
-  console.log('---------');
-  console.log(newState);
   newState.forEach((el) => {
     // eslint-disable-next-line no-param-reassign
     if (el.id === arrayWithMessages[0].requestID) el.messages = arrayWithMessages;
     if (el.id === arrayWithMessages[0].requestID) el.status = arrayWithMessages[0].status;
-
-
-    console.log('SOVPADENIE');
     if (arrayWithMessages[0].requestID === el.id) el.is_read = '1';
   });
 

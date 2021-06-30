@@ -110,8 +110,8 @@ mobMenuHandle();
 const asideLinks = document.querySelectorAll('aside a');
 asideLinks.forEach(el=>{
   const href = el.getAttribute('href');
-  if ( href !== undefined && href !== '/' && window.location.href.match(href)) {
-    console.log('ee');
+  if ( href !== undefined && href !== '/' && window.location.href.match(href) && el.classList.contains('.button-std') !== false) {
+    console.log(el);
     el.style.fontWeight = 800;
     el.style.pointerEvents = 'none';
     const parentGroupEl = el.closest('.aside__link-dropdown');

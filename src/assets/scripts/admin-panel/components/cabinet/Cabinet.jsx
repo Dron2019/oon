@@ -185,10 +185,10 @@ export default function Cabinet(props) {
           {/* <div className="text text-white fw-800 menu-bold-text with-vert-line">
 
           </div> */}
-          <div className="button-std button-std--white quit-button"
+          {/* <div className="button-std button-std--violet quit-button"
             onClick={(evt) => { store.dispatch(logoutAsync(evt.target.innerText)); }}>
-            Вийти: {userName.toString()}
-          </div>
+            Вихід з кабінету
+          </div> */}
           <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Звортній зв'язок</div>
           <CourseLinkInCabinetMenu href="https://goodle.com" target='_blank'/>
         </div>
