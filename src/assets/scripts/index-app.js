@@ -60,14 +60,14 @@ const mainScreenTransition = new BezierEasing(0.75, 0.01, 0.31, 1);
  */
 const paralaxSections = document.querySelectorAll('[data-home-paralax]');
 paralaxSections.forEach((section) => {
-  gsap.set(section, { y: '-50px' });
+  gsap.set(section, { y: '-25px' });
   ScrollTrigger.create({
     triggerHook: 'center',
     trigger: section,
     end: 'bottom',
     onEnter: () => {},
     onUpdate: (self) => {
-      gsap.to(section, { y: `${(self.progress * 100) - 50}px` });
+      gsap.to(section, { y: `${(self.progress * 50) - 25}px` });
     },
   });
 });
@@ -84,7 +84,7 @@ homeInfoLists.forEach((section) => {
     },
   });
   tl.fromTo(section,
-    { autoAlpha: 0, y: 50 },
+    { autoAlpha: 0, y: 100 },
     {
       autoAlpha: 1, y: 0, duration: 0.55, ease: infoListEasing,
     });

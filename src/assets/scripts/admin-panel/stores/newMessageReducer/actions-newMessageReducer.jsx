@@ -9,7 +9,7 @@ export function countNewMessages() {
   const question = state.consultQuestionsStore;
   const onlineConsultNewQuestions = state.onlineConsultQuestionsStore;
   const psychQuestions = state.psychoQuestionsStore;
-
+  // console.log('QUESTIONS', question, onlineConsultNewQuestions, psychQuestions);
   onlineConsultNewQuestions.forEach((message) => {
     if (+message.is_read === 0) onlineConsultCount += 1;
   });
@@ -20,10 +20,11 @@ export function countNewMessages() {
     if (+message.is_read === 0) psychCount += 1;
   });
   const returnValue = {
-    consult: 0,
-    onlineConsult: 0,
-    psycho: 0,
+    consult: count,
+    onlineConsult: onlineConsultCount,
+    psycho: psychCount,
   };
+  // console.log('RETUERN COUNT ', returnValue);
   return {
     type: 'COUNT_NEW_MESSAGE',
     payload: returnValue,

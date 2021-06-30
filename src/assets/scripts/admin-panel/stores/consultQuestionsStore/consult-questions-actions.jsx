@@ -77,11 +77,11 @@ export function appendMessagesToQuestion(arrayWithMessages) {
     // eslint-disable-next-line no-param-reassign
     if (el.id === arrayWithMessages[0].requestID) el.messages = arrayWithMessages;
     if (el.id === arrayWithMessages[0].requestID) el.status = arrayWithMessages[0].status;
-    if (el.id === arrayWithMessages[0].requestID) el.is_read = true;
+    if (arrayWithMessages[0].requestID === el.id) el.is_read = '1';
   });
 
   return {
-    type: 'APPEND_MESSAGE',
+    type: 'APPEND_CONSULT_MESSAGE',
     payload: [...newState],
   };
 }

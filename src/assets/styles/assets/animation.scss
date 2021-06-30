@@ -210,3 +210,26 @@
     opacity: 1;
   }
 }
+
+
+@keyframes percentage-fast {
+  @for $i from 11 through 100 {
+    #{$i * 1%} {
+      content: $i + '%';
+    }
+  }
+}
+@keyframes beforeEffect{
+  0% {
+    content: attr(data-start);
+  }
+  10% {
+    content: '2';
+  }
+  50% {
+    content: '3';
+  }
+  100% {
+    content: attr(data-end);
+  }
+}

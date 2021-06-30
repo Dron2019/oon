@@ -58,6 +58,9 @@ body {
   font-size: 36px;
   line-height: 1.2em;
   font-weight: 800;
+  @include from(1680px){
+    font-size: 48px;
+  }
   @include to(575px){
     font-size: 24px;
   }
@@ -184,6 +187,11 @@ body {
     background: gray;
   }
   @include from(1680px){
+    height: 58px;
+    font-size: 18px;
+    padding-right: 30px;
+    padding-left: 30px;
+    
     &.small {
       height: 46px;
       font-size: 14px;

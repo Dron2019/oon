@@ -26,13 +26,29 @@
     margin-bottom: auto;
   }
   @include from(1680px){
+    &>img {
+      padding-left: 100px;
+      padding-right: 100px;
+      
+    }
     &__title {
       font-size: 54px;
+      padding-left: 13%;
+      padding-right: 13%;
+      text-align: center;
+      justify-content: center;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
   @include to(575px){
     &__title {
       font-size: 32px;
+    }
+    &>img {
+      width: 200vw;
+      max-width: none;
+      margin-left: auto;
     }
   }
 }
@@ -78,11 +94,17 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    .button-std {
+      width: 200px;
+    }
     &__text {
       @include size(5);
+      @include shift-padding-right(0.5);
     }
     &__img {
-      @include size(7);
+      @include size(5);
+      @include shift-right(1);
+      @include shift-left(1);
     }
   }
   @include to(768px){
@@ -157,11 +179,18 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    .button-std {
+      width: 200px;
+    }
     &__text {
       @include size(5);
+      @include shift-padding-left(0);
+      @include shift-padding-right(1.2);
     }
     &__img {
-      @include size(7);
+      @include size(5);
+      @include shift-right(1);
+      @include shift-padding-left(0);
       svg {
         height: auto;
       }
@@ -238,11 +267,16 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    .button-std {
+      width: 200px;
+    }
     &__text {
       @include size(5);
+      @include shift-padding-right(0);
     }
     &__img {
-      @include size(7);
+      @include size(5);
+      @include shift-left(1);
     }
   }
   @include to(768px){
@@ -318,11 +352,17 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    .button-std {
+      width: 200px;
+    }
     &__text {
       @include size(5);
+      @include shift-padding-left(0);
     }
     &__img {
-      @include size(7);
+      @include size(5);
+      @include shift-right(1);
+      padding-left: 0;
       svg {
         height: auto;
       }

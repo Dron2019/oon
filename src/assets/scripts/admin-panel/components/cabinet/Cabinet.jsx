@@ -36,8 +36,11 @@ export default function Cabinet(props) {
   const isLogined = useSelector(state => state.isLogined);
   const userName = useSelector(state => state.loginStatusReducer.name) || '';
   const newMessages = useSelector(state => state.newMessagesReducer);
+
   const messagesList = useSelector(state => state.consultQuestionsStore);
   const onlineConsultMessagesList = useSelector(state => state.onlineConsultQuestionsStore);
+  const psychoMessagesList = useSelector(state => state.psychoQuestionsStore);
+
   // const test = true;
   const history = useHistory();
   const location = useLocation();
@@ -63,7 +66,7 @@ export default function Cabinet(props) {
     setTimeout(() => {
       store.dispatch(countNewMessages());
     }, 100);
-  }, [messagesList, onlineConsultMessagesList]);
+  }, [messagesList, onlineConsultMessagesList, psychoMessagesList]);
 
   function renderCabinetNestedRoutes(el, index) {
     return (

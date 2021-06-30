@@ -6,7 +6,7 @@ export default function consultQuestionsReducer(state = initState, action) {
   switch (action.type) {
     case SEND_CONSULT_QUESTION:
       return action.payload;
-    case 'APPEND_MESSAGE':
+    case 'APPEND_CONSULT_MESSAGE':
       return action.payload;
     default:
       return state;
