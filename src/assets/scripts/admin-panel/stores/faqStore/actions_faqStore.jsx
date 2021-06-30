@@ -10,7 +10,12 @@ import {
   SEND_NEW_MESSAGE_FAQ_QUESTION_URL,
 } from '../urls.jsx';
 import store from '../userDataStore/index.jsx';
-import { formMessage, ADD_FAQ_QUESTIONS } from '../dispatchActions.jsx';
+import {
+  formMessage,
+  ADD_FAQ_QUESTIONS,
+  setPending,
+  resetPending,
+} from '../dispatchActions.jsx';
 import { setMessageColor } from '../messageStatusStore/messageStatusActions.jsx';
 
 export function saveFaqQuestions(data) {
@@ -89,7 +94,7 @@ export function sendFaqQuestion(messageData, resetCallback) {
   data.append('ajax_data', '1');
   data.append('type', questionTypes.admin);
   data.append('id', ID);
-
+  store.dispatch(setPending());
   Object.entries(messageData).forEach(el => data.append(el[0], el[1]));
   return (dispatch) => {
     axios.post(SEND_NEW_MESSAGE_FAQ_QUESTION_URL, data)
@@ -98,13 +103,22 @@ export function sendFaqQuestion(messageData, resetCallback) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getFaqUserQuestions());
+            store.dispatch(formMessage(el.data.mess));
             resetCallback();
+            break;
+          case 1:
+            store.dispatch(formMessage(el.data.mess));
             break;
           default:
             break;
         }
       })
       .catch(el => console.log(el))
-      .finally(el => console.log(el));
+      .finally((el) => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+          store.dispatch(resetPending());
+        }, 2000);
+      });
   };
 }

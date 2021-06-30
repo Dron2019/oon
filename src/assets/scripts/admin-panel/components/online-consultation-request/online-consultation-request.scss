@@ -9,6 +9,7 @@
     .form-std {
         @include size(7);
         @include shift(0);
+        overflow: visible;
     }
     .text-block {
         @include size(5);
@@ -19,6 +20,7 @@
         .form-std {
             @include size(12);
             margin-top: 20px;
+
         }
         .text-block {
             @include size(12);
@@ -83,4 +85,8 @@
         }
 
     }
+}
+
+input[name='date'] {
+    pointer-events: none;
 }

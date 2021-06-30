@@ -42,6 +42,7 @@ const registerInputs = [
   {
     title: 'Телефон:',
     name: 'tel',
+    type: 'number',
     initialValue: '',
     requiredClass: 'required',
     validationSchema: Yup.string()

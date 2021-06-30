@@ -18,10 +18,10 @@ const registerInputs = [
     type: 'password', title: 'Підтвердження паролю', name: 'confirmPassword', initialValue: '', requiredClass: 'required',
   },
   {
-    title: 'Телефон:', name: 'tel', initialValue: '', requiredClass: false,
+    title: 'Телефон:', name: 'tel', initialValue: '', requiredClass: false, type: 'number',
   },
   {
-    title: 'Вік: (вкажіть скільки вам років)', name: 'age', initialValue: '', requiredClass: false,
+    title: 'Вік: (вкажіть скільки вам років)', name: 'age', initialValue: '', requiredClass: false, type: 'number',
   },
   {
     title: 'Досвід роботи (програміст, санітар)', name: 'work-expirience', initialValue: '', requiredClass: false,

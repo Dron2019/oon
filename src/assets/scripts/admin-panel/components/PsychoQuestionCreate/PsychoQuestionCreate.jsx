@@ -174,7 +174,7 @@ export default function PsychoQuestionCreate() {
             </Field>
             {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
             <div className="input-group input-group--buttons df aic wrap">
-              <Link className="text-violet" to={routes.questionsHistory}>Історія запитань</Link>
+              <Link className="text-violet" to={routes.psychoQuestionHistory}>Історія запитань</Link>
               <button type="submit" className="button-std button-std--violet small">Надіслати запитання психологу</button>
             </div>
           </Form>
