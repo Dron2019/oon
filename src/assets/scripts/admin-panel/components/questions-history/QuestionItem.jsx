@@ -199,7 +199,6 @@ export default function QuestionItem(props) {
                                 </div>
                             </div>
                             <div className="question-item__single-mess-text"
-                            dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}
                             >
                                 {part.text}
                             </div>
