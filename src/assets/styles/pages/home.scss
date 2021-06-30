@@ -26,6 +26,8 @@
     margin-bottom: auto;
   }
   @include from(1680px){
+    font-size: 18px;
+    line-height: 1.6em;
     &>img {
       padding-left: 100px;
       padding-right: 100px;
@@ -95,6 +97,8 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    font-size: 18px;
+    line-height: 1.6em;
     .button-std {
       width: 200px;
     }
@@ -180,6 +184,8 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    font-size: 18px;
+    line-height: 1.6em;
     .button-std {
       width: 200px;
     }
@@ -268,6 +274,8 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    font-size: 18px;
+    line-height: 1.6em;
     .button-std {
       width: 200px;
     }
@@ -353,6 +361,8 @@
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
+    font-size: 18px;
+    line-height: 1.6em;
     .button-std {
       width: 200px;
     }

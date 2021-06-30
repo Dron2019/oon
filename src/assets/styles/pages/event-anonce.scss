@@ -2,9 +2,11 @@
   .page-title {
     width: 100%;
   }
+ @include to(769px){
   .learn-block:hover {
     height: 85px;
   }
+ }
 }
 
 .event-anonce-wrapper {
