@@ -119,6 +119,10 @@
             &:hover {
                 height: 145px;       
             }
+            &>*.active {
+                color: var(--color-white) !important;
+                background-color: var(--color-violet);
+            }
         }
 
     }

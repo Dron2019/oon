@@ -131,7 +131,7 @@ export default function OnlineConsultationRequest(props) {
                     {isPending && <Loader/>}
                     <div className="input-group input-group--buttons df aic wrap">
                         <a className="text-violet underlined " onClick={() => history.push(routes.onlineConsultQuestionsHistory)}>Історія запитань</a>
-                        <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запитання психологу</button>
+                        <button type='submit' className="button-std button-std--violet small mt-0">Надіслати запит</button>
                     </div>
                 </Form>
             </Formik>

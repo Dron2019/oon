@@ -263,6 +263,16 @@
 .input-group~.input-group {
   margin-top: 10px;
 }
+.input-group:last-child {
+  align-items: baseline;
+  a {
+    margin-right: auto;
+  }
+  button {
+    margin-left: 0;
+  }
+}
+
 
 .required-legend-title {
   margin-top: 10px;

@@ -34,7 +34,7 @@ function renderNewMessagesInAsideButton(){
   const menuCabinetLink = document.querySelector('[data-new-messages]');
   const messageInformerElement = menuCabinetLink.closest('svg');
   const messageInStorage = window.localStorage.getItem('newMessages');
-  if (messageInStorage !== null && messageInStorage !== 0 && messageInStorage !== '0') {
+  if (+messageInStorage > 0) {
     menuCabinetLink.innerHTML =  messageInStorage;
     messageInformerElement.style.opacity = 1;
   }else {
@@ -107,10 +107,10 @@ mobMenuHandle();
 
 
 /**Подсветка активного пункта меню */
-const asideLinks = document.querySelectorAll('aside a');
+const asideLinks = document.querySelectorAll('aside a:not(.button-std)');
 asideLinks.forEach(el=>{
   const href = el.getAttribute('href');
-  if ( href !== undefined && href !== '/' && window.location.href.match(href) && el.classList.contains('.button-std') !== false) {
+  if ( href !== undefined && href !== '/' && window.location.href.match(href)) {
     console.log(el);
     el.style.fontWeight = 800;
     el.style.pointerEvents = 'none';

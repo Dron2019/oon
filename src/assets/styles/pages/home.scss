@@ -45,7 +45,8 @@
     &__title {
       font-size: 32px;
     }
-    &>img {
+    &>img,
+    &>svg {
       width: 200vw;
       max-width: none;
       margin-left: auto;

@@ -122,9 +122,9 @@ export default function faq() {
                 userID={userID}
                 userType={userType}/>
             ))}
-            <Accordion>
+            <Accordion allowZeroExpanded={true}>
                 {questions.map((singleQuestion, index) => (
-                    <AccordionItem key={`faq${index}`}>
+                    <AccordionItem allowZeroExpanded={true} key={`faq${index}`}>
                         <AccordionItemHeading>
                             <AccordionItemButton>
                                 <div className="subtitle-small text-violet">

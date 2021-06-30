@@ -90,7 +90,7 @@ export default function (props) {
                     {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
                     <div className="input-group df aic wrap">
                         <a className="text-violet underlined " onClick={() => history.push(routes.questionsHistory)}>Історія запитань</a>
-                        <button type='submit' className="button-std button-std--violet small ">Надіслати запитання психологу</button>
+                        <button type='submit' className="button-std button-std--violet small ">Надіслати запитання</button>
                     </div>
                 </Form>
             </Formik>
