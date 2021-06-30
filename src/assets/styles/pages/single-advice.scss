@@ -42,4 +42,9 @@
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+    @include to(575px){
+        &.page-part{
+            padding-top: 50px;
+        }
+    }
 }

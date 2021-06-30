@@ -67,6 +67,7 @@
     &__info-item~&__info-item {
         margin-top: 10px;
     }
+    
     @include to(950px){
         padding: 20px;
         &>* {
@@ -615,6 +616,11 @@
     }
     .subtitle-small {
         margin-bottom: 10px;
+    }
+    @include from(1240px){
+        .page-part .page-title {
+            margin-top: 0;
+        }
     }
     @include to(575px){
 

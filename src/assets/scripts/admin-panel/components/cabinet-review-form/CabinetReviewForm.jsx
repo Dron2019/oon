@@ -97,7 +97,7 @@ export default function CabinetReviewForm(props) {
                       if (field_config.type === 'select') {
                         return (
                             <div key={`${index}aa`} className="input-group input-group-select">
-                            <div className="error placeholder-in-focus">{field_config.selects[0]}</div>
+                            <div className="error placeholder-in-focus">{field_config.selects[0][0]}</div>
                             <Field key={`${index}bb`} name={field_config.name} className="fw-500 text-black" as={field_config.type}>
                                 {field_config.selects.map((option, i) => (
                                     <option key={i} value={option[1]}>{option[0]}</option>

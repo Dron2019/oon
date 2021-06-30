@@ -232,6 +232,7 @@
 .menu {
     @include from(769px){
         position: sticky;
+        position: -webkit-sticky;
         top: 20px;
 
     }

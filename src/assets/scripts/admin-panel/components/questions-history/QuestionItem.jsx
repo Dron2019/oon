@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable camelcase */
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -197,7 +198,9 @@ export default function QuestionItem(props) {
                                     <ClockIcon/>  {part.request_time}
                                 </div>
                             </div>
-                            <div className="question-item__single-mess-text">
+                            <div className="question-item__single-mess-text"
+                            dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}
+                            >
                                 {part.text}
                             </div>
                         </div>
@@ -217,7 +220,6 @@ export default function QuestionItem(props) {
                                     </div>
                                 </div>
                                 <div className="question-item__single-mess-text"
-                                    // eslint-disable-next-line no-useless-escape
                                     dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}>
                                     {/* {part.text.replace(
                                       /\b(https?\:\/\/\S+)/mg,
@@ -252,7 +254,7 @@ export default function QuestionItem(props) {
                       } else {
                         store.dispatch(recoverConversation(id));
                       }
-                    }} className="  mt-10 button-std button-std--violet small">Відновити діалог</div>
+                    }} className="  mt-10 button-std button-std--violet small restore-dialog-button">Відновити діалог</div>
                     }
                 </div>
             </div>

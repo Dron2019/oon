@@ -122,6 +122,9 @@
     }
   }
   @include from(1680px){
+    .button-std  {
+      font-size: 14px;
+    }
     &__link {
       font-size: 14px;
     }

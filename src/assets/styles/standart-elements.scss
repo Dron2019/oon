@@ -9,6 +9,7 @@ body {
 .page__inner {
   margin-left: auto;
   width: calc(100vw - var(--aside-w) - 10px);
+  overflow: hidden;
   transition: filter .3 ease-in-out;
   &.opened-popup {
     //  pointer-events: none;
@@ -369,6 +370,11 @@ textarea,
           text-overflow: ellipsis;
           overflow: hidden;
       }
+  }
+  @include to(575px){
+    &-list {
+      max-width: 85%;
+    }
   }
 }
 .on-light-bg-breadcrumbs {

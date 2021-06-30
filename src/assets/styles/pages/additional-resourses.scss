@@ -1,6 +1,7 @@
 .resources-wrapper {
     display: grid;
     grid-template-rows: auto;
+    grid-template-rows: -webkit-max-content;
     grid-template-columns: 1fr 1fr;
     gap:22px;
     @include to(768px){
@@ -9,6 +10,8 @@
 }
 .resource-link {
     padding: 30px;
+
+    max-height: 170px;
     [class*="subtitle"]{
         margin-bottom: 20px;
     }

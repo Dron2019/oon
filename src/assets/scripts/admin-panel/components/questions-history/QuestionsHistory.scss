@@ -94,6 +94,7 @@
     }
     &__birdy {
         clip-path: polygon(50% 100%, 0 0, 100% 0);
+        -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
         background-color: var(--color-black);
         width: 6px;
         height: 6px;
@@ -194,6 +195,10 @@
         width: 100%;
     }
     &__user-info &__date-wrapper:first-of-type {
+        margin-left: auto;
+    }
+    .restore-dialog-button {
+        margin-top: 20px;
         margin-left: auto;
     }
     @include to(950px){
