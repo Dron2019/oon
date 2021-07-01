@@ -44,7 +44,7 @@ export default function Cabinet(props) {
   // const test = true;
   const history = useHistory();
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState(useLocation().pathname);
+  const [activeLink, setActiveLink] = useState('/cabinet/createConsultQuestion');
   const [formReviewViewer, setFormReviewViewer] = useState(false);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
@@ -147,6 +147,7 @@ export default function Cabinet(props) {
               {psychoMenus.map(renderCabinetLinks)}
           </ul>
           <Link
+            activeClassName="active"
             onClick={() => setActiveLink(routes.profileEditor)}
             to={routes.profileEditor}
             className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.profileEditor)) ? 'active' : ''}`}>
@@ -157,6 +158,7 @@ export default function Cabinet(props) {
           { userType !== 'consult'
           && <>
               <Link
+                activeClassName="active"
                 onClick={() => setActiveLink(routes.CreateCV)}
                 to={routes.CreateCV}
                 className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.CreateCV)) ? 'active' : ''}`}>
@@ -165,6 +167,7 @@ export default function Cabinet(props) {
                 </span>
               </Link>
               <Link
+                activeClassName="active"
                 onClick={() => setActiveLink(routes.userCV)}
                 to={routes.userCV}
                 className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.userCV)) ? 'active' : ''}`}>
@@ -175,6 +178,7 @@ export default function Cabinet(props) {
           </>
           }
           <Link
+            activeClassName="active"
             onClick={() => setActiveLink(routes.FAQ)}
             to={routes.FAQ}
             className={`bold-link text text-white fw-800  mt-10 ${(activeLink === (routes.FAQ)) ? 'active' : ''}`}>

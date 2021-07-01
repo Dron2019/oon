@@ -4,6 +4,12 @@ const date = new Date().getTime();
 const datasetToFilter = 'eventTime';
 
 const buttons = {
+  anonceAll: () => {
+    eventItems.forEach((elArg) => {
+      const el = elArg;
+      el.style.display = 'flex';
+    });
+  },
   anonceFuture: () => {
     eventItems.forEach((elArg) => {
       const el = elArg;

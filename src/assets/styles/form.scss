@@ -53,7 +53,9 @@
     // margin-bottom: 10px;
   }
   input:disabled {
-    background-color: #9a7e8e62;
+    background-color: rgb(248, 248, 248);
+    /* color: grey; */
+    color: #D1D1D1;
   }
   button.button-std,
   .button-std {
@@ -89,6 +91,9 @@
     textarea,
     .input-std {
       // font-size: 18px;
+    }
+    select  {
+      font-size: 14px;
     }
   }
   @include to(1024px){
@@ -197,8 +202,11 @@
   /* identical to box height, or 10px */
     animation: slide-in-bottom 0.25s 1 ease-in-out;
   }
+  input[disabled]~.error.placeholder-in-focus {
+    color: #D1D1D1;
+  }
   input[disabled]~.error.placeholder-in-focus:after {
-      background: #d4c9d0;
+      background: #f8f8f8;
       height: 50%;
   }
   .error:after {
@@ -276,6 +284,9 @@
 
 .required-legend-title {
   margin-top: 10px;
+  @include from(1680px){
+    font-size: 14px;
+  }
 }
 
 select option:hover {

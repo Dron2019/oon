@@ -18,6 +18,12 @@
     .subtitle {
         line-height: 140%;
     }
+    @include from(1680px){
+        padding: 140px 100px;
+        p~p {
+            margin-top: 2em;
+        }
+    }
     @include to(768px){
         padding: 35px 15px;
         &__left {
@@ -83,10 +89,18 @@
     .white-bg-element {
         padding: 30px 50px 36px 50px;
     }
+    
     @include from(576px){
         
         .white-bg-element {
             padding: 30px 50px 36px 25px;
+        }
+    }
+
+    @include from(1680px){
+        padding: 140px 100px;
+        .white-bg-element {
+            padding: 60px 75px 72px 50px;
         }
     }
     @include to(575px){
@@ -133,11 +147,19 @@
     .text-black {
         width: calc(100% - 28px);
     }
+    @include from(1680px){
+        .text-black {
+            width: calc(100% - 28px);
+            padding-left: 15px;
+        }
+    }
 }
 .about-ordered-list~.about-ordered-list {
     margin-top: 20px;
+    @include from(1680px){
+        margin-top: 35px;
+    }
 }
-
 .about-prelast-block {
     .about-block__left {
         @include size(6);
@@ -158,10 +180,19 @@
     @include from(576px){
         .about-block__left {
             align-self: flex-start;
-            position: sticky;
             position: -webkit-sticky;
+            position: sticky;
             top: 50px
         }
+    }
+    @include from(1680px){
+        .about-block__left {
+            @include size(4.8);
+        }
+        .about-block__left svg {
+            width: 100%;
+            height: auto;
+        }   
     }
     @include to(575px){
         .about-block__left {
@@ -187,6 +218,17 @@
     }
     .button-std:not(:last-of-type){
         margin-right: 20px;
+    }
+    @include from(1680px){
+        @include shift-padding-right(4.5);
+        padding-left: 100px;
+        .button-std.small {
+            height: 58px;
+
+        }
+    }
+    @include from(1920px){
+        @include shift-padding-right(6.25);
     }
     @include to(575px){
        padding-left: 15px;

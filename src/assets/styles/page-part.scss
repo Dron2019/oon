@@ -83,6 +83,41 @@
     pointer-events: none;
     display: none;
   }
+  @include from(1680px){
+    --text-bg: var(--color-violet);
+    padding: 65px 100px 80px 100px;
+    min-height: initial;
+    &__text {
+      @include size(4.4);
+      @include shift-padding-right(0.2);
+    }
+    .page-title {
+      padding-right: 0;
+    }
+    &__text p {
+      margin-left: 0;
+      @include shift-right(0);
+      color: rgba(242, 214, 231, 1);
+      padding-right: 25%;
+    }
+    &__img {
+      align-self: center;
+      @include shift-padding-left(1);
+      @include size(7.6);
+    }
+    &__img svg {
+      max-height: 1024px;
+    }
+    &__img:after {
+      top: 50%;
+      width: 75vw;
+      height: 75vw;
+      background-color: var(--color-white);
+      transform: translate(0%, -50%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
   @include from(1240px){
     .page-title {
       margin-top: auto;

@@ -3,6 +3,11 @@
     &>*~* {
         margin-top: 20px;
     }
+    @include from(1680px){
+        &>*~* {
+            margin-top: 40px;
+        }
+    }
 }
 
 .event-item-online {
@@ -77,6 +82,10 @@
     }
     &__info-item~&__info-item {
         margin-top: 10px;
+    }
+    @include from(1680px){
+        max-width: 1240px;
+        padding: 40px 40px 60px 60px;
     }
     @include to(950px){
         padding: 20px;
@@ -183,4 +192,7 @@
 }
 .event-item~.event-item {
     margin-top: 20px;
+    @include from(1680px){
+        margin-top: 40px;
+    }
 }

@@ -56,9 +56,17 @@ body[id*='contact'] {
     transform: translate(25%, 0%);
   }
   @include from(1680px){
+    .page-part__img {
+      padding-left: 0;
+    }
+    .page-part__img:after {
+      left: auto;
+      right: 0;
+      transform: translate(6%, -50%);
+    }
     .page-part__text  {
-      @include shift-padding-left(1);
-      @include shift-padding-right(0.5);
+      @include shift-padding-left(0);
+      @include shift-padding-right(0);
     }
   }
   @include to(575px){

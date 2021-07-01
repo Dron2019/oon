@@ -4,6 +4,9 @@
     grid-template-rows: -webkit-max-content;
     grid-template-columns: 1fr 1fr;
     gap:22px;
+    @include from(1680px){
+        gap:45px;
+    }
     @include to(768px){
         grid-template-columns: 1fr;
     }
@@ -21,6 +24,13 @@
     @include from(951px){
         &:hover [class*="subtitle"] {
             text-decoration: underline;
+        }
+    }
+    @include from(1680px){
+        padding: 50px;
+        max-height: 350px;
+        [class*="subtitle"]{
+            width: 100%;
         }
     }
     @include to(575px){

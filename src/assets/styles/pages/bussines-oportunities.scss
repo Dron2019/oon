@@ -1,3 +1,7 @@
+
+.page-part.bussines-oport-wrapper {
+    min-height: 100vh;
+}
 .bussines-oport-item {
     padding: 30px;
     color: inherit;
@@ -15,7 +19,15 @@
     }
     font-size: 12px;
     line-height: 140%;
+    @include from(1680px){
+        font-size: 18px;
+        line-height: 160%;
+        padding: 50px;
+    }
 }
 .bussines-oport-item~.bussines-oport-item {
     margin-top: 20px;
+    @include from(1680px){
+        margin-top: 40px;
+    }
 }

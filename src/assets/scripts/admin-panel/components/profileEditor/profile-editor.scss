@@ -22,6 +22,11 @@
         @include shift(0);
         @include size(7.5);
     }
+    @include from(1680px){
+        .form-std~.form-std {
+            margin-top: -20px;
+        }
+    }
     @include to(575px){
         &>*~*{
             margin-top: 15px;

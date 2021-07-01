@@ -25,6 +25,11 @@
     .white-bg-element {
         margin-top: 20px;
     }
+    @include from(1680px){
+        width: 535px;
+        max-width: 600px;
+        width: 600px;
+    }
     @include to(575px){
         padding-top: 50px;
         .title {

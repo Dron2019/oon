@@ -25,6 +25,12 @@
         background: var(--color-violet);
         color: var(--color-white);
     }
+    @include from(1680px){
+        .react-tabs__tab {
+            height: 36px;
+            font-size: 14px;
+        }
+    }
     @include to(575px){
         flex-wrap: wrap;
         border-radius: 10px;
@@ -35,6 +41,7 @@
 }
 .login-tabs-head {
     padding: 0 30px;
+    margin-bottom: 15px;
     .subtitle {
         margin-bottom: 20px;
     }

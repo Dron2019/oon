@@ -14,10 +14,10 @@ import PsychoQuestionHistory from '../components/PsychoQuestionHistory/PsychoQue
 
 export default [
   {
-    title: '', exact: true, route: '/', component: <WorkConsultation/>,
+    title: '', exact: true, route: '/', component: <CreateConsultQuestion/>,
   },
   {
-    title: '', exact: true, route: '/cabinet', component: <WorkConsultation/>,
+    title: '', exact: true, route: '/cabinet', component: <CreateConsultQuestion/>,
   },
   {
     title: '', exact: false, route: '/cabinet/work-consultation', component: <WorkConsultation/>,

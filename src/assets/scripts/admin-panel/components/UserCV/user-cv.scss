@@ -34,7 +34,11 @@
     }
     @include from(1680px){
         .cv-list .curriculum-vitae {
-            @include size(3);
+
+            @include size(6);
+        }
+        .cv-list .subtitle-small {
+            margin-bottom: 30px;
         }
     }
     @include to(1320px){
@@ -141,11 +145,25 @@
             background: var(--color-violet);
         }
     }
+    @include from(1680px){
+        
+        .cv-delete-icon {
+            right: 60px;
+        }
+        
+    }
 }
 
 .empty-cv-block {
     .subtitle-small {
         margin-bottom: 20px;
 
+    }
+}
+
+@include from(1680px){
+    .curriculum-vitae .button-std.small {
+        font-size: 12px;
+        height: 36px;
     }
 }

@@ -4,7 +4,7 @@
     padding-bottom: 70px;
     .accordeon-list {
         margin: 0 auto;
-        max-width: 883px;
+        max-width: 1120px;
     }
 }
 .psycho-last-block {
@@ -20,7 +20,7 @@
     padding: 70px 40px;
     position: relative;
     padding: 70px 0px;
-    max-width: 883px;
+    max-width: 1120px;
     @include row-flex();
     margin: auto;
     &>* {
@@ -56,6 +56,18 @@
         right: 50%;
         transform: translateX(calc(50vw - 175px + var(--page-side-fields)));
     }
+    @include from(1680px){
+        margin-right: auto;
+        margin-left: 100px;
+        .quarter-circle-decor {
+          transform: translateX(calc(50vw - 260px + var(--page-side-fields)));
+          right: 0;
+        }
+        &:after {
+          left: 0;
+          transform: translateX(-100px);
+        }
+    }
     @include to(575px){
       padding-top: 35px;
       padding-bottom: 35px;
@@ -67,6 +79,7 @@
       }
       .button-std~.button-std {
         margin-top: 10px;
+
       }
     }
     
@@ -177,11 +190,25 @@
         background-color: var(--color-design);
       }
     }
+    @include from(1680px){
+      &__inner  {
+        font-size: 18px;
+        padding-bottom: 40px;
+      }
+      &__title {
+        font-size: 24px;
+      }
+    }
     @include to(575px){
       --decor-size: 18px;
       &__inner>* {
         text-indent: 0px;
         padding-left: 0px
       }
+    }
+  }
+  @include from(1680px){
+    .accordeon-item~.accordeon-item {
+      margin-top: 20px;
     }
   }

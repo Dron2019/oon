@@ -131,6 +131,7 @@
     &__subtitle {
       font-size: 18px;
     }
+    padding-bottom: 40px;
   }
   @include to(1024px){
     transform: skewX(-5deg) translateX(-115%) ;
@@ -179,7 +180,7 @@
 
 .search-popup-panel {
   position: fixed;
-  right: 0;
+  right: 2px;
   top: 0;
   width: calc(100vw - var(--aside-w) - 10px);
   background-color: var(--color-white);
@@ -215,6 +216,11 @@
     bottom: 0;
     width: 120px;
     height: 120px;
+  }
+  @include from(1680px){
+    &__form {
+      max-width: 35%;
+    }
   }
   @include to(950px){
     &__form {

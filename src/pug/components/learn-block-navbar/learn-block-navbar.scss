@@ -14,14 +14,14 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 20px;
     z-index: 5;
     overflow: hidden;
     box-shadow: 0px 10px 20px rgba(199, 208, 214, 0.25);
     &>* {
-        padding: 12px 25px;
+        padding: 6px 25px;
         text-decoration: none;
         color: var(--color-violet);
         border: 1px solid #E5E0E3;
@@ -30,6 +30,7 @@
         justify-content: center;
         margin-left: -1px;
         background-color: transparent;
+        font-size: 12px;
     }
     &>*:first-child {
         border-radius: 40px 0 0 40px;
@@ -42,11 +43,18 @@
         transition: background-color .5s ease-in-out;
         color: var(--color-white) !important;
         background-color: var(--color-violet);
+        cursor: initial;
     }
     @include from(951px){
-        &>*:hover {
-            animation: pulseViolet 1s infinite ease-in-out;
+        &>*:not(.active):hover {
+            background-color: var(--color-orange);
+            color: var(--color-white);
+            // animation: pulseViolet 1s infinite ease-in-out;
         }
+    }
+    @include from(1680px){
+        top: 35px;
+        // right: 100px;
     }
     @include to(575px){
         flex-direction: column;

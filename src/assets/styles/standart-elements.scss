@@ -13,7 +13,7 @@ body {
   transition: filter .3 ease-in-out;
   &.opened-popup {
     //  pointer-events: none;
-    filter: blur(3px);
+    filter: blur(4px) brightness(0.85);
     cursor: pointer;
   }
   @include to(1024px){
@@ -43,6 +43,9 @@ body {
 #root {
   min-height: 100vh;
   margin: 0 15px;
+  @include from(1680px){
+    // display: flex; 
+  }
   @include to(1200px){
     
     margin: 0 15px;
@@ -93,6 +96,9 @@ body {
   font-weight: 600;
   font-size: 24px;
   line-height: 1.2em;
+  @include from(1680px){
+    font-size: 30px;
+  }
   @include to(575px){
     font-size: 18px;
   }
@@ -102,7 +108,10 @@ body {
 .subtitle-small {
   font-weight: 600;
   font-size: 18px;
-  line-height: 120%;
+ line-height: 120%;
+ @include from(1680px){
+   font-size: 24px;
+ }
 }
 
 /*~  (большие символы) ~*/
@@ -154,6 +163,15 @@ body {
   }
   &.down-button .button__up-icon {
     margin-right: 15px;
+    opacity: 0.5;
+  }
+  &.down-button .button__up-icon circle {
+    animation-name: scroll;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.65, -0.55, 0.25, 1.5);
+    animation-iteration-count: infinite;
+    transform-origin: 50% 20.5px;
+    will-change: transform, opacity;
   }
   &>svg:not(.button__up-icon) {
     position: absolute;
@@ -181,22 +199,27 @@ body {
   max-width: 280px;
   cursor: pointer;
   &[disabled] {
-    background: gray;
+    background: #eaeaea;
+    pointer-events: none;
   }
   &[disabled]:hover {
     box-shadow: none;
-    background: gray;
+    background: #D1D1D1;
   }
   @include from(1680px){
     height: 58px;
-    font-size: 18px;
+    font-size: 14px;
     padding-right: 30px;
     padding-left: 30px;
     
     &.small {
+
       height: 46px;
       font-size: 14px;
+      height: 50px;
+      font-size: 14px;
       padding: 13px 25px;
+      max-width: 350px;
     }
   }
   @include from(950px){
@@ -246,10 +269,18 @@ body {
       }
       &:hover {
           background-color: var(--color-orange);
+          border-color: transparent;
+          color: white;
         }
       &--orange:hover {
         background-color: var(--color-violet);
       }
+    }
+  }
+  @include from(1680px){
+    &.down-button {
+      background-color: var(--color-violet-dark);
+      margin-bottom: -35px;
     }
   }
   @include to(575px){
@@ -305,6 +336,9 @@ textarea,
     &.with-padding {
       padding: 15px;
     }
+  }
+  @include from(1680px){
+    // padding-top: 0px;
   }
 }
 
@@ -395,7 +429,8 @@ textarea,
     font-weight: 800;
     margin-bottom: 20px;
     @include from(1680px){
-      font-size: 54px;
+      font-size: 48px;
+      margin-bottom: 35px;
     }
     @include to(575px){
       font-size: 24px;

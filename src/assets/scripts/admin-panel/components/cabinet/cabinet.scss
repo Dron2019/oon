@@ -21,6 +21,15 @@
             margin-right: auto;
         }
     }   
+    @include from(1680px){
+        font-size: 14px;
+        line-height: 1.6em;
+        .content {
+            max-width: 800px;
+            margin-left: 30px;
+            margin-right: auto;
+        }
+    }
     @include to(1200px){
         .content {
             width: calc(100% - var(--cabinet-menu-width) - 15px);

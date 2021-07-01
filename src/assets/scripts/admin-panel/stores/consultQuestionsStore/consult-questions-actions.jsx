@@ -120,13 +120,19 @@ export function sendSingleQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleConsultQuestion(messageData.request_id));
+            store.dispatch(formMessage(el.data.mess));
             break;
           default:
+            store.dispatch(formMessage(el.data.mess));
             break;
         }
       })
-      .catch(el => console.log(el))
-      .finally(el => console.log(el));
+      .catch((el) => {
+        store.dispatch(formMessage('Сталася помилка'));
+      })
+      .finally(el => setTimeout(() => {
+        store.dispatch(formMessage(''));
+      }, 2000));
   };
 }
 

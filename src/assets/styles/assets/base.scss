@@ -32,9 +32,12 @@ body {
 	overflow-x: hidden;
 	font-size: 14px;
   @include from(1680px){
-    font-size: 14px;
-		// line-height: 1.6em;
+    font-size: 18px;
+		line-height: 1.6em;
   }
+	@include from(1920px){
+		// font-size: max(18px, 2.5vh);
+	}
 }
 button,
 textarea {
