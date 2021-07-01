@@ -43,3 +43,5 @@ export const CLOSE_FAQ_QUESTION_URL = '/user/users/request_status/';
 export const SEND_NEW_MESSAGE_FAQ_QUESTION_URL = '/user/users/request/';
 
 export const GET_FAQ_STATIC_QUESTIONS_URL = '/user/faqs/';
+
+export const SEND_FORM_REVIEW_MESSAGE = '/form-review/';

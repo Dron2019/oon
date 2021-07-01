@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
+import Linkify from 'react-linkify';
 
 
 import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
@@ -179,7 +180,12 @@ export default function QuestionItem(props) {
                                     </div>
                                 </div>
                                 <div className="question-item__single-mess-text">
-                                    {part.text}
+                                  <Linkify
+                                    componentDecorator={(decoratedHref, decoratedText, key) => (
+                                        <a target="blank" href={decoratedHref} key={key}>
+                                          {decoratedText}
+                                        </a>
+                                    )}>{part.text}</Linkify>
                                 </div>
                             </div>
                         );
@@ -200,7 +206,12 @@ export default function QuestionItem(props) {
                             </div>
                             <div className="question-item__single-mess-text"
                             >
-                                {part.text}
+                                <Linkify
+                                  componentDecorator={(decoratedHref, decoratedText, key) => (
+                                      <a target="blank" href={decoratedHref} key={key}>
+                                        {decoratedText}
+                                      </a>
+                                  )}>{part.text}</Linkify>
                             </div>
                         </div>
                         );
@@ -219,11 +230,13 @@ export default function QuestionItem(props) {
                                     </div>
                                 </div>
                                 <div className="question-item__single-mess-text"
-                                    dangerouslySetInnerHTML={{ __html: part.text.replace(/\b(https?\:\/\/\S+)/mg, '<a target="_blank" href="$1">$1</a>') }}>
-                                    {/* {part.text.replace(
-                                      /\b(https?\:\/\/\S+)/mg,
-                                      '<a href="$1">$1</a>'
-                                    )} */}
+                                    >
+                                    <Linkify
+                                      componentDecorator={(decoratedHref, decoratedText, key) => (
+                                          <a target="blank" href={decoratedHref} key={key}>
+                                            {decoratedText}
+                                          </a>
+                                      )}>{part.text}</Linkify>
                                 </div>
 
                             </div>

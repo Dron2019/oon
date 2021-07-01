@@ -53,6 +53,8 @@ export default function faq() {
   const messages = useSelector(state => state.faqStore);
   const userID = useSelector(state => state.loginStatusReducer.id);
   const userType = useSelector(state => state.loginStatusReducer.role);
+  const messageColors = ['green', 'orange'];
+  const formMessageColor = useSelector(state => state.messageStatusStore);
   /** Статические вопросы получаются напрямую из компонента */
   useEffect(() => {
     dataStore.dispatch(getFaqUserQuestions());
@@ -187,13 +189,18 @@ export default function faq() {
                                 </div>
                                 )}
                             </Field>)}
-                    {isPending && <ErrorMessage errorMessage={errorMessage}/>}
+                    {/* {isPending && <ErrorMessage errorMessage={errorMessage}/>} */}
                     {isPending && <Loader/>}
                     <div className="input-group df aic wrap">
                         <button type='submit' className="button-std button-std--violet small ">Надіслати запитання адміністратору</button>
                     </div>
                 </Form>
             </Formik>
+            {errorMessage && <div className="el-for-alerts" style={
+              { backgroundColor: messageColors[formMessageColor] }
+            }>
+              {errorMessage}
+            </div>}
         </div>
   );
 }
