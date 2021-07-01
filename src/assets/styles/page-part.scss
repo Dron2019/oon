@@ -83,6 +83,31 @@
     pointer-events: none;
     display: none;
   }
+  @include from-to(1024px, 1679px){
+    .breadcrumbs {
+      margin-top: 10px;
+
+    }
+    &__img {
+      align-self: center;
+      // @include shift-padding-left(1);
+      // @include size(7.6);
+    }
+    &__img svg {
+      max-height: calc(100vh - 200px);
+    }
+  }
+  @include from(1024px){
+    &__img:after {
+      top: 50%;
+      width: 50vw;
+      height: 50vw;
+      background-color: var(--color-white);
+      transform: translate(0%, -50%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
   @include from(1680px){
     --text-bg: var(--color-violet);
     padding: 65px 100px 80px 100px;

@@ -277,6 +277,12 @@ body {
       }
     }
   }
+  @include from(1024px){
+    &.down-button {
+      // background-color: var(--color-violet-dark);
+      margin-bottom: -15px;
+    }
+  }
   @include from(1680px){
     &.down-button {
       background-color: var(--color-violet-dark);
