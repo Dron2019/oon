@@ -1,0 +1,21 @@
+.container {
+  min-height:100vh;
+}
+.page404-wrap {
+  width: 100%;
+  svg {
+    max-height: 50vh;
+  }
+}
+.link-wrap {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: space-between;
+  .button-std {
+    width: 125px;
+  }
+  @include to(575px){
+    width: 97%;
+  }
+}
