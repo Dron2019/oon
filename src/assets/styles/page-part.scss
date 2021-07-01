@@ -106,7 +106,7 @@
       @include size(7.6);
     }
     &__img svg {
-      max-height: 1024px;
+      max-height: calc(100vh - 200px);
     }
     &__img:after {
       top: 50%;

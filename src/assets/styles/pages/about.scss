@@ -180,9 +180,9 @@
     @include from(576px){
         .about-block__left {
             align-self: flex-start;
-            position: -webkit-sticky;
             position: sticky;
-            top: 50px
+            // position: -webkit-sticky;
+            top: 50px;
         }
     }
     @include from(1680px){

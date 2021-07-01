@@ -44,7 +44,7 @@ export default function Cabinet(props) {
   // const test = true;
   const history = useHistory();
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState('/cabinet/createConsultQuestion');
+  const [activeLink, setActiveLink] = useState(useLocation().pathname);
   const [formReviewViewer, setFormReviewViewer] = useState(false);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
@@ -200,6 +200,9 @@ export default function Cabinet(props) {
           {formReviewViewer && <CabinetReviewForm onClose={() => setFormReviewViewer(false)} />}
           <Switch>
             {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
+            <Route>
+              <div className="page-title text-violet">Сторінка не знайдена</div>
+            </Route>
             {/* <Route component={Missing} /> */}
           </Switch>
         </div>

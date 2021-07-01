@@ -77,18 +77,24 @@ function loadIndication(form, icon, switchStatus) {
 
 function sendMessageStatus(form, status) {
   const element = document.createElement('span');
-  element.style.cssText = `
+  // element.style.cssText = `
     
-            color:var(--color-violet); position:absolute; 
-            padding:10px 20px; 
-            background:var(--color-gray);
-            left:50%;
-            top:50%;
-            font-size:24px; 
-            text-align:center;
-            transform:translateX(-50%) translateY(-50%) `;
+  //           color:var(--color-white); position:absolute; 
+  //           padding:10px 20px;  
+  //           border-radius: 20px;
+  //           background:var(--color-violet);
+  //           left:50%;
+  //           top:50%;
+  //           font-size:24px; 
+  //           text-align:center;
+  //           transform:translateX(-50%) translateY(-50%) `;
+
+  element.style.cssText = `
+    bakcground-color: var(--color-violet);
+  `;
   element.innerHTML = status;
   element.classList.add('send-message');
+  element.classList.add('el-for-alerts');
   form.append(element);
   setTimeout(() => {
     form.querySelector('.send-message').remove();
@@ -123,10 +129,10 @@ function send(object, url, form, callback = function defaultCallback() {}) {
   }).catch((res) => {
     sendMessageStatus(form, 'Помилка відправки');
     loadIndication(form, loadIcon, 'off');
-  }).then(res => res.text()).then((res) => {
+  }).then(res => res.json()).then((res) => {
     loadIndication(form, loadIcon, 'off');
     // eslint-disable-next-line eqeqeq
-    if (res.error == '0') {
+    if (res.error === 0) {
       callback();
       sendMessageStatus(form, 'Ваше повідомлення відправлено');
       resetForm(form);
@@ -136,7 +142,11 @@ function send(object, url, form, callback = function defaultCallback() {}) {
     setTimeout(() => {
       form.querySelector('button[type=submit]').removeAttribute('disabled');
     }, 2000);
-  });
+  })
+    .finally(el => {
+      form.querySelector('button[type=submit]').removeAttribute('disabled');
+      loadIndication(form, loadIcon, 'off');
+    });
 }
 
 function pageRedirect() {

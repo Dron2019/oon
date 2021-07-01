@@ -87,6 +87,7 @@
     &__title {
         width: calc(100% - var(--icon-width));
         padding-left: 20px;
+        word-break: break-word;
     }
     &__button {
         margin-top: 10px;
@@ -148,12 +149,20 @@
     @include from(1680px){
         
         .cv-delete-icon {
+            right: 0px;
+        }
+        
+    }
+}
+.user-cv-wrapper {
+    @include from(1680px){
+        
+        .cv-delete-icon {
             right: 60px;
         }
         
     }
 }
-
 .empty-cv-block {
     .subtitle-small {
         margin-bottom: 20px;
