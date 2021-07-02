@@ -55,6 +55,10 @@
 }
 .webinar-story-item~.webinar-story-item  {
     margin-top: 20px;
+    @include from(1024px){
+        
+        margin-top: 30px;
+    }
     @include from(1680px){
         
         margin-top: 40px;

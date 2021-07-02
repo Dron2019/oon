@@ -18,6 +18,9 @@
     .subtitle {
         line-height: 140%;
     }
+    @include from(1024px){
+        padding: 100px 40px;
+    }
     @include from(1680px){
         padding: 140px 100px;
         p~p {
@@ -96,7 +99,9 @@
             padding: 30px 50px 36px 25px;
         }
     }
-
+    @include from(1024px){
+        padding: 100px 40px;
+    }
     @include from(1680px){
         padding: 140px 100px;
         .white-bg-element {
@@ -121,6 +126,9 @@
     .white-bg-element {
         @include size(4.8);
         @include shift(0);
+    }
+    @include from(1024px){
+        padding: 100px 40px;
     }
     @include to(768px){
         .title {
@@ -183,6 +191,14 @@
             position: sticky;
             // position: -webkit-sticky;
             top: 50px;
+        }
+    }
+    @include from-to(1024px, 1680px){
+        .about-block__left {
+            @include size(4.8);
+        }
+        .about-block__right {
+            @include size(6);
         }
     }
     @include from(1680px){

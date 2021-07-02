@@ -67,6 +67,7 @@
   position: relative;
   width: 100%;
   background: var(--color-white);
+  
   &__img {
     @include shift(0);
     @include size(5);
@@ -96,6 +97,9 @@
   }
   .button-std {
     width: 165px;
+  }
+  @include from-to(1024px, 1680px){
+    padding-right: var(--page-side-fields);
   }
   @include from(1680px){
     padding-top: 50px;
@@ -184,6 +188,9 @@
   .button-std {
     width: 165px;
   }
+  @include from-to(1024px, 1680px){
+    padding-left: var(--page-side-fields);
+  }
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;
@@ -206,6 +213,7 @@
       }
     }
   }
+
   @include to(768px){
     width: auto;
     padding-top: 20px;
@@ -273,6 +281,9 @@
   }
   .button-std {
     width: 165px;
+  }
+  @include from-to(1024px, 1680px){
+    padding-right: var(--page-side-fields);
   }
   @include from(1680px){
     padding-top: 50px;
@@ -361,6 +372,10 @@
   .button-std {
     width: 165px;
   }
+  @include from-to(1024px, 1680px){
+    padding-left: var(--page-side-fields);
+  }
+  
   @include from(1680px){
     padding-top: 50px;
     padding-bottom: 50px;

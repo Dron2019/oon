@@ -1,12 +1,14 @@
 .single-bussines-oportunities-container {
     @include shift-padding(2);
+
     flex-direction: column;
     display: block;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     position: relative;
     z-index: 3;
     margin-top: 15px;
+    max-width: 860px;
     &>*:first-child {
         margin-bottom: 20px;
     }
@@ -45,6 +47,10 @@
     }
     .form-group {
         margin-top: 20px;
+    }
+    @include from(1024px){
+        @include shift-padding(1);
+        @include shift-padding-right(1);
     }
     @include to(950px){
         padding-left: var(--page-side-fields);

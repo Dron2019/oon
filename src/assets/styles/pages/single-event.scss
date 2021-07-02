@@ -6,6 +6,7 @@
   grid-template-columns: 30% 70%;
   grid-template-rows: auto auto 1fr;
   gap: 20px 20px;
+  max-width: 1240px;
   grid-template-areas:
     "title title"
     "img text"
@@ -17,6 +18,13 @@
   z-index: 2;
   p~p {
     margin-top: 1.4em;
+  }
+  @include from(1024px){
+    --side-padding: 50px;
+    grid-template-columns: 30fr 70fr;
+    gap: 30px 30px;
+    padding-top: var(--side-padding);
+    padding-bottom: var(--side-padding);
   }
   @include to(1240px){
     grid-template-columns: 1fr 1fr;

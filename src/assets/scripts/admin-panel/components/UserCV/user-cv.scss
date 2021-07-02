@@ -29,6 +29,9 @@
             margin-bottom: 30px;
         }
     }
+    .white-bg-element .button-std~.button-std {
+        margin-left: 10px;
+    }
     p {
         color: #9A7E8E;
     }
@@ -99,6 +102,8 @@
         position: absolute;
         right: 0;
         top: 0;
+        width: 12px;
+    height: 12px;
         cursor: pointer;
     }
     .delete-cv-accept-block {
@@ -114,7 +119,7 @@
 
         color: var(--color-white);
         font-weight: 800;
-        padding: 10px;
+        padding: 20px;
         text-align: center;
         display: flex;
         flex-wrap: wrap;
@@ -122,25 +127,29 @@
         border-radius: 15px;
         z-index: 10;
         align-items: center;
-        box-shadow: 20px 4px 30px -1px #00000040;
+        // box-shadow: 20px 4px 30px -1px #00000040;
         span {
             margin-bottom: 5px;
+            line-height: 1.25em;
             width: 100%;
         }
         button {
-            width: calc(50% - 20px);
-            margin-left: 10px;
-            margin-right: 10px;
+            width: calc(50% - 10px);
+            margin-left: 5px;
+            margin-right: 5px;
             background: #ff7f41;
             border: none;
             color: white;
-            font-weight: 800;
+            font-weight: 500;
             padding: 5px 2px;
             border-radius: 40px;
             transition: .3s ease-in-out;
-            height: 36px;
+            height: 32px;
             font-size: 12px;
-            padding: 13px 25px;
+            padding: 9px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         button:hover {
             background: var(--color-violet);

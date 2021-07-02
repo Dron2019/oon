@@ -55,6 +55,16 @@ body[id*='contact'] {
   .decor-white-circle {
     transform: translate(25%, 0%);
   }
+
+  @include from-to(1024px, 1680px){
+    .page-part {
+      align-content: initial;
+    }
+    .page-part__img:after {
+      transform: translate(-25%, -50%);
+
+    }
+  }
   @include from(1680px){
     .page-part__img {
       padding-left: 0;

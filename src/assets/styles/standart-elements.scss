@@ -281,6 +281,8 @@ body {
     &.down-button {
       // background-color: var(--color-violet-dark);
       margin-bottom: -15px;
+      background-color: var(--color-violet-dark);
+      
     }
   }
   @include from(1680px){
@@ -396,6 +398,9 @@ textarea,
       }
     
   }
+  @include from(1024px){
+    width: 100%;
+  }
   @include from(1680px) {
       font-size: 14px;
   }
@@ -424,6 +429,9 @@ textarea,
   .breadcrumbs-item:not(:first-child):before {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='3' height='4' viewBox='0 0 3 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1.5' cy='2' r='1.5' fill='rgba(153%2C30%2C102%2C1)'/%3E%3C/svg%3E%0A");
+  }
+  @include from(1024px){
+    width: 100%;
   }
 }
 
@@ -598,7 +606,7 @@ textarea,
   background-color: var(--color-orange);
   color: var(--color-white);
   font-weight: 600;
-  padding: 6px 16px;
+  padding: 15px 16px;
   width: 288px;
   border-radius: 10px;
 

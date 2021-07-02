@@ -4,7 +4,7 @@
     padding-bottom: 70px;
     .accordeon-list {
         margin: 0 auto;
-        max-width: 1120px;
+        max-width: 883px;
     }
 }
 .psycho-last-block {
@@ -55,6 +55,9 @@
     .quarter-circle-decor {
         right: 50%;
         transform: translateX(calc(50vw - 175px + var(--page-side-fields)));
+    }
+    @include from-to(1024px, 1680px){
+      padding: 70px var(--page-side-fields);
     }
     @include from(1680px){
         margin-right: auto;

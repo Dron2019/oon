@@ -11,9 +11,9 @@
   display: flex;
   width: 50%;
   margin: auto;
-  justify-content: space-between;
+  justify-content: center;
   .button-std {
-    width: 125px;
+    width: 170px;
   }
   @include to(575px){
     width: 97%;

@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 50px 37px 50px 40px;
-  --text-bg:#8B0353;
+  --text-bg:var(--color-violet);
   &:first-child:not(.self-height) {
     min-height: 100vh;
   }
@@ -60,7 +60,7 @@
     z-index: -1;
   }
   &__text p {
-    @include shift-left(0.5);
+    // @include shift-left(0.5);
     @include shift-right(4);
     color: rgba(242, 214, 231, 1);
   }
@@ -106,6 +106,10 @@
       transform: translate(0%, -50%);
       border-radius: 50%;
       z-index: -1;
+      width: 70vw;
+      height: 70vw;
+      background-color: var(--color-white);
+      transform: translate(-10%, -50%);
     }
   }
   @include from(1680px){
