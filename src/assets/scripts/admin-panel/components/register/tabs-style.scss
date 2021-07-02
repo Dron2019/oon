@@ -1,5 +1,10 @@
 .react-tabs {
     width: 100%;
+    @include to(575px){
+        .form-std {
+            --padding:0;
+        }
+    }
 } 
 .react-tabs__tab-list {
     border: 1px solid var(--color-violet);
@@ -34,6 +39,7 @@
     @include to(575px){
         flex-wrap: wrap;
         border-radius: 10px;
+       
         &>* {
             width: 100%;
         }
@@ -75,7 +81,17 @@
         }
     }
     @include to(575px){
-        padding: 15px;
+        padding: 20px;
+        padding-top: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0px;
+        .subtitle {
+            margin-bottom: 15px;
+        }
+        .subtitle-small {
+            margin-top: 30px;
+        }
     }
 }
 

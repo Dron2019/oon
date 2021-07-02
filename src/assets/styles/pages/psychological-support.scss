@@ -74,8 +74,8 @@
     @include to(575px){
       padding-top: 35px;
       padding-bottom: 35px;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: var(--page-side-fields);
+      padding-right: var(--page-side-fields);
       .quarter-circle-decor {
         right: 0;
         transform: none;
@@ -204,6 +204,9 @@
     }
     @include to(575px){
       --decor-size: 18px;
+      &.opened &__inner {
+        padding-bottom: 30px;
+      }
       &__inner>* {
         text-indent: 0px;
         padding-left: 0px

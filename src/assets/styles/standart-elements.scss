@@ -52,7 +52,7 @@ body {
   }
   @include to(575px){
     
-    margin: 0 10px;
+    margin: 0 20px;
   }
 }
 
@@ -146,6 +146,7 @@ body {
   }
   &.down-button {
     width: max-content;
+    background: var(--color-violet-dark);
   }
   &.transparent {
     color: var(--color-violet);
@@ -292,7 +293,13 @@ body {
     }
   }
   @include to(575px){
-    height: 40px;
+    height: 50px;
+    &.small {
+      height: 50px;
+    }
+    &.down-button {
+      height: 50px;
+    }
   }
 
 }
@@ -339,10 +346,10 @@ textarea,
     padding: 30px;
   }
   @include to(575px){
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     &.with-padding {
-      padding: 15px;
+      padding: 20px;
     }
   }
   @include from(1680px){
@@ -448,6 +455,7 @@ textarea,
     }
     @include to(575px){
       font-size: 24px;
+      // margin-bottom: 0;
     }
 }
 
@@ -458,6 +466,9 @@ textarea,
 .fixed-proportion {
   position: relative;
   padding-bottom: 100%;
+  &:empty {
+    display: none;
+  }
 }
 
 .decor-white-circle {

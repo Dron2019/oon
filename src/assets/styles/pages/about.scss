@@ -43,9 +43,15 @@
     }
     @include to(575px){
         z-index: 2;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 45px 15px;
+        p~p {
+            margin-top: 22.5px;
+        }
         &__right {
            position: relative;
-           
+           margin-top: 10px;
         }
     }
 }
@@ -109,7 +115,9 @@
         }
     }
     @include to(575px){
-        padding: 35px 15px;
+        padding: 45px 15px;
+        margin-left: 0;
+        margin-right: 0;
         .white-bg-element {
             padding: 30px 15px 36px 15px;
         }
@@ -141,6 +149,11 @@
             @include size(12);
         }
     }
+    @include to(575px){
+        .title {
+            margin-bottom: 30px;
+        }
+    }
 }
 
 
@@ -166,6 +179,9 @@
     margin-top: 20px;
     @include from(1680px){
         margin-top: 35px;
+    }
+    @include to(575px){
+        margin-top: 15px;
     }
 }
 .about-prelast-block {
@@ -211,6 +227,7 @@
         }   
     }
     @include to(575px){
+        
         .about-block__left {
             @include size(12);
             margin-bottom: 15px;
@@ -223,6 +240,8 @@
         .about-block__left svg {
             width: 100%;
             height: auto;
+            margin-top: 30px;
+            margin-bottom: 25px;
         }
     }
 }
@@ -247,8 +266,8 @@
         @include shift-padding-right(6.25);
     }
     @include to(575px){
-       padding-left: 15px;
-       padding-right: 15px;
+       padding-left: var(--page-side-fields);
+       padding-right: var(--page-side-fields);
        .button-std~.button-std {
            margin-top: 15px;
        }

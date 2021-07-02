@@ -211,7 +211,8 @@
         --side-padding: 15px;
         &__title {
             font-size: 14px;
-            max-width: calc(100% / 8 * 5);
+            max-width: calc(100% / 8 * 4);
+            
         }
         &__head {
             flex-wrap: nowrap;

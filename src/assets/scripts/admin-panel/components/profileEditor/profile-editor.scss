@@ -31,10 +31,25 @@
         &>*~*{
             margin-top: 15px;
         }
+        .page-title {
+            text-align: left;
+        }
+        .form-std__subtitle {
+            margin-bottom: 20px;
+        }
         &__left,
         &__right {
             @include size(12);
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
+        &__right {
+            padding-top: 0;
+          }
+          &__right .form-std:last-child .button-std {
+              margin-top: 20px;
+          }
     }
 }
 

@@ -62,6 +62,7 @@
         overflow: visible !important;
     }
     @include to(575px){
+        width: 100%;
         &.page-part{
             padding-top: 50px;
         }

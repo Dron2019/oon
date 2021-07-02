@@ -17,12 +17,21 @@
     .button-std {
         margin-top: 20px;
     }
-    font-size: 12px;
-    line-height: 140%;
+    // font-size: 12px;
+    // line-height: 140%;
     @include from(1680px){
         font-size: 18px;
         line-height: 160%;
         padding: 50px;
+    }
+    @include to(575px){
+        [class*="subtitle"]{
+            margin-bottom: 0px;
+        }
+        .button-std {
+            margin-top: 5px !important;
+            width: 100%;
+        }
     }
 }
 .bussines-oport-item~.bussines-oport-item {

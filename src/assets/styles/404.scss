@@ -1,5 +1,11 @@
 .container {
   min-height:100vh;
+  @include to(575px){
+    min-height: auto;
+    height: -webkit-fill-available; 
+    height: 100vh;
+
+  }
 }
 .page404-wrap {
   width: 100%;

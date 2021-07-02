@@ -39,16 +39,19 @@
     }
     p~p {
         margin-top: 1.2em;
+        position: relative;
+    z-index: 2;
     }
     @include from(1680px){
         padding-top: 60px;
     }
     @include to(575px){
-        padding-left: Min(15px, 16%);
-        padding-right: Min(15px, 16%);
+        padding-left: Min(var(--page-side-fields), 16%);
+        padding-right: Min(var(--page-side-fields), 16%);
+        padding-bottom: 30px;
         &:last-child{
-            padding-left: Min(15px, 8%);
-            padding-right: Min(15px, 16%);
+            padding-left: Min(var(--page-side-fields), 8%);
+            padding-right: Min(var(--page-side-fields), 16%);
         }
     }
 }

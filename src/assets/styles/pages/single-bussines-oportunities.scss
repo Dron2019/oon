@@ -58,13 +58,18 @@
     }
     @include to(575px){
         form {
-            padding: 20px;
+            padding: 5px 0px 0px 0px;
        }
        .form-group {           
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
+        button[type="submit"] {
+            min-width: auto;
+            margin-right: auto;
+            margin-left: 0;
+        } 
     }
 }
 

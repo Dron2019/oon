@@ -4,7 +4,14 @@
   }
  @include to(769px){
   .learn-block:hover {
-    height: 120px;
+    height: 105px;
+
+  }
+  .learn-block:after {
+    top: 18px;
+  }
+  .learn-block>* {
+    padding: 8px 35px 9px 15px;
   }
  }
 }

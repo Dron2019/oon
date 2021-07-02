@@ -78,10 +78,18 @@
         .white-bg-element {
             order: 3;
             margin-top: 20px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .text-block {
+            width: 100%;
         }
         .form-std {
             order: 2;
             margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
         }
 
     }

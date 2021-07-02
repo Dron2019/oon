@@ -62,7 +62,7 @@ const paralaxSections = document.querySelectorAll('[data-home-paralax]');
 paralaxSections.forEach((section) => {
   gsap.set(section, { y: '-25px' });
   ScrollTrigger.create({
-    triggerHook: 'center',
+    triggerHook: 'bottom',
     trigger: section,
     end: 'bottom',
     onEnter: () => {},

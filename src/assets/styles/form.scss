@@ -103,13 +103,21 @@
     --outline-padding: 0px;
     --padding: 15px;
     --outline-padding: 0px;
-    --padding: 15px;
+    --padding: 20px;
     button.button-std,
     .button-std {
       margin-left: 0;
+      margin-top: 10px;
+      margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+    min-width: 240px;
+    width: 100%;
+    max-width: none;
     }
     &__subtitle {
       margin-top: 0px;
+      margin-bottom: 20px;
     }
     &::before {
       background-color: var(--color-white);
@@ -235,6 +243,9 @@
     textarea.input-std,
     input.input-std {
       background-color: var(--color-white);
+      box-shadow: none;
+      box-shadow: none !important;
+      -webkit-appearance: none;
     }
     &--buttons {
       justify-content: center;
@@ -270,6 +281,7 @@
 }
 .input-group~.input-group {
   margin-top: 10px;
+
 }
 .input-group:last-child {
   align-items: baseline;

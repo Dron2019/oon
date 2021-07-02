@@ -126,6 +126,11 @@
     .file-input-text {
       margin-top: 15px;
     }
+    .button-std {
+      margin-left: 0px;
+    width: calc(100% - 70px);
+    min-width: auto;
+    }
   }
 }
 

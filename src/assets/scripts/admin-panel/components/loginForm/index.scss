@@ -31,21 +31,35 @@
         width: 600px;
     }
     @include to(575px){
+        padding-bottom: 30px;
         padding-top: 50px;
         .title {
-            padding-bottom: 20px;
+            padding-bottom: 0px;
         }
         .white-bg-element {
             flex-direction: column;
             align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 20px;
         }
         .white-bg-element .button-std~.button-std{
             margin-left: 0;
             margin-top: 10px;
         }
+        .white-bg-element .button-std {
+            width: 100%;
+            max-width: none;
+
+        }
+        .form-std  {
+            padding-bottom: 20px;
+        }
         .form-std .button-std {
             margin-left: auto;
             margin-right: auto;
+            width: 100%;
+            max-width: none;
         }
     }
 }

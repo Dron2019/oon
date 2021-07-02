@@ -77,6 +77,9 @@
       margin-left: 0;
       margin-right: 0;
     }
+    .form-std__subtitle {
+      margin-bottom: 20px;
+    }
   }
 
 }.create-cv-wrapper {
@@ -157,11 +160,23 @@
   @include to(575px){
     margin-left: 0;
     margin-right: 0;
+    .create-cv-list {
+      margin-top: 0;
+    }
     &>.form-std, 
     &>.white-bg-element {
       width: 100%;
       margin-left: 0;
       margin-right: 0;
+    }
+    .form-std__subtitle {
+      margin-bottom: 20px;
+    }
+    .button-std {
+      margin-top: 20px;
+    }
+    &>*~* {
+      margin-top: 25px;
     }
   }
 

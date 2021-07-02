@@ -82,12 +82,16 @@ body[id*='contact'] {
   @include to(575px){
     .page-part__img {
       margin-bottom: 20px;
+      margin-top: 20px;
     }
     .text-bg-absolute {
       display: none;
     }
     .page-part__text.bg-gray {
       margin: auto;
+      margin: auto 0;
+      width: 100%;
+  
     }
   }
 }

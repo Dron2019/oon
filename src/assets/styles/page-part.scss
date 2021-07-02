@@ -193,4 +193,35 @@
       height: 100vw;
     }
   }
+  @include to(575px){
+    padding-left: var(--page-side-fields);
+    padding-right: var(--page-side-fields);
+    .breadcrumbs {
+      width: 100%;
+      width: calc(100% - 40px);
+      // width: auto;
+      overflow: hidden;
+    }
+    .breadcrumbs-list {
+      max-width: calc(100% - 40px);
+      overflow: hidden;
+    }
+    .page-title {
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    .button-std {
+      margin-top: 25px;
+    }
+    &__img {
+      margin-top: 45px;
+    }
+    &__img:after {
+      width: 140vw;
+      height: 140vw;
+      left: 50%;
+      top: 0%;
+      transform: translateX(-50%);
+    }
+  }
 }

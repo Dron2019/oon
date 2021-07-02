@@ -162,6 +162,11 @@
         }
         
     }
+    @include to(575px){
+        .button-std {
+            height: 32px;
+        }
+    }
 }
 .user-cv-wrapper {
     @include from(1680px){
