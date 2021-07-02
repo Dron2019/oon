@@ -189,7 +189,7 @@ export function checkSession() {
             break;
           case 1:
             dataStore.dispatch(logout());
-            dataStore.dispatch(loginFail('Ваша сессия истекла, зайдите снова'));
+            dataStore.dispatch(loginFail('Ваша сессия закінчена, необхідна повторна авторизація'));
             setTimeout(() => {
               dataStore.dispatch(clearError());
             }, 2000);

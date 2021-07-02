@@ -244,7 +244,7 @@ export default function CreateCV() {
           return JSON.parse(localStorage.getItem('cv-temp-vals'));
         }
         return {};
-      })()} 
+      })()}
       onSubmit={handleSubmit} validator={() => ({})}>
       {({
         setFieldValue, handleChange, handleBlur, values, errors,
