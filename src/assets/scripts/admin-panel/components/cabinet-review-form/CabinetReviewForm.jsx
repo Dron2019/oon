@@ -8,6 +8,9 @@ import { useClickAway } from 'react-use';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import dataStore from '../../stores/userDataStore/index.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import Loader from '../loader/loader.jsx';
+import sendFormReviewMessage from '../../stores/formReviewStore/actions_formReview.jsx';
 
 
 const initState = [
@@ -38,10 +41,22 @@ const initState = [
       .required('Required'),
     type: 'textarea',
   },
+  {
+    title: 'form-name',
+    name: 'form-name',
+    initialValue: 'cabinet-review-form',
+    placeholder: 'Ваше повідомлення',
+    // validationSchema: Yup.string()
+    //   .min(2, 'Too Short!')
+    //   .max(50, 'Too Long!')
+    //   .required('Required'),
+    type: 'hidden',
+  },
 ];
 
 export default function CabinetReviewForm(props) {
   const isPending = useSelector(state => state.pendingStatusStore);
+  const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const ref = useRef(null);
   useClickAway(ref, () => {
     gsap.to(ref.current.parentElement, {
@@ -55,7 +70,7 @@ export default function CabinetReviewForm(props) {
   });
   useEffect(() => {
     gsap.from(ref.current, { autoAlpha: 0.5, y: 50 });
-  }, ref);
+  }, [ref]);
 
   function getSchema() {
     const innerSchema = {};
@@ -68,13 +83,15 @@ export default function CabinetReviewForm(props) {
   return (
     <div className="cabinet-review-form-wrapper">
       <Formik
-                enableReinitialize
-                initialValues={{}}
+                enableReinitialize={true}
+                initialValues={{
+                  'form-name': 'cabinet-review-form',
+                }}
                 validationSchema={
                   getSchema
                 }
-                onSubmit={(values, { setSubmitting }) => {
-                  console.log(values);
+                onSubmit={(values, { setSubmitting, resetForm }) => {
+                  dataStore.dispatch(sendFormReviewMessage(values, resetForm));
                 }}>
                 <Form
                   className="form-std cabinet-review-form"
@@ -116,7 +133,7 @@ export default function CabinetReviewForm(props) {
                             <div className={meta.error !== undefined ? 'unfilled input-group' : 'input-group'}>
                                 {field_config.type === 'textarea'
                                   ? <textarea className='input-std' placeholder={field_config.placeholder} {...field} />
-                                  : <input className='input-std' placeholder={field_config.placeholder} {...field} />
+                                  : <input className='input-std' type={field_config.type || 'text'} placeholder={field_config.placeholder} {...field} />
                                 }
                                 {/* <input
                                     title={field_config.title}
@@ -135,6 +152,7 @@ export default function CabinetReviewForm(props) {
                       );
                     })}
                     {isPending ? <Loader/> : null}
+                    {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
                     <button type="submit" className="button-std button-std--violet small">Надіслати повідомлення</button>
                 </Form>
             </Formik>
