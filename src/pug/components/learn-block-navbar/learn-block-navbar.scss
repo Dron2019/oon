@@ -120,18 +120,21 @@
             // color: white !important;
             background: var(--color-white);
         }
-        @include to(575px){
-            a.active {
-                // color: red;
-            }
-            &:hover {
-                height: 145px;       
-            }
-            &>*.active {
-                color: var(--color-white) !important;
-                background-color: var(--color-violet);
-            }
-        }
+       
 
+    }
+    @include to(575px){
+        a.active {
+            // color: red;
+        }
+        &:hover {
+            height: 145px;       
+        }
+        &>*.active {
+            position: relative;
+            // background-color: var(--color-violet);
+            color:var(--color-violet) !important;
+            z-index: 2;
+        }
     }
 }
