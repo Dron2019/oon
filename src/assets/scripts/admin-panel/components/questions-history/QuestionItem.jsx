@@ -116,6 +116,7 @@ export default function QuestionItem(props) {
     output += status === 2 ? ' new-answer' : '';
     output += status === 3 ? '  answered' : '';
     output += (+is_read === 0 && props.userType !== 'consult') ? 'new-answer' : '';
+    output += props.userType !== 'consult' ? 'no-title' : '';
 
     return output;
   }

@@ -197,6 +197,10 @@
     &__user-info &__date-wrapper:first-of-type {
         margin-left: auto;
     }
+    &.no-title {
+        margin-top: 20px;
+    }
+
     .restore-dialog-button {
         margin-top: 20px;
         margin-left: auto;
@@ -233,6 +237,11 @@
 }
 .question-item {
     margin-top: 35px;
+    @include from(951px){
+        .form-std {
+            overflow: visible;
+        }
+    }
 }
 
 

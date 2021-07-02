@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import LoginForm from './components/loginForm/index.jsx';
 // import store from './stores/userDataStore/index.jsx';
-
+import Page404 from './components/404/404.jsx';
 import Cabinet from './components/cabinet/Cabinet.jsx';
 import ForgotPassword from './components/forms/forgotPassword/index.jsx';
 import Register from './components/register/Register.jsx';
@@ -66,6 +66,9 @@ function App(props) {
       </Route>
       <Route path={routes.forgotPassword}>
           <ForgotPassword/>
+      </Route>
+      <Route>
+        <Page404/>
       </Route>
     </Switch>
 

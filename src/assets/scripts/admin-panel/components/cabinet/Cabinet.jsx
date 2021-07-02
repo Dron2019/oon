@@ -24,6 +24,8 @@ import routes from '../../routes/routes.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import CabinetMessageBell from '../cabinet-message-bell/CabinetMessageBell.jsx';
 import CabinetReviewForm from '../cabinet-review-form/CabinetReviewForm.jsx';
+import Page404 from '../404/404.jsx';
+
 
 import { countNewMessages } from '../../stores/newMessageReducer/actions-newMessageReducer.jsx';
 import { getConsultQuestions } from '../../stores/consultQuestionsStore/consult-questions-actions.jsx';
@@ -201,7 +203,7 @@ export default function Cabinet(props) {
           <Switch>
             {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
             <Route>
-              <div className="page-title text-violet">Сторінка не знайдена</div>
+              <Page404/>
             </Route>
             {/* <Route component={Missing} /> */}
           </Switch>
