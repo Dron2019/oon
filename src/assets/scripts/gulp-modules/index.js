@@ -114,6 +114,7 @@ function mobMenuHandle(){
   menu.addEventListener('touchstart', (e) => {
     moveCords.x = e.changedTouches[0].clientX;
     moveCords.locked = false;
+    menu.style.transition = 'none';
   });
   menu.addEventListener('touchmove', (e) => {
     if (moveCords.locked === false && e.changedTouches[0].clientX < moveCords.x)  {
@@ -129,6 +130,7 @@ function mobMenuHandle(){
     moveCords.swipeDistance = 0;
     moveCords.x = 0;
     moveCords.locked = true;
+    menu.style.transition = '';
   });
 }
 mobMenuHandle();
