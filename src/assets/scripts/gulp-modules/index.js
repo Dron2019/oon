@@ -92,6 +92,14 @@ handleSearchPanel();
 function mobMenuHandle(){
   const menu = document.querySelector('aside');
   const pageInner = document.querySelector('.page__inner');
+  const moveCords = {
+    x: 0,
+    swipeDistance: 0,
+    locked: true,
+    percentForClosing: 50, 
+
+  }
+
   menu.addEventListener('click',function(evt){
 
     if (evt.target.tagName === 'ASIDE'){
@@ -102,9 +110,50 @@ function mobMenuHandle(){
     //   null;
     // console.log();
   });
+  
+  menu.addEventListener('touchstart', (e) => {
+    moveCords.x = e.changedTouches[0].clientX;
+    moveCords.locked = false;
+  });
+  menu.addEventListener('touchmove', (e) => {
+    if (moveCords.locked === false && e.changedTouches[0].clientX < moveCords.x)  {
+      moveCords.swipeDistance = moveCords.x - e.changedTouches[0].clientX;
+      menu.style.transform = `translateX(-${moveCords.x - e.changedTouches[0].clientX}px)`;
+    }
+  });
+  menu.addEventListener('touchend', (e) => {
+    if (moveCords.swipeDistance > menu.getBoundingClientRect().width * (moveCords.percentForClosing / 100)) {
+      menu.classList.remove('opened');
+    }
+    menu.style.transform = '';
+    moveCords.swipeDistance = 0;
+    moveCords.x = 0;
+    moveCords.locked = true;
+  });
 }
 mobMenuHandle();
 
+
+document.addEventListener("click", function(evt) {
+  var flyoutElement = document.querySelector('aside'),
+      targetElement = evt.target;  // clicked element
+
+  do {
+      if (targetElement == flyoutElement) {
+          // This is a click inside. Do nothing, just return.
+          // document.querySelector("aside").textContent = "Clicked inside!";
+          return;
+      }
+      // Go up the DOM
+      targetElement = targetElement.parentNode;
+  } while (targetElement);
+
+  document.documentElement.clientWidth < 576 ? 
+    flyoutElement.classList.remove('opened') :
+    null;
+  // This is a click outside.
+  // document.getElementById("aside").textContent = "Clicked outside!";
+});
 
 /**Подсветка активного пункта меню */
 const asideLinks = document.querySelectorAll('aside a:not(.button-std)');
