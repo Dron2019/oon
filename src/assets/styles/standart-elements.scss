@@ -425,11 +425,12 @@ textarea,
   }
   @include to(575px){
     &-list {
-      max-width: 85%;
+      // max-width: 85%;
     }
   }
 }
 .on-light-bg-breadcrumbs {
+  width: 100%;
   .breadcrumbs-item .breadcrumbs-item__link  { 
     color: var(--color-violet);
   }

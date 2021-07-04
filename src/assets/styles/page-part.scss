@@ -197,13 +197,13 @@
     padding-left: var(--page-side-fields);
     padding-right: var(--page-side-fields);
     .breadcrumbs {
-      width: 100%;
-      width: calc(100% - 40px);
+      // width: 100%;
+      // width: calc(100% - 40px);
       // width: auto;
       overflow: hidden;
     }
     .breadcrumbs-list {
-      max-width: calc(100% - 40px);
+      // max-width: calc(100% - 40px);
       overflow: hidden;
     }
     .page-title {
