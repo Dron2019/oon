@@ -106,7 +106,7 @@
       });
 
       function animNumber(el) {
-          // if (sessionStorage.getItem('preloaded') !== null) return;
+          if (sessionStorage.getItem('preloaded') !== null) return;
           document.querySelector('.preloader').style.display = 'flex';
           var incrementor = 0;
 
@@ -117,9 +117,9 @@
                   preloaderLine.style.transform = `scaleX(${incrementor / 100})`;
                   document.documentElement.style.setProperty('--preload-line', incrementor / 100);
                   if (incrementor >= 100) {
-                    // document.querySelector('.preloader').style.opacity = '0';
-                    // document.querySelector('.preloader').style.pointerEvents = 'none';
-                    // document.querySelector('.preload-num').style.opacity = '0';
+                    document.querySelector('.preloader').style.opacity = '0';
+                    document.querySelector('.preloader').style.pointerEvents = 'none';
+                    document.querySelector('.preload-num').style.opacity = '0';
                     sessionStorage.setItem('preloaded', 'true');
                       return
                   };
