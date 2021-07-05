@@ -1,4 +1,3 @@
-
 @@include('../libs/gsap/gsap.js')
 ;;;
 const lazyImages = document.querySelectorAll('img[data-src]');
@@ -110,18 +109,18 @@ function mobMenuHandle(){
     // console.log();
   });
   
-  menu.addEventListener('touchstart', (e) => {
+  window.addEventListener('touchstart', (e) => {
     moveCords.x = e.changedTouches[0].clientX;
     moveCords.locked = false;
     menu.style.transition = 'none';
   });
-  menu.addEventListener('touchmove', (e) => {
-    if (moveCords.locked === false && e.changedTouches[0].clientX < moveCords.x)  {
+  window.addEventListener('touchmove', (e) => {
+    if (moveCords.locked === false && e.changedTouches[0].clientX < moveCords.x && menu.classList.contains('opened'))  {
       moveCords.swipeDistance = moveCords.x - e.changedTouches[0].clientX;
       menu.style.transform = `translateX(-${moveCords.x - e.changedTouches[0].clientX}px)`;
     }
   });
-  menu.addEventListener('touchend', (e) => {
+  window.addEventListener('touchend', (e) => {
     if (moveCords.swipeDistance > menu.getBoundingClientRect().width * (moveCords.percentForClosing / 100)) {
       menu.classList.remove('opened');
     }
@@ -186,3 +185,47 @@ asideLinks.forEach(el=>{
 //     },
 //   });
 // });
+
+
+
+/**
+ * mobile menu open on swipe
+ */
+
+function mobMenuOpenOnSwipe() {
+  const menu = document.querySelector('aside');
+  const moveCords = {
+    x: 0,
+    startX: 0,
+    swipeDistance: 0,
+    locked: true,
+    percentForOpening: 50, 
+    swipeDiapasonForEffectStart: 20,
+    menuWidth: menu.getBoundingClientRect().width,
+    screenWidth: document.documentElement.clientWidth,
+  }
+  window.addEventListener('touchstart',function(evt){
+    moveCords.startX = evt.changedTouches[0].pageX;
+    const startedPercentOfSwiping = (moveCords.startX * 100) / moveCords.screenWidth;
+
+
+    if (startedPercentOfSwiping > moveCords.swipeDiapasonForEffectStart) return;
+    menu.style.transition = 'none';
+    moveCords.locked = false;
+  });
+  window.addEventListener('touchmove',function(evt){
+    if (moveCords.locked === false) evt.preventDefault();
+    if (menu.classList.contains('opened')) return;
+    moveCords.swipeDistance = evt.changedTouches[0].pageX - moveCords.startX;
+    if (moveCords.locked === false) menu.style.transform = `translateX(${Math.min((moveCords.swipeDistance - moveCords.menuWidth), 0)}px)`;
+  });
+  window.addEventListener('touchend',function(evt){
+    if (moveCords.locked) return;
+    if (moveCords.swipeDistance > (moveCords.menuWidth * 0.5)) menu.classList.add('opened');
+    moveCords.swipeDistance = 0;
+    menu.style.transform = '';
+    menu.style.transition = '';
+    moveCords.locked = true;
+  });
+}
+mobMenuOpenOnSwipe();

@@ -107,6 +107,7 @@
   }
   .button-std {
     margin-top: auto;
+    animation: pulseInfinite 6s infinite;
   }
   .search-call-panel {
     width: 14px;
@@ -178,8 +179,8 @@
   }
   @include to(575px){
     --side-padding:15px;
-    padding: var(--side-padding) var(--side-padding) calc(var(--side-padding) + 50px) var(--side-padding);
-    height: -webkit-fill-available;
+    padding: var(--side-padding) var(--side-padding) calc(var(--side-padding) + 90px) var(--side-padding);
+    height: 100vh;
 
     .button-std {
       padding-left: 10px;
