@@ -169,6 +169,13 @@
       transform: none;
     }
   }
+  @include from-to(576px, 950px){
+    &:after {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    padding-bottom: calc(var(--side-padding) + 60px);
+  }
   @include to(575px){
     --side-padding:15px;
     padding: var(--side-padding) var(--side-padding) calc(var(--side-padding) + 50px) var(--side-padding);

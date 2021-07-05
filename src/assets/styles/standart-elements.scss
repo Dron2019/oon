@@ -358,6 +358,10 @@ textarea,
   @include from(1680px){
     // padding-top: 0px;
   }
+  @include from-to(576px, 768px){
+    // padding-top: 0;
+    // padding-bottom: 0;
+  }
 }
 
 /*~  (Серая закругленная подложка) ~*/

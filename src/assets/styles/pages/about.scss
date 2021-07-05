@@ -42,7 +42,7 @@
             margin-bottom: 15px;
         }
     }
-    @include to(575px){
+    @include to(768px){
         z-index: 2;
         margin-left: 0;
         margin-right: 0;
@@ -54,6 +54,9 @@
            position: relative;
            margin-top: 10px;
         }
+    }
+    @include from-to(576px, 950px){
+        padding: 80px 40px;
     }
 }
 
@@ -279,5 +282,9 @@
        }
        margin-left: 0;
        margin-right: 0;
+    }
+    @include from-to(576px, 950px){
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }

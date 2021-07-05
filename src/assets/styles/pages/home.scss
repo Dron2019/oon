@@ -21,6 +21,9 @@
     margin-top: auto;
     display: flex;
     flex-direction: column;
+    span {
+      white-space: nowrap;
+    }
   }
   .button-std {
     margin-bottom: auto;
@@ -35,8 +38,8 @@
     }
     &__title {
       font-size: 54px;
-      padding-left: 20%;
-      padding-right: 20%;
+      padding-left: 0%;
+      padding-right: 0%;
       text-align: center;
       justify-content: center;
       flex-direction: row;
@@ -44,6 +47,11 @@
     }
     .button-std {
       margin-bottom: auto;
+    }
+  }
+  @include to(1024px){
+    &__title span {
+      white-space: initial;
     }
   }
   @include to(575px){
@@ -58,6 +66,15 @@
       max-width: none;
       margin-left: auto;
     }
+  }
+  @include from-to(576px, 950px){
+    &>img,
+    &>svg {
+      width: 200vw;
+      max-width: none;
+      margin-left: auto;
+    }
+
   }
 }
 
@@ -144,7 +161,7 @@
       height: 100px;
     }
   } 
-  @include to(575px){
+  @include to(768px){
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
@@ -160,6 +177,14 @@
       margin-top: 30px;
       height: 50px;
       width: 200px;
+    }
+  }
+  @include from-to(576px, 950px){
+    &__img {
+      padding: 20px 40px;
+    }
+    &__text {
+      padding-right: calc(25% + 10px);
     }
   }
 }
@@ -258,7 +283,7 @@
       height: 100px;
     }
   } 
-  @include to(575px){
+  @include to(768px){
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
@@ -274,6 +299,14 @@
       margin-top: 30px;
       height: 50px;
       width: 200px;
+    }
+  }
+  @include from-to(576px, 950px){
+    &__img {
+      padding: 20px 40px;
+    }
+    &__text {
+      padding-right: calc(25% + 10px);
     }
   }
 }
@@ -364,7 +397,7 @@
       height: 100px;
     }
   } 
-  @include to(575px){
+  @include to(768px){
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
@@ -380,6 +413,14 @@
       margin-top: 30px;
       height: 50px;
       width: 200px;
+    }
+  }
+  @include from-to(576px, 950px){
+    &__img {
+      padding: 20px 40px;
+    }
+    &__text {
+      padding-right: calc(25% + 10px);
     }
   }
 }
@@ -482,7 +523,7 @@
       height: 100px;
     }
   } 
-  @include to(575px){
+  @include to(768px){
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 20px;
@@ -498,6 +539,14 @@
       margin-top: 30px;
       height: 50px;
       width: 200px;
+    }
+  }
+  @include from-to(576px, 950px){
+    &__img {
+      padding: 20px 40px;
+    }
+    &__text {
+      padding-right: calc(25% + 10px);
     }
   }
 }

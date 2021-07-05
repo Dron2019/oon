@@ -52,7 +52,7 @@
         }
     }
     @include from-to(576px, 768px){
-        padding-top: 80px;
+        padding-top: 95px;
     }
 
 }
@@ -250,6 +250,12 @@
         .button-std {
             margin-top: 10px;
             height: 32px;
+        }
+    }
+    @include from-to(576px, 950px){
+        top: 52px;
+        &:after {
+            // top: 20px;
         }
     }
 }

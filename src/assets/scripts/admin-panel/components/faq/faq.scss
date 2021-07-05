@@ -64,5 +64,8 @@
             margin-bottom: 20px;
         }
     }
+    @include from-to(576px, 768px){
+        padding: 0 20px;
+    }
 }
 

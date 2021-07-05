@@ -157,7 +157,7 @@
     padding: 50px 15px 50px 20px;
   }
   @include to(768px){
-    padding: 25px 15px;
+    padding: 25px 40px;
     &__img {
       @include size(12);
     }
@@ -227,6 +227,12 @@
   }
   @include from-to(576px, 950px){
     padding-top: 70px;
+    &__img:after {
+      width: 140vw;
+    height: 140vw;
+    left: 50%;
+    transform: translateX(-50%);
+    }
     .text-white {
       padding-right: 20%;
     }

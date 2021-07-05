@@ -27,6 +27,12 @@
             margin-top: -20px;
         }
     }
+    @include to(950px){
+        .page-title {
+     text-align: left;
+
+        }
+    }
     @include to(575px){
         &>*~*{
             margin-top: 15px;
@@ -50,6 +56,15 @@
           &__right .form-std:last-child .button-std {
               margin-top: 20px;
           }
+    }
+    @include from-to(576px, 768px){
+        .form-std:last-child {
+            margin-top: -30px;
+        }
+        .page-title {
+            padding-left: 10px;
+            
+               }
     }
 }
 

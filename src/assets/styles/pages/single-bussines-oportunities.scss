@@ -71,6 +71,10 @@
             margin-left: 0;
         } 
     }
+    @include from-to(576px, 950px){
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
 
 .file-input-group {

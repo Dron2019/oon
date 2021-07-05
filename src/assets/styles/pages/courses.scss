@@ -100,6 +100,14 @@
             display: none;
         }
     }
+    @include from-to(576px, 950px){
+        padding: 40px;
+        .event-item__img {
+            max-height: 35vh;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
 }
 .event-item-no-image {
     padding: 20px 20px 30px 30px;

@@ -94,4 +94,13 @@ body[id*='contact'] {
   
     }
   }
+  @include from-to(576px, 950px){
+    .page-part__img:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .text-bg-absolute {
+      background-color: transparent;
+    }
+  }
 }

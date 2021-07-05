@@ -126,7 +126,7 @@ export function loginAsync(values, history) {
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
       .then((response) => {
-        dataStore.dispatch(resetPending());
+        // dataStore.dispatch(resetPending());
         dataStore.dispatch(setMessageColor(response.data.error));
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail(response.data.mess));
@@ -148,8 +148,18 @@ export function loginAsync(values, history) {
       })
       .catch((error) => {
         dataStore.dispatch(dataStore.dispatch(loginFail('Помилка відправки')));
-        dataStore.dispatch(resetPending());
-        setTimeout(() => dataStore.dispatch(clearError()), 2500);
+        
+        setTimeout(() => {
+          dataStore.dispatch(resetPending());
+          dataStore.dispatch(clearError());
+        }, 2500);
+      })
+      .finally((error) => {
+        
+        setTimeout(() => {
+          dataStore.dispatch(resetPending());
+          dataStore.dispatch(clearError());
+        }, 2500);
       });
   };
 }
