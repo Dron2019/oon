@@ -13,8 +13,8 @@ data.append('query', searchParams.get("query"));
 
 
 const emptyResultsTemplate = `
-<div class="page-part fdc" style="width:100%">
-          <p class="result-view-block">За запитом “${searchParams.get("query")}”  <b><span class="result-count">1</span> нічого не знайдено</b></p><a class="button-std button-std--orange small max-content" onclick="window.history.go(-1);">Повернутися назад</a><svg class="empty-res-img" width="634" height="348" viewBox="0 0 634 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+<div class="fdc df" style="width:100%; min-height: 75vh;">
+          <p class="result-view-block">За запитом “${searchParams.get("query")}”  <b><span class="result-count"></span> нічого не знайдено</b></p><a class="button-std button-std--orange small max-content" onclick="window.history.go(-1);">Повернутися назад</a><svg class="empty-res-img" width="634" height="348" viewBox="0 0 634 348" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M231.682 31.1834L176.258 43.1528L192.639 119.007L248.063 107.037L231.682 31.1834Z" fill="#F5F5F5"></path>
 <path d="M495.5 0H306.6V122.8H495.5V0Z" fill="#F5F5F5"></path>

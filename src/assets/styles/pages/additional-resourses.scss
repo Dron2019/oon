@@ -40,3 +40,11 @@
         }
     }
 }
+
+@include from(1240px){
+    .additional-resources-wrapper {
+        .page-title {
+            margin-top: 0;
+        }
+    }
+}

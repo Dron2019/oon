@@ -37,8 +37,20 @@
   border-radius: 50%;
   border:1px solid rgba(3, 24, 38, 0.2);
   display: flex;
-  justify-content: center;align-items: center;
-  
+  justify-content: center;
+  align-items: center;
+  transition: .3s ease-in-out;
+  svg path {
+    transition: .3s ease-in-out;
+  }
+  @include from(951px){
+    &:hover {
+      border-color: var(--color-violet);
+    }
+    &:hover svg path {
+      stroke: var(--color-violet);
+    }
+  }
 }
 .social-icons-wrapper {
   display: flex;

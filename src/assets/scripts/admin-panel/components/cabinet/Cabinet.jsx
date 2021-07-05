@@ -196,7 +196,7 @@ export default function Cabinet(props) {
             Вихід з кабінету
           </div> */}
           <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Звортній зв'язок</div>
-          <CourseLinkInCabinetMenu href="https://goodle.com" target='_blank'/>
+          {userType === 'consult' && <CourseLinkInCabinetMenu href="https://google.com" target='_blank'/>}
         </div>
         <div className="content">
           {formReviewViewer && <CabinetReviewForm onClose={() => setFormReviewViewer(false)} />}

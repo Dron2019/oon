@@ -13,7 +13,7 @@ body {
   transition: filter .3 ease-in-out;
   &.opened-popup {
     //  pointer-events: none;
-    filter: blur(4px) brightness(0.85);
+    filter: brightness(0.85);
     cursor: pointer;
   }
   @include to(1024px){

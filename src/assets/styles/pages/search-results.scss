@@ -157,6 +157,7 @@
 .empty-res-img {
     margin: auto;
     max-width: 633px;
+    width: 100%;
 }
 
 
@@ -641,6 +642,8 @@
         }
     }
     @include to(575px){
-
+        .button-std {
+            margin-top: 5px;
+        }
     }
 }
