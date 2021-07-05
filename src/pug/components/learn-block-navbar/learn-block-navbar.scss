@@ -31,6 +31,7 @@
         margin-left: -1px;
         background-color: transparent;
         font-size: 12px;
+        transition: background-color .3s ease-in-out;
     }
     &>*:first-child {
         border-radius: 40px 0 0 40px;

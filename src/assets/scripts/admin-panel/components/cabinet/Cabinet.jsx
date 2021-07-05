@@ -46,7 +46,17 @@ export default function Cabinet(props) {
   // const test = true;
   const history = useHistory();
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState(useLocation().pathname);
+  const [activeLink, setActiveLink] = useState((
+    () => {
+      
+      if (history.location.pathname === '/' || history.location.pathname === '/cabinet') {
+
+        console.log('i am in pathname');
+        return routes.createConsultQuestion;
+      } 
+      return location.pathname;
+    }
+  )());
   const [formReviewViewer, setFormReviewViewer] = useState(false);
   const [wasCheckedSession, setSessionCheckStatus] = useState(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
@@ -55,9 +65,21 @@ export default function Cabinet(props) {
 
   useEffect(() => history.listen((location) => {
     setMenuVisibility(false);
-    setActiveLink(location.pathname);
+    setActiveLink((
+      () => {
+        
+        if (history.location.pathname === '/' || history.location.pathname === '/cabinet') {
+  
+          console.log('i am in pathname');
+          return routes.createConsultQuestion;
+        } 
+        return location.pathname;
+      }
+    )());
     // store.dispatch(countNewMessages());
   }), [history]);
+
+  /**Подсветка новых сообщений в кабинете */
   useEffect(() => {
     dataStore.dispatch(checkSession());
     store.dispatch(getConsultQuestions());
@@ -203,7 +225,9 @@ export default function Cabinet(props) {
           <Switch>
             {cabinetUserRoutes.map(renderCabinetNestedRoutes)}
             <Route>
-              <Page404/>
+              <Page404 backLink={() => {
+                history.go(-1);
+              }}/>
             </Route>
             {/* <Route component={Missing} /> */}
           </Switch>

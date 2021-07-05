@@ -23,6 +23,7 @@ import { checkSession, logoutAsync } from './stores/userDataStore/actions.jsx';
 
 function App(props) {
   const isLogined = useSelector(state => state.loginStatusReducer.isLogined);
+  const history = useHistory();
   // isLogined ? useHistory().push(routes.cabinet) : null;
   // isLogined ? hashHistory().push('/cabinet');
   // useEffect(() => {
@@ -68,7 +69,9 @@ function App(props) {
           <ForgotPassword/>
       </Route>
       <Route>
-        <Page404/>
+        <Page404  backLink={() => {
+                history.go(-1);
+              }}/>
       </Route>
     </Switch>
 
