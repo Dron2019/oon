@@ -76,6 +76,7 @@ export default function Cabinet(props) {
         return location.pathname;
       }
     )());
+    window.scrollTo(0, 0);
     // store.dispatch(countNewMessages());
   }), [history]);
 
