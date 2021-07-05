@@ -1,5 +1,8 @@
 .psych-questions-wrapper {
   width: 100%;
+  .page-title{
+      text-align: left;
+  }
   @include to(950px){
     .page-title{
         text-align: left;

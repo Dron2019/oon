@@ -35,6 +35,7 @@
   form{
     @include size(8);
     margin: auto;
+    margin: auto auto auto 0;
   }
   .empty-cv-block {
     padding-left: 30px;
