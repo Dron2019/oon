@@ -1,4 +1,4 @@
-<div class='loader-wrap preloader'>
+<div class='loader-wrap preloader' style="display: none;">
 
   <svg class="preload-logo" width="233" height="185" viewBox="0 0 233 185" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="92.5" cy="92.5" r="84" stroke="#991E66" stroke-width="17"/>
@@ -34,7 +34,10 @@
         width: 100%;
         background-repeat: repeat-x;
         background-image: url("data:image/svg+xml,%3Csvg width='912' height='20' viewBox='0 0 912 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='912' height='4' fill='%23991E66'/%3E%3Crect y='12' width='912' height='8' fill='%23991E66'/%3E%3C/svg%3E%0A");
+  
         transform: scaleX(var(--preload-line));
+        /* clip-path: polygon(0 0, var(--preload-line) 0, var(--preload-line) 100%, 0% 100%);
+        -webkit-clip-path: polygon(0 0, var(--preload-line) 0, var(--preload-line) 100%, 0% 100%); */
         transform-origin: left;
         /* margin-top: auto; */
       }
@@ -75,6 +78,7 @@
         align-items: center;
         align-content: center;
         padding-bottom: 10vh;
+        pointer-events: none;
 
       }
       .welcome{color:#fff;font-weight:bold;font-size:18px;line-height:18px;text-align:center;letter-spacing:1em;text-transform:uppercase}
@@ -89,7 +93,9 @@
           // document.querySelector('.preloader').style.pointerEvents = 'none';
           // document.querySelector('.preload-num').style.opacity = '0';
 
-      })
+      });
+
+      const preloaderLine = document.querySelector('.preload-line');
       window.addEventListener('beforeunload', (evt) => {
           if (evt.target.activeElement.href.match(/tel:/)){
               return;
@@ -100,17 +106,21 @@
       });
 
       function animNumber(el) {
+          // if (sessionStorage.getItem('preloaded') !== null) return;
+          document.querySelector('.preloader').style.display = 'flex';
           var incrementor = 0;
 
           function increase(incrementor) {
               setTimeout(() => {
                   incrementor++;
                   el.innerHTML = incrementor;
+                  preloaderLine.style.transform = `scaleX(${incrementor / 100})`;
                   document.documentElement.style.setProperty('--preload-line', incrementor / 100);
                   if (incrementor >= 100) {
-                    document.querySelector('.preloader').style.opacity = '0';
-                    document.querySelector('.preloader').style.pointerEvents = 'none';
-                    document.querySelector('.preload-num').style.opacity = '0';
+                    // document.querySelector('.preloader').style.opacity = '0';
+                    // document.querySelector('.preloader').style.pointerEvents = 'none';
+                    // document.querySelector('.preload-num').style.opacity = '0';
+                    sessionStorage.setItem('preloaded', 'true');
                       return
                   };
                   window.requestAnimationFrame(increase.bind(null, incrementor));
