@@ -49,10 +49,19 @@
       margin-bottom: auto;
     }
   }
-  @include to(1024px){
+  @include from(1920px){
+
+    &__title {
+      width: 77%;
+    }
+  }
+  @include to(1320px){
     &__title span {
       white-space: initial;
     }
+  }
+  @include to(768px){
+    overflow: hidden;  
   }
   @include to(575px){
     

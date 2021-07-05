@@ -49,7 +49,7 @@ export default function Cabinet(props) {
   const [activeLink, setActiveLink] = useState((
     () => {
       
-      if (history.location.pathname === '/' || history.location.pathname === '/cabinet') {
+      if (history.location.pathname === '/' || history.location.pathname === '/cabinet' || history.location.pathname === '/login') {
 
         console.log('i am in pathname');
         return routes.createConsultQuestion;
@@ -68,7 +68,7 @@ export default function Cabinet(props) {
     setActiveLink((
       () => {
         
-        if (history.location.pathname === '/' || history.location.pathname === '/cabinet') {
+        if (history.location.pathname === '/' || history.location.pathname === '/cabinet' || history.location.pathname === '/login') {
   
           console.log('i am in pathname');
           return routes.createConsultQuestion;
@@ -114,6 +114,35 @@ export default function Cabinet(props) {
     );
   }
 
+  /**Close on hufe swipe START */
+  const moveCords = {
+    x: 0,
+    swipeDistance: 0,
+    locked: true,
+    percentForClosing: 50, 
+  }
+  function swipeTouchEnd(e) {
+    if (moveCords.swipeDistance > ref.current.getBoundingClientRect().width * (moveCords.percentForClosing / 100)) {
+      setMenuVisibility(false);
+    }
+    ref.current.style.transform = '';
+    moveCords.swipeDistance = 0;
+    moveCords.x = 0;
+    moveCords.locked = true;
+    ref.current.style.transition = '';
+  }
+  function swipeTouchStart(e){
+    moveCords.x = e.changedTouches[0].clientX;
+    moveCords.locked = false;
+    ref.current.style.transition = 'none';
+  }
+  function swipeTouchMove (e) {
+    if (moveCords.locked === false && e.changedTouches[0].clientX < moveCords.x)  {
+      moveCords.swipeDistance = moveCords.x - e.changedTouches[0].clientX;
+      ref.current.style.transform = `translateX(-${moveCords.x - e.changedTouches[0].clientX}px)`;
+    }
+  }
+  /**Close on hufe swipe END */
   const menus = [
     ['Створити запитання', routes.createConsultQuestion, true],
     ['Історія запитань', routes.questionsHistory, false, newMessages.consult],
@@ -136,7 +165,7 @@ export default function Cabinet(props) {
     delta: 80,
 
   });
-
+  /**закрытие меню при клике по внешним елементам */
   const [locked, toggleLocked] = useToggle(false);
   useLockBodyScroll(locked);
   useEffect(() => {
@@ -145,10 +174,17 @@ export default function Cabinet(props) {
   useClickAway(ref, () => {
     if (menuVisibility === true) setMenuVisibility(false);
   }, ['mousedown', 'touchstart']);
-
+  
+  /**закрытие меню при клике по внешним елементам END */
   return (
       <div className="cabinet-wrapper">
-        <div className={`menu ${menuVisibility ? 'opened' : ''}`} onClick={handleMobileMenuClick} {...handlers} ref={ref}>
+        <div 
+            onTouchMove={swipeTouchMove} 
+            onTouchStart={swipeTouchStart} 
+            onTouchEnd={swipeTouchEnd}
+            className={`menu ${menuVisibility ? 'opened' : ''}`} 
+            onClick={handleMobileMenuClick} {...handlers} 
+            ref={ref}>
           <div className="menu__subtitle">
             Мій кабінет
           </div>

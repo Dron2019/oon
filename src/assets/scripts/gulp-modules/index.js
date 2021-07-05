@@ -97,7 +97,6 @@ function mobMenuHandle(){
     swipeDistance: 0,
     locked: true,
     percentForClosing: 50, 
-
   }
 
   menu.addEventListener('click',function(evt){
