@@ -146,6 +146,13 @@
             width: 100%;
         }
     }
+    @include from-to(576px, 950px){
+        &>* {
+            max-height: 35vh;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
 }
 .event-item~.event-item {
     margin-top: 20px;

@@ -239,6 +239,12 @@
     font-size: 24px;
     line-height: 100%;
   }
+  @include to(950px){
+    textarea.input-std,
+    input.input-std {
+      -webkit-appearance: none;
+    }
+  }
   @include to(575px){
     textarea.input-std,
     input.input-std {
@@ -258,6 +264,11 @@
     }
     input[disabled]~.error.placeholder-in-focus:after {
       background-color: var(--color-white);
+    }
+  }
+  @include from-to(576px, 768px){
+    .error  {
+      top: -1px;
     }
   }
  

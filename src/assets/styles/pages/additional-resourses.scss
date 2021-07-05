@@ -10,6 +10,13 @@
     @include to(768px){
         grid-template-columns: 1fr;
     }
+    @include from-to(576px, 950px){
+        display: flex;
+        flex-direction: column;
+        &>*~* {
+            margin-top: 15px;
+        }
+    }
 }
 .resource-link {
     padding: 30px;

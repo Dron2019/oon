@@ -35,6 +35,7 @@
         &__right {
             @include size(12);
             @include shift-left(0);
+            position: relative;
            
         }
         .subtitle {
@@ -73,7 +74,7 @@
         top: 0;
         transform: rotate(-90deg);
     }
-    @include to(575px){
+    @include to(769px){
         width: 100px;
         height: 100px;
     }
@@ -242,6 +243,11 @@
             height: auto;
             margin-top: 30px;
             margin-bottom: 25px;
+        }
+    }
+    @include from-to(576px, 951px){ 
+        .about-block__right {
+            padding-right: 0;
         }
     }
 }

@@ -10,6 +10,8 @@ export default function QuestionsHistory(props) {
   const messages = useSelector(state => state.consultQuestionsStore);
   const userID = useSelector(state => state.loginStatusReducer.id);
   const userType = useSelector(state => state.loginStatusReducer.role);
+  const formMessageColor = useSelector(state => state.messageStatusStore);
+  const messageColors = ['green', 'orange'];
   useEffect(() => {
     store.dispatch(getConsultQuestions());
   }, []);
@@ -22,7 +24,11 @@ export default function QuestionsHistory(props) {
               <QuestionItem key={index} {...message} userID={userID} userType={userType}/>
             ))}
             {messages.length === 0 && <EmptyQuestions/>}
-            {errorMessage && <div className="el-for-alerts">{errorMessage}</div>}
+            {errorMessage && <div className="el-for-alerts" style={
+              { backgroundColor: messageColors[formMessageColor] }
+            }>
+              {errorMessage}
+            </div>}
         </div>
   );
 }

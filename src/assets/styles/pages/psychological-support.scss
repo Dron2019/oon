@@ -85,6 +85,14 @@
 
       }
     }
+    @include from-to(576px, 951px){
+      padding-left: 20px;
+      padding-right: 20px;
+      .quarter-circle-decor {
+        right: 0px;
+        transform: none;
+    }
+    }
     
 }
 .accordeon-item {
