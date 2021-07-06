@@ -172,8 +172,8 @@ export default function QuestionItem(props) {
                     </div>
                     {props.userType === 'consult' ? consultStatuses[statusOfMessage] : statuses[statusOfMessage]}
 
-                    <UserIcon data-tip={getUserInfo()}/>
-                    <ReactTooltip className="create-cv-tooltip create-cv-tooltip--white-bg" data-tip="hello world">
+                    <UserIcon clickable data-tip={getUserInfo()}/>
+                    <ReactTooltip clickable className="create-cv-tooltip create-cv-tooltip--white-bg" data-tip="hello world">
                       <table>
                       <tbody>
                         <tr className="text-violet fw-500">
