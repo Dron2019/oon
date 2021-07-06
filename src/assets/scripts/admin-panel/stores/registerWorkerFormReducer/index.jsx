@@ -56,6 +56,15 @@ const registerInputs = [
     as: 'select',
     values: [[0, 'Кількість дітей'], ['1', '1 дитина'], ['2', '2 дитини'], ['3', '3 дитини'], ['4', 'Немає']],
   },
+  {
+    title: 'Натискаючи на кнопку, я даю згоду на обробку та зберігання моїх персональних даних',
+    name: 'agreement',
+    initialValues: false,
+    requiredClass: 'required',
+    as: 'checkbox',
+    type: 'checkbox',
+    // values: [[0, 'Освіта'], ['1', 'Вища'], ['2', 'Середня'], ['3', 'Нема']],
+  },
 ];
 export default function registerWorkerFormReducer(state = registerInputs, action) {
   switch (action.type) {

@@ -194,7 +194,7 @@ export default function Cabinet(props) {
               to={routes.workConsultation}
               className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
               <span>
-              Послуги консультанта  з пошуку роботи
+              Послуги фахівчині з пошуку роботи
               </span>
             </div>
             <ul>

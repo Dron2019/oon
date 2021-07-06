@@ -295,6 +295,8 @@
     }
     .end-question-item {
         width: 30%;
+        width: auto;
+    padding-right: 15px;
     }
     @include to(1240px){
         // .question-item-form-text-s {

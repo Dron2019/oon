@@ -167,7 +167,7 @@ export default function ProfileEditor(props) {
                     ))} */}
                     {/* {errorMessage ? <ErrorMessage errorMessage={errorMessage}/> : null } */}
                     {isPending ? <Loader/> : null}
-                    <button disabled={initialSubmitBlock} type="submit" className="button-std button-std--violet small">Зберегти данні</button>
+                    <button disabled={initialSubmitBlock} type="submit" className="button-std button-std--violet small">Зберегти дані</button>
                 </Form>
             </Formik>
             {/*  Форма смены пароля */}

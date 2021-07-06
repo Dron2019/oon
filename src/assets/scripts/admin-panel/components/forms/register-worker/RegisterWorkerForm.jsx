@@ -40,6 +40,10 @@ export default function RegisterWorkerForm() {
     one uppercase, one number and one special case character"
     */
     // ),
+    agreement: Yup
+    .boolean()
+    .required('Необхідно надати згоду')
+    .oneOf([true], 'Необхідно надати згоду'),
     confirmPassword: Yup
       .string()
       .required('Confirm password')
@@ -62,14 +66,28 @@ export default function RegisterWorkerForm() {
         dataStore.dispatch(setMessageColor(response.data.error));
         switch (response.data.error) {
           case 0:
-            setError(decodeURIComponent(response.data.mess + '. Вас переправить на сторінку авторизації, де ви можете ввести ваш e-mail та пароль для входу до особистого кабінету'));
-            // setTimeout(() => setError(''), 2000);
+            let time = 5;
+            setError(`
+            ${response.data.mess}. Вас переправить на сторінку авторизації, 
+            де ви можете ввести ваш e-mail та пароль для входу до особистого кабінету.\nПерехід на сторінку через ${time} секунд
+            `);
+            const interval = setInterval(() => {
+              time--;
+              setError(`
+              ${response.data.mess}. Вас переправить на сторінку авторизації, 
+              де ви можете ввести ваш e-mail та пароль для входу до особистого кабінету.\nПерехід на сторінку через ${time} секунд
+              `);
+              if (time === 0) {
+                clearInterval(interval);
+                setError('');
+              }
+            }, 1000);
             dataStore.dispatch(resetPending());
             actions.resetForm();
             setTimeout(() => {
               history.push(routes.login);
               dataStore.dispatch(resetPending());
-              setError('');
+              // setError('');
             }, 5000);
             break;
           case 1:
@@ -123,6 +141,32 @@ export default function RegisterWorkerForm() {
                                 ))}
                                 </Field>
                         </div>
+                );
+              }
+              if (input.as === 'checkbox') {
+                return (
+                  <Field key={index} name={input.name} placeholder={input.title} className="input-std" as={input.as}>
+                  {({
+                    field, // { name, value, onChange, onBlur }
+                    form: { touched, errors },
+                    meta,
+                  }) => (
+                          <div
+                              className={`input-group input-group--checkbox ${paintUnfilledValue(meta)} ${setRequiredClass(input.requiredClass)}`}
+                              key={field.name}>
+                              <label htmlFor={input.name} className="text-violet text-checkbox-group">{input.title}</label>
+                              <input
+                                  className="input-std" id={input.name} type={input.type !== undefined ? input.type : 'text'}
+                                  {...field} />
+                              <label htmlFor={input.name} className="decorate-checkbox"></label>
+                              {
+                              meta.error && (
+                              <div className="error">{meta.error}</div>
+                              )}
+                          </div>
+                  )}
+
+                  </Field>
                 );
               }
               return (

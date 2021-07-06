@@ -5,17 +5,18 @@ import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
 import * as Yup from 'yup';
-
+import { useHistory } from 'react-router-dom';
 
 import ErrorView from '../../error-message/ErrorMessage.jsx';
 import dataStore from '../../../stores/userDataStore/index.jsx';
 import { REGISTER_CONSULT } from '../../../stores/urls.jsx';
 import { setPending, resetPending } from '../../../stores/userDataStore/actions.jsx';
+import routes from '../../../routes/routes.jsx';
 
 export default function () {
   const [errorMessageAfterRequest, setError] = useState('');
   const regInputs = useSelector(state => state.registerConsultFormReducer);
-
+  const history = useHistory();
   const paintUnfilledValue = data => (data.error !== undefined ? 'unfilled' : '');
   const setRequiredClass = data => (data !== undefined && data.length > 0 ? 'required' : '');
 
@@ -33,7 +34,11 @@ export default function () {
         switch (response.data.error) {
           case 0:
             setError(decodeURIComponent(response.data.mess));
-            setTimeout(() => setError(''), 2000);
+            setTimeout(() => {
+              setError('');
+              history.push(routes.login);
+            
+            }, 2000);
             dataStore.dispatch(resetPending());
             actions.resetForm();
             break;
@@ -88,7 +93,7 @@ export default function () {
             {errorMessageAfterRequest ? <ErrorView errorMessage={errorMessageAfterRequest}/> : null}
             <div className="text-violet fw-500 required-legend-title">* обов’язкові поля для заповнення</div>
             <button type="submit" className="button-std button-std--violet small" >
-                Зареєструватися як соціальний працівник
+                Зареєструватися як кар'єрний радник
             </button>
             </Form>
         </Formik>
