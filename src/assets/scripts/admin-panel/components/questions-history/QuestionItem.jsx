@@ -4,9 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import Linkify from 'react-linkify';
+import ReactTooltip from 'react-tooltip';
 
-
-import { CalendarIcon, ClockIcon } from '../icons/Icons.jsx';
+import { CalendarIcon, ClockIcon, UserIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import {
@@ -120,7 +120,19 @@ export default function QuestionItem(props) {
 
     return output;
   }
-
+  function getUserInfo() {
+    return (
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+      </ul>
+    );
+  }
   function formMessageCallback(value) {
     const data = {
       request_id: id,
@@ -159,6 +171,44 @@ export default function QuestionItem(props) {
                         {props.title}
                     </div>
                     {props.userType === 'consult' ? consultStatuses[statusOfMessage] : statuses[statusOfMessage]}
+
+                    <UserIcon data-tip={getUserInfo()}/>
+                    <ReactTooltip className="create-cv-tooltip create-cv-tooltip--white-bg" data-tip="hello world">
+                      <table>
+                      <tbody>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        <tr className="text-violet fw-500">
+                          <td>І"мя</td>
+                          <td>  </td>
+                          <td>Сергій</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                      </ReactTooltip>
                     <div
                         className="question-item__birdy"
                     >

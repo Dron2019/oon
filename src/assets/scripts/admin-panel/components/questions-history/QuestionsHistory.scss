@@ -210,6 +210,11 @@
         margin-top: 20px;
         margin-left: auto;
     }
+
+    .user-icon {
+        fill: var(--color-violet);
+        margin-left: 30px;
+    }
     @include to(950px){
         &__single-mess {
             max-width: 100%;
@@ -220,7 +225,7 @@
         --side-padding: 15px;
         &__title {
             font-size: 14px;
-            max-width: calc(100% / 8 * 4);
+            max-width: calc(100% / 8 * 3);
             
         }
         &__head {
@@ -236,6 +241,9 @@
             margin-left: 10px;
         }
         &__title~&__birdy {
+            margin-left: 10px;
+        }
+        .user-icon {
             margin-left: 10px;
         }
     }

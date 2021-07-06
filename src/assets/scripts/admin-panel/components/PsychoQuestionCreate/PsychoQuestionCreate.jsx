@@ -170,6 +170,28 @@ export default function PsychoQuestionCreate() {
                 </div>
                 )}
             </Field>
+            <Field name="agreement" className="input-std" as="checkbox">
+                  {({
+                    field, // { name, value, onChange, onBlur }
+                    form: { touched, errors },
+                    meta,
+                  }) => (
+                          <div
+                              className={`input-group--checkbox input-group ${meta.error ? 'unfilled' : ''}`}
+                              >
+                              <label htmlFor="agreement" className="text-violet text-checkbox-group">Анонімне питання</label>
+                              <input
+                                  className="input-std" id="agreement" type="checkbox"
+                                  {...field} />
+                              <label htmlFor="agreement" className="decorate-checkbox"></label>
+                              {
+                              meta.error && (
+                              <div className="error">{meta.error}</div>
+                              )}
+                          </div>
+                  )}
+
+              </Field>
             {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
             <div className="input-group input-group--buttons df aic wrap">
               <Link className="text-violet" to={routes.psychoQuestionHistory}>Історія запитань</Link>

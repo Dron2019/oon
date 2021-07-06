@@ -32,6 +32,7 @@ export default function UserCV(props) {
   );
 }
 
+
 function ListCV(props) {
   return (
         <div className="white-bg-element cv-list">

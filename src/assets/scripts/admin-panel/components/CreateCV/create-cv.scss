@@ -92,8 +92,15 @@
   line-height: 1em !important;
   color: #000000 !important;
   pointer-events: none !important;
+  &--white-bg {
+    background-color: var(--color-white) !important;
+
+  }
   &:after {
     border-top-color: #E7E3E6 !important;
+  }
+  &--white-bg:after {
+    border-top-color: var(--color-white) !important;
   }
 }
 
