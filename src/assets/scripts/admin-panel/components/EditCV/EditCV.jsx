@@ -14,7 +14,7 @@ import { sendEditedCV } from '../../stores/CVStore/cv-actions.jsx';
 import dataStore from '../../stores/userDataStore/index.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import { telephoneMask } from '../../helpers.jsx';
-
+import { setCvIdToEdit, getCV } from '../../stores/CVStore/cv-actions.jsx';
 
 import SingleCV from '../UserCV/SingleCV.jsx';
 import routes from '../../routes/routes.jsx';
@@ -220,6 +220,11 @@ export default function EditCV(props) {
   return (
     <div className="edit-cv-wrapper">
       <div className="page-title text-violet">Редагувати резюме</div>
+      <div className="width-100">
+        <button className="button-std button-std--violet small" onClick={() => {
+              dataStore.dispatch(setCvIdToEdit(null));
+            }}>Назад до списку</button>
+      </div>
       <Formik onSubmit={handleSubmit} enableReinitialize={true} initialValues={initialValues}>
         <Form className="form-std">
         <CreateFieldsSectionofDefaultFields

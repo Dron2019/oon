@@ -86,6 +86,7 @@
     @include from(1680px){
         max-width: 1240px;
         padding: 40px 40px 60px 60px;
+        margin-left: 0;
     }
     @include to(950px){
         padding: 20px;

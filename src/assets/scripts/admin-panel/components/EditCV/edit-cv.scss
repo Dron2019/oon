@@ -50,6 +50,16 @@
     @include shift(0);
 
   }
+  .width-100 {
+    // @include size(2.1);
+
+    align-self: flex-start;
+    margin-top: -10px !important;
+  }
+  .width-100 .button-std {
+    margin-bottom: 10px;
+    
+  }
   @include to(1240px){
     .empty-cv-block,
     form {

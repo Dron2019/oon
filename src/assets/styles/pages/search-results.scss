@@ -71,6 +71,7 @@
         --top-padding: 50px;
         padding: var(--top-padding) 40px 50px 50px;
         position: relative;
+        margin-left: 0;
         .finish-phrase {
             top: 0 !important;
         }
@@ -612,8 +613,8 @@
     overflow: visible;
             .quarter-circle-decor.right {
                 right: auto;
-    left: calc(100vw - var(--aside-w));
-    transform: translateX(-100%);
+                left: calc(100vw - var(--aside-w));
+                transform: translateX(-100%);
             }
     }
 }
