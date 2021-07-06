@@ -9,7 +9,8 @@
     max-width: 1240px;
     margin-left: auto;
     margin-right: auto;
-    &:last-child{
+    &:last-child,
+    &.text-article{
         padding-left: Min(85px, 8%);
         padding-right: Min(170px, 16%);
     }
@@ -62,3 +63,12 @@
     }
 }
 
+/*~  (ДЛя историй успеха с текстовой информации)~*/
+.text-article {
+
+}
+/*~  (ДЛя историй успеха с видео) ~*/
+.succes-story-item {
+
+}
+/*~  () ~*/

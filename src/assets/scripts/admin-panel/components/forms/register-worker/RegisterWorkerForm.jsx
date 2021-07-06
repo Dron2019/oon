@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Formik, Field, Form, FormikProps,
 } from 'formik';
@@ -11,13 +12,15 @@ import ErrorView from '../../error-message/ErrorMessage.jsx';
 import dataStore from '../../../stores/userDataStore/index.jsx';
 import Loader from '../../loader/loader.jsx';
 import { setPending, resetPending } from '../../../stores/userDataStore/actions.jsx';
+import { setMessageColor } from '../../../stores/messageStatusStore/messageStatusActions.jsx';
 import { REGISTER_USER } from '../../../stores/urls.jsx';
+import routes from '../../../routes/routes.jsx';
 
 export default function RegisterWorkerForm() {
   const [errorMessageAfterRequest, setError] = useState('');
   const formFields = useSelector(state => state.registerWorkerFormReducer);
   const isPending = useSelector(state => state.pendingStatusStore);
-
+  const history = useHistory();
   const SignupSchema = Yup.object().shape({
     surname: Yup.string()
       .min(2, 'Too Short!')
@@ -56,12 +59,18 @@ export default function RegisterWorkerForm() {
     sendData.append('userData', JSON.stringify(userData));
     axios.post(REGISTER_USER, sendData)
       .then((response) => {
+        dataStore.dispatch(setMessageColor(response.data.error));
         switch (response.data.error) {
           case 0:
-            setError(decodeURIComponent(response.data.mess));
-            setTimeout(() => setError(''), 2000);
+            setError(decodeURIComponent(response.data.mess + '. Вас переправить на сторінку авторизації, де ви можете ввести ваш e-mail та пароль для входу до особистого кабінету'));
+            // setTimeout(() => setError(''), 2000);
             dataStore.dispatch(resetPending());
             actions.resetForm();
+            setTimeout(() => {
+              history.push(routes.login);
+              dataStore.dispatch(resetPending());
+              setError('');
+            }, 5000);
             break;
           case 1:
             setError(decodeURIComponent(response.data.mess));
@@ -70,8 +79,8 @@ export default function RegisterWorkerForm() {
             break;
           default:
             setError(decodeURIComponent(response.data.mess));
-            setTimeout(() => setError(''), 2000);
-            dataStore.dispatch(resetPending());
+            // setTimeout(() => setError(''), 2000);
+            
         }
       })
       .catch((el) => {

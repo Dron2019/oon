@@ -608,6 +608,14 @@
             margin-top: 20px !important;
         }
     }
+    @include from(1680px){
+    overflow: visible;
+            .quarter-circle-decor.right {
+                right: auto;
+    left: calc(100vw - var(--aside-w));
+    transform: translateX(-100%);
+            }
+    }
 }
 
 .event-item-in-search-results {
@@ -676,6 +684,9 @@
         }
     }
     @include from(1680px){
+        .page-part {
+            overflow: visible;
+        }
         .page-part {
             margin-left: 0;
             padding: 65px 100px 65px 100px;

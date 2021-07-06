@@ -4,8 +4,16 @@
     grid-template-rows: -webkit-max-content;
     grid-template-columns: 1fr 1fr;
     gap:22px;
+    max-width: 1360px;
     @include from(1680px){
-        gap:45px;
+        @include row-flex();
+
+        gap: initial;
+        &>* {
+            @include size(6);
+            @include shift(0);
+            margin-bottom: 20px;
+        }
     }
     @include to(768px){
         grid-template-columns: 1fr;

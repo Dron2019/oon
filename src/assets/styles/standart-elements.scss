@@ -32,7 +32,7 @@ body {
   @include to(1024px){
     width: 100vw;
   }
-  @include to(575px){
+  @include to(768px){
     overflow: hidden;
   }
   @include to(575px){
@@ -361,6 +361,9 @@ textarea,
   &.with-padding {
     padding: 30px;
   }
+  p~p {
+    margin-top: 1.25em;
+  }
   @include to(575px){
     padding-top: 20px;
     padding-bottom: 20px;
@@ -507,17 +510,23 @@ textarea,
     list-style: circle;
     list-style-type: disc;
     list-style-position: inside;
-    text-indent: -18px;
+    text-indent: -24px;
     padding-left: 24px;
   }
   li:first-line{
     // padding-left: 15px;
   }
   li::marker{
-    // margin-right: 10px;
+    margin-right: 0px;
   }
   li~li {
     margin-top: 30px;
+  }
+  @include to(1679px){
+    li {
+      text-indent: -18px;
+      padding-left: 24px;
+    }
   }
 }
 

@@ -32,6 +32,17 @@
         padding-bottom: 56.2%;
         z-index: 2;
     }
+
+    .subtitle-small {
+        margin-top: 1.25em;
+        margin-bottom: 1em;
+    }
+    .text-violet {
+        margin-top: 1.25em;
+    }
+    p~p {
+        margin-top: 1.25em;
+    }
     @include from(1024px){
         padding-top: 50px;
         padding-bottom: 50px;

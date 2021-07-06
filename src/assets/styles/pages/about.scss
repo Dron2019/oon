@@ -142,6 +142,10 @@
     @include from(1024px){
         padding: 100px 40px;
     }
+    @include from(1680px){
+        padding: 100px 100px;
+
+    }
     @include to(768px){
         .title {
             @include size(12);
