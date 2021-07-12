@@ -34,6 +34,13 @@ import { getPsychoQuestions } from '../../stores/psychoQuestionsStore/actions_ps
 import { logout, logoutAsync, checkSession } from '../../stores/userDataStore/actions.jsx';
 import CourseLinkInCabinetMenu from '../CourseLinkInCabinetMenu/CourseLinkInCabinetMenu.jsx';
 
+const USER_TYPES = {
+  psych: 'psych',
+  user: 'user',
+  consult: 'consult',
+}
+
+
 export default function Cabinet(props) {
   const isLogined = useSelector(state => state.isLogined);
   const userName = useSelector(state => state.loginStatusReducer.name) || '';
@@ -103,13 +110,27 @@ export default function Cabinet(props) {
   function renderCabinetLinks(el, index) {
     /** el[3] - переменная новых сообщений в разделе */
     const isActive = (activeLink === el[1]) ? 'active' : '';
-    if (userType === 'consult' && el[2]) return <></>;
+    if (userType === USER_TYPES.consult && el[2]) return <></>;
     return (
         <li className={isActive} key={index}>
           <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
             {el[0]}
           </Link>
-          <CabinetMessageBell count={el[3] > 0 ? el[3] : 0}/>
+          {userType === USER_TYPES.user && <CabinetMessageBell count={el[3] > 0 ? el[3] : 0}/>}
+        </li>
+    );
+  }
+  function renderPsychLinks(el, index) {
+    /** el[3] - переменная новых сообщений в разделе */
+    const isActive = (activeLink === el[1]) ? 'active' : '';
+    if (userType === USER_TYPES.consult ) return <></>;
+    if (el[2] === true && userType === USER_TYPES.psych) return <></>;
+    return (
+        <li className={isActive} key={index}>
+          <Link onClick={() => setActiveLink(el[1])} className={`${isActive} menu__link`} to={el[1]}>
+            {el[0]}
+          </Link>
+          { userType === USER_TYPES.user && <CabinetMessageBell count={el[3] > 0 ? el[3] : 0}/>}
         </li>
     );
   }
@@ -144,14 +165,14 @@ export default function Cabinet(props) {
   }
   /**Close on hufe swipe END */
   const menus = [
-    ['Створити запитання', routes.createConsultQuestion, true],
+    ['Створити запитання', routes.createConsultQuestion, true, '', ''],
     ['Історія запитань', routes.questionsHistory, false, newMessages.consult],
     ['Запит на онлайн консультацію', routes.onlineConsultationRequest, true],
     ['Прийняті запити на консультацію', routes.onlineConsultQuestionsHistory, false, newMessages.onlineConsult],
   ];
   const psychoMenus = [
-    ['Створити запитання ', routes.psychoQuestionCreate, true],
-    ['Історія запитань ', routes.psychoQuestionHistory, false, newMessages.psycho],
+    ['Створити запитання ', routes.psychoQuestionCreate, true, '', USER_TYPES.psych],
+    ['Історія запитань ', routes.psychoQuestionHistory, false, newMessages.psycho, USER_TYPES.psych],
   ];
   function handleMobileMenuClick(evt) {
     if (evt.target.classList.contains('menu')) {
@@ -188,25 +209,33 @@ export default function Cabinet(props) {
           <div className="menu__subtitle">
             Мій кабінет
           </div>
-          <div className="menu__dark-block">
-          <div
-              // onClick={() => setActiveLink(routes.workConsultation)}
-              to={routes.workConsultation}
-              className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
-              <span>
-              Послуги кар'єрного консультанта
-              </span>
-            </div>
-            <ul>
-              {menus.map(renderCabinetLinks)}
-            </ul>
-          </div>
-          <div className="text text-white fw-800 menu-bold-text">
-              Послуги психолога
-          </div>
-          <ul>
-              {psychoMenus.map(renderCabinetLinks)}
-          </ul>
+          {userType !== USER_TYPES.psych && 
+            <>
+            <div className="menu__dark-block">
+              <div
+                  // onClick={() => setActiveLink(routes.workConsultation)}
+                  to={routes.workConsultation}
+                  className={`bold-link text text-white fw-800  ${(activeLink === (routes.workConsultation)) ? 'active' : ''}`}>
+                  <span>
+                  Послуги кар'єрного консультанта
+                  </span>
+                </div>
+                <ul>
+                  {menus.map(renderCabinetLinks)}
+                </ul>
+              </div>
+            </>
+          }
+          {userType !== USER_TYPES.consult && 
+            <>
+              <div className="text text-white fw-800 menu-bold-text">
+                  Послуги психолога
+              </div>
+              <ul>
+                  {psychoMenus.map(renderPsychLinks)}
+              </ul>
+            </>
+          }
           <Link
             activeClassName="active"
             onClick={() => setActiveLink(routes.profileEditor)}
@@ -216,7 +245,7 @@ export default function Cabinet(props) {
             Редагувати профіль
             </span>
           </Link>
-          { userType !== 'consult'
+          { userType === 'user'
           && <>
               <Link
                 activeClassName="active"
@@ -255,7 +284,7 @@ export default function Cabinet(props) {
             Вихід з кабінету
           </div> */}
           <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Звортній зв'язок</div>
-          {userType === 'consult' && <CourseLinkInCabinetMenu href="https://google.com" target='_blank'/>}
+          {userType === USER_TYPES.consult && <CourseLinkInCabinetMenu href="https://google.com" target='_blank'/>}
         </div>
         <div className="content">
           {formReviewViewer && <CabinetReviewForm onClose={() => setFormReviewViewer(false)} />}
