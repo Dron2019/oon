@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
@@ -22,7 +22,7 @@ export default function OnlineConsultationRequest(props) {
   const isPending = useSelector(state => state.pendingStatusStore);
   const errorMessage = useSelector(state => state.loginStatusReducer.error);
 
-
+  const ref = useRef(null);
   function formSubmit(values, form) {
     const textData = `${values.text} ${values.date}`;
 
@@ -59,7 +59,16 @@ export default function OnlineConsultationRequest(props) {
         //   .date()
         //     .min(new Date(), 'Дата повинна бути')
         .required('Оберіть дату консультації'),
+      onclick: (ref) => {
+        console.log(ref);
+        ref.openCalendar();
+          // ref.current.openCalendar(true);
+      },
       innerElems: <DateTimePicker
+                ref={(c) => {
+                  console.log(c);
+                  return c;
+                }}
                 minDate={new Date()}
                 locale='uk-UA'
                 value={choosedDate}
@@ -111,7 +120,12 @@ export default function OnlineConsultationRequest(props) {
                                   form: { touched, errors },
                                   meta,
                                 }) => (
-                                <div className={`input-group ${meta.error ? 'unfilled ' : ''}${configField.requiredClass}`}>
+                                <div className={`input-group ${meta.error ? 'unfilled ' : ''}${configField.requiredClass}`} onClick={(e) => {
+                                  e.target.calendar = configField.innerElems ? configField.innerElems : '';
+                                  if (typeof configField.onclick === 'function') {
+                                    configField.onclick(ref);
+                                  }
+                                }}>
                                     {configField.type === 'textarea'
                                       ? <textarea className='input-std' placeholder={configField.title} {...field} />
                                       : <input className='input-std' placeholder={configField.title} {...field} />

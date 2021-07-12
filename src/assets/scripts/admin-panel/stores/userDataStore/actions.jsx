@@ -72,12 +72,20 @@ export function restoreByToken(values) {
         setMessageColor(response.data.error);
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail('Вас переправить до особистого кабінету'));
+          console.log(response, 'RESTORE SUCCES');
+          
           setTimeout(() => {
-            dataStore.dispatch(login({ name: values.login }));
+            dataStore.dispatch(login({ 
+              name: response.data.userID,
+              id: response.data.userID,
+              role: response.data.role,
+            
+            }));
             const queryParams = new URLSearchParams(history.location.search);
             history.replace({
               search: ''.toString(),
             });
+            history.push('/');
             dataStore.dispatch(resetPending());
             dataStore.dispatch(clearError());
           }, 2000);
@@ -101,9 +109,9 @@ export function restoreByToken(values) {
             dataStore.dispatch(clearError());
           }, 3000);
         }
-        history.replace({
-          search: ''.toString(),
-        });
+        // history.replace({
+        //   search: ''.toString(),
+        // });
         return response.data;
       })
       .catch((error) => {

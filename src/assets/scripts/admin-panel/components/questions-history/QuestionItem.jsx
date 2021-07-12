@@ -126,7 +126,7 @@ export default function QuestionItem(props) {
   }
   function getUserInfo() {
     const {age, childs, education, email, familyStatus, fathername_r, mainphone, name_r, surname_r} = props;
-    const array = [age, childs, education, email, familyStatus, fathername_r, mainphone, name_r, surname_r];
+    const array = {age, childs, education, email, familyStatus, fathername_r, mainphone, name_r, surname_r};
     return array;
   }
   function formMessageCallback(value) {

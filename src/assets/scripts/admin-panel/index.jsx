@@ -37,9 +37,11 @@ function App(props) {
       // eslint-disable-next-line prefer-arrow-callback
       document.querySelector('aside .button-std.button-std--violet').addEventListener('click', logoutFromOuter);
       document.querySelector('aside .button-std.button-std--violet span').innerHTML = 'Вийти з кабінету';
+      document.querySelector('aside .button-std.button-std--violet').style.animation = 'none';
     } else {
       document.querySelector('aside .button-std.button-std--violet span').innerHTML = 'Мій Кабінет';
       document.querySelector('aside .button-std.button-std--violet').removeEventListener('click', logoutFromOuter);
+      document.querySelector('aside .button-std.button-std--violet').style.animation = '';
     }
   }, [isLogined]);
   return (

@@ -60,7 +60,29 @@ export default function LoginForm(props) {
                 onSubmit={loginSubmit}>
                 <Form className="form-std">
                     <div className="form-std__subtitle text-violet">Вхід до особистого кабінету</div>
-                    <div className="input-group">
+                    <Field
+                        name="login"
+                        type="text">
+                    {({
+                      field, // { name, value, onChange, onBlur }
+                      form: { touched, errors },
+                      meta,
+                    }) => (
+                        <div className={meta.error ? 'input-group unfilled' : 'input-group'}>
+                            <input
+                                className="input-std"
+                                    type="text"
+                                    placeholder="Логін:" {...field}
+                            />
+                            {meta.touched && meta.error && (
+                                <div
+                                    className="error">{meta.error}
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    </Field>
+                    {/* <div className="input-group">
                         <Field
                             className="input-std"
                             name="login"
@@ -70,7 +92,7 @@ export default function LoginForm(props) {
                           className="error"
                           component="div"
                           name="login" />
-                    </div>
+                    </div> */}
                     <Field
                         name="password"
                         type="password">
@@ -79,7 +101,7 @@ export default function LoginForm(props) {
                       form: { touched, errors },
                       meta,
                     }) => (
-                        <div className="input-group">
+                        <div className={meta.error ? 'input-group unfilled' : 'input-group'}>
                             <input
                                 className="input-std"
                                     type="password"

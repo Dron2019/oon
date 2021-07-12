@@ -49,11 +49,11 @@ export default function ProfileEditor(props) {
       surname_r: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
-        .required('Required'),
+        .required('Введіть прізвище'),
       name_r: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
-        .required('Required'),
+        .required('Введіть ім\'я'),
       // email_r: Yup.string().email('Invalid email').required('Required'),
     },
   );
@@ -127,7 +127,7 @@ export default function ProfileEditor(props) {
                                     placeholder={field_config.title || ''} {...field} />
                                   : <InputMask className="input-std" placeholder={field_config.title || ''} {...field} mask={telephoneMask} type={field_config.type ? field_config.type : 'text'} name={field_config.name}></InputMask>
                                   }
-                                {field_config.title && <div className="error placeholder-in-focus">{field_config.title}</div>}
+                                {field_config.title && !meta.error && <div className="error placeholder-in-focus">{field_config.title}</div>}
                                 {meta.touched && meta.error && (
                                 <div className="error">{meta.error}</div>
                                 )}

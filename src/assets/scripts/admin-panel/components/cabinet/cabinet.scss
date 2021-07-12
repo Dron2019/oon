@@ -83,6 +83,9 @@
         position: relative;
         z-index: 1;
     }
+    &__link:hover {
+        text-decoration: underline;
+    }
     li {
         position: relative;
         z-index: 1;
@@ -265,7 +268,9 @@
         position: sticky;
         position: -webkit-sticky;
         top: 20px;
-
+        .button-std {
+            height: 36px;
+        }
     }
     --online-course-h: 95px;
     margin-bottom: var(--online-course-h);

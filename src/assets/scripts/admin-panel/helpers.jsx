@@ -8,4 +8,4 @@ export const GET = (function get() {
   return obj;
 }());
 
-export const telephoneMask = '+3 (80) 99 999 99 99';
+export const telephoneMask = '+380 (99) 999 99 99';

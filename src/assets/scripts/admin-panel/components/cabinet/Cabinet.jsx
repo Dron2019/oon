@@ -283,7 +283,7 @@ export default function Cabinet(props) {
             onClick={(evt) => { store.dispatch(logoutAsync(evt.target.innerText)); }}>
             Вихід з кабінету
           </div> */}
-          <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Звортній зв'язок</div>
+          <div className="button-std button-std--white small" onClick={() => setFormReviewViewer(true)}>Зворотній зв'язок</div>
           {userType === USER_TYPES.consult && <CourseLinkInCabinetMenu href="https://google.com" target='_blank'/>}
         </div>
         <div className="content">

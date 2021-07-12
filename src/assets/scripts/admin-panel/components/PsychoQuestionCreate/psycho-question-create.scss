@@ -40,6 +40,12 @@
   .blocking-block~.form-std a {
     color: rgba(209, 209, 209, 1);
   }
+  .blocking-block ~ .form-std .text-checkbox-group {
+    color: rgba(209, 209, 209, 1);
+  }
+  .blocking-block ~ .form-std .decorate-checkbox {
+      border-color: rgba(209, 209, 209, 1);
+  }
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
