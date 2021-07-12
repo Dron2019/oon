@@ -10,9 +10,10 @@ import RegisterConsultantForm from '../forms/register-consult/RegisterConsultant
 export default () => {
   const [synamicSubtitle, setDynamicSubtitle] = useState('користувачa');
   return (<div className="login-form">
-                <div className="page-title text-violet" style={{ marginBottom: 0 }}>Мій кабінет</div>
+                <div className="page-title text-violet" style={{ marginBottom: 0 }}>Реєстрація</div>
                 <div className="white-bg-element">
-                    <Tabs>
+                    <RegisterWorkerForm></RegisterWorkerForm>
+                    {/* <Tabs>
                     <div className="login-tabs-head">
                         <div className="subtitle text-violet fw-600">Ви реєструєтесь як</div>
                         <TabList>
@@ -22,15 +23,15 @@ export default () => {
                         <div className="subtitle-small text-violet">Реєстрація {synamicSubtitle}</div>
                     </div>
                     <TabPanel>
-                        <RegisterWorkerForm></RegisterWorkerForm>
+                        
                     </TabPanel>
                     <TabPanel>
                         <RegisterConsultantForm/>
                     </TabPanel>
-                    </Tabs>
+                    </Tabs> */}
                 </div>
                 <div className="white-bg-element">
-                    <Link to="/login" className="button-std button-std--violet small transparent "> Ви вже зарєстровані</Link>
+                    <Link to="/login" className="button-std button-std--violet small transparent "> Сторінка авторизації</Link>
                 </div>
             </div>
   );

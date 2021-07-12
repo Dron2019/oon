@@ -4,10 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import Linkify from 'react-linkify';
-import ReactTooltip from 'react-tooltip';
+
 
 import { CalendarIcon, ClockIcon, UserIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
+import UserInfoTooltip from '../userInfoTooltip/UserInfoTooltip.jsx';
 import store from '../../stores/userDataStore/index.jsx';
 import {
   getSingleConsultQuestion,
@@ -30,6 +31,8 @@ export default function QuestionItem(props) {
     userType,
     is_read,
     hideForm,
+    showUserInfoIcon,
+    anonymous
   } = props;
 
 
@@ -64,6 +67,7 @@ export default function QuestionItem(props) {
 
   useEffect(() => {
     gsap.fromTo('.question-item', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1 });
+    console.log(props.anonymous, 'ANNNNNN');
   }, []);
 
   const statuses = {
@@ -121,17 +125,9 @@ export default function QuestionItem(props) {
     return output;
   }
   function getUserInfo() {
-    return (
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-      </ul>
-    );
+    const {age, childs, education, email, familyStatus, fathername_r, mainphone, name_r, surname_r} = props;
+    const array = [age, childs, education, email, familyStatus, fathername_r, mainphone, name_r, surname_r];
+    return array;
   }
   function formMessageCallback(value) {
     const data = {
@@ -172,47 +168,17 @@ export default function QuestionItem(props) {
                     </div>
                     {props.userType === 'consult' ? consultStatuses[statusOfMessage] : statuses[statusOfMessage]}
 
-                    <UserIcon clickable data-tip={getUserInfo()}/>
-                    <ReactTooltip clickable className="create-cv-tooltip create-cv-tooltip--white-bg" data-tip="hello world">
-                      <table>
-                      <tbody>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        <tr className="text-violet fw-500">
-                          <td>І"мя</td>
-                          <td>  </td>
-                          <td>Сергій</td>
-                        </tr>
-                        </tbody>
-                      </table>
-                      </ReactTooltip>
-                    <div
-                        className="question-item__birdy"
-                    >
-                    </div>
+                    
+                    {showUserInfoIcon && anonymous === '0' &&
+                      <>
+                        <UserIcon clickable data-tip={getUserInfo()}/>
+                        <UserInfoTooltip data={getUserInfo()} />
+                      </>
+                    }
+                      <div
+                          className="question-item__birdy"
+                      >
+                      </div>
                 </div>
                 <div className="question-item__body">
                     {messages && messages.map((part, index) => {

@@ -30,6 +30,8 @@ export default function PsychoQuestionHistory() {
           sendSinglePsychQuestion={sendSinglePsychQuestion}
             closePsychQuestion={closePsychQuestion}
             recoverPsychConversation={recoverPsychConversation}
+            showUserInfoIcon
+            anonymous={message.anonymous}
             key={index}
             {...message}
             userID={userID}
