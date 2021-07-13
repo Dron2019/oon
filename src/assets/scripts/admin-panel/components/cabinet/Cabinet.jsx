@@ -95,9 +95,10 @@ export default function Cabinet(props) {
     store.dispatch(getPsychoQuestions());
   }, []);
   useEffect(() => {
+    store.dispatch(countNewMessages());
     setTimeout(() => {
-      store.dispatch(countNewMessages());
-    }, 100);
+      window.dispatchEvent(new Event('storage'));
+    }, 1000);
   }, [messagesList, onlineConsultMessagesList, psychoMessagesList]);
 
   function renderCabinetNestedRoutes(el, index) {

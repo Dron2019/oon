@@ -43,7 +43,7 @@ function renderNewMessagesInAsideButton(){
 window.addEventListener('load', renderNewMessagesInAsideButton);
 window.addEventListener('storage', renderNewMessagesInAsideButton);
 
-
+window.localStorage.setItem('newMessages', '0');
 
 function handleNextPageButtons(){
   const buttons = document.querySelectorAll('[data-down-button]');
