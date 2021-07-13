@@ -60,20 +60,39 @@ export default function ForgotPassword(props) {
                 initialValues={{
                   email: '',
                 }}
+                validate={(value) => {
+                  if (value.email.length <= 0) return { email: 'Введіть ваш e-mail',};
+                  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)) return { email: 'Невірний формат e-mail',};
+                }}
                 onSubmit={handleSubmit}
                 >
-                <Form className="form-std">
+                <Form 
+                  className="form-std"
+                  
+                
+                >
                     <label htmlFor="email" className="form-std__subtitle text-violet">Забули пароль?</label>
-                    <div className="input-group">
+                      <Field name="email" >
+                        {({ field, form, meta }) => {
+                          return (
+                            <div  className={(meta.touched && meta.error) ? 'input-group unfilled' : 'input-group'}>
+                              <input  id="email" className="input-std" type="text" {...field} placeholder="Ваш e-mail"/>
+                              {meta.touched &&
+                                meta.error && <div className="error">{meta.error}</div>}
+                            </div>
+                          )
+                        }}
+                      </Field>
+                    {/* <div className="input-group">
                         <Field
-                            required
+                            
                             className="input-std"
                             id="email"
                             name="email"
                             placeholder="E-mail:"
                             type="email"
                         />
-                    </div>
+                    </div> */}
                     {message ? <ErrorView errorMessage={message}/> : null }
                     {/* {message.length === 0 ? null :
                         <div className="input-group">

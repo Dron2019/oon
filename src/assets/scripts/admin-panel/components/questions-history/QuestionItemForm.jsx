@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  Field, Form, Formik, FormikProps, ErrorMessage,
+  Field, Form, Formik, FormikProps,
 } from 'formik';
-
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
 export default function QuestionItemForm(props) {
+    const { errorMessage } = props;
   function loginSubmit(vals, form) {
     if (vals.message.length === 0) return false;
     form.resetForm();
@@ -15,6 +16,13 @@ export default function QuestionItemForm(props) {
             <Formik
                 initialValues={{ message: '' }}
                 onSubmit={loginSubmit}
+                validate={(vals) => {
+                    if (vals.message.length <= 0) {
+                        return {
+                            message: 'Введіть ваше повідомлення'
+                        }
+                    }
+                }}
             >
             <Form className="form-std history-message-form">
                 <div className="form-std__subtitle text-violet">Надіслати відповідь</div>
@@ -25,7 +33,7 @@ export default function QuestionItemForm(props) {
                       field, // { name, value, onChange, onBlur }
                       meta,
                     }) => (
-                        <div className="input-group">
+                        <div className={(meta.touched && meta.error) ? 'input-group unfilled' : 'input-group'}>
                             <textarea
                                 className="input-std"
                                     type="text"
@@ -39,6 +47,7 @@ export default function QuestionItemForm(props) {
                         </div>
                     )}
                     </Field>
+                    {errorMessage && <ErrorMessage errorMessage={errorMessage}/>}
                     <div className="form__group">
                         {props.userType === 'consult'
                         && <>
@@ -52,6 +61,7 @@ export default function QuestionItemForm(props) {
                             </p>
                         </>
                         }
+                        
                         <button
                             className="button-std button-std--violet small"
                             type="submit">

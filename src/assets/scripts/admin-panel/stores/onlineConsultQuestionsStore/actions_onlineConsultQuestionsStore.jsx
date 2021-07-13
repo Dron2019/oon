@@ -146,13 +146,19 @@ export function sendSingleOnlineConsultQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSingleOnlineConsultQuestion(messageData.request_id));
+            store.dispatch(formMessage(el.data.mess));
             break;
           default:
+            store.dispatch(formMessage(el.data.mess));
             break;
         }
       })
       .catch(el => console.log(el))
-      .finally(el => console.log(el));
+      .finally(el => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+        }, 3000);
+      });
   };
 }
 

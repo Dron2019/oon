@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import Linkify from 'react-linkify';
-
+import { useSelector } from 'react-redux';
 
 import { CalendarIcon, ClockIcon, UserIcon } from '../icons/Icons.jsx';
 import QuestionItemForm from './QuestionItemForm.jsx';
@@ -35,7 +35,7 @@ export default function QuestionItem(props) {
     anonymous
   } = props;
 
-
+  const errorMessage = useSelector(state => state.loginStatusReducer.error);
   const ref1 = useRef(null);
   const timeLine = useRef(null);
 
@@ -262,6 +262,7 @@ export default function QuestionItem(props) {
                     {statusOfMessage !== 10 && !hideForm
                         && <div className="gray-bg-element">
                             <QuestionItemForm
+                                errorMessage={errorMessage}
                                 closeQuestion={() => {
                                   if (props.closeOnlineConsultQuestion) {
                                     store.dispatch(props.closeOnlineConsultQuestion(id));

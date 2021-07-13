@@ -10,6 +10,9 @@
         display: flex;
         flex-wrap: wrap;
     }
+    .wrap-404 {
+        align-content: flex-start;
+    }
     @include from(769px){
         position: relative;
     }
