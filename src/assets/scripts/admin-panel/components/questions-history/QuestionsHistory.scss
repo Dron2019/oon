@@ -1,12 +1,17 @@
 .question-history-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+
     .page-title {
         text-align: left;
         width: 100%;
+        order: 2;
+    }
+    .question-item {
+        order: 1;
     }
     @include from-to(576px, 950px){
         .page-title {

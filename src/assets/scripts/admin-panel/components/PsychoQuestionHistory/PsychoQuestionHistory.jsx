@@ -38,7 +38,7 @@ export default function PsychoQuestionHistory() {
             userType={userType}/>
       ))}
       {messages.length === 0 && <EmptyQuestions/>}
-      {errorMessage && <div className="el-for-alerts">{errorMessage}</div>}
+      {/* {errorMessage && <div className="el-for-alerts">{errorMessage}</div>} */}
     </div>
   );
 }

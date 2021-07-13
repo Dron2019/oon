@@ -170,14 +170,20 @@ export function sendSinglePsychQuestion(messageData) {
         switch (el.data.error) {
           case 0:
             store.dispatch(getSinglePsychConsultQuestion(messageData.request_id));
+            store.dispatch(formMessage(el.data.mess));
             store.dispatch(countNewMessages());
             break;
           default:
+            store.dispatch(formMessage(el.data.mess));
             break;
         }
       })
       .catch(el => console.log(el))
-      .finally(el => console.log(el));
+      .finally(el => {
+        setTimeout(() => {
+          store.dispatch(formMessage(''));
+        }, 2000);
+      });
   };
 }
 

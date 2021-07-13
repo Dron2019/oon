@@ -14,6 +14,7 @@ const userInfotitles = {
 export default function UserInfoTooltip(props){
   return (
     <ReactTooltip 
+      id={props.id}
       place="left" 
       delayUpdate={1000} 
       effect="solid" 

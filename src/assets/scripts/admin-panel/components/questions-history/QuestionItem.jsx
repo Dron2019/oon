@@ -67,7 +67,7 @@ export default function QuestionItem(props) {
 
   useEffect(() => {
     gsap.fromTo('.question-item', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1 });
-    console.log(props.anonymous, 'ANNNNNN');
+
   }, []);
 
   const statuses = {
@@ -117,9 +117,9 @@ export default function QuestionItem(props) {
     output += status === 0 ? ' new-answer' : ' ';
     output += status === 1 ? ' await' : ' ';
     output += status === 10 ? ' closed' : '';
-    output += status === 2 ? ' new-answer' : '';
+    output += status === 2 ? ' new-answer ' : '';
     output += status === 3 ? '  answered' : '';
-    output += (+is_read === 0 && props.userType !== 'consult') ? 'new-answer' : '';
+    output += (+is_read === 0 && props.userType !== 'consult' && props.userType !== 'psych') ? 'new-answer ' : '';
     output += props.userType !== 'consult' ? 'no-title' : '';
 
     return output;
@@ -143,7 +143,8 @@ export default function QuestionItem(props) {
       store.dispatch(sendSingleQuestion(data));
     }
   }
-  return (
+  return (  <>
+            {showUserInfoIcon && anonymous === '0' && <UserInfoTooltip id={id} data={getUserInfo()} />}
             <div data-is_read={is_read} ref={ref1} className={setLayoutClassNames()}>
                 {props.userType === 'consult'
                 && <div className="question-item__user-info">
@@ -158,7 +159,8 @@ export default function QuestionItem(props) {
                 }
                 <div
                     className="question-item__head"
-                    onClick={() => {
+                    onClick={(evt) => {
+                      if (evt.target.closest('.user-icon') !== null) return;
                       setDropdown(!dropdowned);
                       // eslint-disable-next-line no-unused-expressions
                       firstRendered === false ? setFirstRender(true) : null;
@@ -171,8 +173,7 @@ export default function QuestionItem(props) {
                     
                     {showUserInfoIcon && anonymous === '0' &&
                       <>
-                        <UserIcon clickable data-tip={getUserInfo()}/>
-                        <UserInfoTooltip data={getUserInfo()} />
+                        <UserIcon data-for={id} clickable data-tip={getUserInfo()}/>
                       </>
                     }
                       <div
@@ -182,7 +183,7 @@ export default function QuestionItem(props) {
                 </div>
                 <div className="question-item__body">
                     {messages && messages.map((part, index) => {
-                      if (userType === 'consult') {
+                      if (userType === 'consult' || userType === 'psych' && part.questType !== 'faq_admin') {
                         return (
                           <div key={index} className={`text question-item__single-mess ${part.consultID === '0' ? 'client' : 'admin'}`}>
                                 <div className="question-item__single-mess-head">
@@ -288,6 +289,7 @@ export default function QuestionItem(props) {
                     }
                 </div>
             </div>
+          </>
   );
 }
 
