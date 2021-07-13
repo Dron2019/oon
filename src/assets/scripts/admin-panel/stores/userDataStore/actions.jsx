@@ -69,7 +69,7 @@ export function restoreByToken(values) {
   return (dispatch) => {
     axios.post(LOGIN_URL, formDate)
       .then((response) => {
-        setMessageColor(response.data.error);
+        dataStore.dispatch(setMessageColor(response.data.error));
         if (response.data.error === 0) {
           dataStore.dispatch(loginFail('Вас переправить до особистого кабінету'));
           console.log(response, 'RESTORE SUCCES');

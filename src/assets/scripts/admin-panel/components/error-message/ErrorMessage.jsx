@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 export default function ErrorMessage(props) {
   const messageColor = useSelector(state => state.messageStatusStore);
-  const colors = ['green', 'orange'];
+  const colors = ['green', '#FF5C50'];
   return (
         <div style={{
           backgroundColor: colors[messageColor],
