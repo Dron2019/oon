@@ -53,23 +53,19 @@ export default function OnlineConsultationRequest(props) {
       title: 'Бажана дата проведення консультації:',
       name: 'date',
       value: choosedDate,
-      initialValue: choosedDate.toLocaleString(),
+      initialValue: choosedDate.toLocaleDateString(),
       requiredClass: 'required',
       validationSchema: Yup.string()
         //   .date()
         //     .min(new Date(), 'Дата повинна бути')
         .required('Оберіть дату консультації'),
-      onclick: (ref) => {
-        console.log(ref);
-        ref.openCalendar();
-          // ref.current.openCalendar(true);
+      onclick: () => {
+        
+          ref.current.openCalendar();
       },
       innerElems: <DateTimePicker
-                ref={(c) => {
-                  console.log(c);
-                  return c;
-                }}
                 minDate={new Date()}
+                ref={ref}
                 locale='uk-UA'
                 value={choosedDate}
                 onChange={setDate}
@@ -122,13 +118,15 @@ export default function OnlineConsultationRequest(props) {
                                 }) => (
                                 <div className={`input-group ${meta.error ? 'unfilled ' : ''}${configField.requiredClass}`} onClick={(e) => {
                                   e.target.calendar = configField.innerElems ? configField.innerElems : '';
-                                  if (typeof configField.onclick === 'function') {
-                                    configField.onclick(ref);
-                                  }
+                                  
                                 }}>
                                     {configField.type === 'textarea'
                                       ? <textarea className='input-std' placeholder={configField.title} {...field} />
-                                      : <input className='input-std' placeholder={configField.title} {...field} />
+                                      : <input onClick={() => {
+                                        if (typeof configField.onclick === 'function') {
+                                          configField.onclick();
+                                        }
+                                      }} className='input-std' placeholder={configField.title} {...field} />
                                     }
                                     {configField.innerElems ? configField.innerElems : ''}
 
