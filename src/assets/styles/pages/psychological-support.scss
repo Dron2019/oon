@@ -195,6 +195,20 @@
       height: auto;
       visibility: visible;
     }
+
+    p~p {
+      margin-top: 1.25em;
+    }
+    .subtitle-small {
+      color: var(--color-violet);
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .list-std {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
     @include from(769px){
       &:hover {
         cursor: pointer;
