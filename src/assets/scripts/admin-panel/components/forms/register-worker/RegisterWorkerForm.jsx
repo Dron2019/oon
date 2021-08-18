@@ -84,6 +84,7 @@ export default function RegisterWorkerForm() {
             }, 1000);
             dataStore.dispatch(resetPending());
             actions.resetForm();
+            window.dispatchEvent(new Event('succesRegistration'));
             setTimeout(() => {
               history.push(routes.login);
               dataStore.dispatch(resetPending());
