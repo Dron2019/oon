@@ -44,7 +44,7 @@ export default function LoginForm(props) {
   }
   return (
         <div className="login-form">
-            <div className="title text-violet">Мій кабінет</div>
+            <h1 className="title text-violet">Мій кабінет</h1>
             <Redirect to={`/login${history.location.search}`} />
             <Formik
                 validate={(el) => {
