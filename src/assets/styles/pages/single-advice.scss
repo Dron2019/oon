@@ -17,6 +17,14 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    ul,ol {
+        @extend .list-std;
+    }
+    h1,h2,h3,h4,h5,h6 {
+        @extend .subtitle-small;
+        @extend .fw-800;
+        @extend .text-violet;
+    }
     iframe {
         border-radius: 10px;
         width: 100%;
